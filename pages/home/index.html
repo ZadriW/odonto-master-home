@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dental Odonto Master - Materiais e equipamentos odontológicos de qualidade para profissionais da odontologia">
+    <meta name="keywords" content="odontologia, materiais odontológicos, equipamentos odontológicos, clareador dental">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="website">
+     <meta property="og:url" content="https://www.odontomaster.com.br/">
+     <meta property="og:title" content="Dental Odonto Master | Você conhece e confia!">
+     <meta property="og:description" content="Materiais e equipamentos odontológicos de qualidade">
+     <meta property="og:image" content="https://recursos.odontomaster.com.br/i/logo_odonto.png">
+
+     <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.odontomaster.com.br/">
+    <meta property="twitter:title" content="Dental Odonto Master | Você conhece e confia!">
+    <meta property="twitter:description" content="Materiais e equipamentos odontológicos de qualidade">
+    <meta property="twitter:image" content="https://recursos.odontomaster.com.br/i/logo_odonto.png">
+
+    <title>Dental Odonto Master | Você conhece e confia!</title>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <div class="container">
+                <div class="top-banner__content">
+                    <div class="top-banner__warning">
+                        <strong>ATENÇÃO!</strong>Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
+                    </div>
+                    <div class="top-banner__login">
+                        <a href="/login/index.html" class="login-link">Olá Visitante, Identifique-se aqui</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Area -->
+        <div class="header-area">
+            <div class="container">
+                <div class="header-area__content">
+                    <!-- Logo -->
+                    <div class="header-logo">
+                        <a href="/pages/home/index.html" class="logo-link">
+                            <img src= "https://recursos.odontomaster.com.br/i/logo_odonto.png" alt="Odonto Master" class="logo-image">
+                        </a>
+                    </div>
+
+                    <!-- Search Bar --> 
+                    <div class="search-bar">
+                        <form class="search-form" id="searchForm" autocomplete="off" method="get" action="/busca/index.html">
+                            <div class="search-form__wrapper">
+                                <input type="text" 
+                                       class="search-form__input" 
+                                       id="searchInput" 
+                                       name="busca" 
+                                       placeholder="Busque aqui..."
+                                       autocomplete="on">
+                                <button type="submit" class="search-form__button" aria-label="Buscar">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="search-autocomplete" id="searchAutocomplete" style="display: none;"></div>
+                        </form>
+                    </div>
+
+                    <!-- Header Actions -->
+                    <section class="header-actions">
+                        
+                        <!-- Contact Info -->
+                        <div class="contact-info">
+                            <div class="contact-info__phone">
+                                <span class="contact-info__label">TELEVENDAS</span>
+                                <strong class="contact-info__number">0800 672 1105</strong>
+                                <strong class="contact-info__number">(71) 3173-7300</strong>
+                            </div>
+                        </div>
+
+                        <!-- Customer Service -->
+                        <div class="customer-service">
+                            <button class="customer-service__trigger" aria-label="Informações de atendimento">
+                                <i class="fas fa-headset"></i>
+                            </button>
+                            <div class="customer-service__dropdown">
+                                <div class="customer-service__section">
+                                    <strong>Pelos Telefones:</strong>
+                                    <p>(71) 3173-7300 - Salvador/BA</p>
+                                    <p>(75) 3322-8498 - Feira de Santana/BA</p>
+                                    <p>(79) 3085-0710 - Aracaju/SE</p>
+                                </div>
+                                
+                                <div class="customer-service__section">
+                                    <strong>Pelo WhatsApp:</strong>
+                                    <p>(71) 9 9401-9924</p>
+                                </div>
+                                
+                                <div class="customer-service__section">
+                                    <strong>Horário de Atendimento:</strong>
+                                    <p>Segunda a Sexta das 08:00 às 18:00</p>
+                                    <p>Sábados 08:00 às 14:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="my-account">
+                            <button class="my-account__trigger" aria-label="Minha conta">
+                                <i class="fas fa-user"></i>
+                                <a class="my-account__link" href="#"></a>
+                        </div>
+
+                        <!--Carrinho -->
+                        <div class="shopping-cart">
+                            <button class="shopping-cart__trigger" aria-label="Carrinho de compras">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="shopping-cart__text">Carrinho</span>
+                                <span class="shopping-cart__count">0</span>
+                                <span class="shopping-cart__label">Item(s)</span>
+                            </button>
+                            <div class="shopping-cart__dropdown">
+                                <div class="shopping-cart__content">
+                                    <div class="shopping-cart__empty">
+                                        <p>Sua sacola de compras está vazia</p>
+                                        <p>Carrinho Vazio</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" aria-label="Abrir menu" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra de navegação -->
+        <nav class="main-navigation" id="main-navigation">
+            <div class="container">
+                <div class="main-navigation__content">
+                    
+                    <!-- Mobile Menu Close -->
+                    <button class="mobile-menu-close" aria-label="Fechar menu" id="mobileMenuClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+
+                    <!-- Menu de Navegação -->
+                    <div class="navigation-menu">
+                        <ul class="menu-list">
+                            <li class="menu-item menu-item--has-submenu">
+                                <a href="#" class="menu-link" id="mega-menu-trigger" aria-haspopup="true" aria-expanded="false">Todas as Categorias</a>
+                            </li>
+                            <li class="menu-item"><a href="/pages/cirurgia/cirurgia.html" class="menu-link">Cirurgia e Periodontia</a></li>
+                            <li class="menu-item"><a href="/categoria/dentistica/index.html" class="menu-link">Dentística</a></li>
+                            <li class="menu-item"><a href="/categoria/endodontia/index.html" class="menu-link">Endodontia</a></li>
+                            <li class="menu-item"><a href="/categoria/equipamentos/index.html" class="menu-link">Equipamentos</a></li>
+                            <li class="menu-item"><a href="/categoria/instrumental/index.html" class="menu-link">Instrumental</a></li>
+                            <li class="menu-item"><a href="/categoria/ortodontia/index.html" class="menu-link">Ortodontia</a></li>
+                            <li class="menu-item"><a href="/categoria/pecas-de-mao/index.html" class="menu-link">Peças de Mão</a></li>
+                            <li class="menu-item"><a href="/categoria/protese/index.html" class="menu-link">Prótese</a></li>
+                            <li class="menu-item menu-item--highlighted">
+                                <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Odontoverse</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="submenu-overlay"></div>
+                    <div class="submenu submenu--mega" id="mega-menu-content" aria-hidden="true">
+                    <div class="submenu__header">
+                        <h2>Navegue por todas as categorias</h2>
+                        <button class="submenu__close" aria-label="Fechar menu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="submenu__columns">
+                        <!-- Apenas títulos clicáveis -->
+                        <div class="submenu__column">
+                            <a href="/acessorios-e-vestuarios" class="submenu__title-link">
+                                <h3 class="submenu__title">Acessórios e Vestuários</h3>
+                            </a>
+                        </div>
+                        <div class="submenu__column">
+                            <a href="/anestesico" class="submenu__title-link">
+                                <h3 class="submenu__title">Anestésico</h3>
+                            </a>
+                        </div>
+                        <div class="submenu__column">
+                            <a href="/biosseguranca" class="submenu__title-link">
+                                <h3 class="submenu__title">Biossegurança</h3>
+                            </a>
+                        </div>
+                        <div class="submenu__column">
+                            <a href="/brocas" class="submenu__title-link">
+                                <h3 class="submenu__title">Brocas</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cards e Carrossel abaixo da navegação -->
+    
+        <section class="home-cards-section">
+    <div class="container">
+        <div class="home-cards-grid">
+            
+            <a href="#" class="home-card">
+                <img src="https://odontomaster.fbitsstatic.net/img/b/397a8f97-4fa6-4914-8c41-ba9095eefa87.png" alt="Card Promocional 1">
+            </a>
+
+            <a href="/pages/odontoverse/odontoverse.html" class="home-card">
+                <img src="https://odontomaster.fbitsstatic.net/img/b/87f9ebc9-a509-4c94-a510-5f7e6252b9cb.png" alt="Card Odontoverse">
+            </a>
+
+            <a href="#" class="home-card">
+                <img src="https://via.placeholder.com/600x200/8e24aa/fff?text=Banner+Card+3" alt="Card Promocional 3">
+            </a>
+
+            <a href="#" class="home-card">
+                <img src="https://via.placeholder.com/600x200/00bcd4/fff?text=Banner+Card+4" alt="Card Promocional 4">
+            </a>
+
+             </div>
+            </div>
+         </section>
+
+
+            <section class="nav-highlight-carousel">
+            <!-- Carrossel de destaques -->
+            <div class="highlight-carousel" aria-roledescription="carousel">
+                <button class="carousel-nav carousel-nav--prev" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-viewport">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide">
+                            <img src="https://odontomaster.fbitsstatic.net/img/b/92029d20-a890-41c0-8d65-bf5a3484e1ac.png" alt="Semana Biofest">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="https://odontomaster.fbitsstatic.net/img/b/da753e52-31bb-4863-b659-1c4ba7347725.png" alt="Promo MK LIFE">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="https://odontomaster.fbitsstatic.net/img/b/bfc589d2-39d8-46d9-b6d2-9f5aa5cf1408.png" alt="Cupom Estudante">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="https://odontomaster.fbitsstatic.net/img/b/22884a81-f331-454e-9929-7523d0a0c5d1.png" alt="Frete">
+                        </li>
+                    </ul>
+                </div>
+                <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-dots" role="tablist" aria-label="Seletores de slide">
+                    <button class="carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+                </div>
+            </div>
+        </div>
+            </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+
+        <!-- Carrosel Produtos -->
+        <section class="products">
+            <div class="container">
+            <h2 class="section-title">Produtos em Destaque</h2>
+            
+            <div class="products-carousel-container js-product-carousel aria" aria-roledescription="carousel" aria-label="Produtos em Destaque">
+                <button class="carousel-nav carousel-nav--prev" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="products-carousel-wrapper">
+                    <div class="products-carousel-track" id="productsTrack">
+                        <!-- Os produtos serão inseridos aqui dinamicamente -->
+                    </div>
+                </div>
+                
+                <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="container">
+            <h2 class="section-title">Lançamentos</h2>
+            
+            <div class="products-carousel-container js-product-carousel" 
+                 aria-roledescription="carousel" 
+                 aria-label="Lançamentos">
+                
+                <button class="carousel-nav carousel-nav--prev" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="products-carousel-wrapper">
+                    <div class="products-carousel-track" id="productsTrackLancamentos">
+                        </div>
+                </div>
+                
+                <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-dots" id="carouselDotsLancamentos"></div>
+            </div>
+            </div>
+        </section>
+
+        <section class="products">
+            <h2 class="section-title">Equipamentos em Oferta</h2>
+            
+            <div class="products-carousel-container js-product-carousel" 
+                 aria-roledescription="carousel" 
+                 aria-label="Equipamentos em Oferta">
+                
+                <button class="carousel-nav carousel-nav--prev" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="products-carousel-wrapper">
+                     <div class="products-carousel-track" id="productsTrackEquipamentos">
+                        </div>
+                </div>
+                
+                <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-dots" id="carouselDotsEquipamentos"></div>
+            </div>
+        </section>
+
+        
+
+    </div>
+
+    
+                <div class="notification-container" id="notificationContainer"></div>
+
+            
+
+                
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <!-- Newsletter -->
+            <section class="newsletter-section">
+                <h3 class="newsletter-title">ASSINE NOSSA NEWSLETTER</h3>
+                <p class="newsletter-description">E FIQUE POR DENTRO DAS NOVIDADES</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="newsletter-form__wrapper">
+                        <input type="email" 
+                               placeholder="Seu e-mail" 
+                               class="newsletter-form__input" 
+                               required>
+                        <button type="submit" class="newsletter-form__button">Assinar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 class="footer-column__title">INSTITUCIONAL</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="/institucional/quem-somos/index.html" class="footer-link">Quem Somos</a></li>
+                        <li><a href="/institucional/estudantes/index.html" class="footer-link">Estudantes</a></li>
+                        <li><a href="/institucional/revenda/index.html" class="footer-link">Revenda</a></li>
+                        <li><a href="/login/index.html" class="footer-link">Login/Cadastro</a></li>
+                        <li><a href="/institucional/trabalhe-conosco/index.html" class="footer-link">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">AJUDA</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="/ajuda/como-comprar/index.html" class="footer-link">Como Comprar</a></li>
+                        <li><a href="/ajuda/trocas-devolucoes/index.html" class="footer-link">Trocas e Devoluções</a></li>
+                        <li><a href="/ajuda/politica-privacidade/index.html" class="footer-link">Política de Privacidade</a></li>
+                        <li><a href="/ajuda/cashback-frete/index.html" class="footer-link">Cashback de Frete</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">ATENDIMENTO</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="https://api.whatsapp.com/send?phone=5571988670812" class="footer-link">Chat Online</a></li>
+                        <li><a href="tel:7131737300" class="footer-link">(71) 3173-7300</a></li>
+                        <li><a href="mailto:atendimento@odontomaster.com.br" class="footer-link">atendimento@odontomaster.com.br</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">HORÁRIO DE FUNCIONAMENTO</h4>
+                    <ul class="footer-column__list">
+                        <li>Segunda a Sexta das 08h às 18h</li>
+                        <li>Sábados das 08h às 12h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">FORMAS DE PAGAMENTO</h4>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                        <i class="fab fa-pix" aria-label="PIX"></i>
+                    </div>
+                </div>
+
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">SELOS DE SEGURANÇA</h4>
+                    <div class="security-seals">
+                        <i class="fas fa-shield-alt" aria-label="Segurança"></i>
+                        <span>Wildcard SSL Certificates</span>
+                    </div>
+                </div>
+
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">REDES SOCIAIS</h4>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; Todos os direitos reservados - ODM COMERCIO E SERVICOS DE EQUIPAMENTOS E MATERIAIS ODONTOLOGICOS LTDA - CNPJ: 07.030.958/0001-74</p>
+                <p>Alameda das Cajazeiras, 430 - Caminho das Árvores - Salvador/BA - CEP: 41.820-470</p>
+                <p>Eventuais promoções, descontos e prazos de pagamento expostos aqui são válidos apenas para compras via internet. As fotos, textos e layout aqui veiculados são de propriedade da Loja. É proibida a utilização total ou parcial sem nossa autorização.</p>
+            </div>
+        </div>
+    </footer>
+
+     
+
+    <script src= "/assets/js/script.js"></script>
+</body>
+</html>
+           

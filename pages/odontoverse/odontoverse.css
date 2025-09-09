@@ -1,0 +1,270 @@
+@import url(/assets/css/style.css);
+
+.menu-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #CA69F5, #F4E8FF);
+    transform: translateX(-50%);
+    border-radius: 2px 2px 0 0;
+    transition: width 0.3 ease-out;
+    z-index: 0;
+}
+
+.search-form__input:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+}
+
+.search-form__button {
+    position: absolute;
+    right: 5px;
+    background: var(--cor-secundaria);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
+}
+
+.shopping-cart__trigger:hover {
+    border-color: var(--cor-secundaria);
+    background-color: var(--cor-fundo-secundaria);
+}
+
+.shopping-cart__count {
+    background: var(--cor-secundaria);
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 20px;
+}
+
+.odontoverse-page {
+    background-color: var(--cor-fundo-primaria);
+}
+
+
+
+
+/* Seção Hero */
+.odontoverse-hero {
+    margin-bottom: 10px;
+    padding: var(--spacing-3xl) 0;
+    text-align: center;
+    color: var(--cor-texto-branca);
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+}
+
+.odontoverse-hero__title {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.odontoverse-hero__subtitle {
+    font-size: var(--font-size-lg);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Área de Conteúdo Principal */
+.odontoverse-content-area {
+    padding: var(--spacing-2xl) 0;
+}
+
+.odontoverse-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-2xl);
+    grid-template-columns: 200px 1fr 200px; 
+    margin-top: 20px;
+}
+
+.promo-card-vertical {
+    display: block;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    text-decoration: none;
+}
+
+.promo-card-vertical:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.promo-card-vertical img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.products-grid {
+    display: grid; /* Ativa o layout de grade */
+    /* Cria 4 colunas de largura flexível, com um mínimo de 250px para cada */
+    grid-template-columns: repeat(4, minmax(250px, 1fr)); 
+    gap: var(--spacing-xl); /* Espaçamento entre os cards */
+    justify-content: center; /* Centraliza a grade se houver espaço extra */
+}
+
+.product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--cor-secundaria);
+            
+        }
+
+.product-button {
+            width: 100%;
+            background: var(--cor-primaria);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: auto;
+        }
+
+        .product-button:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+/* Formulário de Validação */
+.odontoverse-form-container {
+    background: var(--cor-fundo-secundaria);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    height: fit-content; /* Para o formulário não esticar demais */
+    
+    
+}
+
+.form-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--cor-primaria);
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-description {
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundaria);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--cor-texto-primaria);
+    margin-bottom: var(--spacing-xs);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--cor-borda-media);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+}
+
+.form-submit-button {
+    width: 100%;
+    background: linear-gradient(135deg, var(--cor-secundaria) 0%, #A855E8 100%);
+    color: var(--cor-texto-branca);
+    padding: 12px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.form-submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Vitrine de Produtos OdontoVerse */
+.odontoverse-products .section-title {
+    text-align: left;
+    margin-top: var(--spacing-2xl); 
+    margin-bottom: var(--spacing-xl); 
+    color: var(--cor-primaria);
+
+}
+
+
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .products-grid {
+        /* Em telas menores, esconde um dos banners e o outro fica com 150px */
+        grid-template-columns: 150px 1fr;
+    }
+    .promo-card-vertical:last-of-type { /* Esconde o último banner (o da direita) */
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .odontoverse-grid {
+        /* Em tablets, esconde ambos os banners e o formulário ocupa a largura total */
+        grid-template-columns: 1fr;
+    }
+    .promo-card-vertical {
+        display: none; 
+    }
+    .odontoverse-form-container {
+        /* Centraliza o formulário quando os banners somem */
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 2 colunas em telas menores de tablet */
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr; /* 1 coluna em celulares */
+        gap: var(--spacing-md);
+    }
+    .odontoverse-hero__title {
+        font-size: var(--font-size-3xl);
+    }
+    .odontoverse-hero__subtitle {
+        font-size: var(--font-size-base);
+    }
+}

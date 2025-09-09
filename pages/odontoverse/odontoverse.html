@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OdontoVerse | Exclusivo para Estudantes - Odonto Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/pages/odontoverse/odontoverse.css">
+    <meta name="description" content="Bem-vindo ao OdontoVerse, o universo de vantagens e produtos com descontos exclusivos para estudantes de odontologia.">
+</head>
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header class="main-header">
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <div class="container">
+                <div class="top-banner__content">
+                    <div class="top-banner__warning">
+                        <strong>ATENÇÃO!</strong>Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
+                    </div>
+                    <div class="top-banner__login">
+                        <a href="/login/index.html" class="login-link">Olá Visitante, Identifique-se aqui</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Area -->
+        <div class="header-area">
+            <div class="container">
+                <div class="header-area__content">
+                    <!-- Logo -->
+                    <div class="header-logo">
+                        <a href="/pages/home/index.html" class="logo-link">
+                            <img src= "https://recursos.odontomaster.com.br/i/logo_odonto.png" alt="Odonto Master" class="logo-image">
+                        </a>
+                    </div>
+
+                    <!-- Search Bar --> 
+                    <div class="search-bar">
+                        <form class="search-form" id="searchForm" autocomplete="off" method="get" action="/busca/index.html">
+                            <div class="search-form__wrapper">
+                                <input type="text" 
+                                       class="search-form__input" 
+                                       id="searchInput" 
+                                       name="busca" 
+                                       placeholder="Busque aqui..."
+                                       autocomplete="on">
+                                <button type="submit" class="search-form__button" aria-label="Buscar">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="search-autocomplete" id="searchAutocomplete" style="display: none;"></div>
+                        </form>
+                    </div>
+
+                    <!-- Header Actions -->
+                    <section class="header-actions">
+                        
+                        <!-- Contact Info -->
+                        <div class="contact-info">
+                            <div class="contact-info__phone">
+                                <span class="contact-info__label">TELEVENDAS</span>
+                                <strong class="contact-info__number">0800 672 1105</strong>
+                                <strong class="contact-info__number">(71) 3173-7300</strong>
+                            </div>
+                        </div>
+
+                        <!-- Customer Service -->
+                        <div class="customer-service">
+                            <button class="customer-service__trigger" aria-label="Informações de atendimento">
+                                <i class="fas fa-headset"></i>
+                            </button>
+                            <div class="customer-service__dropdown">
+                                <div class="customer-service__section">
+                                    <strong>Pelos Telefones:</strong>
+                                    <p>(71) 3173-7300 - Salvador/BA</p>
+                                    <p>(75) 3322-8498 - Feira de Santana/BA</p>
+                                    <p>(79) 3085-0710 - Aracaju/SE</p>
+                                </div>
+                                
+                                <div class="customer-service__section">
+                                    <strong>Pelo WhatsApp:</strong>
+                                    <p>(71) 9 9401-9924</p>
+                                </div>
+                                
+                                <div class="customer-service__section">
+                                    <strong>Horário de Atendimento:</strong>
+                                    <p>Segunda a Sexta das 08:00 às 18:00</p>
+                                    <p>Sábados 08:00 às 14:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="my-account">
+                            <button class="my-account__trigger" aria-label="Minha conta">
+                                <i class="fas fa-user"></i>
+                                <a class="my-account__link" href="#"></a>
+                        </div>
+
+                        <!--Carrinho -->
+                        <div class="shopping-cart">
+                            <button class="shopping-cart__trigger" aria-label="Carrinho de compras">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="shopping-cart__text">Carrinho</span>
+                                <span class="shopping-cart__count">0</span>
+                                <span class="shopping-cart__label">Item(s)</span>
+                            </button>
+                            <div class="shopping-cart__dropdown">
+                                <div class="shopping-cart__content">
+                                    <div class="shopping-cart__empty">
+                                        <p>Sua sacola de compras está vazia</p>
+                                        <p>Carrinho Vazio</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" aria-label="Abrir menu" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra de navegação -->
+        <nav class="main-navigation" id="main-navigation">
+            <div class="container">
+                <div class="main-navigation__content">
+                    
+                    <!-- Mobile Menu Close -->
+                    <button class="mobile-menu-close" aria-label="Fechar menu" id="mobileMenuClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+
+                    <!-- Navigation Menu -->
+                    <div class="navigation-menu">
+                        <ul class="menu-list">
+                            <li class="menu-item menu-item--has-submenu">
+                                <a href="#" class="menu-link" id="mega-menu-trigger" aria-haspopup="true" aria-expanded="false">Todas as Categorias</a>
+                            </li>
+                            <li class="menu-item"><a href="/categoria/cirurgia-periodontia/index.html" class="menu-link">Cirurgia e Periodontia</a></li>
+                            <li class="menu-item"><a href="/categoria/dentistica/index.html" class="menu-link">Dentística</a></li>
+                            <li class="menu-item"><a href="/categoria/endodontia/index.html" class="menu-link">Endodontia</a></li>
+                            <li class="menu-item"><a href="/categoria/equipamentos/index.html" class="menu-link">Equipamentos</a></li>
+                            <li class="menu-item"><a href="/categoria/instrumental/index.html" class="menu-link">Instrumental</a></li>
+                            <li class="menu-item"><a href="/categoria/ortodontia/index.html" class="menu-link">Ortodontia</a></li>
+                            <li class="menu-item"><a href="/categoria/pecas-de-mao/index.html" class="menu-link">Peças de Mão</a></li>
+                            <li class="menu-item"><a href="/categoria/protese/index.html" class="menu-link">Prótese</a></li>
+                            <li class="menu-item menu-item--highlighted">
+                                <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Odontoverse</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="submenu-overlay"></div>
+                    <div class="submenu submenu--mega" id="mega-menu-content" aria-hidden="true">
+                    <div class="submenu__header">
+                        <h2>Navegue por todas as categorias</h2>
+                        <button class="submenu__close" aria-label="Fechar menu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="submenu__columns">
+                        <!-- Apenas títulos clicáveis -->
+                        <div class="submenu__column">
+                            <a href="/acessorios-e-vestuarios" class="submenu__title-link">
+                                <h3 class="submenu__title">Acessórios e Vestuários</h3>
+                            </a>
+                        </div>
+                        <div class="submenu__column">
+                            <a href="/anestesico" class="submenu__title-link">
+                                <h3 class="submenu__title">Anestésico</h3>
+                            </a>
+                        </div>
+                        <div class="submenu__column">
+                            <a href="/biosseguranca" class="submenu__title-link">
+                                <h3 class="submenu__title">Biossegurança</h3>
+                            </a>
+                        </div>
+                        <div class="submenu__column">
+                            <a href="/brocas" class="submenu__title-link">
+                                <h3 class="submenu__title">Brocas</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content odontoverse-page">
+        <section class="odontoverse-hero">
+            <div class="container">
+                <h1 class="odontoverse-hero__title">Bem-vindo ao OdontoVerse</h1>
+                <p class="odontoverse-hero__subtitle">O universo de vantagens e produtos com descontos exclusivos para estudantes de odontologia.</p>
+            </div>
+        </section>
+
+        <section class="nav-highlight-carousel">
+
+            <!-- Carrossel de destaques -->
+            <div class="highlight-carousel" aria-roledescription="carousel">
+                <button class="carousel-nav carousel-nav--prev" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-viewport">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide">
+                            <img src="https://odontomaster.fbitsstatic.net/img/b/ac1b86e7-2a65-4418-9864-909d163fdb57.png" alt="Kit Academico">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="https://odontomaster.fbitsstatic.net/img/b/bfc589d2-39d8-46d9-b6d2-9f5aa5cf1408.png" alt="Cupom Estudante">
+                        </li>
+                    </ul>
+                </div>
+                <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-dots" role="tablist" aria-label="Seletores de slide">
+                    <button class="carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+                </div>
+            </div>
+        </div>
+            </section>
+
+            <section class="odontomaster-content">
+            <div class="container">
+                <div class="odontoverse-grid">
+
+                    <a href="#" class="promo-card promo-card--vertical">
+                        <img src="https://odontomaster.fbitsstatic.net/img/b/131d46d5-9432-4d0b-b9a7-6f5e6fe6a5c9.png" alt="Brinde estudante 1">
+                    </a>
+
+                    <div class="odontoverse-form-container">
+                        <h2 class="form-title">Valide seu cadastro de estudante</h2>
+                        <p class="form-description">Preencha os dados abaixo para ter acesso aos descontos e benefícios exclusivos do OdontoVerse.</p>
+                        <form id="student-validation-form" class="student-form">
+                            <div class="form-group">
+                                <label for="student-name" class="form-label">Nome Completo</label>
+                                <input type="text" id="student-name" name="name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-email" class="form-label">E-mail</label>
+                                <input type="email" id="student-email" name="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-university" class="form-label">Universidade</label>
+                                <input type="text" id="student-university" name="university" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-client-number" class="form-label">Número Pessoal</label>
+                                <input type="text" id="student-client-number" name="client_number" class="form-input">
+                            </div>
+                            <button type="submit" class="form-submit-button">Validar Cadastro</button>
+                        </form>
+                    </div>
+                    <a href="#" class="promo-card promo-card--left">
+                        <img src="https://odontomaster.fbitsstatic.net/img/b/131d46d5-9432-4d0b-b9a7-6f5e6fe6a5c9.png" alt="Brinde estudante 1">
+                    </a>
+                    </div>
+                </div>
+        </section>
+
+
+
+        <section class="odontoverse-products">
+    <div class="container">
+        <h2 class="section-title">Produtos Exclusivos para Estudantes</h2>
+        <div class="products-grid">
+
+            <article class="product-card" data-product-id="ov-prod1">
+                <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-de-academico-handpieces-nsk-74328/265159.jpg?w=420&h=420&v=no-change&qs=ignore" alt="Kit Acadêmico NSK">
+                    <div class="product-badge product-badge--discount">17% OFF</div>
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">KIT DE ACADÊMICO HANDPIECES-NSK</h3>
+                    <div class="product-pricing">
+                        <span class="product-price--old">De R$ 3.880,00 por</span>
+                        <span class="product-price--current">R$ 3.200,00</span>
+                        <span class="product-price--installments">10 x sem juros de R$ 320,00</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-product-id="ov-prod2">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-academico-s4-classic-schuster-74327/265158.jpg?w=420&h=420&v=no-change&qs=ignore" 
+                    alt="Kit Acadêmico S4 Classic">
+                    <div class="product-badge product-badge--discount">3% OFF</div>
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">Kit Acadêmico S4 Classic - Schuster</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--old">De R$ 2.989,00 por</span>
+                        <span class="product-price--current">R$ 2.890,00</span>
+                        <span class="product-price--installments">10 x sem juros de R$ 289,00</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-product-id="ov-prod3">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-academico-s4-push-lite-schuster-74326/265157.jpg?w=420&h=420&v=no-change&qs=ignore"
+                    alt="Kit Acadêmico S4 Push Lite">
+                    <div class="product-badge product-badge--discount">9% OFF</div>
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">KIT ACADÊMICO S4 PUSH LITE - SCHUSTER</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--old">De R$ 2.620,00 por</span>
+                        <span class="product-price--current">R$ 2.390,00</span>
+                        <span class="product-price--installments">10 x sem juros de R$ 239,00</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card product-card--highlighted" data-product-id="ov-prod4">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-academico-prime-gnatus-73045/263168-4.jpg?w=420&h=420&v=202502051119&qs=ignore" 
+                    alt="Kit Acadêmico Prime">
+                    <div class="product-badge product-badge--discount">26% OFF</div>
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">Kit Acadêmico Prime - GNATUS</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--old">De R$ 2.717,20 por</span>
+                        <span class="product-price--current">R$ 1.999,00</span>
+                        <span class="product-price--installments">10 x sem juros de R$ 199,90</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-product-id="ov-prod5">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-invicta-uniruy-american-burrs-73614/264014.jpg?w=420&h=420&v=no-change&qs=ignore" 
+                    alt="Kit Invicta Uniruy">
+                    <div class="product-badge product-badge--discount">1% OFF</div>
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">KIT INVICTA UNIRUY AMERICAN BURRS</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--old">De R$ 332,42 por</span>
+                        <span class="product-price--current">R$ 326,00</span>
+                        <span class="product-price--installments">3 x sem juros de R$ 108,67</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-product-id="ov-prod6">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-dentistica-unirios-prof-caroline-souza-microdont-74217/264990.jpg?w=420&h=420&v=no-change&qs=ignore" 
+                    alt="Kit Dentística Uniros">
+                </div>
+
+                <div class="product-card__content">
+                    <h3 class="product-title">Kit Dentística Uniros Prof Caroline Souza - MICRODONT</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--current">Por até R$ 212,03</span>
+                        <span class="product-price--installments">2 x sem juros de R$ 106,02</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-product-id="ov-prod7">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-ortho-gloss-pro-max-american-burrs-73804/264385.jpg?w=420&h=420&v=no-change&qs=ignore" 
+                    alt="Kit Ortho-Gloss Pro Max">
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">Kit Ortho-Gloss Pro Max- AMERICAN BURRS</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--current">Por até R$ 308,22</span>
+                        <span class="product-price--installments">3 x sem juros de R$ 102,74</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-product-id="ov-prod8">
+                 <div class="product-card__image">
+                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-de-protese-unef-american-burrs-72964/262964-1.jpg?w=420&h=420&v=no-change&qs=ignore" alt="Kit de Prótese Unef">
+                    <div class="product-badge product-badge--discount">15% OFF</div>
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">KIT DE PROTESE UNEF - AMERICAN BURRS</h3>
+                     <div class="product-pricing">
+                        <span class="product-price--old">De R$ 422,76 por</span>
+                        <span class="product-price--current">R$ 341,90</span>
+                        <span class="product-price--installments">3 x sem juros de R$ 113,97</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+                
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <!-- Newsletter -->
+            <section class="newsletter-section">
+                <h3 class="newsletter-title">ASSINE NOSSA NEWSLETTER</h3>
+                <p class="newsletter-description">E FIQUE POR DENTRO DAS NOVIDADES</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="newsletter-form__wrapper">
+                        <input type="email" 
+                               placeholder="Seu e-mail" 
+                               class="newsletter-form__input" 
+                               required>
+                        <button type="submit" class="newsletter-form__button">Assinar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 class="footer-column__title">INSTITUCIONAL</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="/institucional/quem-somos/index.html" class="footer-link">Quem Somos</a></li>
+                        <li><a href="/institucional/estudantes/index.html" class="footer-link">Estudantes</a></li>
+                        <li><a href="/institucional/revenda/index.html" class="footer-link">Revenda</a></li>
+                        <li><a href="/login/index.html" class="footer-link">Login/Cadastro</a></li>
+                        <li><a href="/institucional/trabalhe-conosco/index.html" class="footer-link">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">AJUDA</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="/ajuda/como-comprar/index.html" class="footer-link">Como Comprar</a></li>
+                        <li><a href="/ajuda/trocas-devolucoes/index.html" class="footer-link">Trocas e Devoluções</a></li>
+                        <li><a href="/ajuda/politica-privacidade/index.html" class="footer-link">Política de Privacidade</a></li>
+                        <li><a href="/ajuda/cashback-frete/index.html" class="footer-link">Cashback de Frete</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">ATENDIMENTO</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="https://api.whatsapp.com/send?phone=5571988670812" class="footer-link">Chat Online</a></li>
+                        <li><a href="tel:7131737300" class="footer-link">(71) 3173-7300</a></li>
+                        <li><a href="mailto:atendimento@odontomaster.com.br" class="footer-link">atendimento@odontomaster.com.br</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">HORÁRIO DE FUNCIONAMENTO</h4>
+                    <ul class="footer-column__list">
+                        <li>Segunda a Sexta das 08h às 18h</li>
+                        <li>Sábados das 08h às 12h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">FORMAS DE PAGAMENTO</h4>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                        <i class="fab fa-pix" aria-label="PIX"></i>
+                    </div>
+                </div>
+
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">SELOS DE SEGURANÇA</h4>
+                    <div class="security-seals">
+                        <i class="fas fa-shield-alt" aria-label="Segurança"></i>
+                        <span>Wildcard SSL Certificates</span>
+                    </div>
+                </div>
+
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">REDES SOCIAIS</h4>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; Todos os direitos reservados - ODM COMERCIO E SERVICOS DE EQUIPAMENTOS E MATERIAIS ODONTOLOGICOS LTDA - CNPJ: 07.030.958/0001-74</p>
+                <p>Alameda das Cajazeiras, 430 - Caminho das Árvores - Salvador/BA - CEP: 41.820-470</p>
+                <p>Eventuais promoções, descontos e prazos de pagamento expostos aqui são válidos apenas para compras via internet. As fotos, textos e layout aqui veiculados são de propriedade da Loja. É proibida a utilização total ou parcial sem nossa autorização.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>

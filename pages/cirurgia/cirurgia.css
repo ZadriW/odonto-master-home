@@ -1,0 +1,169 @@
+@import url(/assets/css/style.css);
+
+
+
+.category-page {
+    background-color: var(--cor-fundo-primaria);
+    padding: var(--spacing-2xl) 0;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--cor-borda-media);
+}
+
+.category-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    color: var(--cor-primaria);
+    margin-bottom: var(--spacing-sm);
+}
+
+.category-description {
+    font-size: var(--font-size-lg);
+    color: var(--cor-texto-secundaria);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.category-content-area {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* Coluna para filtros e outra para produtos */
+    gap: var(--spacing-2xl);
+    align-items: flex-start;
+}
+
+/* Sidebar de Filtros */
+.filters-sidebar {
+    background: #fff;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    position: sticky; /* Mantém os filtros visíveis ao rolar a página */
+    top: 140px; 
+}
+
+.filters-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--cor-primaria);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--cor-primaria);
+}
+
+.filter-group {
+    margin-bottom: var(--spacing-xl);
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group__title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--cor-texto-primaria);
+    margin-bottom: var(--spacing-md);
+}
+
+.filter-group__options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.checkbox-filter {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-filter input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+.checkbox-filter label {
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundaria);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.checkbox-filter:hover label {
+    color: var(--cor-primaria);
+}
+
+/* Grid de Produtos */
+.products-grid-container {
+    width: 100%;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 produtos por linha */
+    gap: var(--spacing-xl);
+}
+
+/* Mensagem de "Nenhum resultado" */
+.no-results-message {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.no-results-message p {
+    font-size: var(--font-size-lg);
+    color: var(--cor-texto-secundaria);
+    font-weight: 500;
+}
+
+
+/* Estilos de Card de Produto (Reutilizando e adaptando de style.css) */
+/* Garante que os cards na página de categoria se comportem como esperado */
+.products-grid .product-card {
+    opacity: 1; /* Garante que os cards estejam visíveis por padrão */
+    transform: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.product-card.hidden {
+    display: none;
+}
+
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .category-content-area {
+        grid-template-columns: 1fr; /* Coluna única em tablets */
+    }
+
+    .filters-sidebar {
+        position: static; /* Remove o sticky */
+        margin-bottom: var(--spacing-2xl);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 produtos por linha */
+    }
+}
+
+@media (max-width: 768px) {
+    .category-title {
+        font-size: var(--font-size-3xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr; /* 1 produto por linha em celulares */
+    }
+}
