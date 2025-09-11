@@ -1,0 +1,227 @@
+/* ===== FILTER SIDEBAR ===== */
+.filters-sidebar {
+  background: #fff;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 80px;
+  max-height: calc(100vh - 140px);
+  overflow: hidden;
+}
+
+.filters-sidebar:hover {
+  overflow: auto;
+}
+
+/* Custom scrollbar for filters */
+.filters-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filters-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.filters-sidebar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.filters-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.filters-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--cor-primaria);
+}
+
+.filter-group {
+  margin-bottom: var(--spacing-xl);
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-group__title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--cor-texto-primaria);
+  margin-bottom: var(--spacing-md);
+}
+
+.filter-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.filter-group__visible {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.filter-group__hidden {
+  display: none;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.filter-group__hidden.expanded {
+  display: flex;
+}
+
+/* Price Filter */
+.price-filter {
+  padding: var(--spacing-md) 0;
+}
+
+.price-range-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.price-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+  cursor: pointer;
+}
+
+.price-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+  cursor: pointer;
+}
+
+.price-display {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.checkbox-filter {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-filter input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  accent-color: var(--cor-primaria);
+  cursor: pointer;
+}
+
+.checkbox-filter input[type="checkbox"]:focus {
+  outline: none;
+}
+
+.checkbox-filter label {
+  font-size: var(--font-size-sm);
+  color: var(--cor-texto-secundaria);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.checkbox-filter:hover label {
+  color: var(--cor-primaria);
+}
+
+.filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--cor-primaria);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: 8px 0;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.filter-toggle-btn:hover {
+  color: var(--cor-primaria-escura);
+}
+
+.filter-toggle-btn .toggle-icon {
+  transition: transform var(--transition-fast);
+}
+
+.filter-toggle-btn[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Clear Filters Button */
+.clear-filters-btn {
+  width: 100%;
+  background: var(--cor-erro);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+}
+
+.clear-filters-btn:hover {
+  background: var(--cor-primaria-escura);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.clear-filters-btn:active {
+  transform: translateY(0);
+}
+
+.clear-filters-btn:focus {
+  outline: none;
+}
+
+/* Remove outline from all filter buttons */
+.filter-toggle-btn:focus,
+.checkbox-filter input[type="checkbox"]:focus + label,
+.price-slider:focus,
+.product-button:focus {
+  outline: none;
+}

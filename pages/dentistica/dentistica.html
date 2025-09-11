@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OdontoVerse | Exclusivo para Estudantes - Odonto Master</title>
+    <title>Dentística | Odonto Master</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/pages/odontoverse/odontoverse.css">
-    <meta name="description" content="Bem-vindo ao OdontoVerse, o universo de vantagens e produtos com descontos exclusivos para estudantes de odontologia.">
+    <link rel="stylesheet" href="/pages/dentistica/dentistica.css">
+    <meta name="description" content="Produtos para Dentística. Encontre os melhores instrumentos e materiais na Odonto Master.">
 </head>
 <body>
     <div id="loading-screen" class="loading-screen">
@@ -16,6 +16,7 @@
     </div>
 
     <header class="main-header">
+
         <!-- Top Banner -->
         <div class="top-banner">
             <div class="container">
@@ -41,7 +42,7 @@
                         </a>
                     </div>
 
-                    <!-- Search Bar --> 
+        <!-- Search Bar --> 
                     <div class="search-bar">
                         <form class="search-form" id="searchForm" autocomplete="off" method="get" action="/busca/index.html">
                             <div class="search-form__wrapper">
@@ -58,8 +59,8 @@
                             <div class="search-autocomplete" id="searchAutocomplete" style="display: none;"></div>
                         </form>
                     </div>
-
-                    <!-- Header Actions -->
+                    
+        <!-- Header Actions -->
                     <section class="header-actions">
                         
                         <!-- Contact Info -->
@@ -129,7 +130,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Barra de navegação -->
         <nav class="main-navigation" id="main-navigation">
             <div class="container">
@@ -140,14 +141,14 @@
                         <i class="fas fa-times"></i>
                     </button>
 
-                    <!-- Navigation Menu -->
+                    <!-- Menu de Navegação -->
                     <div class="navigation-menu">
                         <ul class="menu-list">
                             <li class="menu-item menu-item--has-submenu">
                                 <a href="#" class="menu-link" id="mega-menu-trigger" aria-haspopup="true" aria-expanded="false">Todas as Categorias</a>
                             </li>
                             <li class="menu-item"><a href="/pages/cirurgia/cirurgia.html" class="menu-link">Cirurgia e Periodontia</a></li>
-                            <li class="menu-item"><a href="/categoria/dentistica/index.html" class="menu-link">Dentística</a></li>
+                            <li class="menu-item"><a href="/pages/dentistica/dentistica.html" class="menu-link">Dentística</a></li>
                             <li class="menu-item"><a href="/categoria/endodontia/index.html" class="menu-link">Endodontia</a></li>
                             <li class="menu-item"><a href="/categoria/equipamentos/index.html" class="menu-link">Equipamentos</a></li>
                             <li class="menu-item"><a href="/categoria/instrumental/index.html" class="menu-link">Instrumental</a></li>
@@ -155,11 +156,11 @@
                             <li class="menu-item"><a href="/categoria/pecas-de-mao/index.html" class="menu-link">Peças de Mão</a></li>
                             <li class="menu-item"><a href="/categoria/protese/index.html" class="menu-link">Prótese</a></li>
                             <li class="menu-item menu-item--highlighted">
-                                <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Estudantes</a>
+                                <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Odontoverse</a>
                             </li>
                         </ul>
                     </div>
-                    
+
                     <div class="submenu-overlay"></div>
                     <div class="submenu submenu--mega" id="mega-menu-content" aria-hidden="true">
                     <div class="submenu__header">
@@ -197,228 +198,248 @@
         </nav>
     </header>
 
-    <main class="main-content odontoverse-page">
-        <section class="odontoverse-hero">
-            <div class="container">
-                <h1 class="odontoverse-hero__title">Bem-vindo ao OdontoVerse</h1>
-                <p class="odontoverse-hero__subtitle">O universo de vantagens e produtos com descontos exclusivos para estudantes de odontologia.</p>
-            </div>
-        </section>
+        <!-- Conteúdo Principal -->
+        <main class="main-content category-page">
+        <div class="container">
 
-        <section class="nav-highlight-carousel">
+            <!--Filtros-->
+            <div class="category-content-area">
+                <aside class="filters-sidebar" id="filters-sidebar">
+                    <h3 class="filters-title">Filtros</h3>
 
-            <!-- Carrossel de destaques -->
-            <div class="highlight-carousel" aria-roledescription="carousel">
-                <button class="carousel-nav carousel-nav--prev" aria-label="Anterior">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="carousel-viewport">
-                    <ul class="carousel-track">
-                        <li class="carousel-slide">
-                            <img src="https://odontomaster.fbitsstatic.net/img/b/ac1b86e7-2a65-4418-9864-909d163fdb57.png" alt="Kit Academico">
-                        </li>
-                        <li class="carousel-slide">
-                            <img src="https://odontomaster.fbitsstatic.net/img/b/bfc589d2-39d8-46d9-b6d2-9f5aa5cf1408.png" alt="Cupom Estudante">
-                        </li>
-                    </ul>
-                </div>
-                <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                     <div class="filter-group">
+                        <h4 class="filter-group__title">Categorias</h4>
 
-                <div class="carousel-dots" role="tablist" aria-label="Seletores de slide">
-                    <button class="carousel-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-                    <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-                </div>
+                        <div class="filter-group__options" id="category-filters">
+                            <div class="filter-group__visible">
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-resina-composta" value="Resina Composta">
+                                    <label for="cat-resina-composta">Resina Composta</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-sistema-adesivo" value="Sistema Adesivo">
+                                    <label for="cat-sistema-adesivo">Sistema Adesivo</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-acido-fosforico" value="Ácido Fosfórico">
+                                    <label for="cat-acido-fosforico">Ácido Fosfórico</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-matriz-metalica" value="Matriz Metálica">
+                                    <label for="cat-matriz-metalica">Matriz Metálica</label>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group__hidden" id="category-filters-hidden">
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-matriz-circunferencial" value="Matriz Circunferencial">
+                                    <label for="cat-matriz-circunferencial">Matriz Circunferencial</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-instrumental-dentistica" value="Instrumental Dentística">
+                                    <label for="cat-instrumental-dentistica">Instrumental Dentística</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-produtos-oferta" value="Produtos em Oferta">
+                                    <label for="cat-produtos-oferta">Produtos em Oferta</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-cunhas-espessamento" value="Cunhas de Espessamento">
+                                    <label for="cat-cunhas-espessamento">Cunhas de Espessamento</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="cat-diques-matriz" value="Diques de Matriz">
+                                    <label for="cat-diques-matriz">Diques de Matriz</label>
+                                </div>
+                            </div>
+                            
+                            <button class="filter-toggle-btn" id="category-toggle-btn" aria-expanded="false">
+                                <span class="toggle-text">Ver mais</span>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group__title">Marcas</h4>
+
+                        <div class="filter-group__options" id="brand-filters">
+                            <div class="filter-group__visible">
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-angelus" value="Angelus">
+                                    <label for="brand-angelus">Angelus</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-fgm" value="FGM">
+                                    <label for="brand-fgm">FGM</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-ultradent" value="Ultradent">
+                                    <label for="brand-ultradent">Ultradent</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-dental-clear" value="Dental Clear">
+                                    <label for="brand-dental-clear">Dental Clear</label>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group__hidden" id="brand-filters-hidden">
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-biodinamica" value="Biodinâmica">
+                                    <label for="brand-biodinamica">Biodinâmica</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-dentsply" value="Dentsply">
+                                    <label for="brand-dentsply">Dentsply</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-voco" value="VOCO">
+                                    <label for="brand-voco">VOCO</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-kerr" value="Kerr">
+                                    <label for="brand-kerr">Kerr</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-heraeus" value="Heraeus">
+                                    <label for="brand-heraeus">Heraeus</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-ivoclar" value="Ivoclar">
+                                    <label for="brand-ivoclar">Ivoclar</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-3m-espe" value="3M ESPE">
+                                    <label for="brand-3m-espe">3M ESPE</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-bisco" value="Bisco">
+                                    <label for="brand-bisco">Bisco</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-shofu" value="Shofu">
+                                    <label for="brand-shofu">Shofu</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-tokuyama" value="Tokuyama">
+                                    <label for="brand-tokuyama">Tokuyama</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-primera-dental" value="Primera Dental">
+                                    <label for="brand-primera-dental">Primera Dental</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-hu-friedy" value="Hu-Friedy">
+                                    <label for="brand-hu-friedy">Hu-Friedy</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-microdont" value="Microdont">
+                                    <label for="brand-microdont">Microdont</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-joinville" value="Joinville">
+                                    <label for="brand-joinville">Joinville</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-millenium" value="Millenium">
+                                    <label for="brand-millenium">Millenium</label>
+                                </div>
+
+                                <div class="checkbox-filter">
+                                    <input type="checkbox" id="brand-tecno-empire" value="Tecno Empire">
+                                    <label for="brand-tecno-empire">Tecno Empire</label>
+                                </div>
+                            </div>
+                            
+                            <button class="filter-toggle-btn" id="brand-toggle-btn" aria-expanded="false">
+                                <span class="toggle-text">Ver mais</span>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtro de Preço -->
+                    <div class="filter-group">
+                        <h4 class="filter-group__title">Preço</h4>
+                        <div class="price-filter">
+                            <div class="price-range-container">
+                                <input type="range" class="price-slider" id="price-slider-min" min="0" max="500" value="0">
+                                <input type="range" class="price-slider" id="price-slider-max" min="0" max="500" value="500">
+                            </div>
+                            <div class="price-display">
+                                <span id="price-min-display">R$ 0</span> - <span id="price-max-display">R$ 500</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão para limpar filtros -->
+                    <div class="filter-group">
+                        <button class="clear-filters-btn" id="clear-filters-btn">
+                            <i class="fas fa-times-circle"></i> Limpar Filtros
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Produtos -->    
+                <section class="products-grid-container">
+                    <div id="no-results-message" class="no-results-message" style="display: none;">
+                        <p>Nenhum produto encontrado com os filtros selecionados.</p>
+                    </div>
+                    <div class="products-grid" id="products-grid">
+                        <article class="product-card" data-category="Resina Composta" data-brand="3M ESPE"></article>
+                        <article class="product-card" data-category="Sistema Adesivo" data-brand="FGM"></article>
+                        <article class="product-card" data-category="Ácido Fosfórico" data-brand="Ultradent"></article>
+                        <article class="product-card" data-category="Matriz Metálica" data-brand="Angelus"></article>
+                        <article class="product-card" data-category="Resina Composta" data-brand="Ultradent"></article>
+                        <article class="product-card" data-category="Sistema Adesivo" data-brand="Dentsply"></article>
+                        <article class="product-card" data-category="Matriz Circunferencial" data-brand="FGM"></article>
+                        <article class="product-card" data-category="Produtos em Oferta" data-brand="Angelus"></article>
+                        <article class="product-card" data-category="Instrumental Dentística" data-brand="Hu-Friedy"></article>
+                        <article class="product-card" data-category="Cunhas de Espessamento" data-brand="Microdont"></article>
+                        <article class="product-card" data-category="Diques de Matriz" data-brand="Joinville"></article>
+                        <article class="product-card" data-category="Matriz Circunferencial" data-brand="Millenium"></article>
+                        <article class="product-card" data-category="Instrumental Dentística" data-brand="Tecno Empire"></article>
+                        <article class="product-card" data-category="Cunhas de Espessamento" data-brand="Primera Dental"></article>
+                        <article class="product-card" data-category="Diques de Matriz" data-brand="Shofu"></article>
+                        <article class="product-card" data-category="Produtos em Oferta" data-brand="Tokuyama"></article>
+                        <article class="product-card" data-category="Matriz Metálica" data-brand="VOCO"></article>
+                        <article class="product-card" data-category="Resina Composta" data-brand="Heraeus"></article>
+                        <article class="product-card" data-category="Ácido Fosfórico" data-brand="Bisco"></article>
+                        <article class="product-card" data-category="Sistema Adesivo" data-brand="Ivoclar"></article>
+                    </div>
+                </section>
             </div>
         </div>
-            </section>
-
-            <section class="odontomaster-content">
-            <div class="container">
-                <div class="odontoverse-grid">
-
-                    <a href="#" class="promo-card promo-card--vertical">
-                        <img src="https://odontomaster.fbitsstatic.net/img/b/131d46d5-9432-4d0b-b9a7-6f5e6fe6a5c9.png" alt="Brinde estudante 1">
-                    </a>
-
-                    <div class="odontoverse-form-container">
-                        <h2 class="form-title">Valide seu cadastro de estudante</h2>
-                        <p class="form-description">Preencha os dados abaixo para ter acesso aos descontos e benefícios exclusivos do OdontoVerse.</p>
-                        <form id="student-validation-form" class="student-form">
-                            <div class="form-group">
-                                <label for="student-name" class="form-label">Nome Completo</label>
-                                <input type="text" id="student-name" name="name" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="student-email" class="form-label">E-mail</label>
-                                <input type="email" id="student-email" name="email" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="student-university" class="form-label">Universidade</label>
-                                <input type="text" id="student-university" name="university" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="student-client-number" class="form-label">Número Pessoal</label>
-                                <input type="text" id="student-client-number" name="client_number" class="form-input">
-                            </div>
-                            <button type="submit" class="form-submit-button">Validar Cadastro</button>
-                        </form>
-                    </div>
-                    <a href="#" class="promo-card promo-card--left">
-                        <img src="https://odontomaster.fbitsstatic.net/img/b/131d46d5-9432-4d0b-b9a7-6f5e6fe6a5c9.png" alt="Brinde estudante 1">
-                    </a>
-                    </div>
-                </div>
-        </section>
-
-
-
-        <section class="odontoverse-products">
-    <div class="container">
-        <h2 class="section-title">Produtos Exclusivos para Estudantes</h2>
-        <div class="products-grid">
-
-            <article class="product-card" data-product-id="ov-prod1">
-                <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-de-academico-handpieces-nsk-74328/265159.jpg?w=420&h=420&v=no-change&qs=ignore" alt="Kit Acadêmico NSK">
-                    <div class="product-badge product-badge--discount">17% OFF</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">KIT DE ACADÊMICO HANDPIECES-NSK</h3>
-                    <div class="product-pricing">
-                        <span class="product-price--old">De R$ 3.880,00 por</span>
-                        <span class="product-price--current">R$ 3.200,00</span>
-                        <span class="product-price--installments">10 x sem juros de R$ 320,00</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card" data-product-id="ov-prod2">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-academico-s4-classic-schuster-74327/265158.jpg?w=420&h=420&v=no-change&qs=ignore" 
-                    alt="Kit Acadêmico S4 Classic">
-                    <div class="product-badge product-badge--discount">3% OFF</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">Kit Acadêmico S4 Classic - Schuster</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--old">De R$ 2.989,00 por</span>
-                        <span class="product-price--current">R$ 2.890,00</span>
-                        <span class="product-price--installments">10 x sem juros de R$ 289,00</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card" data-product-id="ov-prod3">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-academico-s4-push-lite-schuster-74326/265157.jpg?w=420&h=420&v=no-change&qs=ignore"
-                    alt="Kit Acadêmico S4 Push Lite">
-                    <div class="product-badge product-badge--discount">9% OFF</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">KIT ACADÊMICO S4 PUSH LITE - SCHUSTER</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--old">De R$ 2.620,00 por</span>
-                        <span class="product-price--current">R$ 2.390,00</span>
-                        <span class="product-price--installments">10 x sem juros de R$ 239,00</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card product-card--highlighted" data-product-id="ov-prod4">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-academico-prime-gnatus-73045/263168-4.jpg?w=420&h=420&v=202502051119&qs=ignore" 
-                    alt="Kit Acadêmico Prime">
-                    <div class="product-badge product-badge--discount">26% OFF</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">Kit Acadêmico Prime - GNATUS</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--old">De R$ 2.717,20 por</span>
-                        <span class="product-price--current">R$ 1.999,00</span>
-                        <span class="product-price--installments">10 x sem juros de R$ 199,90</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card" data-product-id="ov-prod5">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-invicta-uniruy-american-burrs-73614/264014.jpg?w=420&h=420&v=no-change&qs=ignore" 
-                    alt="Kit Invicta Uniruy">
-                    <div class="product-badge product-badge--discount">1% OFF</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">KIT INVICTA UNIRUY AMERICAN BURRS</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--old">De R$ 332,42 por</span>
-                        <span class="product-price--current">R$ 326,00</span>
-                        <span class="product-price--installments">3 x sem juros de R$ 108,67</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card" data-product-id="ov-prod6">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-dentistica-unirios-prof-caroline-souza-microdont-74217/264990.jpg?w=420&h=420&v=no-change&qs=ignore" 
-                    alt="Kit Dentística Uniros">
-                </div>
-
-                <div class="product-card__content">
-                    <h3 class="product-title">Kit Dentística Uniros Prof Caroline Souza - MICRODONT</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--current">Por até R$ 212,03</span>
-                        <span class="product-price--installments">2 x sem juros de R$ 106,02</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card" data-product-id="ov-prod7">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-ortho-gloss-pro-max-american-burrs-73804/264385.jpg?w=420&h=420&v=no-change&qs=ignore" 
-                    alt="Kit Ortho-Gloss Pro Max">
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">Kit Ortho-Gloss Pro Max- AMERICAN BURRS</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--current">Por até R$ 308,22</span>
-                        <span class="product-price--installments">3 x sem juros de R$ 102,74</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-            <article class="product-card" data-product-id="ov-prod8">
-                 <div class="product-card__image">
-                    <img src="https://odontomaster.fbitsstatic.net/img/p/kit-de-protese-unef-american-burrs-72964/262964-1.jpg?w=420&h=420&v=no-change&qs=ignore" alt="Kit de Prótese Unef">
-                    <div class="product-badge product-badge--discount">15% OFF</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">KIT DE PROTESE UNEF - AMERICAN BURRS</h3>
-                     <div class="product-pricing">
-                        <span class="product-price--old">De R$ 422,76 por</span>
-                        <span class="product-price--current">R$ 341,90</span>
-                        <span class="product-price--installments">3 x sem juros de R$ 113,97</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </article>
-
-        </div>
-    </div>
-</section>
-                
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
+
             <!-- Newsletter -->
             <section class="newsletter-section">
                 <h3 class="newsletter-title">ASSINE NOSSA NEWSLETTER</h3>
@@ -513,7 +534,9 @@
             </div>
         </div>
     </footer>
-
+     
     <script src="/assets/js/script.js"></script>
+    <script src="/pages/dentistica/dentistica.js"></script>
+    
 </body>
 </html>

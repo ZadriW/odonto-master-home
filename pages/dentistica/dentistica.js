@@ -230,23 +230,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (category && brand) {
         // Generate different prices based on category
         let price = "99,90";
-        if (category === "Lâmina de Bisturi") price = "45,50";
+        if (category === "Resina Composta") price = "149,90";
+        if (category === "Sistema Adesivo") price = "89,90";
+        if (category === "Ácido Fosfórico") price = "25,00";
+        if (category === "Matriz Metálica") price = "35,50";
+        if (category === "Matriz Circunferencial") price = "45,00";
+        if (category === "Instrumental Dentística") price = "129,90";
         if (category === "Produtos em Oferta") price = "79,90";
-        if (category === "Regeneração Óssea") price = "189,90";
-        if (category === "Sugador Cirúrgico") price = "25,00";
-        if (category === "Sugador Descartável") price = "15,90";
+        if (category === "Cunhas de Espessamento") price = "15,90";
+        if (category === "Diques de Matriz") price = "22,50";
         
         // Generate discount based on category
         let discount = "10% OFF";
         if (category === "Produtos em Oferta") discount = "25% OFF";
-        if (category === "Regeneração Óssea") discount = "15% OFF";
+        if (category === "Resina Composta") discount = "15% OFF";
         
         // Generate different prices based on brand
-        if (brand === "Dentsply") price = "149,90";
-        if (brand === "FGM") price = "129,90";
-        if (brand === "Ultradent") price = "89,90";
+        if (brand === "3M ESPE") price = "189,90";
+        if (brand === "Ultradent") price = "159,90";
+        if (brand === "FGM") price = "99,90";
         if (brand === "Angelus") price = "79,90";
-        if (brand === "Technew") price = "119,90";
+        if (brand === "Dentsply") price = "139,90";
         
         card.innerHTML = `
             <div class="product-card__image">

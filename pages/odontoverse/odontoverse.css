@@ -53,10 +53,6 @@
 .odontoverse-page {
     background-color: var(--cor-fundo-primaria);
 }
-
-
-
-
 /* Seção Hero */
 .odontoverse-hero {
     margin-bottom: 10px;
@@ -147,6 +143,10 @@
 
         .product-button:hover {
             background-color: var(--cor-secundaria);
+        }
+
+        .product-button:focus {
+            outline: none;
         }
 
 /* Formulário de Validação */

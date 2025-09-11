@@ -996,6 +996,7 @@ select:focus {
             flex-direction: column;
         }
 
+
         .product-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);

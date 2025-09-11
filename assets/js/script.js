@@ -1484,7 +1484,6 @@ class OdontoMasterApp {
         Logger.info('Iniciando Odonto Master App...');
         
         try {
-            this.hideLoadingScreen();
             this.initializeModules();
             this.setupGlobalFunctions();
             this.hideLoadingScreen();
@@ -1626,9 +1625,9 @@ class OdontoMasterApp {
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar aplicação
-    const app = new OdontoMasterApp();
-    app.init();
-    });
+    window.app = new OdontoMasterApp();
+    window.app.init();
+});
 
 // ===== EXPORTAÇÕES PARA DESENVOLVIMENTO =====
 if (typeof module !== 'undefined' && module.exports) {

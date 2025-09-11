@@ -1,0 +1,182 @@
+<!-- Header Component -->
+<header class="main-header">
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <div class="container">
+      <div class="top-banner__content">
+        <div class="top-banner__warning">
+          <strong>ATENÇÃO!</strong> Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
+        </div>
+        <div class="top-banner__login">
+          <a href="/login/index.html" class="login-link">Olá Visitante, Identifique-se aqui</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Area -->
+  <div class="header-area">
+    <div class="container">
+      <div class="header-area__content">
+        <!-- Logo -->
+        <div class="header-logo">
+          <a href="/pages/home/index.html" class="logo-link">
+            <img src="https://recursos.odontomaster.com.br/i/logo_odonto.png" alt="Odonto Master" class="logo-image">
+          </a>
+        </div>
+
+        <!-- Search Bar --> 
+        <div class="search-bar">
+          <form class="search-form" id="searchForm" autocomplete="off" method="get" action="/busca/index.html">
+            <div class="search-form__wrapper">
+              <input type="text" 
+                     class="search-form__input" 
+                     id="searchInput" 
+                     name="busca" 
+                     placeholder="Busque aqui..."
+                     autocomplete="on">
+              <button type="submit" class="search-form__button" aria-label="Buscar">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <div class="search-autocomplete" id="searchAutocomplete" style="display: none;"></div>
+          </form>
+        </div>
+
+        <!-- Header Actions -->
+        <section class="header-actions">
+          
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <div class="contact-info__phone">
+              <span class="contact-info__label">TELEVENDAS</span>
+              <strong class="contact-info__number">0800 672 1105</strong>
+              <strong class="contact-info__number">(71) 3173-7300</strong>
+            </div>
+          </div>
+
+          <!-- Customer Service -->
+          <div class="customer-service">
+            <button class="customer-service__trigger" aria-label="Informações de atendimento">
+              <i class="fas fa-headset"></i>
+            </button>
+            <div class="customer-service__dropdown">
+              <div class="customer-service__section">
+                <strong>Pelos Telefones:</strong>
+                <p>(71) 3173-7300 - Salvador/BA</p>
+                <p>(75) 3322-8498 - Feira de Santana/BA</p>
+                <p>(79) 3085-0710 - Aracaju/SE</p>
+              </div>
+              
+              <div class="customer-service__section">
+                <strong>Pelo WhatsApp:</strong>
+                <p>(71) 9 9401-9924</p>
+              </div>
+              
+              <div class="customer-service__section">
+                <strong>Horário de Atendimento:</strong>
+                <p>Segunda a Sexta das 08:00 às 18:00</p>
+                <p>Sábados 08:00 às 14:00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="my-account">
+            <button class="my-account__trigger" aria-label="Minha conta">
+              <i class="fas fa-user"></i>
+              <a class="my-account__link" href="#"></a>
+          </div>
+
+          <!-- Shopping Cart -->
+          <div class="shopping-cart">
+            <button class="shopping-cart__trigger" aria-label="Carrinho de compras">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="shopping-cart__text">Carrinho</span>
+              <span class="shopping-cart__count">0</span>
+              <span class="shopping-cart__label">Item(s)</span>
+            </button>
+            <div class="shopping-cart__dropdown">
+              <div class="shopping-cart__content">
+                <div class="shopping-cart__empty">
+                  <p>Sua sacola de compras está vazia</p>
+                  <p>Carrinho Vazio</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Abrir menu" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="main-navigation" id="main-navigation">
+    <div class="container">
+      <div class="main-navigation__content">
+        
+        <!-- Mobile Menu Close -->
+        <button class="mobile-menu-close" aria-label="Fechar menu" id="mobileMenuClose">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="navigation-menu">
+          <ul class="menu-list">
+            <li class="menu-item menu-item--has-submenu">
+              <a href="#" class="menu-link" id="mega-menu-trigger" aria-haspopup="true" aria-expanded="false">Todas as Categorias</a>
+            </li>
+            <li class="menu-item"><a href="/pages/cirurgia/cirurgia.html" class="menu-link">Cirurgia e Periodontia</a></li>
+            <li class="menu-item"><a href="/categoria/dentistica/index.html" class="menu-link">Dentística</a></li>
+            <li class="menu-item"><a href="/categoria/endodontia/index.html" class="menu-link">Endodontia</a></li>
+            <li class="menu-item"><a href="/categoria/equipamentos/index.html" class="menu-link">Equipamentos</a></li>
+            <li class="menu-item"><a href="/categoria/instrumental/index.html" class="menu-link">Instrumental</a></li>
+            <li class="menu-item"><a href="/categoria/ortodontia/index.html" class="menu-link">Ortodontia</a></li>
+            <li class="menu-item"><a href="/categoria/pecas-de-mao/index.html" class="menu-link">Peças de Mão</a></li>
+            <li class="menu-item"><a href="/categoria/protese/index.html" class="menu-link">Prótese</a></li>
+            <li class="menu-item menu-item--highlighted">
+              <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Estudantes</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="submenu-overlay"></div>
+        <div class="submenu submenu--mega" id="mega-menu-content" aria-hidden="true">
+        <div class="submenu__header">
+          <h2>Navegue por todas as categorias</h2>
+          <button class="submenu__close" aria-label="Fechar menu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="submenu__columns">
+          <!-- Apenas títulos clicáveis -->
+          <div class="submenu__column">
+            <a href="/acessorios-e-vestuarios" class="submenu__title-link">
+              <h3 class="submenu__title">Acessórios e Vestuários</h3>
+            </a>
+          </div>
+          <div class="submenu__column">
+            <a href="/anestesico" class="submenu__title-link">
+              <h3 class="submenu__title">Anestésico</h3>
+            </a>
+          </div>
+          <div class="submenu__column">
+            <a href="/biosseguranca" class="submenu__title-link">
+              <h3 class="submenu__title">Biossegurança</h3>
+            </a>
+          </div>
+          <div class="submenu__column">
+            <a href="/brocas" class="submenu__title-link">
+              <h3 class="submenu__title">Brocas</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </nav>
+</header>
