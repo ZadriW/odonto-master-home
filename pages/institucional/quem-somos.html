@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos - Odonto Master</title>
+    
+    <!-- Importando estilos compartilhados -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Estilos específicos da página -->
+    <link rel="stylesheet" href="/pages/institucional/quem-somos.css">
+  
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <a name="topo"></a>
+    
+    <!-- Header -->
+    <header class="main-header">
+    
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <div class="container">
+                <div class="top-banner__content">
+                    <div class="top-banner__warning">
+                        <strong>ATENÇÃO!</strong> Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
+                    </div>
+                    <div class="top-banner__login">
+                        <a href="#" class="login-link">Olá Visitante, Identifique-se aqui</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Area -->
+        <div class="header-area">
+            <div class="container">
+                <div class="header-area__content">
+                    <!-- Logo -->
+                    <div class="header-logo">
+                        <a href="/pages/home/index.html" class="logo-link">
+                            <img src="https://recursos.odontomaster.com.br/i/logo_odonto.png" alt="Odonto Master" class="logo-image">
+                        </a>
+                    </div>
+
+                    <!-- Search Bar --> 
+                    <div class="search-bar">
+                        <form class="search-form" id="searchForm" autocomplete="off" method="get" action="#">
+                            <div class="search-form__wrapper">
+                                <input type="text" 
+                                       class="search-form__input" 
+                                       id="searchInput" 
+                                       name="busca" 
+                                       placeholder="Busque aqui..."
+                                       autocomplete="on">
+                                <button type="submit" class="search-form__button" aria-label="Buscar">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Header Actions -->
+                    <section class="header-actions">
+                        <!-- Contact Info -->
+                        <div class="contact-info">
+                            <div class="contact-info__phone">
+                                <span class="contact-info__label">TELEVENDAS</span>
+                                <strong class="contact-info__number">0800 672 1105</strong>
+                                <strong class="contact-info__number">(71) 3173-7300</strong>
+                            </div>
+                        </div>
+
+                        <!-- Customer Service -->
+                        <div class="customer-service">
+                            <button class="customer-service__trigger" aria-label="Informações de atendimento">
+                                <i class="fas fa-headset"></i>
+                            </button>
+                            <div class="customer-service__dropdown">
+                                <div class="customer-service__section">
+                                    <strong>Pelos Telefones:</strong>
+                                    <p>(71) 3173-7300 - Salvador/BA</p>
+                                    <p>(75) 3322-8498 - Feira de Santana/BA</p>
+                                    <p>(79) 3085-0710 - Aracaju/SE</p>
+                                </div>
+                                
+                                <div class="customer-service__section">
+                                    <strong>Pelo WhatsApp:</strong>
+                                    <p>(71) 9 9401-9924</p>
+                                </div>
+                                
+                                <div class="customer-service__section">
+                                    <strong>Horário de Atendimento:</strong>
+                                    <p>Segunda a Sexta das 08:00 às 18:00</p>
+                                    <p>Sábados 08:00 às 14:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- My Account -->
+                        <div class="my-account">
+                            <button class="my-account__trigger" aria-label="Minha conta">
+                                <i class="fas fa-user"></i>
+                            </button>
+                        </div>
+
+                        <!-- Shopping Cart -->
+                        <div class="shopping-cart">
+                            <button class="shopping-cart__trigger" aria-label="Carrinho de compras">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="shopping-cart__text">Carrinho</span>
+                                <span class="shopping-cart__count">0</span>
+                                <span class="shopping-cart__label">Item(s)</span>
+                            </button>
+                            <div class="shopping-cart__dropdown">
+                                <div class="shopping-cart__content">
+                                    <div class="shopping-cart__empty">
+                                        <p>Seu carrinho de compras está vazio.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" aria-label="Abrir menu" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="main-navigation" id="main-navigation">
+            <div class="container">
+                <div class="main-navigation__content">
+                    <!-- Mobile Menu Close -->
+                    <button class="mobile-menu-close" aria-label="Fechar menu" id="mobileMenuClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+
+                    <!-- Navigation Menu -->
+                    <div class="navigation-menu">
+                        <ul class="menu-list">
+                            <li class="menu-item menu-item--has-submenu">
+                                <a href="#" class="menu-link" id="mega-menu-trigger" aria-haspopup="true" aria-expanded="false">Todas as Categorias</a>
+                            </li>
+                            <li class="menu-item"><a href="../pages/cirurgia/cirurgia.html" class="menu-link">Cirurgia e Periodontia</a></li>
+                            <li class="menu-item"><a href="../categoria/dentistica/index.html" class="menu-link">Dentística</a></li>
+                            <li class="menu-item"><a href="../categoria/endodontia/index.html" class="menu-link">Endodontia</a></li>
+                            <li class="menu-item"><a href="../categoria/equipamentos/index.html" class="menu-link">Equipamentos</a></li>
+                            <li class="menu-item"><a href="../categoria/instrumental/index.html" class="menu-link">Instrumental</a></li>
+                            <li class="menu-item"><a href="../categoria/ortodontia/index.html" class="menu-link">Ortodontia</a></li>
+                            <li class="menu-item"><a href="../categoria/pecas-de-mao/index.html" class="menu-link">Peças de Mão</a></li>
+                            <li class="menu-item menu-item--highlighted">
+                                <a href="../pages/odontoverse/odontoverse.html" class="menu-link">Estudantes</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="submenu-overlay"></div>
+                    <div class="submenu submenu--mega" id="mega-menu-content" aria-hidden="true">
+                        <div class="submenu__header">
+                            <h2>Navegue por todas as categorias</h2>
+                            <button class="submenu__close" aria-label="Fechar menu">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="submenu__columns">
+                            <!-- Apenas títulos clicáveis -->
+                            <div class="submenu__column">
+                                <a href="../categoria/acessorios-e-vestuarios" class="submenu__title-link">
+                                    <h3 class="submenu__title">Acessórios e Vestuários</h3>
+                                </a>
+                            </div>
+                            <div class="submenu__column">
+                                <a href="../categoria/anestesico" class="submenu__title-link">
+                                    <h3 class="submenu__title">Anestésico</h3>
+                                </a>
+                            </div>
+                            <div class="submenu__column">
+                                <a href="../categoria/biosseguranca" class="submenu__title-link">
+                                    <h3 class="submenu__title">Biossegurança</h3>
+                                </a>
+                            </div>
+                            <div class="submenu__column">
+                                <a href="../categoria/brocas" class="submenu__title-link">
+                                    <h3 class="submenu__title">Brocas</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumb__list">
+                <li class="breadcrumb__item">
+                    <a href="../pages/home/index.html" class="breadcrumb__link">Home</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <a href="index.html" class="breadcrumb__link">Institucional</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <span class="breadcrumb__link">Quem Somos</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content - Quem Somos -->
+    <div class="main-container">
+        <div class="container">
+            <div class="about-page">
+                <div class="about-header">
+                    <h1 class="about-title">Quem Somos</h1>
+                    <p class="about-subtitle">Conheça a história da maior distribuidora de materiais odontológicos do Nordeste</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-section">
+                        <h2 class="section-title">Nossa História</h2>
+                        <p class="section-text">A Dental Odonto Master foi fundada em 1994 na cidade de Salvador/BA. Inicialmente em uma sala de 30 m² na Avenida Antônio Carlos Magalhães, comercializando Material Odontológico Clínico.</p>
+                        <p class="section-text">Com o sucesso da loja, em 1998 visando oferecer mais conforto, variedade, estacionamento e praticidade aos clientes, a matriz foi transferida para o bairro do Caminho das Árvores, inovando com o serviço de autoatendimento no ramo odontológico.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h2 class="section-title">Expansão e Inovação</h2>
+                        <p class="section-text">No ano de 2003 são inauguradas duas filiais, uma localizada no centro da cidade de Salvador/BA, próximo ao Relógio São Pedro e a outra na Kalilândia, situada na cidade de Feira de Santana/BA.</p>
+                        <p class="section-text">A Odonto Master prossegue com uma história de inovação, empreendedorismo, respeito, oferecendo produtos de qualidade e preço baixo. Nesses 25 anos de trabalho a empresa acumulou larga experiência, credibilidade e reconhecimento no mercado.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h2 class="section-title">Era Digital</h2>
+                        <p class="section-text">Agora em nossa loja virtual você poderá encontrar tudo o que precisa com segurança em qualquer lugar do país!</p>
+                        <p class="section-text">Por isso, em 2016, lançamo-nos em novos desafios, a expansão dos negócios para o e-commerce e abertura de filial na cidade de Aracaju/SE.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h2 class="section-title">Nossa Jornada</h2>
+                        <div class="history-timeline">
+                            <div class="history-item">
+                                <div class="history-year">1994</div>
+                                <div class="history-content">
+                                    Fundação da Dental Odonto Master em Salvador/BA, em uma sala de 30 m² na Avenida Antônio Carlos Magalhães.
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-year">1998</div>
+                                <div class="history-content">
+                                    Mudança da matriz para o bairro do Caminho das Árvores, inovando com o serviço de autoatendimento.
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-year">2003</div>
+                                <div class="history-content">
+                                    Inauguração de duas filiais: uma no centro de Salvador/BA e outra na Kalilândia em Feira de Santana/BA.
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-year">2016</div>
+                                <div class="history-content">
+                                    Expansão para o e-commerce e abertura de filial em Aracaju/SE.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2 class="section-title">Nossos Valores</h2>
+                        <p class="section-text">Ao longo desses anos, mantivemos nosso compromisso com a <span class="highlight">inovação</span>, <span class="highlight">empreendedorismo</span> e <span class="highlight">respeito</span> aos nossos clientes, oferecendo sempre produtos de qualidade com os melhores preços do mercado.</p>
+                        <p class="section-text">Com <span class="highlight">25 anos de experiência</span>, construímos uma sólida reputação baseada em <span class="highlight">credibilidade</span> e <span class="highlight">reconhecimento</span> no setor odontológico, sempre buscando superar as expectativas dos nossos clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <!-- Newsletter -->
+            <section class="newsletter-section">
+                <h3 class="newsletter-title">ASSINE NOSSA NEWSLETTER</h3>
+                <p class="newsletter-description">E FIQUE POR DENTRO DAS NOVIDADES</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="newsletter-form__wrapper">
+                        <input type="email" 
+                               placeholder="Seu e-mail" 
+                               class="newsletter-form__input" 
+                               required>
+                        <button type="submit" class="newsletter-form__button">Assinar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 class="footer-column__title">INSTITUCIONAL</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="quem-somos.html" class="footer-link">Quem Somos</a></li>
+                        <li><a href="estudantes.html" class="footer-link">Estudantes</a></li>
+                        <li><a href="revenda.html" class="footer-link">Revenda</a></li>
+                        <li><a href="#" class="footer-link">Login/Cadastro</a></li>
+                        <li><a href="trabalhe-conosco.html" class="footer-link">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">AJUDA</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="#" class="footer-link">Como Comprar</a></li>
+                        <li><a href="#" class="footer-link">Trocas e Devoluções</a></li>
+                        <li><a href="#" class="footer-link">Política de Privacidade</a></li>
+                        <li><a href="#" class="footer-link">Cashback de Frete</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">ATENDIMENTO</h4>
+                    <ul class="footer-column__list">
+                        <li><a href="https://api.whatsapp.com/send?phone=5571988670812" class="footer-link">Chat Online</a></li>
+                        <li><a href="tel:7131737300" class="footer-link">(71) 3173-7300</a></li>
+                        <li><a href="mailto:atendimento@odontomaster.com.br" class="footer-link">atendimento@odontomaster.com.br</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-column__title">HORÁRIO DE FUNCIONAMENTO</h4>
+                    <ul class="footer-column__list">
+                        <li>Segunda a Sexta das 08h às 18h</li>
+                        <li>Sábados das 08h às 12h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">FORMAS DE PAGAMENTO</h4>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                        <i class="fab fa-pix" aria-label="PIX"></i>
+                    </div>
+                </div>
+
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">SELOS DE SEGURANÇA</h4>
+                    <div class="security-seals">
+                        <i class="fas fa-shield-alt" aria-label="Segurança"></i>
+                        <span>Wildcard SSL Certificates</span>
+                    </div>
+                </div>
+
+                <div class="footer-bottom__section">
+                    <h4 class="footer-bottom__title">REDES SOCIAIS</h4>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; Todos os direitos reservados - ODM COMERCIO E SERVICOS DE EQUIPAMENTOS E MATERIAIS ODONTOLOGICOS LTDA - CNPJ: 07.030.958/0001-74</p>
+                <p>Alameda das Cajazeiras, 430 - Caminho das Árvores - Salvador/BA - CEP: 41.820-470</p>
+                <p>Eventuais promoções, descontos e prazos de pagamento expostos aqui são válidos apenas para compras via internet. As fotos, textos e layout aqui veiculados são de propriedade da Loja. É proibida a utilização total ou parcial sem nossa autorização.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="quem-somos.js"></script>
+</body>
+</html>
