@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Odonto Master</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/pages/checkout/checkout.css">
+
+</head>
+<body class="checkout-body">
+  
+  <!-- Header with Logo -->
+  <header class="checkout-header-container">
+    <div class="container">
+      <div class="logo-container">
+        <a href="/pages/home/index.html">
+          <img src="https://recursos.odontomaster.com.br/i/logo_odonto.png" alt="Odonto Master" class="checkout-logo">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="checkout-page">
+    <div class="container">
+      <div class="checkout-options">
+        <h1>Finalizar Compra</h1>
+        <p>Revise seus itens e finalize seu pedido</p>
+      </div>
+
+      <div class="checkout-content">
+        <!-- Order Summary -->
+        <section class="order-summary">
+          <h2>Resumo do Pedido</h2>
+          
+          <!-- Cart Items -->
+          <div class="cart-items" id="cartItems">
+            <!-- Product items will be dynamically inserted here -->
+          </div>
+
+          <!-- Coupon Section -->
+          <div class="coupon-section">
+            <h3>Cupom de Desconto</h3>
+            <div class="coupon-form">
+              <input type="text" class="coupon-input" placeholder="Digite seu cupom aqui" id="couponInput">
+              <button class="coupon-apply-btn" id="applyCouponBtn">Aplicar</button>
+            </div>
+          </div>
+
+          <!-- Order Totals -->
+          <div class="order-totals">
+            <div class="total-line">
+              <span>Subtotal:</span>
+              <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="total-line discount" id="discountLine" style="display: none;">
+              <span>Desconto:</span>
+              <span id="discountAmount">- R$ 0,00</span>
+            </div>
+            <div class="total-line shipping">
+              <span>Frete:</span>
+              <span>Grátis</span>
+            </div>
+            <div class="total-line grand-total">
+              <span><strong>Total:</strong></span>
+              <span class="total-amount" id="totalAmount"><strong>R$ 0,00</strong></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="checkout-actions">
+          <a href="/pages/home/index.html" alt="Continuar Comprando">
+          <button class="btn btn-secondary continue-shopping" id="continueShoppingBtn">
+            <i class="fas fa-arrow-left"></i> Continuar Comprando
+          </button>
+          </a>
+          
+          <a href="/pages/confirmacao/index.html" alt="Confirmação de Pedido">
+          <button class="btn btn-primary finalize-order" id="finalizeOrderBtn">
+            Finalizar Pedido <i class="fas fa-arrow-right"></i>
+          </button>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/pages/checkout/checkout.js"></script>
+</body>
+</html>

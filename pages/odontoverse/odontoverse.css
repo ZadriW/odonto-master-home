@@ -50,6 +50,12 @@
     min-width: 20px;
 }
 
+.breadcrumb__link:hover {
+    color: var(--cor-secundaria);
+    text-decoration: underline;
+    outline: none;
+}
+
 .odontoverse-page {
     background-color: var(--cor-fundo-primaria);
 }
@@ -88,27 +94,6 @@
     grid-template-columns: 200px 1fr 200px; 
     margin-top: 20px;
 }
-
-.promo-card-vertical {
-    display: block;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    text-decoration: none;
-}
-
-.promo-card-vertical:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.promo-card-vertical img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
 
 .products-grid {
     display: grid; /* Ativa o layout de grade */
@@ -193,6 +178,7 @@
     border-radius: var(--border-radius-md);
     font-size: var(--font-size-base);
 }
+
 
 .form-submit-button {
     width: 100%;

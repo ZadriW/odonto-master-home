@@ -1,5 +1,5 @@
 /**
- * @version 2.0.0
+ * @version 2.1.0
  * @author Odonto Master Development Team
  * =================================================================================
  */
@@ -472,9 +472,12 @@ class ShoppingCart {
                     <div class="shopping-cart__total">
                         <strong>Total: ${Utils.formatPrice(this.getTotalPrice())}</strong>
                     </div>
+                    <a href="/pages/checkout/checkout.html">
                     <button class="shopping-cart__checkout" id="cart-checkout-btn">
+                        
                         <i class="fas fa-credit-card"></i> Finalizar Compra
                     </button>
+                    </a>
                 </div>`;
         }
     }
@@ -509,6 +512,10 @@ class ShoppingCart {
         this.dropdownClickHandler = (e) => {
             const actionButton = e.target.closest('[data-action]');
             if (actionButton) {
+                // Prevent default scroll behavior
+                e.preventDefault();
+                e.stopPropagation();
+                
                 const cartItemElement = actionButton.closest('.cart-item');
                 if (!cartItemElement) return;
                 
@@ -554,42 +561,64 @@ class ShoppingCart {
         };
 
         // Adiciona os novos listeners
-        this.dropdownContainer.addEventListener('click', this.dropdownClickHandler);
-        this.dropdownContainer.addEventListener('change', this.dropdownChangeHandler);
+        if (this.dropdownContainer) {
+            this.dropdownContainer.addEventListener('click', this.dropdownClickHandler);
+            this.dropdownContainer.addEventListener('change', this.dropdownChangeHandler);
+        }
     }
     
     bindPageEvents() {
-    document.addEventListener('click', (e) => {
-        const productButton = e.target.closest('.product-button');
-        if (productButton) {
-            // Previne que o botão seja clicado várias vezes rapidamente
-            if (productButton.classList.contains('added')) {
-                return;
-            }
+        document.addEventListener('click', (e) => {
+            const productButton = e.target.closest('.product-button');
+            const productCard = e.target.closest('.product-card');
+            
+            // Handle "Add to Cart" button click
+            if (productButton) {
+                // Prevent default behavior (redirection)
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Prevent multiple rapid clicks
+                if (productButton.classList.contains('added')) {
+                    return;
+                }
 
-            const productCard = productButton.closest('.product-card');
-            if (productCard && productCard.dataset.productId) {
+                const productCard = productButton.closest('.product-card');
+                if (productCard && productCard.dataset.productId) {
+                    const productId = productCard.dataset.productId;
+                    const productName = productCard.querySelector('.product-title')?.textContent || 'Produto';
+                    const price = parseInt(productCard.querySelector('.product-price--current')?.textContent.replace(/[^\d]/g, '')) || 0;
+                    
+                    // Add item to cart
+                    this.addItem(productId, productName, price, 1);
+                    
+                    // Visual feedback on button
+                    productButton.classList.add('added');
+                    productButton.innerHTML = `<i class="fas fa-check"></i> Adicionado`;
+
+                    setTimeout(() => {
+                        productButton.classList.remove('added');
+                        productButton.innerHTML = 'ADICIONAR AO CARRINHO';
+                    }, 2000);
+                }
+            }
+            // Handle product card click (redirect to product page)
+            else if (productCard && productCard.dataset.productId) {
+                // Prevent default behavior only when necessary
+                // Allow the click to proceed to the product page
                 const productId = productCard.dataset.productId;
                 const productName = productCard.querySelector('.product-title')?.textContent || 'Produto';
-                const price = parseInt(productCard.querySelector('.product-price--current')?.textContent.replace(/[^\d]/g, '')) || 0;
                 
-                // Adiciona o item ao carrinho
-                this.addItem(productId, productName, price, 1);
-                
-                // --- Feedback visual no botão ---
-                productButton.classList.add('added');
-                productButton.innerHTML = `<i class="fas fa-check"></i> Adicionado`;
-
-                setTimeout(() => {
-                    productButton.classList.remove('added');
-                    productButton.innerHTML = 'ADICIONAR AO CARRINHO';
-                }, 2000);
-
-
+                // If there's a link inside the card, let it handle the navigation
+                const productLink = productCard.querySelector('a[href]');
+                if (!productLink) {
+                    // If no link exists, we can create navigation logic here
+                    // For now, we'll let the default behavior happen
+                    // In the future, we might want to implement redirectToProductSpot
+                }
             }
-        }
-    });
-}
+        });
+    }
 
 
 
@@ -598,7 +627,7 @@ class ShoppingCart {
     saveToStorage() { Storage.set(CONFIG.CART_STORAGE_KEY, this.items); }
     loadFromStorage() { return Storage.get(CONFIG.CART_STORAGE_KEY, []); }
 
-    }
+}
 
 // ===== SISTEMA DE BUSCA =====
 class SearchSystem {
@@ -607,6 +636,7 @@ class SearchSystem {
         this.input = document.getElementById('searchInput');
         this.autocomplete = document.getElementById('searchAutocomplete');
         this.isSearching = false;
+        this.searchSuggestions = [];
         
         if (this.form && this.input && this.autocomplete) {
             this.init();
@@ -615,6 +645,7 @@ class SearchSystem {
     
     init() {
         this.bindEvents();
+        this.loadSearchSuggestions();
         Logger.info('Sistema de busca inicializado');
     }
     
@@ -637,7 +668,29 @@ class SearchSystem {
         });
         
         // Keyboard navigation
+        this.input.addEventListener('keydown', e => this.handleKeyboard(e));
         this.autocomplete.addEventListener('keydown', e => this.handleKeyboard(e));
+    }
+    
+    async loadSearchSuggestions() {
+        // Em produção, isso viria de uma API
+        this.searchSuggestions = [
+            'Clareador dental',
+            'Brocas odontológicas',
+            'Cimentos dentários',
+            'Anestésico local',
+            'Equipamentos odontológicos',
+            'Instrumental cirúrgico',
+            'Resina composta',
+            'Sistema adesivo',
+            'Ácido fosfórico',
+            'Matriz metálica',
+            'Fotopolimerizador',
+            'Autoclave',
+            'Cadeira odontológica',
+            'Kit endodontia',
+            'Sugador cirúrgico'
+        ];
     }
     
     handleInput(e) {
@@ -656,7 +709,6 @@ class SearchSystem {
         this.isSearching = true;
         
         try {
-            // Simulação de busca - em produção seria uma chamada API
             const suggestions = await this.getSearchSuggestions(query);
             this.showSuggestions(suggestions);
         } catch (error) {
@@ -669,22 +721,14 @@ class SearchSystem {
     
     async getSearchSuggestions(query) {
         // Simulação de API - em produção seria uma chamada real
-        const mockSuggestions = [
-            'Clareador dental',
-            'Brocas odontológicas',
-            'Cimentos dentários',
-            'Anestésico local',
-            'Equipamentos odontológicos',
-            'Instrumental cirúrgico'
-        ];
-        
         return new Promise(resolve => {
             setTimeout(() => {
-                const filtered = mockSuggestions.filter(item => 
+                const filtered = this.searchSuggestions.filter(item => 
                     item.toLowerCase().includes(query.toLowerCase())
                 );
-                resolve(filtered);
-            }, 200);
+                // Limitar a 8 sugestões
+                resolve(filtered.slice(0, 8));
+            }, 100);
         });
     }
     
@@ -692,10 +736,9 @@ class SearchSystem {
         if (suggestions.length > 0) {
             this.autocomplete.innerHTML = suggestions.map(suggestion => `
                 <div class="search-suggestion" 
-                     onclick="searchSystem.selectSuggestion('${suggestion}')"
-                     role="option">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                    <span>${suggestion}</span>
+                     onclick="searchSystem.selectSuggestion('${suggestion.replace(/'/g, "\\'")}')">
+                    <i class="fas fa-search"></i>
+                    ${suggestion}
                 </div>
             `).join('');
             this.showAutocomplete();
@@ -730,25 +773,13 @@ class SearchSystem {
     
     handleKeyboard(e) {
         const suggestions = this.autocomplete.querySelectorAll('.search-suggestion');
-        const currentIndex = Array.from(suggestions).findIndex(s => s.classList.contains('search-suggestion--active'));
+        if (suggestions.length === 0) return;
         
         switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault();
-                this.navigateSuggestions(suggestions, currentIndex, 1);
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                this.navigateSuggestions(suggestions, currentIndex, -1);
-                break;
             case 'Enter':
                 e.preventDefault();
-                const activeSuggestion = this.autocomplete.querySelector('.search-suggestion--active');
-                if (activeSuggestion) {
-                    this.selectSuggestion(activeSuggestion.textContent.trim());
-                } else {
-                    this.form.submit();
-                }
+                // Submit the form with current input value
+                this.form.submit();
                 break;
             case 'Escape':
                 this.hideAutocomplete();
@@ -761,70 +792,72 @@ class SearchSystem {
         suggestions.forEach(s => s.classList.remove('search-suggestion--active'));
         
         let newIndex = currentIndex + direction;
-        if (newIndex < 0) newIndex = suggestions.length - 1;
-        if (newIndex >= suggestions.length) newIndex = 0;
+        if (newIndex < -1) newIndex = suggestions.length - 1;
+        if (newIndex >= suggestions.length) newIndex = -1;
         
-        if (suggestions[newIndex]) {
+        if (newIndex >= 0 && suggestions[newIndex]) {
             suggestions[newIndex].classList.add('search-suggestion--active');
+            // Scroll to the active suggestion if needed
+            suggestions[newIndex].scrollIntoView({ block: 'nearest' });
         }
     }
 }
 
-    // =================================================================================
-    // ===== NOVO MÓDULO: GERENCIADOR DE UI DO CARRINHO ================================
-    // =================================================================================
-    class CartUIManager {
-        constructor() {
-            this.cartContainer = document.querySelector('.shopping-cart');
-            if (!this.cartContainer) return;
+// =================================================================================
+// ===== NOVO MÓDULO: GERENCIADOR DE UI DO CARRINHO ================================
+// =================================================================================
+class CartUIManager {
+    constructor() {
+        this.cartContainer = document.querySelector('.shopping-cart');
+        if (!this.cartContainer) return;
 
-            this.dropdown = this.cartContainer.querySelector('.shopping-cart__dropdown');
-            this.hideTimeout = null;
+        this.dropdown = this.cartContainer.querySelector('.shopping-cart__dropdown');
+        this.hideTimeout = null;
 
-            this.init();
-        }
-
-        init() {
-            // Eventos para mostrar e esconder o dropdown
-            this.cartContainer.addEventListener('mouseenter', () => this.showDropdown());
-            this.cartContainer.addEventListener('mouseleave', () => this.startHideTimer());
-            
-            // Eventos para acessibilidade (navegação por teclado)
-            this.cartContainer.querySelector('.shopping-cart__trigger').addEventListener('focus', () => this.showDropdown());
-            this.cartContainer.addEventListener('focusout', (e) => {
-                // Esconde se o foco sair de dentro do container do carrinho
-                 if (!window.cart.isUpdating && !this.cartContainer.contains(e.relatedTarget)) {
-                this.hideDropdown();
-                }
-            });
-            
-            // Mantém o dropdown aberto se o foco estiver dentro dele
-            this.dropdown.addEventListener('mouseenter', () => this.cancelHideTimer());
-
-            Logger.info('Gerenciador de UI do Carrinho inicializado');
-        }
-
-        showDropdown() {
-            this.cancelHideTimer();
-            this.dropdown.classList.add('is-active');
-        }
-
-        hideDropdown() {
-            this.dropdown.classList.remove('is-active');
-        }
-
-        startHideTimer() {
-            // ATRASO INTELIGENTE: Espera 300ms antes de fechar
-            this.hideTimeout = setTimeout(() => {
-                this.hideDropdown();
-            }, 50);
-        }
-
-        cancelHideTimer() {
-            // Cancela o fechamento se o mouse voltar para o carrinho ou entrar no dropdown
-            clearTimeout(this.hideTimeout);
-        }
+        this.init();
     }
+
+    init() {
+        // Eventos para mostrar e esconder o dropdown
+        this.cartContainer.addEventListener('mouseenter', () => this.showDropdown());
+        this.cartContainer.addEventListener('mouseleave', () => this.startHideTimer());
+        
+        // Eventos para acessibilidade (navegação por teclado)
+        this.cartContainer.querySelector('.shopping-cart__trigger').addEventListener('focus', () => this.showDropdown());
+        this.cartContainer.addEventListener('focusout', (e) => {
+            // Esconde se o foco sair de dentro do container do carrinho
+             if (!window.cart.isUpdating && !this.cartContainer.contains(e.relatedTarget)) {
+            this.hideDropdown();
+            }
+        });
+        
+        // Mantém o dropdown aberto se o foco estiver dentro dele
+        this.dropdown.addEventListener('mouseenter', () => this.cancelHideTimer());
+
+        Logger.info('Gerenciador de UI do Carrinho inicializado');
+    }
+
+    showDropdown() {
+        this.cancelHideTimer();
+        this.dropdown.classList.add('is-active');
+    }
+
+    hideDropdown() {
+        this.dropdown.classList.remove('is-active');
+    }
+
+    startHideTimer() {
+        // ATRASO INTELIGENTE: Espera 300ms antes de fechar
+        this.hideTimeout = setTimeout(() => {
+            this.hideDropdown();
+        }, 50);
+    }
+
+    cancelHideTimer() {
+        // Cancela o fechamento se o mouse voltar para o carrinho ou entrar no dropdown
+        clearTimeout(this.hideTimeout);
+    }
+}
 
 // =================================================================================
 // ===== NOVO MÓDULO: GERENCIADOR DE UI DO ATENDIMENTO =============================
@@ -1134,25 +1167,67 @@ class ProductsCarousel {
         return 4;
     }
 
+    extractCategoryFromTitle(title) {
+        // This is a simplified approach - in a real implementation, 
+        // this would come from the product data itself
+        const categories = [
+            'Clareamento Dental', 'Resina Composta', 'Anestésico', 'Broca', 
+            'Fotopolimerizador', 'Cimento', 'Kit Endodontia', 'Ácido Fosfórico',
+            'Autoclave', 'Cadeira Odontológica', 'Kit', 'Sugador'
+        ];
+        
+        for (const category of categories) {
+            if (title.toLowerCase().includes(category.toLowerCase())) {
+                return category;
+            }
+        }
+        
+        // Default fallback
+        return 'Produto';
+    }
+
+    extractBrandFromTitle(title) {
+        // This is a simplified approach - in a real implementation,
+        // this would come from the product data itself
+        const brands = ['Whiteness', 'Z350', 'Mepivacaína', 'Carbide', 'Radii', 'FGM', 'Ultradent', 'Angelus', 'Dentsply', 'Kavo', 'Vitale'];
+        
+        for (const brand of brands) {
+            if (title.toLowerCase().includes(brand.toLowerCase())) {
+                return brand;
+            }
+        }
+        
+        // Default fallback
+        return 'Marca';
+    }
+
     renderProducts() {
         const allProducts = [...this.products, ...this.products, ...this.products];
-        this.track.innerHTML = allProducts.map((product, index) => `
+        this.track.innerHTML = allProducts.map((product, index) => {
+            // Extract category and brand from product name (simplified approach)
+            // In a real implementation, this would come from actual product data
+            const category = this.extractCategoryFromTitle(product.name);
+            const brand = this.extractBrandFromTitle(product.name);
+            
+            return `
             <div class="product-slide" data-index="${index}">
                 <article class="product-card" data-product-id="${product.id}">
-                    <div class="product-card__image">
-                        <img src="${product.image}" alt="${product.name}">
-                        <div class="product-badge product-badge--discount">${product.discount}% OFF</div>
-                    </div>
-                    <div class="product-card__content">
-                        <h3 class="product-title">${product.name}</h3>
-                        <div class="product-pricing">
-                            <span class="product-price--current">${Utils.formatPrice(product.price * 100)}</span>
+                    <a href="/pages/produto/produto.html?category=${encodeURIComponent(category)}&brand=${encodeURIComponent(brand)}&id=${product.id}" class="product-card-link">
+                        <div class="product-card__image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <div class="product-badge product-badge--discount">${product.discount}% OFF</div>
                         </div>
-                        <button class="product-button">ADICIONAR AO CARRINHO</button>
-                    </div>
+                        <div class="product-card__content">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-pricing">
+                                <span class="product-price--current">${Utils.formatPrice(product.price * 100)}</span>
+                            </div>
+                            <button class="product-button">ADICIONAR AO CARRINHO</button>
+                        </div>
+                    </a>
                 </article>
             </div>
-        `).join('');
+        `}).join('');
         this.currentIndex = this.products.length;
         this.updatePosition(false);
     }
@@ -1519,7 +1594,6 @@ class OdontoMasterApp {
         const carousels = document.querySelectorAll('.highlight-carousel');
         this.modules.carousels = Array.from(carousels).map(carousel => new Carousel(carousel));
         
-        
         Logger.info(`${Object.keys(this.modules).length} módulos inicializados`);
     }
     
@@ -1537,6 +1611,28 @@ class OdontoMasterApp {
                 
             } else {
                 this.modules.notifications.warning('Adicione itens ao carrinho antes de finalizar a compra.');
+            }
+        };
+        
+        // Função de breadcrumb
+        window.updateBreadcrumb = (items) => {
+            const breadcrumbList = document.querySelector('.breadcrumb__list');
+            if (breadcrumbList) {
+                breadcrumbList.innerHTML = '';
+                
+                // Adiciona o item Home por padrão
+                const homeItem = document.createElement('li');
+                homeItem.className = 'breadcrumb__item';
+                homeItem.innerHTML = '<a href="/pages/home/index.html" class="breadcrumb__link">Home</a>';
+                breadcrumbList.appendChild(homeItem);
+                
+                // Adiciona os itens fornecidos
+                items.forEach((item, index) => {
+                    const separator = document.createElement('li');
+                    separator.className = 'breadcrumb__item';
+                    separator.innerHTML = '<span class="breadcrumb__link">' + item.text + '</span>';
+                    breadcrumbList.appendChild(separator);
+                });
             }
         };
     }  
@@ -1622,6 +1718,24 @@ class OdontoMasterApp {
     }
 }
 
+// ===== FUNÇÃO DE LOGIN =====
+function login() {
+    // Esta função pode ser expandida conforme necessário
+    window.location.href = '/pages/login/login.html';
+}
+
+// ===== FUNÇÃO PARA VISUALIZAR DETALHES DO PRODUTO =====
+function viewProduct(category, brand, id) {
+    // Esta função pode ser expandida para carregar dados dinamicamente
+    // Por enquanto, redireciona para a página de produto com parâmetros
+    const params = new URLSearchParams({
+        category: category,
+        brand: brand,
+        id: id
+    });
+    window.location.href = `/pages/produto/produto.html?${params.toString()}`;
+}
+
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar aplicação
@@ -1646,7 +1760,7 @@ if (typeof module !== 'undefined' && module.exports) {
         Carousel,
         MegaMenu,
         AnimationManager,
-        PerfomanceMonitor
+        PerformanceMonitor
     };
 }
 

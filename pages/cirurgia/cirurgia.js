@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExpanded = categoryToggleBtn.getAttribute('aria-expanded') === 'true';
             categoryHiddenFilters.classList.toggle('expanded', !isExpanded);
             categoryToggleBtn.setAttribute('aria-expanded', !isExpanded);
-            categoryToggleBtn.querySelector('.toggle-text').textContent = isExpanded ? 'Ver mais' : 'Ver menos';
+            categoryToggleBtn.querySelector('.toggle-text').textContent = isExpanded ? 'Ver menos' : 'Ver mais';
         });
     }
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExpanded = brandToggleBtn.getAttribute('aria-expanded') === 'true';
             brandHiddenFilters.classList.toggle('expanded', !isExpanded);
             brandToggleBtn.setAttribute('aria-expanded', !isExpanded);
-            brandToggleBtn.querySelector('.toggle-text').textContent = isExpanded ? 'Ver mais' : 'Ver menos';
+            brandToggleBtn.querySelector('.toggle-text').textContent = isExpanded ? 'Ver menos' : 'Ver mais';
         });
     }
 
@@ -215,12 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.target.classList.remove('added');
                     e.target.innerHTML = 'ADICIONAR AO CARRINHO';
                 }, 2000);
+                
+                // Prevent the click from propagating to the link
+                e.preventDefault();
+                e.stopPropagation();
             }
         }
     });
     
-    // Simulação: Preenche os cards de produto com conteúdo de exemplo
-    // Este bloco pode ser removido quando a integração com a Wake estiver ativa
+    // Preenche os cards de produto com conteúdo de exemplo
     const productCards = Array.from(productsGrid.getElementsByClassName('product-card'));
     productCards.forEach((card, index) => {
     const category = card.dataset.category;
@@ -228,38 +231,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Garante que o card só será preenchido se tiver uma categoria válida
     if (category && brand) {
-        // Generate different prices based on category
+        // Generate different prices and discounts based on category and brand
         let price = "99,90";
+        let discount = "10% OFF";
+        
+        // Gerar preços diferentes com base na categoria
+        if (category === "Fio de Sutura") price = "149,90";
+        if (category === "Bolsa Termica") price = "89,90";
+        if (category === "Curativo Alveolar") price = "79,90";
+        if (category === "Hemostasia") price = "129,90";
         if (category === "Lâmina de Bisturi") price = "45,50";
         if (category === "Produtos em Oferta") price = "79,90";
         if (category === "Regeneração Óssea") price = "189,90";
         if (category === "Sugador Cirúrgico") price = "25,00";
         if (category === "Sugador Descartável") price = "15,90";
         
-        // Generate discount based on category
-        let discount = "10% OFF";
+        // Gerar descontos diferentes com base na categoria
         if (category === "Produtos em Oferta") discount = "25% OFF";
         if (category === "Regeneração Óssea") discount = "15% OFF";
+        if (category === "Fio de Sutura") discount = "20% OFF";
+        if (category === "Lâmina de Bisturi") discount = "12% OFF";
         
-        // Generate different prices based on brand
+        // Gerar preços diferentes com base na marca
         if (brand === "Dentsply") price = "149,90";
         if (brand === "FGM") price = "129,90";
         if (brand === "Ultradent") price = "89,90";
         if (brand === "Angelus") price = "79,90";
         if (brand === "Technew") price = "119,90";
         
+        // Create a unique product ID
+        const productId = `prod-${index + 1}`;
+        const urlCategory = encodeURIComponent(category);
+        const urlBrand = encodeURIComponent(brand);
+        
         card.innerHTML = `
-            <div class="product-card__image">
-                <img src="https://via.placeholder.com/300x300/e8ece9/333?text=${category.replace(/\s+/g, '+')}" alt="Produto ${index + 1}">
-                <div class="product-badge product-badge--discount">${discount}</div>
-            </div>
-            <div class="product-card__content">
-                <h3 class="product-title">${category} Exemplo ${index + 1} - ${brand}</h3>
-                <div class="product-pricing">
-                    <span class="product-price--current">R$ ${price}</span>
+            <a href="/pages/produto/produto.html?category=${urlCategory}&brand=${urlBrand}&id=${productId}" class="product-card-link">
+                <div class="product-card__image">
+                    <img src="https://via.placeholder.com/300x300/e8ece9/333?text=${category.replace(/\s+/g, '+')}" alt="${category} - ${brand}">
+                    <div class="product-badge product-badge--discount">${discount}</div>
                 </div>
-                <button class="product-button">ADICIONAR AO CARRINHO</button>
-            </div>
+                <div class="product-card__content">
+                    <h3 class="product-title">${category} Exemplo ${index + 1} - ${brand}</h3>
+                    <div class="product-pricing">
+                        <span class="product-price--current">R$ ${price}</span>
+                    </div>
+                    <button class="product-button">ADICIONAR AO CARRINHO</button>
+                </div>
+            </a>
         `;
     }
     });
@@ -270,13 +288,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function clearFilters() {
     // Limpa todos os checkboxes de categoria
-    document.querySelectorAll('#category-filters input[type="checkbox"]').forEach(checkbox => {
+    const categoryCheckboxes = document.querySelectorAll('#category-filters input[type="checkbox"]');
+    const brandCheckboxes = document.querySelectorAll('#brand-filters input[type="checkbox"]');
+    
+    categoryCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
+        // Trigger the change event manually to ensure filterProducts is called
+        checkbox.dispatchEvent(new Event('change'));
     });
     
     // Limpa todos os checkboxes de marca
-    document.querySelectorAll('#brand-filters input[type="checkbox"]').forEach(checkbox => {
+    brandCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
+        // Trigger the change event manually to ensure filterProducts is called
+        checkbox.dispatchEvent(new Event('change'));
     });
     
     // Reseta os sliders de preço para os valores padrão
@@ -293,11 +318,15 @@ function clearFilters() {
             priceMinDisplay.textContent = 'R$ 0';
             priceMaxDisplay.textContent = 'R$ 500';
         }
+        
+        // Trigger the input event manually to ensure filterProducts is called
+        priceSliderMin.dispatchEvent(new Event('input'));
+        priceSliderMax.dispatchEvent(new Event('input'));
     }
     
     // Força uma pequena pausa para garantir que o DOM seja atualizado antes de filtrar
     setTimeout(() => {
         // Aplica os filtros (mostrar todos os produtos)
         filterProducts();
-    }, 10);
+    }, 100); // Increase the timeout to ensure all changes are processed
 }

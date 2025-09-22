@@ -3,10 +3,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtersSidebar = document.getElementById('filters-sidebar');
     const productsGrid = document.getElementById('products-grid');
     const noResultsMessage = document.getElementById('no-results-message');
+    const searchResultsCount = document.getElementById('results-count');
+    const searchTermDisplay = document.getElementById('search-term-display');
+    const searchInput = document.getElementById('searchInput');
 
     // Verifica se estamos na página correta
     if (!filtersSidebar || !productsGrid) {
         return; // Sai da função se os elementos não existirem
+    }
+
+    // Obter termo de busca da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('busca') || '';
+    
+    // Exibir termo de busca
+    if (searchTermDisplay) {
+        searchTermDisplay.textContent = searchTerm;
+    }
+    
+    // Preencher o campo de busca com o termo de pesquisa
+    if (searchInput) {
+        searchInput.value = searchTerm;
     }
 
     // Implementa a funcionalidade do botão "Ver Mais" para categorias
@@ -93,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializa os filtros após um pequeno atraso para garantir que tudo esteja carregado
     setTimeout(initializeFilters, 100);
 
+    // Função para filtrar produtos com base nos critérios selecionados
     function filterProducts() {
         const selectedFilters = getSelectedFilters();
         const priceRange = getPriceRange();
@@ -223,80 +241,148 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Simulação: Preenche os cards de produto com conteúdo de exemplo
-    // Este bloco pode ser removido quando a integração com a Wake estiver ativa
-    const productCards = Array.from(productsGrid.getElementsByClassName('product-card'));
-    productCards.forEach((card, index) => {
-    const category = card.dataset.category;
-    const brand = card.dataset.brand;
-
-    // Garante que o card só será preenchido se tiver uma categoria válida
-    if (category && brand) {
-        // Generate different prices based on category
-        let price = "99,90";
-        if (category === "Resina Composta") price = "149,90";
-        if (category === "Sistema Adesivo") price = "89,90";
-        if (category === "Ácido Fosfórico") price = "25,00";
-        if (category === "Matriz Metálica") price = "35,50";
-        if (category === "Matriz Circunferencial") price = "45,00";
-        if (category === "Instrumental Dentística") price = "129,90";
-        if (category === "Produtos em Oferta") price = "79,90";
-        if (category === "Cunhas de Espessamento") price = "15,90";
-        if (category === "Diques de Matriz") price = "22,50";
+    // Função para carregar produtos com base no termo de busca
+    function loadSearchResults() {
+        // Produtos reais de ambas as categorias
+        const allProducts = [
+            // Produtos de Dentística
+            { id: 'dent1', name: 'Resina Composta Z350 XT', category: 'Resina Composta', brand: '3M ESPE', price: '189,90', discount: '15% OFF' },
+            { id: 'dent2', name: 'Sistema Adesivo Single Bond Universal', category: 'Sistema Adesivo', brand: '3M ESPE', price: '99,90', discount: '10% OFF' },
+            { id: 'dent3', name: 'Ácido Fosfórico 37% Gel', category: 'Ácido Fosfórico', brand: 'FGM', price: '25,00', discount: '5% OFF' },
+            { id: 'dent4', name: 'Matriz Metálica Automatriz', category: 'Matriz Metálica', brand: 'Ultradent', price: '35,50', discount: '12% OFF' },
+            { id: 'dent5', name: 'Matriz Circunferencial Tofflemire', category: 'Matriz Circunferencial', brand: 'Angelus', price: '45,00', discount: '8% OFF' },
+            { id: 'dent6', name: 'Instrumental Dentística Kit Básico', category: 'Instrumental Dentística', brand: 'Hu-Friedy', price: '129,90', discount: '20% OFF' },
+            { id: 'dent7', name: 'Produtos em Oferta Combo Dentística', category: 'Produtos em Oferta', brand: 'Dentsply', price: '79,90', discount: '25% OFF' },
+            { id: 'dent8', name: 'Cunhas de Espessamento Composit', category: 'Cunhas de Espessamento', brand: 'Microdont', price: '15,90', discount: '10% OFF' },
+            { id: 'dent9', name: 'Diques de Matriz Teflon', category: 'Diques de Matriz', brand: 'Joinville', price: '22,50', discount: '7% OFF' },
+            { id: 'dent10', name: 'Resina Composta Filtek Supreme', category: 'Resina Composta', brand: '3M ESPE', price: '249,90', discount: '18% OFF' },
+            { id: 'dent11', name: 'Sistema Adesivo Scotchbond', category: 'Sistema Adesivo', brand: '3M ESPE', price: '119,90', discount: '12% OFF' },
+            { id: 'dent12', name: 'Ácido Fosfórico 37% Líquido', category: 'Ácido Fosfórico', brand: 'Biodinâmica', price: '18,00', discount: '5% OFF' },
+            { id: 'dent13', name: 'Matriz Metálica Palma', category: 'Matriz Metálica', brand: 'FGM', price: '32,00', discount: '6% OFF' },
+            { id: 'dent14', name: 'Matriz Circunferencial Luxo', category: 'Matriz Circunferencial', brand: 'Millenium', price: '42,50', discount: '9% OFF' },
+            { id: 'dent15', name: 'Instrumental Dentística Premium', category: 'Instrumental Dentística', brand: 'Tecno Empire', price: '139,90', discount: '15% OFF' },
+            { id: 'dent16', name: 'Cunhas de Espessamento Deluxe', category: 'Cunhas de Espessamento', brand: 'Primera Dental', price: '17,50', discount: '8% OFF' },
+            { id: 'dent17', name: 'Diques de Matriz Flexíveis', category: 'Diques de Matriz', brand: 'Shofu', price: '24,90', discount: '10% OFF' },
+            { id: 'dent18', name: 'Resina Composta Bulk Fill', category: 'Resina Composta', brand: 'Ultradent', price: '199,90', discount: '20% OFF' },
+            { id: 'dent19', name: 'Sistema Adesivo All-in-One', category: 'Sistema Adesivo', brand: 'FGM', price: '85,00', discount: '12% OFF' },
+            { id: 'dent20', name: 'Ácido Fosfórico 37% em Gel', category: 'Ácido Fosfórico', brand: 'Angelus', price: '22,50', discount: '7% OFF' },
+            
+            // Produtos de Cirurgia e Periodontia
+            { id: 'cir1', name: 'Fio de Sutura Cirúrgica', category: 'Fio de Sutura', brand: 'Angelus', price: '45,00', discount: '10% OFF' },
+            { id: 'cir2', name: 'Bolsa Térmica para Cirurgia', category: 'Bolsa Termica', brand: 'BC Suture', price: '32,50', discount: '8% OFF' },
+            { id: 'cir3', name: 'Curativo Alveolar', category: 'Curativo Alveolar', brand: 'Bestcare', price: '28,90', discount: '6% OFF' },
+            { id: 'cir4', name: 'Hemostasia Cirúrgica', category: 'Hemostasia', brand: 'Biodinâmica', price: '65,00', discount: '12% OFF' },
+            { id: 'cir5', name: 'Lâmina de Bisturi N° 15', category: 'Lâmina de Bisturi', brand: 'Swann Morton', price: '12,50', discount: '5% OFF' },
+            { id: 'cir6', name: 'Produtos em Oferta Cirurgia', category: 'Produtos em Oferta', brand: 'FGM', price: '89,90', discount: '15% OFF' },
+            { id: 'cir7', name: 'Regeneração Óssea Bio-Oss', category: 'Regeneração Óssea', brand: 'Geistlich', price: '320,00', discount: '15% OFF' },
+            { id: 'cir8', name: 'Sugador Cirúrgico Descartável', category: 'Sugador Cirúrgico', brand: 'Maquira', price: '8,90', discount: '7% OFF' },
+            { id: 'cir9', name: 'Sugador Descartável Kit', category: 'Sugador Descartável', brand: 'Maxicor', price: '15,00', discount: '10% OFF' },
+            { id: 'cir10', name: 'Fio de Sutura Premium', category: 'Fio de Sutura', brand: 'Ethicon', price: '52,00', discount: '12% OFF' },
+            { id: 'cir11', name: 'Bolsa Térmica Profissional', category: 'Bolsa Termica', brand: 'Dentsply', price: '35,00', discount: '9% OFF' },
+            { id: 'cir12', name: 'Curativo Alveolar Avançado', category: 'Curativo Alveolar', brand: 'Indusbello', price: '31,50', discount: '8% OFF' },
+            { id: 'cir13', name: 'Lâmina de Bisturi N° 11', category: 'Lâmina de Bisturi', brand: 'Procare', price: '11,90', discount: '6% OFF' },
+            { id: 'cir14', name: 'Regeneração Óssea Sintética', category: 'Regeneração Óssea', brand: 'Quinelato', price: '280,00', discount: '18% OFF' },
+            { id: 'cir15', name: 'Sugador Cirúrgico Premium', category: 'Sugador Cirúrgico', brand: 'Se Comercial', price: '9,50', discount: '8% OFF' },
+            { id: 'cir16', name: 'Sugador Descartável Econômico', category: 'Sugador Descartável', brand: 'Shalon', price: '13,50', discount: '10% OFF' },
+            { id: 'cir17', name: 'Fio de Sutura Antibacteriano', category: 'Fio de Sutura', brand: 'Technew', price: '48,00', discount: '11% OFF' },
+            { id: 'cir18', name: 'Bolsa Térmica para Emergências', category: 'Bolsa Termica', brand: 'SP Protection', price: '29,90', discount: '7% OFF' },
+            { id: 'cir19', name: 'Curativo Alveolar Premium', category: 'Curativo Alveolar', brand: 'Technofio', price: '33,90', discount: '9% OFF' },
+            { id: 'cir20', name: 'Hemostasia Avançada', category: 'Hemostasia', brand: 'Ultradent', price: '68,50', discount: '13% OFF' }
+        ];
         
-        // Generate discount based on category
-        let discount = "10% OFF";
-        if (category === "Produtos em Oferta") discount = "25% OFF";
-        if (category === "Resina Composta") discount = "15% OFF";
+        // Função de busca avançada com tratamento de caracteres acentuados
+        function advancedSearch(products, term) {
+            // Se não houver termo de busca, mostrar todos os produtos
+            if (!term || term.trim() === '') {
+                return products;
+            }
+            
+            // Função para normalizar texto (remover acentos e converter para minúsculas)
+            function normalizeText(text) {
+                if (!text) return '';
+                // Remove acentos e caracteres especiais
+                return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            }
+            
+            // Normalizar o termo de busca e dividir em palavras-chave
+            const normalizedSearchTerm = normalizeText(term.trim());
+            const searchKeywords = normalizedSearchTerm.split(/\s+/).filter(keyword => keyword.length > 0);
+            
+            // Filtrar produtos com base no termo de busca
+            return products.filter(product => {
+                // Normalizar os campos do produto
+                const normalizedName = normalizeText(product.name);
+                const normalizedCategory = normalizeText(product.category);
+                const normalizedBrand = normalizeText(product.brand);
+                
+                // Combinar todos os campos para busca mais abrangente
+                const combinedFields = `${normalizedName} ${normalizedCategory} ${normalizedBrand}`;
+                
+                // Verificar se todos os termos de busca estão presentes em algum lugar
+                return searchKeywords.every(keyword => 
+                    combinedFields.includes(keyword)
+                );
+            });
+        }
         
-        // Generate different prices based on brand
-        if (brand === "3M ESPE") price = "189,90";
-        if (brand === "Ultradent") price = "159,90";
-        if (brand === "FGM") price = "99,90";
-        if (brand === "Angelus") price = "79,90";
-        if (brand === "Dentsply") price = "139,90";
+        // Filtrar produtos com base no termo de busca
+        const filteredProducts = advancedSearch(allProducts, searchTerm);
         
-        // Extract category and brand for URL generation
-        const urlCategory = encodeURIComponent(category);
-        const urlBrand = encodeURIComponent(brand);
-        const productId = `prod-${index + 1}`;
+        // Atualizar contador de resultados
+        if (searchResultsCount) {
+            searchResultsCount.textContent = filteredProducts.length;
+        }
         
-        card.innerHTML = `
-            <a href="/pages/produto/produto.html?category=${urlCategory}&brand=${urlBrand}&id=${productId}" class="product-card-link">
-                <div class="product-card__image">
-                    <img src="https://via.placeholder.com/300x300/e8ece9/333?text=${category.replace(/\s+/g, '+')}" alt="Produto ${index + 1}">
-                    <div class="product-badge product-badge--discount">${discount}</div>
-                </div>
-                <div class="product-card__content">
-                    <h3 class="product-title">${category} Exemplo ${index + 1} - ${brand}</h3>
-                    <div class="product-pricing">
-                        <span class="product-price--current">R$ ${price}</span>
-                    </div>
-                    <button class="product-button">ADICIONAR AO CARRINHO</button>
-                </div>
-            </a>
-        `;
+        // Preencher os cards de produto
+        if (filteredProducts.length > 0) {
+            productsGrid.innerHTML = filteredProducts.map(product => `
+                <article class="product-card" data-category="${product.category}" data-brand="${product.brand}">
+                    <a href="/pages/produto/produto.html?category=${encodeURIComponent(product.category)}&brand=${encodeURIComponent(product.brand)}&id=${product.id}" class="product-card-link">
+                        <div class="product-card__image">
+                            <img src="https://via.placeholder.com/300x300/e8ece9/333?text=${encodeURIComponent(product.name)}" alt="${product.name}">
+                            <div class="product-badge product-badge--discount">${product.discount}</div>
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-pricing">
+                                <span class="product-price--current">R$ ${product.price}</span>
+                            </div>
+                            <button class="product-button">ADICIONAR AO CARRINHO</button>
+                        </div>
+                    </a>
+                </article>
+            `).join('');
+        } else {
+            productsGrid.innerHTML = '';
+        }
+        
+        // Se não houver resultados, mostrar mensagem
+        if (filteredProducts.length === 0) {
+            noResultsMessage.style.display = 'block';
+            productsGrid.style.display = 'none';
+        } else {
+            noResultsMessage.style.display = 'none';
+            productsGrid.style.display = 'grid';
+        }
+        
+        // Re-inicializar os filtros após carregar os produtos
+        setTimeout(initializeFilters, 100);
     }
-    });
     
-    // Inicializa os filtros após preencher os product cards
-    setTimeout(initializeFilters, 100);
+    // Carregar resultados da pesquisa
+    loadSearchResults();
 });
 
 function clearFilters() {
-    // Ensure we're working with the correct elements
-    const categoryCheckboxes = document.querySelectorAll('#category-filters input[type="checkbox"]');
-    const brandCheckboxes = document.querySelectorAll('#brand-filters input[type="checkbox"]');
-    
     // Limpa todos os checkboxes de categoria
-    categoryCheckboxes.forEach(checkbox => {
+    document.querySelectorAll('#category-filters input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
         // Trigger the change event manually to ensure filterProducts is called
         checkbox.dispatchEvent(new Event('change'));
     });
     
     // Limpa todos os checkboxes de marca
-    brandCheckboxes.forEach(checkbox => {
+    document.querySelectorAll('#brand-filters input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
         // Trigger the change event manually to ensure filterProducts is called
         checkbox.dispatchEvent(new Event('change'));
@@ -326,5 +412,5 @@ function clearFilters() {
     setTimeout(() => {
         // Aplica os filtros (mostrar todos os produtos)
         filterProducts();
-    }, 100); // Increase the timeout to ensure all changes are processed
+    }, 10);
 }

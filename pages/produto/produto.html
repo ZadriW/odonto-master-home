@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cirurgia e Periodontia | Odonto Master</title>
+    <title id="productTitle">Nome do Produto | Odonto Master</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/pages/cirurgia/cirurgia.css">
-    <meta name="description" content="Produtos para Cirurgia e Periodontia. Encontre os melhores instrumentos e materiais na Odonto Master.">
+    <link rel="stylesheet" href="/pages/produto/produto.css">
+    <meta name="description" content="Detalhes do produto - Odonto Master">
 </head>
 <body>
     <div id="loading-screen" class="loading-screen">
@@ -22,10 +22,10 @@
             <div class="container">
                 <div class="top-banner__content">
                     <div class="top-banner__warning">
-                        <strong>ATENÇÃO!</strong> Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
+                        <strong>ATENÇÃO!</strong>Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
                     </div>
                     <div class="top-banner__login">
-                        <p>Olá Visitante, identifique-se <a href="/pages/login/login.html" alt="Tela de Login">aqui</a> ou <a href="/pages/registro/index.html" alt="Tela de Registro">registre-se</a></p>
+                        <a href="/login/index.html" class="login-link">Olá Visitante, Identifique-se aqui</a>
                     </div>
                 </div>
             </div>
@@ -134,8 +134,9 @@
         <!-- Barra de navegação -->
         <nav class="main-navigation" id="main-navigation">
             <div class="container">
-                <div class="main-navigation__content">              
-
+                <div class="main-navigation__content">
+                    
+                    
                     <!-- Menu de Navegação -->
                     <div class="navigation-menu">
                         <ul class="menu-list">
@@ -151,7 +152,7 @@
                             <li class="menu-item"><a href="/categoria/pecas-de-mao/index.html" class="menu-link">Peças de Mão</a></li>
                             <li class="menu-item"><a href="/categoria/protese/index.html" class="menu-link">Prótese</a></li>
                             <li class="menu-item menu-item--highlighted">
-                                <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Estudantes</a>
+                                <a href="/pages/odontoverse/odontoverse.html" class="menu-link">Odontoverse</a>
                             </li>
                         </ul>
                     </div>
@@ -201,254 +202,278 @@
                     <a href="/pages/home/index.html" class="breadcrumb__link">Home</a>
                 </li>
                 <li class="breadcrumb__item">
-                    <span class="breadcrumb__link">Cirurgia e Periodontia</span>
+                    <a href="/categoria/dentistica/index.html" class="breadcrumb__link" id="categoryBreadcrumb">Categoria</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <span class="breadcrumb__link" id="productNameBreadcrumb">Nome do Produto</span>
                 </li>
             </ul>
         </div>
     </div>
 
-        <!-- Conteúdo Principal -->
-        <main class="main-content category-page">
+    <!-- Main Content -->
+    <main class="main-content product-spot-page">
         <div class="container">
-
-            <!--Filtros-->
-            <div class="category-content-area">
-                <aside class="filters-sidebar" id="filters-sidebar">
-                    <h3 class="filters-title">Filtros</h3>
-
-                     <div class="filter-group">
-                        <h4 class="filter-group__title">Categorias</h4>
-
-                        <div class="filter-group__options" id="category-filters">
-                            <div class="filter-group__visible">
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-suturas" value="Fio de Sutura">
-                                    <label for="cat-suturas">Fio de Sutura</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-bolsa-termica" value="Bolsa Termica">
-                                    <label for="cat-bolsa-termica">Bolsa Térmica</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-curativo-alveolar" value="Curativo Alveolar">
-                                    <label for="cat-curativo-alveolar">Curativo Alveolar</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-hemostasia" value="Hemostasia">
-                                    <label for="cat-hemostasia">Hemostasia</label>
-                                </div>
-                            </div>
-                            
-                            <div class="filter-group__hidden" id="category-filters-hidden">
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-lamina-bisturi" value="Lâmina de Bisturi">
-                                    <label for="cat-lamina-bisturi">Lâmina de Bisturi</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-produtos-oferta" value="Produtos em Oferta">
-                                    <label for="cat-produtos-oferta">Produtos em Oferta</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-regeneracao-ossea" value="Regeneração Óssea">
-                                    <label for="cat-regeneracao-ossea">Regeneração Óssea</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-sugador-cirurgico" value="Sugador Cirúrgico">
-                                    <label for="cat-sugador-cirurgico">Sugador Cirúrgico</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="cat-sugador-descartavel" value="Sugador Descartável">
-                                    <label for="cat-sugador-descartavel">Sugador Descartável</label>
-                                </div>
-                            </div>
-                            
-                            <button class="filter-toggle-btn" id="category-toggle-btn" aria-expanded="false">
-                                <span class="toggle-text">Ver mais</span>
-                                <i class="fas fa-chevron-down toggle-icon"></i>
-                            </button>
-                        </div>
+            <div class="product-spot-container">
+                
+                <!-- Product Gallery -->
+                <section class="product-gallery">
+                    <div class="gallery-main-image">
+                        <img src="https://via.placeholder.com/600x600/1c5787/ffffff?text=Imagem+Principal" alt="Nome do Produto" id="mainImage">
                     </div>
-
-                    <div class="filter-group">
-                        <h4 class="filter-group__title">Marcas</h4>
-
-                        <div class="filter-group__options" id="brand-filters">
-                            <div class="filter-group__visible">
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-angelus" value="Angelus">
-                                    <label for="brand-angelus">Angelus</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-bc-suture" value="BC Suture">
-                                    <label for="brand-bc-suture">BC Suture</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-bestcare" value="Bestcare">
-                                    <label for="brand-bestcare">Bestcare</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-biodinamica" value="Biodinâmica">
-                                    <label for="brand-biodinamica">Biodinâmica</label>
-                                </div>
-                            </div>
-                            
-                            <div class="filter-group__hidden" id="brand-filters-hidden">
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-bionline" value="BIONLINE">
-                                    <label for="brand-bionline">BIONLINE</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-dentsply" value="Dentsply">
-                                    <label for="brand-dentsply">Dentsply</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-ethicon" value="Ethicon">
-                                    <label for="brand-ethicon">Ethicon</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-fgm" value="FGM">
-                                    <label for="brand-fgm">FGM</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-indusbello" value="Indusbello">
-                                    <label for="brand-indusbello">Indusbello</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-maquira" value="Maquira">
-                                    <label for="brand-maquira">Maquira</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-maxicor" value="Maxicor">
-                                    <label for="brand-maxicor">Maxicor</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-procare" value="Procare">
-                                    <label for="brand-procare">Procare</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-quinelato" value="Quinelato">
-                                    <label for="brand-quinelato">Quinelato</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-se-comercial" value="Se Comercial">
-                                    <label for="brand-se-comercial">Se Comercial</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-shalon" value="Shalon">
-                                    <label for="brand-shalon">Shalon</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-sp-protection" value="SP Protection">
-                                    <label for="brand-sp-protection">SP Protection</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-swann-morton" value="Swann Morton">
-                                    <label for="brand-swann-morton">Swann Morton</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-technew" value="Technew">
-                                    <label for="brand-technew">Technew</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-technofio" value="Technofio">
-                                    <label for="brand-technofio">Technofio</label>
-                                </div>
-
-                                <div class="checkbox-filter">
-                                    <input type="checkbox" id="brand-ultradent" value="Ultradent">
-                                    <label for="brand-ultradent">Ultradent</label>
-                                </div>
-                            </div>
-                            
-                            <button class="filter-toggle-btn" id="brand-toggle-btn" aria-expanded="false">
-                                <span class="toggle-text">Ver mais</span>
-                                <i class="fas fa-chevron-down toggle-icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Filtro de Preço -->
-                    <div class="filter-group">
-                        <h4 class="filter-group__title">Preço</h4>
-                        <div class="price-filter">
-                            <div class="price-range-container">
-                                <input type="range" class="price-slider" id="price-slider-min" min="0" max="500" value="0">
-                                <input type="range" class="price-slider" id="price-slider-max" min="0" max="500" value="500">
-                            </div>
-                            <div class="price-display">
-                                <span id="price-min-display">R$ 0</span> - <span id="price-max-display">R$ 500</span>
+                    <div class="gallery-thumbnails">
+                        <button class="thumbnail-nav thumbnail-nav--prev" aria-label="Imagens anteriores">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="thumbnails-container">
+                            <div class="thumbnails-track">
+                                <img src="https://via.placeholder.com/100x100/1c5787/ffffff?text=Thumb+1" alt="Imagem 1" class="thumbnail active" data-large="https://via.placeholder.com/600x600/1c5787/ffffff?text=Imagem+Principal">
+                                <img src="https://via.placeholder.com/100x100/134a6b/ffffff?text=Thumb+2" alt="Imagem 2" class="thumbnail" data-large="https://via.placeholder.com/600x600/134a6b/ffffff?text=Imagem+2">
+                                <img src="https://via.placeholder.com/100x100/4CAF50/ffffff?text=Thumb+3" alt="Imagem 3" class="thumbnail" data-large="https://via.placeholder.com/600x600/4CAF50/ffffff?text=Imagem+3">
+                                <img src="https://via.placeholder.com/100x100/CA69F5/ffffff?text=Thumb+4" alt="Imagem 4" class="thumbnail" data-large="https://via.placeholder.com/600x600/CA69F5/ffffff?text=Imagem+4">
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Botão para limpar filtros -->
-                    <div class="filter-group">
-                        <button class="clear-filters-btn" id="clear-filters-btn">
-                            <i class="fas fa-times-circle"></i> Limpar Filtros
+                        <button class="thumbnail-nav thumbnail-nav--next" aria-label="Mais imagens">
+                            <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
-                </aside>
+                </section>
 
-                <!-- Produtos -->    
-                <section class="products-grid-container">
-                    <div id="no-results-message" class="no-results-message" style="display: none;">
-                        <p>Nenhum produto encontrado com os filtros selecionados.</p>
+                <!-- Product Info -->
+                <section class="product-info">
+                    <div class="product-header">
+                        <h1 class="product-title" id="productDetailTitle">Nome do Produto Completo com Todas as Especificações</h1>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star rated"></i>
+                                <i class="fas fa-star rated"></i>
+                                <i class="fas fa-star rated"></i>
+                                <i class="fas fa-star rated"></i>
+                                <i class="fas fa-star-half-alt rated"></i>
+                                <span class="rating-count">(128 avaliações)</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="products-grid" id="products-grid">
-                        <article class="product-card" data-category="Fio de Sutura" data-brand="Angelus"></article>
-                        <article class="product-card" data-category="Bolsa Termica" data-brand="BC Suture"></article>
-                        <article class="product-card" data-category="Curativo Alveolar" data-brand="Bestcare"></article>
-                        <article class="product-card" data-category="Hemostasia" data-brand="Biodinâmica"></article>
-                        <article class="product-card" data-category="Fio de Sutura" data-brand="BIONLINE"></article>
-                        <article class="product-card" data-category="Bolsa Termica" data-brand="Dentsply"></article>
-                        <article class="product-card" data-category="Lâmina de Bisturi" data-brand="Ethicon"></article>
-                        <article class="product-card" data-category="Produtos em Oferta" data-brand="FGM"></article>
-                        <article class="product-card" data-category="Regeneração Óssea" data-brand="Indusbello"></article>
-                        <article class="product-card" data-category="Sugador Cirúrgico" data-brand="Maquira"></article>
-                        <article class="product-card" data-category="Sugador Descartável" data-brand="Maxicor"></article>
-                        <article class="product-card" data-category="Lâmina de Bisturi" data-brand="Procare"></article>
-                        <article class="product-card" data-category="Regeneração Óssea" data-brand="Quinelato"></article>
-                        <article class="product-card" data-category="Sugador Cirúrgico" data-brand="Se Comercial"></article>
-                        <article class="product-card" data-category="Sugador Descartável" data-brand="Shalon"></article>
-                        <article class="product-card" data-category="Produtos em Oferta" data-brand="SP Protection"></article>
-                        <article class="product-card" data-category="Lâmina de Bisturi" data-brand="Swann Morton"></article>
-                        <article class="product-card" data-category="Fio de Sutura" data-brand="Technew"></article>
-                        <article class="product-card" data-category="Curativo Alveolar" data-brand="Technofio"></article>
-                        <article class="product-card" data-category="Hemostasia" data-brand="Ultradent"></article>
+
+                    <div class="product-pricing">
+                        <div class="price-original">
+                            <span class="price-label">De:</span>
+                            <span class="price-value">R$ 299,90</span>
+                        </div>
+                        <div class="price-current">
+                            <span class="price-label">Por:</span>
+                            <span class="price-value">R$ 199,90</span>
+                        </div>
+                        <div class="price-installments">
+                            <span class="installment-text">10x sem juros de R$ 19,99</span>
+                        </div>
+                        <div class="price-discount">
+                            <span class="discount-badge">33% OFF</span>
+                        </div>
                     </div>
-                    </section>
-                </div>
+
+                    <div class="product-availability">
+                        <i class="fas fa-check-circle availability-icon"></i>
+                        <span class="availability-text">Em estoque - Pronta entrega</span>
+                    </div>
+
+                    <div class="product-variations">
+                        <h3 class="variations-title">Variações</h3>
+                        <div class="variation-group">
+                            <h4 class="variation-label">Cor:</h4>
+                            <div class="variation-options">
+                                <button class="variation-option active" data-value="Azul">Azul</button>
+                                <button class="variation-option" data-value="Vermelho">Vermelho</button>
+                                <button class="variation-option" data-value="Verde">Verde</button>
+                            </div>
+                        </div>
+                        <div class="variation-group">
+                            <h4 class="variation-label">Tamanho:</h4>
+                            <div class="variation-options">
+                                <button class="variation-option active" data-value="Pequeno">Pequeno</button>
+                                <button class="variation-option" data-value="Médio">Médio</button>
+                                <button class="variation-option" data-value="Grande">Grande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <label for="quantity" class="quantity-label">Quantidade:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" id="decreaseQty" aria-label="Diminuir quantidade">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" id="increaseQty" aria-label="Aumentar quantidade">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="add-to-cart-button" id="addToCartBtn">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Adicionar ao Carrinho</span>
+                            </button>
+                            <button class="buy-now-button" id="buyNowBtn">
+                                <i class="fas fa-bolt"></i>
+                                <span>Comprar Agora</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="shipping-calculator">
+                        <h3 class="shipping-title">Calcular Frete</h3>
+                        <div class="shipping-form">
+                            <div class="input-group">
+                                <input type="text" id="cepInput" class="cep-input" placeholder="Informe seu CEP" maxlength="9">
+                                <button class="calculate-shipping-btn" id="calculateShippingBtn">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Calcular</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shipping-results" id="shippingResults" style="display: none;">
+                            <div class="shipping-option">
+                                <div class="shipping-details">
+                                    <strong>Entrega Standard</strong>
+                                    <span>3 a 5 dias úteis</span>
+                                </div>
+                                <div class="shipping-price">
+                                    <span>R$ 15,90</span>
+                                </div>
+                            </div>
+                            <div class="shipping-option">
+                                <div class="shipping-details">
+                                    <strong>Entrega Expressa</strong>
+                                    <span>1 a 2 dias úteis</span>
+                                </div>
+                                <div class="shipping-price">
+                                    <span>R$ 29,90</span>
+                                </div>
+                            </div>
+                            <div class="shipping-option free-shipping">
+                                <div class="shipping-details">
+                                    <strong>Retirar na Loja</strong>
+                                    <span>Salvador/BA - Caminho das Árvores</span>
+                                </div>
+                                <div class="shipping-price">
+                                    <span class="free-text">GRÁTIS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </main>
 
-        <!-- Footer -->
+            <!-- Product Details Tabs -->
+            <section class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-button active" data-tab="description">Descrição</button>
+                    <button class="tab-button" data-tab="specifications">Especificações</button>
+                    <button class="tab-button" data-tab="reviews">Avaliações (128)</button>
+                </div>
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="description">
+                        <h3>Descrição do Produto</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <h4>Características:</h4>
+                        <ul>
+                            <li>Material de alta qualidade</li>
+                            <li>Fácil manuseio</li>
+                            <li>Durabilidade comprovada</li>
+                            <li>Design ergonômico</li>
+                            <li>Compatível com diversos sistemas</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="specifications">
+                        <h3>Especificações Técnicas</h3>
+                        <table class="specifications-table">
+                            <tr>
+                                <td><strong>Marca</strong></td>
+                                <td>Nome da Marca</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Modelo</strong></td>
+                                <td>Modelo XYZ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dimensões</strong></td>
+                                <td>15cm x 8cm x 5cm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Peso</strong></td>
+                                <td>250g</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Material</strong></td>
+                                <td>Inoxidável cirúrgico</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Garantia</strong></td>
+                                <td>12 meses</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="reviews">
+                        <!-- Review Form -->
+                        <div class="review-form-container">
+                            <h3>Deixe sua Avaliação</h3>
+                            <form class="review-form" id="reviewForm">
+                                <div class="form-group">
+                                    <label for="reviewName">Nome Completo *</label>
+                                    <input type="text" id="reviewName" class="form-control" placeholder="Digite seu nome" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="reviewEmail">E-mail *</label>
+                                    <input type="email" id="reviewEmail" class="form-control" placeholder="Digite seu e-mail" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="reviewRating">Nota *</label>
+                                    <div class="rating-input">
+                                        <input type="radio" id="star5" name="reviewRating" value="5">
+                                        <label for="star5" class="star-label"><i class="fas fa-star"></i></label>
+                                        
+                                        <input type="radio" id="star4" name="reviewRating" value="4">
+                                        <label for="star4" class="star-label"><i class="fas fa-star"></i></label>
+                                        
+                                        <input type="radio" id="star3" name="reviewRating" value="3">
+                                        <label for="star3" class="star-label"><i class="fas fa-star"></i></label>
+                                        
+                                        <input type="radio" id="star2" name="reviewRating" value="2">
+                                        <label for="star2" class="star-label"><i class="fas fa-star"></i></label>
+                                        
+                                        <input type="radio" id="star1" name="reviewRating" value="1">
+                                        <label for="star1" class="star-label"><i class="fas fa-star"></i></label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="reviewTitle">Título da Avaliação *</label>
+                                    <input type="text" id="reviewTitle" class="form-control" placeholder="Resumo da sua avaliação" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="reviewComment">Comentário *</label>
+                                    <textarea id="reviewComment" class="form-control" rows="5" placeholder="Conte detalhes sobre sua experiência com o produto" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submit-review-btn">Enviar Avaliação</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
-
             <!-- Newsletter -->
             <section class="newsletter-section">
                 <h3 class="newsletter-title">ASSINE NOSSA NEWSLETTER</h3>
@@ -543,9 +568,8 @@
             </div>
         </div>
     </footer>
-     
+
     <script src="/assets/js/script.js"></script>
-    <script src="/pages/cirurgia/cirurgia.js"></script>
-    
+    <script src="/pages/produto/produto.js"></script>
 </body>
 </html>

@@ -1,0 +1,4 @@
+/* Reutilizando o mesmo CSS da página Quem Somos */
+@import url('../institucional/quem-somos.css');
+
+/* Estilos específicos para a página de ajuda podem ser adicionados aqui, se necessário */
