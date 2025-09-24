@@ -42,6 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 loginButton.textContent = originalButtonText;
                 loginButton.disabled = false;
                 
+                // Salvar o primeiro nome do usuário no localStorage
+                // Em uma aplicação real, isso viria da API
+                const userFirstName = email.split('@')[0]; // Usar parte antes do @ como nome
+                localStorage.setItem('userFirstName', userFirstName);
+                
                 // Show success message
                 alert('Login realizado com sucesso! Você será redirecionado para a página inicial.');
                 

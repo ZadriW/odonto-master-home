@@ -1,9 +1,199 @@
 document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< HEAD
-=======
-    console.log('Registration page loaded');
+    console.log('Registration page loaded - DOMContentLoaded event fired');
     
->>>>>>> 00d02e1a4a82ef7b0c1f7221ec18dd04dfbaa85f
+    // Helper function to check if an element is visible
+    function isElementVisible(element) {
+        return element && element.offsetParent !== null;
+    }
+    
+    // Completely disable autocomplete for all form fields
+    function disableAllAutocomplete() {
+        // Get all input, select, and textarea elements in the form
+        const allFields = document.querySelectorAll('#registrationForm input, #registrationForm select, #registrationForm textarea');
+        
+        allFields.forEach(field => {
+            // Set multiple attributes to prevent autocomplete
+            field.setAttribute('autocomplete', 'off');
+            field.setAttribute('autocorrect', 'off');
+            field.setAttribute('autocapitalize', 'off');
+            field.setAttribute('spellcheck', 'false');
+            
+            // For additional protection, we can also:
+            // 1. Clear any values that might have been auto-filled
+            // 2. Add event listeners to prevent auto-fill
+            field.addEventListener('focus', function() {
+                // Clear any auto-filled values when field is focused
+                if (this.hasAttribute('value') && this.value !== this.getAttribute('value')) {
+                    this.value = this.getAttribute('value') || '';
+                }
+            });
+            
+            // Prevent paste events that might trigger autocomplete
+            field.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+            });
+        });
+        
+        // Also set these attributes on the form itself
+        const form = document.getElementById('registrationForm');
+        if (form) {
+            form.setAttribute('autocomplete', 'off');
+            form.setAttribute('autocorrect', 'off');
+            form.setAttribute('autocapitalize', 'off');
+            form.setAttribute('spellcheck', 'false');
+        }
+    }
+    
+    // Call the function to disable autocomplete
+    disableAllAutocomplete();
+    
+    // Person type tabs
+    
+    // Helper function to show notifications
+    function showNotification(message, type = 'info') {
+        // Try to use the global notification system first
+        if (typeof window.app !== 'undefined' && window.app.modules && window.app.modules.notifications) {
+            switch(type) {
+                case 'success':
+                    window.app.modules.notifications.success(message);
+                    break;
+                case 'error':
+                    window.app.modules.notifications.error(message);
+                    break;
+                case 'warning':
+                    window.app.modules.notifications.warning(message);
+                    break;
+                default:
+                    window.app.modules.notifications.info(message);
+            }
+            return;
+        }
+        
+        // Fallback to custom notification if global system is not available
+        createCustomNotification(message, type);
+    }
+    
+    // Function to create a custom notification if the global system is not available
+    function createCustomNotification(message, type) {
+        // Remove any existing notifications
+        const existingNotification = document.querySelector('.custom-notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `custom-notification custom-notification--${type}`;
+        notification.innerHTML = `
+            <div class="custom-notification__content">
+                <span class="custom-notification__message">${message}</span>
+                <button class="custom-notification__close" aria-label="Fechar notificação">&times;</button>
+            </div>
+        `;
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .custom-notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                min-width: 300px;
+                max-width: 500px;
+                padding: 15px;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideIn 0.3s ease-out;
+                font-family: 'Inter', sans-serif;
+            }
+            
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+            
+            .custom-notification--success {
+                background-color: #d4edda;
+                border: 1px solid #c3e6cb;
+                color: #155724;
+            }
+            
+            .custom-notification--error {
+                background-color: #f8d7da;
+                border: 1px solid #f5c6cb;
+                color: #721c24;
+            }
+            
+            .custom-notification--warning {
+                background-color: #fff3cd;
+                border: 1px solid #ffeaa7;
+                color: #856404;
+            }
+            
+            .custom-notification--info {
+                background-color: #d1ecf1;
+                border: 1px solid #bee5eb;
+                color: #0c5460;
+            }
+            
+            .custom-notification__content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .custom-notification__message {
+                flex: 1;
+                margin-right: 10px;
+            }
+            
+            .custom-notification__close {
+                background: none;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+                padding: 0;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        `;
+        
+        // Add the style to the document
+        document.head.appendChild(style);
+        
+        // Add close functionality
+        const closeBtn = notification.querySelector('.custom-notification__close');
+        closeBtn.addEventListener('click', function() {
+            notification.style.animation = 'slideOut 0.3s ease-out forwards';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        });
+        
+        // Add to document
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideOut 0.3s ease-out forwards';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }
+        }, 5000);
+    }
+    
     // Person type tabs
     const tabButtons = document.querySelectorAll('.tab-button');
     const individualFields = document.getElementById('individualFields');
@@ -14,18 +204,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const errorNotification = document.getElementById('errorNotification');
     const errorList = document.getElementById('errorList');
     
-<<<<<<< HEAD
-=======
     console.log('Elements found:', {
         tabButtons: tabButtons.length,
         individualFields: !!individualFields,
         companyFields: !!companyFields,
+        individualProfessionalFields: !!individualProfessionalFields,
+        companyProfessionalFields: !!companyProfessionalFields,
+        professionalInfoSection: !!professionalInfoSection,
         errorNotification: !!errorNotification,
         errorList: !!errorList
     });
     
+    // Check if all required elements are found
+    if (!individualFields || !companyFields || !individualProfessionalFields || !companyProfessionalFields || !professionalInfoSection) {
+        console.error('Some required elements were not found on the page');
+        return;
+    }
+    
+    // Tab switching functionality
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
+            console.log('Tab clicked:', this.dataset.type);
+            
             // Update active tab
             tabButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
@@ -37,427 +237,168 @@ document.addEventListener('DOMContentLoaded', function() {
                 individualProfessionalFields.style.display = 'block';
                 companyProfessionalFields.style.display = 'none';
                 professionalInfoSection.querySelector('.section-title').textContent = 'Informações - Pessoa Física';
+                console.log('Switched to individual person form');
             } else {
                 individualFields.style.display = 'none';
                 companyFields.style.display = 'block';
                 individualProfessionalFields.style.display = 'none';
                 companyProfessionalFields.style.display = 'block';
                 professionalInfoSection.querySelector('.section-title').textContent = 'Informações - Pessoa Jurídica';
+                console.log('Switched to company form');
             }
+            
+            // Clear common fields when switching between forms to prevent data leakage
+            clearCommonFields();
+            
+            // Re-apply autocomplete disabling after tab switch
+            disableAllAutocomplete();
         });
     });
-});
     
->>>>>>> 00d02e1a4a82ef7b0c1f7221ec18dd04dfbaa85f
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Update active tab
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Show/hide fields based on selected tab
-            if (this.dataset.type === 'individual') {
-                individualFields.style.display = 'block';
-                companyFields.style.display = 'none';
-                individualProfessionalFields.style.display = 'block';
-                companyProfessionalFields.style.display = 'none';
-                professionalInfoSection.querySelector('.section-title').textContent = 'Informações - Pessoa Física';
-            } else {
-                individualFields.style.display = 'none';
-                companyFields.style.display = 'block';
-                individualProfessionalFields.style.display = 'none';
-                companyProfessionalFields.style.display = 'block';
-                professionalInfoSection.querySelector('.section-title').textContent = 'Informações - Pessoa Jurídica';
+    // Function to clear common fields when switching between forms
+    function clearCommonFields() {
+        // Common fields that should be cleared when switching forms
+        const commonFieldIds = [
+            'password', 
+            'confirmPassword', 
+            'phone', 
+            'recipientName', 
+            'cep', 
+            'street', 
+            'number', 
+            'complement', 
+            'neighborhood', 
+            'city', 
+            'state'
+        ];
+        
+        commonFieldIds.forEach(id => {
+            const field = document.getElementById(id);
+            if (field && field.type !== 'select-one' && field.type !== 'select-multiple') {
+                // Clear the field value
+                field.value = '';
+                
+                // For select elements, reset to the first option
+                if (field.tagName === 'SELECT') {
+                    field.selectedIndex = 0;
+                }
             }
         });
-    });
+        
+        // Also clear password strength indicator if it exists
+        const passwordStrength = document.getElementById('passwordStrength');
+        if (passwordStrength) {
+            passwordStrength.innerHTML = '';
+        }
+    }
 
-    // Registration form submission
-    const registrationForm = document.getElementById('registrationForm');
-    
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Clear previous error states
-            clearErrorStates();
-            
-            // Get form values
-            const formData = new FormData(registrationForm);
-            const data = Object.fromEntries(formData.entries());
-            
-<<<<<<< HEAD
+    // Clear common fields on page load to ensure clean state
+    clearCommonFields();
 
-=======
-            console.log('Form data collected:', data);
-            
-            // Simple validation
-            const validationErrors = validateForm(data);
-            
-            console.log('Validation errors:', validationErrors);
-            
-            // Check if passwords match
-            if (data.password && data.confirmPassword && data.password !== data.confirmPassword) {
-                validationErrors.push({ field: 'confirmPassword', message: 'As senhas não coincidem.' });
-            }
-            
-            // Additional password validation
-            if (data.password && data.password.length > 0) {
-                const passwordStrength = updatePasswordStrength(data.password);
-                if (passwordStrength < 3) {
-                    validationErrors.push({ field: 'password', message: 'Por favor, escolha uma senha mais forte. A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.' });
-                }
-            }
-            
-            console.log('Final validation errors:', validationErrors);
-            
-            if (validationErrors.length > 0) {
-                console.log('Showing errors to user');
-                // Show error notification
-                showErrorNotification(validationErrors);
-                
-                // Highlight error fields
-                highlightErrorFields(validationErrors);
-                
-                return;
-            }
->>>>>>> 00d02e1a4a82ef7b0c1f7221ec18dd04dfbaa85f
-            
-            console.log('Form is valid, proceeding with submission');
-            
-            // Show loading state
-            const registrationButton = registrationForm.querySelector('.registration-button');
-            const originalButtonText = registrationButton.innerHTML;
-            registrationButton.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i> Criando conta...';
-            registrationButton.disabled = true;
-            
-            // Simulate registration process (in a real app, this would be an API call)
-            setTimeout(() => {
-                // Reset button state
-                registrationButton.innerHTML = originalButtonText;
-                registrationButton.disabled = false;
-                
-                // Show success message
-                alert('Conta criada com sucesso! Você será redirecionado para a página de login.');
-                
-                // Redirect to login page (simulated)
-                window.location.href = '/pages/login/login.html';
-            }, 2000);
-        });
-    }
-    
-    // Test validation function
-    window.testValidation = function() {
-        console.log('Testing validation with empty data');
-        const emptyData = {};
-        const errors = validateForm(emptyData);
-        console.log('Errors found:', errors);
-        showErrorNotification(errors);
-        highlightErrorFields(errors);
-    };
-    
-    // Form validation function
-    function validateForm(data) {
-        const errors = [];
+    // NEW FORM SUBMISSION FUNCTIONALITY
+    // Handle form submission
+    function handleFormSubmission() {
+        console.log('Form submission initiated');
+        console.log('handleFormSubmission function called successfully');
         
-        // Determine if we're validating individual or company
-        const activeTab = document.querySelector('.tab-button.active');
-        const isIndividual = activeTab ? activeTab.dataset.type === 'individual' : true;
-        
-        console.log('Validating form for type:', isIndividual ? 'individual' : 'company');
-        
-        if (isIndividual) {
-            // Email validation
-            if (!data.email) {
-                errors.push({ field: 'email', message: 'Por favor, insira seu e-mail.' });
-            } else {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(data.email)) {
-                    errors.push({ field: 'email', message: 'Por favor, insira um e-mail válido.' });
-                }
-            }
-            
-            // CPF validation
-            if (!data.cpf) {
-                errors.push({ field: 'cpf', message: 'Por favor, insira seu CPF.' });
-            } else {
-                const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-                if (!cpfRegex.test(data.cpf)) {
-                    errors.push({ field: 'cpf', message: 'Por favor, insira um CPF válido.' });
-                }
-            }
-            
-            // Full name validation
-            if (!data.fullName) {
-                errors.push({ field: 'fullName', message: 'Por favor, insira seu nome completo.' });
-            } else if (data.fullName.trim().length < 3) {
-                errors.push({ field: 'fullName', message: 'Por favor, insira seu nome completo.' });
-            }
-            
-            // Birth date validation
-            if (!data.birthDate) {
-                errors.push({ field: 'birthDate', message: 'Por favor, selecione sua data de nascimento.' });
-            }
-            
-            // Gender validation
-            if (!data.gender) {
-                errors.push({ field: 'gender', message: 'Por favor, selecione seu gênero.' });
-            }
-            
-            // RG validation
-            if (!data.rg) {
-                errors.push({ field: 'rg', message: 'Por favor, insira seu RG.' });
-            } else if (data.rg.trim().length < 3) {
-                errors.push({ field: 'rg', message: 'Por favor, insira seu RG.' });
-            }
-            
-            // Profession validation
-            if (!data.profession) {
-                errors.push({ field: 'profession', message: 'Por favor, selecione sua profissão.' });
-            }
-            
-            // Specialization validation
-            if (!data.specialization) {
-                errors.push({ field: 'specialization', message: 'Por favor, insira sua especialização ou semestre.' });
-            } else if (data.specialization.trim().length < 2) {
-                errors.push({ field: 'specialization', message: 'Por favor, insira sua especialização ou semestre.' });
-            }
-            
-            // Institution validation
-            if (!data.institution) {
-                errors.push({ field: 'institution', message: 'Por favor, insira o nome da instituição.' });
-            } else if (data.institution.trim().length < 3) {
-                errors.push({ field: 'institution', message: 'Por favor, insira o nome da instituição.' });
-            }
-            
-            // Registration number validation
-            if (!data.registrationNumber) {
-                errors.push({ field: 'registrationNumber', message: 'Por favor, insira sua matrícula ou CRO.' });
-            } else if (data.registrationNumber.trim().length < 3) {
-                errors.push({ field: 'registrationNumber', message: 'Por favor, insira sua matrícula ou CRO.' });
-            }
-        } else {
-            // Company email validation
-            if (!data.companyEmail) {
-                errors.push({ field: 'companyEmail', message: 'Por favor, insira o e-mail da empresa.' });
-            } else {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(data.companyEmail)) {
-                    errors.push({ field: 'companyEmail', message: 'Por favor, insira um e-mail válido para a empresa.' });
-                }
-            }
-            
-            // CNPJ validation
-            if (!data.cnpj) {
-                errors.push({ field: 'cnpj', message: 'Por favor, insira o CNPJ da empresa.' });
-            } else {
-                const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
-                if (!cnpjRegex.test(data.cnpj)) {
-                    errors.push({ field: 'cnpj', message: 'Por favor, insira um CNPJ válido.' });
-                }
-            }
-            
-            // Company name validation
-            if (!data.companyName) {
-                errors.push({ field: 'companyName', message: 'Por favor, insira a razão social da empresa.' });
-            } else if (data.companyName.trim().length < 3) {
-                errors.push({ field: 'companyName', message: 'Por favor, insira a razão social da empresa.' });
-            }
-            
-            // Company phone validation
-            if (!data.companyPhone) {
-                errors.push({ field: 'companyPhone', message: 'Por favor, insira o telefone comercial da empresa.' });
-            } else {
-                const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-                if (!phoneRegex.test(data.companyPhone)) {
-                    errors.push({ field: 'companyPhone', message: 'Por favor, insira um telefone comercial válido.' });
-                }
-            }
-            
-            // Responsible name validation
-            if (!data.responsibleName) {
-                errors.push({ field: 'responsibleName', message: 'Por favor, insira o nome do responsável.' });
-            } else if (data.responsibleName.trim().length < 3) {
-                errors.push({ field: 'responsibleName', message: 'Por favor, insira o nome do responsável.' });
-            }
-            
-            // Responsible role validation
-            if (!data.responsibleRole) {
-                errors.push({ field: 'responsibleRole', message: 'Por favor, insira o cargo do responsável.' });
-            } else if (data.responsibleRole.trim().length < 3) {
-                errors.push({ field: 'responsibleRole', message: 'Por favor, insira o cargo do responsável.' });
-            }
-        }
-        
-        // Password validation (common to both)
-        if (!data.password) {
-            errors.push({ field: 'password', message: 'Por favor, insira uma senha.' });
-        } else if (data.password.length < 8) {
-            errors.push({ field: 'password', message: 'A senha deve ter pelo menos 8 caracteres.' });
-        }
-        
-        // Password confirmation validation
-        if (!data.confirmPassword) {
-            errors.push({ field: 'confirmPassword', message: 'Por favor, confirme sua senha.' });
-        }
-        
-        // Phone validation (common to both)
-        if (!data.phone) {
-            errors.push({ field: 'phone', message: 'Por favor, insira seu telefone.' });
-        } else {
-            const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-            if (!phoneRegex.test(data.phone)) {
-                errors.push({ field: 'phone', message: 'Por favor, insira um telefone válido.' });
-            }
-        }
-        
-        // Recipient name validation
-        if (!data.recipientName) {
-            errors.push({ field: 'recipientName', message: 'Por favor, insira o nome do destinatário.' });
-        } else if (data.recipientName.trim().length < 3) {
-            errors.push({ field: 'recipientName', message: 'Por favor, insira o nome do destinatário.' });
-        }
-        
-        // CEP validation
-        if (!data.cep) {
-            errors.push({ field: 'cep', message: 'Por favor, insira o CEP.' });
-        } else {
-            const cepRegex = /^\d{5}-\d{3}$/;
-            if (!cepRegex.test(data.cep)) {
-                errors.push({ field: 'cep', message: 'Por favor, insira um CEP válido.' });
-            }
-        }
-        
-        // Address number validation
-        if (!data.number) {
-            errors.push({ field: 'number', message: 'Por favor, insira o número do endereço.' });
-        }
-        
-        // Terms validation
-        const termsCheckbox = document.getElementById('terms');
-        if (!termsCheckbox || !termsCheckbox.checked) {
-            errors.push({ field: 'terms', message: 'Você deve concordar com os termos de uso e política de privacidade.' });
-        }
-        
-        return errors;
-    }
-    
-    // Clear error states
-    function clearErrorStates() {
-        console.log('Clearing error states');
-        
-        // Remove error class from all inputs
-        const errorInputs = document.querySelectorAll('.form-input.error, select.error, input[type=\"checkbox\"].error, .form-checkbox-label.error');
-        errorInputs.forEach(input => {
-            input.classList.remove('error');
-        });
-        
-        // Hide error notification
-        if (errorNotification) {
-            errorNotification.classList.remove('show');
-        }
-    }
-    
-    // Show error notification
-    function showErrorNotification(errors) {
-        console.log('Showing error notification with errors:', errors);
-        
-        if (!errorNotification || !errorList) {
-            console.error('Error notification elements not found');
+        // Get the registration form
+        const registrationForm = document.getElementById('registrationForm');
+        if (!registrationForm) {
+            console.error('Registration form not found!');
             return;
         }
         
-        if (errors.length > 0) {
-            // Create error list
-            const errorItems = errors.map(error => `<li>${error.message}</li>`).join('');
-            errorList.innerHTML = errorItems;
-            
-            // Show notification
-            errorNotification.classList.add('show');
-            
-            // Scroll to notification
-            errorNotification.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-    
-    // Highlight error fields
-    function highlightErrorFields(errors) {
-        console.log('Highlighting error fields:', errors);
+        // Get form data
+        const formData = new FormData(registrationForm);
+        const data = Object.fromEntries(formData.entries());
         
-        errors.forEach(error => {
-            const field = document.getElementById(error.field);
-            if (field) {
-                field.classList.add('error');
-                console.log('Highlighted field:', error.field);
-            } else {
-                // Handle select elements and other special cases
-                if (error.field === 'gender' || error.field === 'profession') {
-                    const selectField = document.getElementById(error.field);
-                    if (selectField) {
-                        selectField.classList.add('error');
-                        console.log('Highlighted select field:', error.field);
-                    }
-                }
-                
-                // Handle terms checkbox
-                if (error.field === 'terms') {
-                    const termsCheckbox = document.getElementById('terms');
-                    const termsLabel = document.querySelector('label[for=\"terms\"]');
-                    if (termsCheckbox) {
-                        termsCheckbox.classList.add('error');
-                        console.log('Highlighted terms checkbox');
-                    }
-                    if (termsLabel) {
-                        termsLabel.classList.add('error');
-                        console.log('Highlighted terms label');
-                    }
-                }
-            }
-        });
-    }
-    
-    // Password strength indicator function
-    function updatePasswordStrength(password) {
-        const strengthBar = document.createElement('div');
-        strengthBar.className = 'password-strength-bar';
+        console.log('Form data collected:', data);
         
-        if (password.length === 0) {
-            return 0;
+        // Validate form
+        const validationErrors = validateForm(data);
+        console.log('Validation errors:', validationErrors);
+        
+        // Additional validation for passwords
+        if (data.password && data.confirmPassword && data.password !== data.confirmPassword) {
+            validationErrors.push({ field: 'confirmPassword', message: 'As senhas não coincidem.' });
         }
         
-        let strength = 0;
+        // Show validation errors if any
+        if (validationErrors.length > 0) {
+            console.log('Validation failed with errors:', validationErrors);
+            showErrorNotification(validationErrors);
+            highlightErrorFields(validationErrors);
+            return;
+        }
         
-        // Length check
-        if (password.length >= 8) strength += 1;
-        
-        // Uppercase check
-        if (/[A-Z]/.test(password)) strength += 1;
-        
-        // Lowercase check
-        if (/[a-z]/.test(password)) strength += 1;
-        
-        // Number check
-        if (/\d/.test(password)) strength += 1;
-        
-        // Special character check
-        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
-        
-        return strength;
+        // If validation passes, proceed with submission
+        console.log('Form is valid, proceeding with submission');
+        processFormSubmission(data);
     }
     
-    // Check password requirements
-    function checkPasswordRequirements(password) {
-        // This function is kept for compatibility but not used in the new validation
-        return true;
+    // Process the form submission
+    function processFormSubmission(data) {
+        // Get the submit button
+        const registrationForm = document.getElementById('registrationForm');
+        const submitButton = registrationForm.querySelector('.registration-button');
+        
+        if (!submitButton) {
+            console.error('Submit button not found!');
+            return;
+        }
+        
+        // Show loading state
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Criando conta...';
+        submitButton.disabled = true;
+        
+        // Simulate registration process
+        setTimeout(() => {
+            // Reset button state
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+            
+            // Save user's first name to localStorage
+            const fullName = data.fullName || data.companyName || 'Cliente';
+            const firstName = fullName.split(' ')[0];
+            localStorage.setItem('userFirstName', firstName);
+            
+            // Show success notification
+            showNotification('Conta criada com sucesso! Você será redirecionado para a página inicial.', 'success');
+            
+            // Redirect to home page after a short delay
+            setTimeout(() => {
+                window.location.href = '/pages/home/index.html';
+            }, 2000);
+        }, 2000);
     }
     
-    // Check if passwords match
-    function validatePasswordsMatch() {
-        // This function is kept for compatibility but not used in the new validation
-        return true;
-    }
+    // Add event listener to the form
+    const registrationForm = document.getElementById('registrationForm');
+    console.log('Attempting to attach event listener to form:', registrationForm);
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', function(e) {
+            console.log('Form submit event triggered!');
+            e.preventDefault();
+            handleFormSubmission();
         });
+        console.log('Event listener successfully attached to form');
+    } else {
+        console.error('Registration form not found when trying to attach event listener');
     }
+    
+    // Temporary test function to check form validation
+    window.testFormValidation = function() {
+        console.log('Testing form validation...');
+        const registrationForm = document.getElementById('registrationForm');
+        if (registrationForm) {
+            const formData = new FormData(registrationForm);
+            const data = Object.fromEntries(formData.entries());
+            console.log('Current form data:', data);
+            const validationErrors = validateForm(data);
+            console.log('Validation errors:', validationErrors);
+        }
+    };
     
     // Password strength indicator
     const passwordInput = document.getElementById('password');
@@ -501,34 +442,62 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            console.log('Searching for CEP:', cep);
+            
             // Show loading state
             const originalBtnText = searchCepBtn.innerHTML;
             searchCepBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
             searchCepBtn.disabled = true;
             
-            // Simulate CEP search (in a real app, this would be an API call to ViaCEP or similar)
-            setTimeout(() => {
-                // Reset button state
-                searchCepBtn.innerHTML = originalBtnText;
-                searchCepBtn.disabled = false;
-                
-                // Simulate successful CEP search with mock data
-                if (cep === '40000000') {
-                    document.getElementById('street').value = 'Rua Exemplo';
-                    document.getElementById('neighborhood').value = 'Bairro Exemplo';
-                    document.getElementById('city').value = 'Salvador';
-                    document.getElementById('state').value = 'BA';
-                } else {
-                    // For other CEPs, show a generic example
-                    document.getElementById('street').value = 'Rua dos Testes';
-                    document.getElementById('neighborhood').value = 'Centro';
-                    document.getElementById('city').value = 'Cidade Exemplo';
-                    document.getElementById('state').value = 'EX';
-                }
-                
-                alert('CEP encontrado! Os campos de endereço foram preenchidos automaticamente.');
-            }, 1500);
+            // Make API call to ViaCEP
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => {
+                    console.log('CEP API response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('CEP API response data:', data);
+                    
+                    // Reset button state
+                    searchCepBtn.innerHTML = originalBtnText;
+                    searchCepBtn.disabled = false;
+                    
+                    // Check if CEP was found
+                    if (data.erro) {
+                        console.log('CEP not found');
+                        alert('CEP não encontrado. Por favor, verifique o CEP informado.');
+                        return;
+                    }
+                    
+                    // Fill address fields
+                    const streetField = document.getElementById('street');
+                    const neighborhoodField = document.getElementById('neighborhood');
+                    const cityField = document.getElementById('city');
+                    const stateField = document.getElementById('state');
+                    const numberField = document.getElementById('number');
+                    
+                    if (streetField) streetField.value = data.logradouro || '';
+                    if (neighborhoodField) neighborhoodField.value = data.bairro || '';
+                    if (cityField) cityField.value = data.localidade || '';
+                    if (stateField) stateField.value = data.uf || '';
+                    
+                    // Focus on number field
+                    if (numberField) numberField.focus();
+                    
+                    alert('CEP encontrado! Os campos de endereço foram preenchidos automaticamente.');
+                })
+                .catch(error => {
+                    console.error('Error fetching CEP:', error);
+                    
+                    // Reset button state
+                    searchCepBtn.innerHTML = originalBtnText;
+                    searchCepBtn.disabled = false;
+                    
+                    alert('Erro ao buscar CEP. Por favor, tente novamente.');
+                });
         });
+    } else {
+        console.log('CEP input or search button not found');
     }
     
     // CPF formatting
@@ -626,153 +595,356 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form validation function
     function validateForm(data) {
+        console.log('validateForm function called with data:', data);
         const errors = [];
+        
+        console.log('Starting form validation with data:', data);
         
         // Determine if we're validating individual or company
         const activeTab = document.querySelector('.tab-button.active');
         const isIndividual = activeTab ? activeTab.dataset.type === 'individual' : true;
         
+        console.log('Validating form for type:', isIndividual ? 'individual' : 'company');
+        console.log('Active tab element:', activeTab);
+        console.log('Is individual:', isIndividual);
+        
         if (isIndividual) {
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!data.email || !emailRegex.test(data.email)) {
-                errors.push({ field: 'email', message: 'Por favor, insira um e-mail válido.' });
+            // Email validation - check if field is visible
+            const emailField = document.getElementById('email');
+            if (isElementVisible(emailField)) {
+                if (!data.email) {
+                    errors.push({ field: 'email', message: 'Por favor, insira seu e-mail.' });
+                } else {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(data.email)) {
+                        errors.push({ field: 'email', message: 'Por favor, insira um e-mail válido.' });
+                    }
+                }
             }
             
-            // CPF validation (basic format check)
-            const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-            if (!data.cpf || !cpfRegex.test(data.cpf)) {
-                errors.push({ field: 'cpf', message: 'Por favor, insira um CPF válido.' });
+            // CPF validation - check if field is visible
+            const cpfField = document.getElementById('cpf');
+            if (isElementVisible(cpfField)) {
+                if (!data.cpf) {
+                    errors.push({ field: 'cpf', message: 'Por favor, insira seu CPF.' });
+                } else {
+                    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+                    if (!cpfRegex.test(data.cpf)) {
+                        errors.push({ field: 'cpf', message: 'Por favor, insira um CPF válido.' });
+                    }
+                }
             }
             
-            // Full name validation
-            if (!data.fullName || data.fullName.trim().length < 3) {
-                errors.push({ field: 'fullName', message: 'Por favor, insira seu nome completo.' });
+            // Full name validation - check if field is visible
+            const fullNameField = document.getElementById('fullName');
+            if (isElementVisible(fullNameField)) {
+                if (!data.fullName) {
+                    errors.push({ field: 'fullName', message: 'Por favor, insira seu nome completo.' });
+                } else if (data.fullName.trim().length < 3) {
+                    errors.push({ field: 'fullName', message: 'Por favor, insira seu nome completo.' });
+                }
             }
             
-            // Birth date validation
-            if (!data.birthDate) {
-                errors.push({ field: 'birthDate', message: 'Por favor, selecione sua data de nascimento.' });
+            // Birth date validation - check if field is visible
+            const birthDateField = document.getElementById('birthDate');
+            if (isElementVisible(birthDateField)) {
+                if (!data.birthDate) {
+                    errors.push({ field: 'birthDate', message: 'Por favor, selecione sua data de nascimento.' });
+                }
             }
             
-            // Gender validation
-            if (!data.gender) {
-                errors.push({ field: 'gender', message: 'Por favor, selecione seu gênero.' });
+            // Gender validation - check if field is visible
+            const genderField = document.getElementById('gender');
+            if (isElementVisible(genderField)) {
+                if (!data.gender) {
+                    errors.push({ field: 'gender', message: 'Por favor, selecione seu gênero.' });
+                }
             }
             
-            // RG validation
-            if (!data.rg || data.rg.trim().length < 3) {
-                errors.push({ field: 'rg', message: 'Por favor, insira seu RG.' });
+            // RG validation - check if field is visible
+            const rgField = document.getElementById('rg');
+            if (isElementVisible(rgField)) {
+                if (!data.rg) {
+                    errors.push({ field: 'rg', message: 'Por favor, insira seu RG.' });
+                } else if (data.rg.trim().length < 3) {
+                    errors.push({ field: 'rg', message: 'Por favor, insira seu RG.' });
+                }
             }
             
-            // Profession validation
-            if (!data.profession) {
-                errors.push({ field: 'profession', message: 'Por favor, selecione sua profissão.' });
+            // Profession validation - check if field is visible
+            const professionField = document.getElementById('profession');
+            if (isElementVisible(professionField)) {
+                if (!data.profession) {
+                    errors.push({ field: 'profession', message: 'Por favor, selecione sua profissão.' });
+                }
             }
             
-            // Specialization validation
-            if (!data.specialization || data.specialization.trim().length < 2) {
-                errors.push({ field: 'specialization', message: 'Por favor, insira sua especialização ou semestre.' });
+            // Specialization validation - check if field is visible
+            const specializationField = document.getElementById('specialization');
+            if (isElementVisible(specializationField)) {
+                if (!data.specialization) {
+                    errors.push({ field: 'specialization', message: 'Por favor, insira sua especialização ou semestre.' });
+                } else if (data.specialization.trim().length < 2) {
+                    errors.push({ field: 'specialization', message: 'Por favor, insira sua especialização ou semestre.' });
+                }
             }
             
-            // Institution validation
-            if (!data.institution || data.institution.trim().length < 3) {
-                errors.push({ field: 'institution', message: 'Por favor, insira o nome da instituição.' });
+            // Institution validation - check if field is visible
+            const institutionField = document.getElementById('institution');
+            if (isElementVisible(institutionField)) {
+                if (!data.institution) {
+                    errors.push({ field: 'institution', message: 'Por favor, insira o nome da instituição.' });
+                } else if (data.institution.trim().length < 3) {
+                    errors.push({ field: 'institution', message: 'Por favor, insira o nome da instituição.' });
+                }
             }
             
-            // Registration number validation
-            if (!data.registrationNumber || data.registrationNumber.trim().length < 3) {
-                errors.push({ field: 'registrationNumber', message: 'Por favor, insira sua matrícula ou CRO.' });
+            // Registration number validation - check if field is visible
+            const registrationNumberField = document.getElementById('registrationNumber');
+            if (isElementVisible(registrationNumberField)) {
+                if (!data.registrationNumber) {
+                    errors.push({ field: 'registrationNumber', message: 'Por favor, insira sua matrícula ou CRO.' });
+                } else if (data.registrationNumber.trim().length < 3) {
+                    errors.push({ field: 'registrationNumber', message: 'Por favor, insira sua matrícula ou CRO.' });
+                }
             }
         } else {
-            // Company email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!data.companyEmail || !emailRegex.test(data.companyEmail)) {
-                errors.push({ field: 'companyEmail', message: 'Por favor, insira um e-mail válido para a empresa.' });
+            // Company email validation - check if field is visible
+            const companyEmailField = document.getElementById('companyEmail');
+            if (isElementVisible(companyEmailField)) {
+                if (!data.companyEmail) {
+                    errors.push({ field: 'companyEmail', message: 'Por favor, insira o e-mail da empresa.' });
+                } else {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(data.companyEmail)) {
+                        errors.push({ field: 'companyEmail', message: 'Por favor, insira um e-mail válido para a empresa.' });
+                    }
+                }
             }
             
-            // CNPJ validation (basic format check)
-            const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
-            if (!data.cnpj || !cnpjRegex.test(data.cnpj)) {
-                errors.push({ field: 'cnpj', message: 'Por favor, insira um CNPJ válido.' });
+            // CNPJ validation - check if field is visible
+            const cnpjField = document.getElementById('cnpj');
+            if (isElementVisible(cnpjField)) {
+                if (!data.cnpj) {
+                    errors.push({ field: 'cnpj', message: 'Por favor, insira o CNPJ da empresa.' });
+                } else {
+                    const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+                    if (!cnpjRegex.test(data.cnpj)) {
+                        errors.push({ field: 'cnpj', message: 'Por favor, insira um CNPJ válido.' });
+                    }
+                }
             }
             
-            // Company name validation
-            if (!data.companyName || data.companyName.trim().length < 3) {
-                errors.push({ field: 'companyName', message: 'Por favor, insira a razão social da empresa.' });
+            // Company name validation - check if field is visible
+            const companyNameField = document.getElementById('companyName');
+            if (isElementVisible(companyNameField)) {
+                if (!data.companyName) {
+                    errors.push({ field: 'companyName', message: 'Por favor, insira a razão social da empresa.' });
+                } else if (data.companyName.trim().length < 3) {
+                    errors.push({ field: 'companyName', message: 'Por favor, insira a razão social da empresa.' });
+                }
             }
             
-            // Company phone validation
-            const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-            if (!data.companyPhone || !phoneRegex.test(data.companyPhone)) {
-                errors.push({ field: 'companyPhone', message: 'Por favor, insira um telefone comercial válido.' });
+            // Company phone validation - check if field is visible
+            const companyPhoneField = document.getElementById('companyPhone');
+            if (isElementVisible(companyPhoneField)) {
+                if (!data.companyPhone) {
+                    errors.push({ field: 'companyPhone', message: 'Por favor, insira o telefone comercial da empresa.' });
+                } else {
+                    const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+                    if (!phoneRegex.test(data.companyPhone)) {
+                        errors.push({ field: 'companyPhone', message: 'Por favor, insira um telefone comercial válido.' });
+                    }
+                }
             }
             
-            // Responsible name validation
-            if (!data.responsibleName || data.responsibleName.trim().length < 3) {
-                errors.push({ field: 'responsibleName', message: 'Por favor, insira o nome do responsável.' });
+            // Responsible name validation - check if field is visible
+            const responsibleNameField = document.getElementById('responsibleName');
+            if (isElementVisible(responsibleNameField)) {
+                if (!data.responsibleName) {
+                    errors.push({ field: 'responsibleName', message: 'Por favor, insira o nome do responsável.' });
+                } else if (data.responsibleName.trim().length < 3) {
+                    errors.push({ field: 'responsibleName', message: 'Por favor, insira o nome do responsável.' });
+                }
             }
             
-            // Responsible role validation
-            if (!data.responsibleRole || data.responsibleRole.trim().length < 3) {
-                errors.push({ field: 'responsibleRole', message: 'Por favor, insira o cargo do responsável.' });
+            // Trade name validation (Inscrição Estadual) - check if field is visible
+            const tradeNameField = document.getElementById('tradeName');
+            if (isElementVisible(tradeNameField)) {
+                if (!data.tradeName || data.tradeName.trim().length < 3) {
+                    errors.push({ field: 'tradeName', message: 'Por favor, insira a Inscrição Estadual da empresa.' });
+                }
+            }
+            
+            // Company registration number validation - check if field is visible
+            const companyRegistrationNumberField = document.getElementById('companyRegistrationNumber');
+            if (isElementVisible(companyRegistrationNumberField)) {
+                // This field is optional, so only validate if it has a value
+                if (data.companyRegistrationNumber && data.companyRegistrationNumber.trim().length < 3) {
+                    errors.push({ field: 'companyRegistrationNumber', message: 'Por favor, insira o CRO do responsável.' });
+                }
             }
         }
         
         // Password validation (common to both)
-        if (!data.password || data.password.length < 8) {
-            errors.push({ field: 'password', message: 'A senha deve ter pelo menos 8 caracteres.' });
-        }
-        
-        // Check password strength
-        const passwordStrength = updatePasswordStrength(data.password);
-        if (passwordStrength < 3) {
-            errors.push({ field: 'password', message: 'Por favor, escolha uma senha mais forte. A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.' });
+        const passwordField = document.getElementById('password');
+        if (isElementVisible(passwordField)) {
+            if (!data.password) {
+                errors.push({ field: 'password', message: 'Por favor, insira uma senha.' });
+            } else if (data.password.length < 8) {
+                errors.push({ field: 'password', message: 'A senha deve ter pelo menos 8 caracteres.' });
+            }
         }
         
         // Password confirmation validation
-        if (data.password !== data.confirmPassword) {
-            errors.push({ field: 'confirmPassword', message: 'As senhas não coincidem.' });
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        if (isElementVisible(confirmPasswordField)) {
+            if (!data.confirmPassword) {
+                errors.push({ field: 'confirmPassword', message: 'Por favor, confirme sua senha.' });
+            } else if (data.password && data.password !== data.confirmPassword) {
+                errors.push({ field: 'confirmPassword', message: 'As senhas não coincidem.' });
+            }
         }
         
         // Phone validation (common to both)
-        const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-        if (!data.phone || !phoneRegex.test(data.phone)) {
-            errors.push({ field: 'phone', message: 'Por favor, insira um telefone válido.' });
+        const phoneField = document.getElementById('phone');
+        if (isElementVisible(phoneField)) {
+            if (!data.phone) {
+                errors.push({ field: 'phone', message: 'Por favor, insira seu telefone.' });
+            } else {
+                const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+                if (!phoneRegex.test(data.phone)) {
+                    errors.push({ field: 'phone', message: 'Por favor, insira um telefone válido.' });
+                }
+            }
         }
         
         // Recipient name validation
-        if (!data.recipientName || data.recipientName.trim().length < 3) {
-            errors.push({ field: 'recipientName', message: 'Por favor, insira o nome do destinatário.' });
+        const recipientNameField = document.getElementById('recipientName');
+        if (isElementVisible(recipientNameField)) {
+            if (!data.recipientName) {
+                errors.push({ field: 'recipientName', message: 'Por favor, insira o nome do destinatário.' });
+            } else if (data.recipientName.trim().length < 3) {
+                errors.push({ field: 'recipientName', message: 'Por favor, insira o nome do destinatário.' });
+            }
         }
         
         // CEP validation
-        const cepRegex = /^\d{5}-\d{3}$/;
-        if (!data.cep || !cepRegex.test(data.cep)) {
-            errors.push({ field: 'cep', message: 'Por favor, insira um CEP válido.' });
+        const cepField = document.getElementById('cep');
+        if (isElementVisible(cepField)) {
+            if (!data.cep) {
+                errors.push({ field: 'cep', message: 'Por favor, insira o CEP.' });
+            } else {
+                const cepRegex = /^\d{5}-\d{3}$/;
+                if (!cepRegex.test(data.cep)) {
+                    errors.push({ field: 'cep', message: 'Por favor, insira um CEP válido.' });
+                }
+            }
         }
         
         // Address number validation
-        if (!data.number) {
-            errors.push({ field: 'number', message: 'Por favor, insira o número do endereço.' });
+        const numberField = document.getElementById('number');
+        if (isElementVisible(numberField)) {
+            if (!data.number) {
+                errors.push({ field: 'number', message: 'Por favor, insira o número do endereço.' });
+            }
         }
         
         // Terms validation
-        if (!document.getElementById('terms').checked) {
-            errors.push({ field: 'terms', message: 'Você deve concordar com os termos de uso e política de privacidade.' });
+        const termsCheckbox = document.getElementById('terms');
+        if (isElementVisible(termsCheckbox)) {
+            if (!termsCheckbox || !termsCheckbox.checked) {
+                errors.push({ field: 'terms', message: 'Você deve concordar com os termos de uso e política de privacidade.' });
+            }
         }
         
         return errors;
     }
     
+    // Clear error states
+    function clearErrorStates() {
+        console.log('Clearing error states');
+        
+        // Remove error class from all inputs
+        const errorInputs = document.querySelectorAll('.form-input.error, select.error, input[type="checkbox"].error, .form-checkbox-label.error');
+        errorInputs.forEach(input => {
+            input.classList.remove('error');
+        });
+        
+        // Hide error notification
+        if (errorNotification) {
+            errorNotification.classList.remove('show');
+        }
+    }
+    
+    // Show error notification
+    function showErrorNotification(errors) {
+        console.log('Showing error notification with errors:', errors);
+        
+        if (!errorNotification || !errorList) {
+            console.error('Error notification elements not found');
+            return;
+        }
+        
+        if (errors.length > 0) {
+            // Create error list
+            const errorItems = errors.map(error => `<li>${error.message}</li>`).join('');
+            errorList.innerHTML = errorItems;
+            
+            // Show notification
+            errorNotification.classList.add('show');
+            
+            // Scroll to notification
+            errorNotification.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+    
+    // Highlight error fields
+    function highlightErrorFields(errors) {
+        console.log('Highlighting error fields:', errors);
+        
+        errors.forEach(error => {
+            const field = document.getElementById(error.field);
+            // Check if field exists and is visible before trying to highlight it
+            if (field && field.offsetParent !== null) {
+                field.classList.add('error');
+                console.log('Highlighted field:', error.field);
+            } else {
+                // Handle select elements and other special cases
+                if (error.field === 'gender' || error.field === 'profession') {
+                    const selectField = document.getElementById(error.field);
+                    if (selectField && selectField.offsetParent !== null) {
+                        selectField.classList.add('error');
+                        console.log('Highlighted select field:', error.field);
+                    }
+                }
+                
+                // Handle terms checkbox
+                if (error.field === 'terms') {
+                    const termsCheckbox = document.getElementById('terms');
+                    const termsLabel = document.querySelector('label[for="terms"]');
+                    // Check if checkbox exists and is visible
+                    if (termsCheckbox && termsCheckbox.offsetParent !== null) {
+                        termsCheckbox.classList.add('error');
+                        console.log('Highlighted terms checkbox');
+                    }
+                    // Check if label exists and is visible
+                    if (termsLabel && termsLabel.offsetParent !== null) {
+                        termsLabel.classList.add('error');
+                        console.log('Highlighted terms label');
+                    }
+                }
+            }
+        });
+    }
+    
     // Password strength indicator function
     function updatePasswordStrength(password) {
-        const strengthBar = document.createElement('div');
-        strengthBar.className = 'password-strength-bar';
+        if (!passwordStrength) return 0;
         
         if (password.length === 0) {
             passwordStrength.innerHTML = '';
-            return;
+            return 0;
         }
         
         let strength = 0;
@@ -791,6 +963,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Special character check
         if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+        
+        // Create strength bar
+        const strengthBar = document.createElement('div');
+        strengthBar.className = 'password-strength-bar';
         
         // Update strength bar
         passwordStrength.innerHTML = '';
@@ -856,62 +1032,5 @@ document.addEventListener('DOMContentLoaded', function() {
             confirmPasswordInput.setCustomValidity('');
             return true;
         }
-    }
-    
-    // Clear error states
-    function clearErrorStates() {
-        // Remove error class from all inputs
-        const errorInputs = document.querySelectorAll('.form-input.error, select.error, input[type="checkbox"].error, .form-checkbox-label.error');
-        errorInputs.forEach(input => {
-            input.classList.remove('error');
-        });
-        
-        // Hide error notification
-        errorNotification.classList.remove('show');
-    }
-    
-    // Show error notification
-    function showErrorNotification(errors) {
-        if (errors.length > 0) {
-            // Create error list
-            const errorItems = errors.map(error => `<li>${error.message}</li>`).join('');
-            errorList.innerHTML = errorItems;
-            
-            // Show notification
-            errorNotification.classList.add('show');
-            
-            // Scroll to notification
-            errorNotification.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-    
-    // Highlight error fields
-    function highlightErrorFields(errors) {
-        errors.forEach(error => {
-            const field = document.getElementById(error.field);
-            if (field) {
-                field.classList.add('error');
-            } else {
-                // Handle select elements and other special cases
-                if (error.field === 'gender' || error.field === 'profession') {
-                    const selectField = document.getElementById(error.field);
-                    if (selectField) {
-                        selectField.classList.add('error');
-                    }
-                }
-                
-                // Handle terms checkbox
-                if (error.field === 'terms') {
-                    const termsCheckbox = document.getElementById('terms');
-                    const termsLabel = document.querySelector('label[for="terms"]');
-                    if (termsCheckbox) {
-                        termsCheckbox.classList.add('error');
-                    }
-                    if (termsLabel) {
-                        termsLabel.classList.add('error');
-                    }
-                }
-            }
-        });
     }
 });

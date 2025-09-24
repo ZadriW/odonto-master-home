@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minha Conta na Odonto Master">
+    <meta name="keywords" content="minha conta, perfil, odontologia">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/pages/checkout/checkout.css">
+    <link rel="stylesheet" href="/pages/minha-conta/minha-conta.css">
+    
+    <title>Minha Conta | Odonto Master</title>
+</head>
+<body class="checkout-body">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Header with Logo (same as checkout page) -->
+    <header class="checkout-header-container">
+        <div class="container">
+            <div class="logo-container">
+                <a href="/pages/home/index.html">
+                    <img src="https://recursos.odontomaster.com.br/i/logo_odonto.png" alt="Odonto Master" class="checkout-logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="checkout-page">
+        <div class="container">
+            <!-- Visual para usuários logados -->
+            <div class="account-container" id="logged-in-view">
+                <div class="account-card">
+                    <div class="account-header">
+                        <h1 class="account-title">Minha Conta</h1>
+                        <p class="account-subtitle">Bem-vindo, <span id="user-name">Nome do Usuário</span></p>
+                    </div>
+                    
+                    <!-- Account Navigation -->
+                    <div class="account-navigation">
+                        <ul class="account-nav-list">
+                            <li class="account-nav-item active" data-section="meus-pedidos">
+                                <a href="#" class="account-nav-link">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <span>Meus Pedidos</span>
+                                </a>
+                            </li>
+                            <li class="account-nav-item" data-section="meus-creditos">
+                                <a href="#" class="account-nav-link">
+                                    <i class="fas fa-coins"></i>
+                                    <span>Meus Créditos</span>
+                                </a>
+                            </li>
+                            <li class="account-nav-item" data-section="alterar-email">
+                                <a href="#" class="account-nav-link">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Alterar Email</span>
+                                </a>
+                            </li>
+                            <li class="account-nav-item" data-section="alterar-senha">
+                                <a href="#" class="account-nav-link">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Alterar Senha</span>
+                                </a>
+                            </li>
+                            <li class="account-nav-item" data-section="meus-dados">
+                                <a href="#" class="account-nav-link">
+                                    <i class="fas fa-user"></i>
+                                    <span>Meus Dados</span>
+                                </a>
+                            </li>
+                            <li class="account-nav-item" data-section="meus-enderecos">
+                                <a href="#" class="account-nav-link">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Meus Endereços</span>
+                                </a>
+                            </li>
+                            <li class="account-nav-item" data-section="sair">
+                                <a href="#" class="account-nav-link" id="logout-link">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sair</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Account Content -->
+                    <div class="account-content">
+                        <!-- Meus Pedidos Section -->
+                        <section class="account-section active" id="meus-pedidos-section">
+                            <h2 class="section-title">Meus Pedidos</h2>
+                            <div class="orders-container">
+                                <p class="no-orders-message">Você ainda não possui pedidos.</p>
+                                <!-- Order items would be listed here -->
+                            </div>
+                        </section>
+                        
+                        <!-- Meus Créditos Section -->
+                        <section class="account-section" id="meus-creditos-section">
+                            <h2 class="section-title">Meus Créditos</h2>
+                            <div class="credits-container">
+                                <div class="credit-balance">
+                                    <p class="credit-amount">Saldo disponível: <span>R$ 0,00</span></p>
+                                    <p class="credit-info">Você não possui créditos no momento.</p>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- Alterar Email Section -->
+                        <section class="account-section" id="alterar-email-section">
+                            <h2 class="section-title">Alterar Email</h2>
+                            <form class="account-form" id="email-form">
+                                <div class="form-group">
+                                    <label for="current-email" class="form-label">Email Atual</label>
+                                    <input type="email" id="current-email" class="form-input" value="usuario@exemplo.com.br" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="new-email" class="form-label">Novo Email *</label>
+                                    <input type="email" id="new-email" class="form-input" placeholder="novousuario@exemplo.com.br" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirm-new-email" class="form-label">Confirmar Novo Email *</label>
+                                    <input type="email" id="confirm-new-email" class="form-input" placeholder="novousuario@exemplo.com.br" required>
+                                </div>
+                                
+                                <button type="submit" class="account-button">
+                                    <i class="fas fa-save"></i> Salvar Alterações
+                                </button>
+                            </form>
+                        </section>
+                        
+                        <!-- Alterar Senha Section -->
+                        <section class="account-section" id="alterar-senha-section">
+                            <h2 class="section-title">Alterar Senha</h2>
+                            <form class="account-form" id="password-form">
+                                <div class="form-group">
+                                    <label for="current-password" class="form-label">Senha Atual *</label>
+                                    <input type="password" id="current-password" class="form-input" placeholder="••••••••" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="new-password" class="form-label">Nova Senha *</label>
+                                    <input type="password" id="new-password" class="form-input" placeholder="••••••••" required>
+                                    <div class="password-strength" id="new-password-strength"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirm-new-password" class="form-label">Confirmar Nova Senha *</label>
+                                    <input type="password" id="confirm-new-password" class="form-input" placeholder="••••••••" required>
+                                </div>
+                                
+                                <button type="submit" class="account-button">
+                                    <i class="fas fa-save"></i> Salvar Alterações
+                                </button>
+                            </form>
+                        </section>
+                        
+                        <!-- Meus Dados Section -->
+                        <section class="account-section" id="meus-dados-section">
+                            <h2 class="section-title">Meus Dados</h2>
+                            <form class="account-form" id="personal-data-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="account-full-name" class="form-label">Nome Completo *</label>
+                                        <input type="text" id="account-full-name" class="form-input" placeholder="Digite seu nome completo" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="account-cpf" class="form-label">CPF *</label>
+                                        <input type="text" id="account-cpf" class="form-input" placeholder="000.000.000-00" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="account-birth-date" class="form-label">Data de Nascimento *</label>
+                                        <input type="date" id="account-birth-date" class="form-input" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="account-phone" class="form-label">Telefone *</label>
+                                        <input type="tel" id="account-phone" class="form-input" placeholder="(00) 00000-0000" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="account-gender" class="form-label">Gênero *</label>
+                                        <select id="account-gender" class="form-input" required>
+                                            <option value="">Selecione</option>
+                                            <option value="male">Masculino</option>
+                                            <option value="female">Feminino</option>
+                                            <option value="other">Outro</option>
+                                            <option value="prefer-not-to-say">Prefiro não informar</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="account-button">
+                                    <i class="fas fa-save"></i> Salvar Alterações
+                                </button>
+                            </form>
+                        </section>
+                        
+                        <!-- Meus Endereços Section -->
+                        <section class="account-section" id="meus-enderecos-section">
+                            <h2 class="section-title">Meus Endereços</h2>
+                            <div class="addresses-container">
+                                <p class="no-addresses-message">Você ainda não cadastrou nenhum endereço.</p>
+                                <button type="button" class="account-button" id="add-address-button">
+                                    <i class="fas fa-plus"></i> Adicionar Novo Endereço
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visual para usuários não logados -->
+            <div class="login-prompt-container" id="logged-out-view" style="display: none;">
+                <div class="login-prompt-card">
+                    <div class="login-prompt-header">
+                        <h1 class="login-prompt-title">Acesso Restrito</h1>
+                        <p class="login-prompt-subtitle">Você precisa estar logado para acessar esta página</p>
+                    </div>
+                    
+                    <div class="login-prompt-content">
+                        <div class="login-prompt-icon">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        
+                        <p class="login-prompt-message">
+                            Para visualizar e gerenciar suas informações, é necessário fazer login na sua conta.
+                        </p>
+                        
+                        <div class="login-prompt-actions">
+                            <a href="/pages/login/login.html" class="login-prompt-button primary">
+                                <i class="fas fa-sign-in-alt"></i> Fazer Login
+                            </a>
+                            <a href="/pages/registro/index.html" class="login-prompt-button secondary">
+                                <i class="fas fa-user-plus"></i> Criar Conta
+                            </a>
+                        </div>
+                        
+                        <div class="login-prompt-footer">
+                            <p>Você será redirecionado para a página inicial em <span id="redirect-timer">10</span> segundos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/assets/js/script.js"></script>
+    <script src="/pages/minha-conta/minha-conta.js"></script>
+</body>
+</html>

@@ -40,11 +40,11 @@
                         <p class="registration-subtitle">Preencha os dados abaixo para criar sua conta</p>
                     </div>
                     
-                    <form class="registration-form" id="registrationForm">
+                    <form class="registration-form" id="registrationForm" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         <div class="registration-note">
                             <p>Vendas exclusivas para profissionais, estudantes ou empresas da área odontológica.
-                                No caso de estudantes será necessário o envio do comprovante de matrícula para
-                                 <a href="mailto:atendimento@odontomaster.com.br" alt="Email CRO">atendimento@odontomaster.com.br</a></p>
+                                No caso de estudantes será necessário o envio do comprovante de matrícula para: 
+                                <a href="mailto:atendimento@odontomaster.com.br" alt="Email CRO">atendimento@odontomaster.com.br</a></p>
                         </div>
                         
                         <!-- Error Notification -->
@@ -68,31 +68,31 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="email" class="form-label">E-mail *</label>
-                                        <input type="email" id="email" name="email" class="form-input" placeholder="exemplo@email.com" required>
+                                        <input type="email" id="email" name="email" class="form-input" placeholder="exemplo@email.com" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="cpf" class="form-label">CPF *</label>
-                                        <input type="text" id="cpf" name="cpf" class="form-input" placeholder="000.000.000-00" required>
+                                        <input type="text" id="cpf" name="cpf" class="form-input" placeholder="000.000.000-00" autocomplete="off" required>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="fullName" class="form-label">Nome Completo *</label>
-                                        <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Digite seu nome completo" required>
+                                        <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Digite seu nome completo" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="birthDate" class="form-label">Data de Nascimento *</label>
-                                        <input type="date" id="birthDate" name="birthDate" class="form-input" required>
+                                        <input type="date" id="birthDate" name="birthDate" class="form-input" autocomplete="off" required>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="gender" class="form-label">Gênero *</label>
-                                        <select id="gender" name="gender" class="form-input" required>
+                                        <select id="gender" name="gender" class="form-input" autocomplete="off" required>
                                             <option value="">Selecione</option>
                                             <option value="male">Masculino</option>
                                             <option value="female">Feminino</option>
@@ -108,31 +108,31 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="companyEmail" class="form-label">E-mail *</label>
-                                        <input type="email" id="companyEmail" name="companyEmail" class="form-input" placeholder="exemplo@empresa.com" required>
+                                        <input type="email" id="companyEmail" name="companyEmail" class="form-input" placeholder="exemplo@empresa.com" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="cnpj" class="form-label">CNPJ *</label>
-                                        <input type="text" id="cnpj" name="cnpj" class="form-input" placeholder="00.000.000/0000-00" required>
+                                        <input type="text" id="cnpj" name="cnpj" class="form-input" placeholder="00.000.000/0000-00" autocomplete="off" required>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="companyName" class="form-label">Razão Social *</label>
-                                        <input type="text" id="companyName" name="companyName" class="form-input" placeholder="Nome da empresa" required>
+                                        <input type="text" id="companyName" name="companyName" class="form-input" placeholder="Nome da empresa" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="tradeName" class="form-label">Inscrição Estadual *</label>
-                                        <input type="text" id="tradeName" name="tradeName" class="form-input" placeholder="Inscrição Estadual da empresa">
+                                        <input type="text" id="tradeName" name="tradeName" class="form-input" placeholder="Inscrição Estadual da empresa" autocomplete="off">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="companyPhone" class="form-label">Telefone Comercial *</label>
-                                        <input type="tel" id="companyPhone" name="companyPhone" class="form-input" placeholder="(00) 00000-0000" required>
+                                        <input type="tel" id="companyPhone" name="companyPhone" class="form-input" placeholder="(00) 00000-0000" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -140,20 +140,20 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="password" class="form-label">Senha *</label>
-                                    <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
+                                    <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" autocomplete="off" required>
                                     <div class="password-strength" id="passwordStrength"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="confirmPassword" class="form-label">Confirme a senha *</label>
-                                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="••••••••" required>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="••••••••" autocomplete="off" required>
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="phone" class="form-label">Telefone Principal *</label>
-                                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="(00) 00000-0000" required>
+                                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="(00) 00000-0000" autocomplete="off" required>
                                 </div>
                             </div>
                         </section>
@@ -165,14 +165,14 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="recipientName" class="form-label">Nome do Destinatário *</label>
-                                    <input type="text" id="recipientName" name="recipientName" class="form-input" placeholder="Nome completo do destinatário" required>
+                                    <input type="text" id="recipientName" name="recipientName" class="form-input" placeholder="Nome completo do destinatário" autocomplete="off" required>
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="cep" class="form-label">CEP *</label>
-                                    <input type="text" id="cep" name="cep" class="form-input" placeholder="00000-000" required>
+                                    <input type="text" id="cep" name="cep" class="form-input" placeholder="00000-000" autocomplete="off" required>
                                     <button type="button" class="btn-cep-search" id="searchCepBtn">
                                         <i class="fas fa-search"></i> Buscar CEP
                                     </button>
@@ -182,38 +182,38 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="street" class="form-label">Logradouro *</label>
-                                    <input type="text" id="street" name="street" class="form-input" placeholder="Rua, Avenida, etc." readonly>
+                                    <input type="text" id="street" name="street" class="form-input" placeholder="Rua, Avenida, etc." autocomplete="off" readonly>
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="number" class="form-label">Número *</label>
-                                    <input type="text" id="number" name="number" class="form-input" placeholder="Número" required>
+                                    <input type="text" id="number" name="number" class="form-input" placeholder="Número" autocomplete="off" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="complement" class="form-label">Complemento</label>
-                                    <input type="text" id="complement" name="complement" class="form-input" placeholder="Complemento">
+                                    <input type="text" id="complement" name="complement" class="form-input" placeholder="Complemento" autocomplete="off">
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="neighborhood" class="form-label">Bairro</label>
-                                    <input type="text" id="neighborhood" name="neighborhood" class="form-input" placeholder="Bairro" readonly>
+                                    <input type="text" id="neighborhood" name="neighborhood" class="form-input" placeholder="Bairro" autocomplete="off" readonly>
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="city" class="form-label">Cidade</label>
-                                    <input type="text" id="city" name="city" class="form-input" placeholder="Cidade" readonly>
+                                    <input type="text" id="city" name="city" class="form-input" placeholder="Cidade" autocomplete="off" readonly>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="state" class="form-label">Estado</label>
-                                    <input type="text" id="state" name="state" class="form-input" placeholder="Estado" readonly>
+                                    <input type="text" id="state" name="state" class="form-input" placeholder="Estado" autocomplete="off" readonly>
                                 </div>
                             </div>
                         </section>
@@ -227,14 +227,14 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="rg" class="form-label">RG *</label>
-                                        <input type="text" id="rg" name="rg" class="form-input" placeholder="Número do RG" required>
+                                        <input type="text" id="rg" name="rg" class="form-input" placeholder="Número do RG" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="profession" class="form-label">Profissão *</label>
-                                        <select id="profession" name="profession" class="form-input" required>
+                                        <select id="profession" name="profession" class="form-input" autocomplete="off" required>
                                             <option value="">Selecione sua profissão</option>
                                             <option value="dentist">Dentista</option>
                                             <option value="dental-student">Estudante de Odontologia</option>
@@ -247,21 +247,21 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="specialization" class="form-label">Especialização/Semestre *</label>
-                                        <input type="text" id="specialization" name="specialization" class="form-input" placeholder="Especialização ou semestre" required>
+                                        <input type="text" id="specialization" name="specialization" class="form-input" placeholder="Especialização ou semestre" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="institution" class="form-label">Instituição *</label>
-                                        <input type="text" id="institution" name="institution" class="form-input" placeholder="Nome da instituição" required>
+                                        <input type="text" id="institution" name="institution" class="form-input" placeholder="Nome da instituição" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="registrationNumber" class="form-label">Matrícula/CRO *</label>
-                                        <input type="text" id="registrationNumber" name="registrationNumber" class="form-input" placeholder="Número de matrícula ou CRO" required>
+                                        <input type="text" id="registrationNumber" name="registrationNumber" class="form-input" placeholder="Número de matrícula ou CRO" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -271,15 +271,14 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="responsibleName" class="form-label">Nome do Responsável *</label>
-                                        <input type="text" id="responsibleName" name="responsibleName" class="form-input" placeholder="Nome completo do responsável" required>
+                                        <input type="text" id="responsibleName" name="responsibleName" class="form-input" placeholder="Nome completo do responsável" autocomplete="off" required>
                                     </div>
                                 </div>
                                 
-                            
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="companyRegistrationNumber" class="form-label">CRO do Responsável</label>
-                                        <input type="text" id="companyRegistrationNumber" name="companyRegistrationNumber" class="form-input" placeholder="Número do CRO do responsável">
+                                        <input type="text" id="companyRegistrationNumber" name="companyRegistrationNumber" class="form-input" placeholder="Número do CRO do responsável" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -288,14 +287,14 @@
                         <!-- Terms and Conditions -->
                         <section class="form-section">
                             <div class="form-group checkbox-group">
-                                <input type="checkbox" id="terms" name="terms" required>
+                                <input type="checkbox" id="terms" name="terms" autocomplete="off" required>
                                 <label for="terms" class="form-checkbox-label">
                                     Li e concordo com os <a href="#" class="link">Termos de Uso</a> e <a href="#" class="link">Política de Privacidade</a> *
                                 </label>
                             </div>
                             
                             <div class="form-group checkbox-group">
-                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <input type="checkbox" id="newsletter" name="newsletter" autocomplete="off">
                                 <label for="newsletter" class="form-checkbox-label">
                                     Desejo receber novidades e promoções por e-mail
                                 </label>

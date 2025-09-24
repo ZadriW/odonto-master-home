@@ -1718,7 +1718,63 @@ class OdontoMasterApp {
     }
 }
 
-// ===== FUNÇÃO DE LOGIN =====
+
+// ===== FUNÇÃO PARA LOGIN =====
+function login() {
+    // Esta função pode ser expandida conforme necessário
+    window.location.href = '/pages/login/login.html';
+}
+
+// ===== FUNÇÃO PARA ATUALIZAR SAUDAÇÃO DO USUÁRIO =====
+function updateUserGreeting() {
+    // Verificar se há informações do usuário no localStorage
+    const userFirstName = localStorage.getItem('userFirstName');
+    
+    if (userFirstName) {
+        // Atualizar o texto de saudação
+        const greetingElement = document.getElementById('userGreeting');
+        
+        if (greetingElement) {
+            // Verificar se o elemento é um <a> ou <p>
+            if (greetingElement.tagName === 'A') {
+                greetingElement.textContent = `Olá ${userFirstName}, bem-vindo!`;
+                greetingElement.href = '/pages/minha-conta/index.html';
+            } else {
+                // Para o elemento <p> na página home
+                greetingElement.innerHTML = `Olá ${userFirstName}, bem-vindo! | <a href="#" onclick="logout()" alt="Sair">Sair</a>`;
+            }
+        }
+    }
+}
+
+// ===== FUNÇÃO DE LOGOUT =====
+function logout() {
+    console.log('logout chamado');
+    
+    // Remover informações do usuário do localStorage
+    localStorage.removeItem('userFirstName');
+    console.log('Nome removido do localStorage');
+    
+    // Atualizar a saudação
+    const greetingElement = document.getElementById('userGreeting');
+    if (greetingElement) {
+        // Verificar se o elemento é um <a> ou <p>
+        if (greetingElement.tagName === 'A') {
+            greetingElement.textContent = 'Olá Visitante, identifique-se aqui';
+            greetingElement.href = '/pages/login/login.html';
+            console.log('Atualizado elemento <a> para visitante');
+        } else {
+            // Para o elemento <p> na página home
+            greetingElement.innerHTML = 'Olá Visitante, identifique-se <a href="/pages/login/login.html" alt="Tela de Login">aqui</a> ou <a href="/pages/registro/index.html" alt="Tela de Registro">registre-se</a>';
+            console.log('Atualizado elemento <p> para visitante');
+        }
+    }
+    
+    // Redirecionar para a página inicial
+    window.location.href = '/pages/home/index.html';
+}
+
+// ===== FUNÇÃO PARA LOGIN =====
 function login() {
     // Esta função pode ser expandida conforme necessário
     window.location.href = '/pages/login/login.html';
@@ -1741,7 +1797,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar aplicação
     window.app = new OdontoMasterApp();
     window.app.init();
+    
+    // Atualizar saudação do usuário
+    updateUserGreeting();
 });
+
+// Teste rápido para verificar se as funções estão disponíveis
+if (typeof window !== 'undefined') {
+    window.testUserGreeting = function() {
+        const name = localStorage.getItem('userFirstName');
+        if (name) {
+            console.log('Usuário logado:', name);
+        } else {
+            console.log('Nenhum usuário logado');
+        }
+    };
+}
 
 // ===== EXPORTAÇÕES PARA DESENVOLVIMENTO =====
 if (typeof module !== 'undefined' && module.exports) {

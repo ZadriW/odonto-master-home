@@ -1,0 +1,474 @@
+/* ===== MINHA CONTA PAGE STYLES ===== */
+
+.account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.account-card {
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.account-title {
+    color: var(--cor-primaria);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.account-subtitle {
+    color: var(--cor-texto-secundaria);
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+/* Account Navigation */
+.account-navigation {
+    border-bottom: 1px solid var(--cor-borda-clara);
+    margin-bottom: 30px;
+}
+
+.account-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+}
+
+.account-nav-item {
+    margin-bottom: 10px;
+}
+
+.account-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--cor-fundo-secundaria);
+    border-radius: var(--border-radius-sm);
+    color: var(--cor-texto-secundaria);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    border: 1px solid var(--cor-borda-clara);
+}
+
+.account-nav-link i {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+}
+
+.account-nav-link:hover {
+    background: var(--cor-primaria);
+    color: #fff;
+    border-color: var(--cor-primaria);
+}
+
+.account-nav-item.active .account-nav-link {
+    background: var(--cor-primaria);
+    color: #fff;
+    border-color: var(--cor-primaria);
+}
+
+/* Account Content */
+.account-content {
+    flex: 1;
+}
+
+.account-section {
+    display: none;
+}
+
+.account-section.active {
+    display: block;
+}
+
+.section-title {
+    color: var(--cor-primaria);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cor-primaria);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--cor-primaria);
+}
+
+/* Form Styles */
+.account-form {
+    max-width: 600px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--cor-texto-primaria);
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--cor-borda-media);
+    border-radius: var(--border-radius-sm);
+    font-size: 16px;
+    transition: all var(--transition-fast);
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(28, 87, 135, 0.1);
+}
+
+.form-input:read-only {
+    background-color: var(--cor-fundo-secundaria);
+    cursor: not-allowed;
+}
+
+/* Password Strength */
+.password-strength {
+    height: 5px;
+    background: var(--cor-borda-clara);
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.password-strength-weak {
+    width: 33%;
+    background: var(--cor-erro);
+}
+
+.password-strength-medium {
+    width: 66%;
+    background: var(--cor-aviso);
+}
+
+.password-strength-strong {
+    width: 100%;
+    background: var(--cor-destaque);
+}
+
+/* Password Requirements */
+.password-requirements {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--cor-primaria);
+}
+
+.requirements-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cor-texto-primaria);
+    margin: 0 0 5px 0;
+}
+
+.requirements-list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.requirements-list li {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.requirements-list li.met {
+    color: var(--cor-destaque);
+}
+
+.requirements-list li.unmet {
+    color: var(--cor-erro);
+}
+
+.requirements-list li.met::before {
+    content: "✓ ";
+}
+
+.requirements-list li.unmet::before {
+    content: "✗ ";
+}
+
+/* Account Button */
+.account-button {
+    background: var(--cor-primaria);
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-button:hover {
+    background: var(--cor-primaria-escura);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(28, 87, 135, 0.3);
+}
+
+.account-button:active {
+    transform: translateY(0);
+}
+
+.account-button:disabled {
+    background: var(--cor-cinza);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Orders and Credits */
+.orders-container,
+.credits-container,
+.addresses-container {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-orders-message,
+.no-addresses-message {
+    color: var(--cor-texto-secundaria);
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.credit-balance {
+    text-align: center;
+}
+
+.credit-amount {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.credit-info {
+    color: var(--cor-texto-secundaria);
+    font-size: 14px;
+}
+
+/* Login Prompt Styles */
+.login-prompt-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.login-prompt-card {
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-prompt-header {
+    margin-bottom: 30px;
+}
+
+.login-prompt-title {
+    color: var(--cor-primaria);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.login-prompt-subtitle {
+    color: var(--cor-texto-secundaria);
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.login-prompt-icon {
+    font-size: 64px;
+    color: var(--cor-primaria);
+    margin: 30px 0;
+}
+
+.login-prompt-message {
+    color: var(--cor-texto-primaria);
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.login-prompt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.login-prompt-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    gap: 10px;
+}
+
+.login-prompt-button.primary {
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+.login-prompt-button.primary:hover {
+    background: var(--cor-primaria-escura);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(28, 87, 135, 0.3);
+}
+
+.login-prompt-button.secondary {
+    background: var(--cor-fundo-secundaria);
+    color: var(--cor-texto-primaria);
+    border: 1px solid var(--cor-borda-media);
+}
+
+.login-prompt-button.secondary:hover {
+    background: var(--cor-borda-clara);
+    transform: translateY(-2px);
+}
+
+.login-prompt-footer {
+    color: var(--cor-texto-secundaria);
+    font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .account-card {
+        padding: 30px 20px;
+    }
+    
+    .account-title {
+        font-size: 24px;
+    }
+    
+    .account-nav-list {
+        flex-direction: column;
+    }
+    
+    .account-nav-link {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-page {
+        padding: 20px 0;
+    }
+    
+    .account-card,
+    .login-prompt-card {
+        padding: 25px 15px;
+        margin: 0 10px;
+    }
+    
+    .account-title,
+    .login-prompt-title {
+        font-size: 22px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .account-button,
+    .login-prompt-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .login-prompt-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .account-nav-link span {
+        display: none;
+    }
+    
+    .account-nav-link i {
+        margin-right: 0;
+    }
+    
+    .form-input {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+}

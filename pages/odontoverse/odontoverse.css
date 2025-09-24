@@ -66,6 +66,7 @@
     text-align: center;
     color: var(--cor-texto-branca);
     background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+    border-radius: 14px;
 }
 
 .odontoverse-hero__title {
