@@ -1,5 +1,35 @@
 // ===== REFINED CHECKOUT PAGE FUNCTIONALITY =====
 
+// Carregar o banco de dados de produtos antes de qualquer operação
+document.addEventListener('DOMContentLoaded', function() {
+  // Verificar se o app principal já está inicializado (pode ter vindo de outros scripts)
+  if (!window.app) {
+    // Se não estiver inicializado, criar uma instância simplificada
+    window.app = {
+      productDB: {
+        products: {},
+        // Função para obter produto
+        getProduct(productId) {
+          // Em ambiente de checkout, buscar do localStorage ou carregar dados básicos
+          const allProducts = {
+            'prod1': { id: 'prod1', name: 'Kit Clareamento Dental Whiteness HP', price: 18990, discount: 27, image: '/images/clareador-whiteness.png', category: 'Clareamento Dental', brand: 'Whiteness' },
+            'prod2': { id: 'prod2', name: 'Resina Composta Z350 XT', price: 24590, discount: 15, image: '/images/resina-composta.png', category: 'Resina Composta', brand: 'Z350' },
+            'prod3': { id: 'prod3', name: 'Anestésico Mepivacaína 3%', price: 8990, discount: 30, image: '/images/anestesico.png', category: 'Anestésico', brand: 'Mepivacaína' },
+            'prod4': { id: 'prod4', name: 'Broca Carbide FG 245', price: 3490, discount: 10, image: '/images/broca.png', category: 'Broca', brand: 'Carbide' },
+            'prod5': { id: 'prod5', name: 'Fotopolimerizador LED Radii Plus', price: 89900, discount: 20, image: '/images/fotopolimerizador.png', category: 'Fotopolimerizador', brand: 'Radii' },
+            'prod6': { id: 'prod6', name: 'Cimento de Ionômero de Vidro', price: 5690, discount: 18, image: '/images/ionomero.png', category: 'Cimento', brand: 'Marca' },
+            'prod7': { id: 'prod7', name: 'Kit Endodontia Rotatória Avançado', price: 145000, discount: 25, image: '/images/kit-endodontia.png', category: 'Kit', brand: 'Kit' },
+            'prod8': { id: 'prod8', name: 'Ácido Fosfórico 37% Gel', price: 2290, discount: 12, image: '/images/acido.png', category: 'Ácido Fosfórico', brand: 'Marca' },
+            'prod9': { id: 'prod9', name: 'Autoclave Vitale Class CD 21 Litros', price: 450000, discount: 10, image: '/images/autoclave.png', category: 'Autoclave', brand: 'Vitale' },
+            'prod10': { id: 'prod10', name: 'Cadeira Odontológica Kavo Unik', price: 2500000, discount: 15, image: '/images/cadeira.png', category: 'Cadeira Odontológica', brand: 'Kavo' }
+          };
+          return allProducts[productId] || null;
+        }
+      }
+    };
+  }
+});
+
 // Get cart data from localStorage using the existing cart system
 function getCartData() {
   try {
@@ -74,16 +104,38 @@ function renderCartItems() {
   }
   
   cartItemsContainer.innerHTML = cartData.map(item => {
-    const priceInReais = (item.price > 1000) ? item.price / 100 : item.price;
+    // Usar price_current se disponível, senão usar o campo price antigo para compatibilidade
+    const itemPrice = item.price_current || item.price;
+    let priceInReais = (itemPrice > 1000) ? itemPrice / 100 : itemPrice;
+    
+    // Verificar se temos informações de parcelamento no item
+    let installmentInfo = '';
+    if (item.installments) {
+      const installmentCount = item.installments.count || 10;
+      const installmentValue = item.installments.value || (priceInReais / installmentCount);
+      installmentInfo = `${installmentCount}x sem juros de R$ ${installmentValue.toFixed(2).replace('.', ',')}`;
+    } else {
+      // Usar padrão de 10x se não houver informações específicas
+      installmentInfo = `10x sem juros de R$ ${(priceInReais/10).toFixed(2).replace('.', ',')}`;
+    }
+    
+    // Obter informações do produto do banco de dados para usar imagem real
+    const productInfo = window.app ? window.app.productDB.getProduct(item.id) : null;
+    const productImage = productInfo ? productInfo.image : 
+                        (item.image || `https://placehold.co/60x60/e8ece9/333?text=${encodeURIComponent(item.name.substring(0, 15))}`);
+    
+    const brand = productInfo ? productInfo.brand : 'Marca não especificada';
+    
     return `
       <div class="cart-item">
-        <div class="item-image">
-          <img src="https://via.placeholder.com/80x80/e8ece9/333?text=${encodeURIComponent(item.name.substring(0, 15))}" alt="${item.name}">
+        <div class="cart-item__image">
+          <img src="${productImage}" alt="${item.name}" onerror="this.src='https://placehold.co/60x60/e8ece9/333?text=Produto';">
         </div>
-        <div class="item-details">
-          <h3 class="item-name">${item.name}</h3>
-          <div class="item-brand">Marca não especificada</div>
+        <div class="cart-item__info">
+          <h4 class="item-name">${item.name}</h4>
+          <div class="item-brand">${brand}</div>
           <div class="item-quantity">Quantidade: ${item.quantity}</div>
+          <div class="item-installment">${installmentInfo}</div>
         </div>
         <div class="item-price">
           R$ ${priceInReais.toFixed(2).replace('.', ',')}
@@ -148,13 +200,15 @@ function applyCoupon() {
 // Update cart totals
 function updateCartTotals() {
   // Calculate subtotal
-  let subtotal = 0;
-  if (cartData && cartData.length > 0) {
-    cartData.forEach(item => {
-      const priceInReais = (item.price > 1000) ? item.price / 100 : item.price;
-      subtotal += priceInReais * item.quantity;
-    });
-  }
+    let subtotal = 0;
+    if (cartData && cartData.length > 0) {
+      cartData.forEach(item => {
+        // Usar price_current se disponível, senão usar o campo price antigo para compatibilidade
+        const itemPrice = item.price_current || item.price;
+        const priceInReais = (itemPrice > 1000) ? itemPrice / 100 : itemPrice;
+        subtotal += priceInReais * item.quantity;
+      });
+    }
   
   // Calculate discount
   let discount = 0;

@@ -162,7 +162,7 @@
 
 .form-input:read-only {
     background-color: var(--cor-fundo-secundaria);
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 /* Password Strength */
@@ -192,48 +192,6 @@
 .password-strength-strong {
     width: 100%;
     background: var(--cor-destaque);
-}
-
-/* Password Requirements */
-.password-requirements {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: var(--border-radius-sm);
-    border-left: 3px solid var(--cor-primaria);
-}
-
-.requirements-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--cor-texto-primaria);
-    margin: 0 0 5px 0;
-}
-
-.requirements-list {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.requirements-list li {
-    font-size: 13px;
-    margin-bottom: 3px;
-}
-
-.requirements-list li.met {
-    color: var(--cor-destaque);
-}
-
-.requirements-list li.unmet {
-    color: var(--cor-erro);
-}
-
-.requirements-list li.met::before {
-    content: "✓ ";
-}
-
-.requirements-list li.unmet::before {
-    content: "✗ ";
 }
 
 /* Account Button */
@@ -282,6 +240,157 @@
     align-items: center;
 }
 
+/* Specific styles for orders container */
+.orders-container {
+    align-items: stretch;
+}
+
+/* Specific styles for addresses container */
+.addresses-container {
+    align-items: stretch;
+}
+
+/* Address management buttons */
+.address-management-buttons {
+    margin-top: 20px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.address-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.address-card {
+    background: #fff;
+    border: 1px solid var(--cor-borda-clara);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-left: 4px solid var(--cor-primaria);
+}
+
+.address-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--cor-primaria);
+    transform: translateY(-2px);
+}
+
+.address-info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.address-info p {
+    margin: 5px 0;
+    color: var(--cor-texto-primaria);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.address-info p:first-child {
+    font-weight: 600;
+    color: var(--cor-primaria);
+}
+
+
+
+.address-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 80px;
+    align-items: flex-end;
+}
+
+.edit-address-btn,
+.delete-address-btn {
+    background: var(--cor-primaria);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 70px;
+    justify-content: center;
+}
+
+.edit-address-btn:hover {
+    background: var(--cor-primaria-escura);
+    transform: translateY(-2px);
+}
+
+.delete-address-btn {
+    background: var(--cor-erro);
+}
+
+.delete-address-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+}
+
+/* Address Form Styles */
+.address-form {
+    background: #fff;
+    border: 1px solid var(--cor-borda-clara);
+    border-radius: var(--border-radius-md);
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    margin-top: 20px;
+    display: none;
+}
+
+.address-form.active {
+    display: block;
+}
+
+.address-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.address-form .form-group {
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments for address cards */
+@media (max-width: 768px) {
+    .address-card {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .address-info {
+        margin-right: 0;
+    }
+    
+    .address-actions {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .address-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .no-orders-message,
 .no-addresses-message {
     color: var(--cor-texto-secundaria);
@@ -303,6 +412,211 @@
 .credit-info {
     color: var(--cor-texto-secundaria);
     font-size: 14px;
+}
+
+/* Orders List Specific Styles */
+.order-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.order-card {
+    background: #fff;
+    border: 1px solid var(--cor-borda-clara);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+
+}
+
+.order-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--cor-primaria);
+
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--cor-borda-clara);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-id {
+    font-weight: 600;
+    color: var(--cor-primaria);
+    background: rgba(28, 87, 135, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid rgba(28, 87, 135, 0.2);
+}
+
+.order-date {
+    font-weight: 500;
+    color: var(--cor-texto-secundaria);
+    font-size: 14px;
+    background: var(--cor-fundo-secundaria);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.order-status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-entregue {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.status-processando {
+    background-color: #fff8e1;
+    color: #f57f17;
+    border: 1px solid #ffecb3;
+}
+
+.status-cancelado {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.status-pendente {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #bbdefb;
+}
+
+.order-details {
+    margin-bottom: 15px;
+}
+
+.order-items {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--cor-borda-clara);
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--cor-borda-clara);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    flex: 1;
+    color: var(--cor-texto-primaria);
+    font-weight: 500;
+}
+
+.item-quantity {
+    color: var(--cor-texto-secundaria);
+    margin: 0 15px;
+    min-width: 80px;
+    text-align: center;
+    background: var(--cor-fundo-secundaria);
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+    font-size: 13px;
+}
+
+.item-price {
+    font-weight: 600;
+    color: var(--cor-primaria);
+    min-width: 100px;
+    text-align: right;
+}
+
+.order-total {
+    text-align: right;
+    font-size: 18px;
+    padding: 15px 0;
+    border-top: 2px solid var(--cor-primaria);
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--cor-borda-clara);
+    border-radius: var(--border-radius-sm);
+    padding: 10px;
+}
+
+.tracking-number {
+    color: var(--cor-texto-secundaria);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 10px;
+    background: white;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--cor-borda-clara);
+}
+
+.payment-method {
+    color: var(--cor-primaria);
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(28, 87, 135, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(28, 87, 135, 0.2);
+}
+
+/* Responsive adjustments for order cards */
+@media (max-width: 768px) {
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .order-id, .order-date, .order-status {
+        align-self: flex-start;
+    }
+    
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .item-quantity, .item-price {
+        align-self: flex-end;
+    }
+    
+    .order-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 }
 
 /* Login Prompt Styles */

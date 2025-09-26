@@ -1,0 +1,260 @@
+{
+  "usuarios": [
+    {
+      "id": "user_001",
+      "login": "dr.silva",
+      "senha": "senha123", 
+      "ativo": true,
+      "data_registro": "2024-01-15",
+      "perfil": {
+        "nome": "Ana Carolina Silva",
+        "email": "ana.silva@odontologista.com.br",
+        "cpf": "123.456.789-00",
+        "telefone": "(71) 99999-8888",
+        "data_nascimento": "1985-06-15",
+        "genero": "Feminino",
+        "tipo_usuario": "Odontologista"
+      },
+      "enderecos": [
+        {
+          "id": "end_001",
+          "tipo": "Entrega",
+          "logradouro": "Av. Oceânica",
+          "numero": "123",
+          "complemento": "Sala 501",
+          "bairro": "Ondina",
+          "cidade": "Salvador",
+          "estado": "BA",
+          "cep": "40170-000",
+          "principal": true
+        },
+        {
+          "id": "end_002",
+          "tipo": "Cobrança",
+          "logradouro": "Rua da Paciência",
+          "numero": "45",
+          "complemento": "",
+          "bairro": "Rio Vermelho",
+          "cidade": "Salvador",
+          "estado": "BA",
+          "cep": "41940-000",
+          "principal": false
+        }
+      ],
+      "pedidos": [
+        {
+          "id": "pedido_001",
+          "data": "2025-03-10",
+          "status": "Entregue",
+          "valor_total": 18990,
+          "itens": [
+            {
+              "produto_id": "prod1",
+              "nome": "Kit Clareamento Dental Whiteness HP",
+              "quantidade": 1,
+              "preco_unitario": 18990,
+              "descricao": "Kit completo para clareamento dental profissional com gel clareador Whiteness HP e acessórios necessários para um tratamento eficaz.",
+              "categoria": "Clareamento Dental",
+              "marca": "Whiteness",
+              "imagem": "/images/clareador-whiteness.png"
+            }
+          ],
+          "endereco_entrega": "end_001",
+          "forma_pagamento": "Cartão de Crédito",
+          "numero_rastreamento": "BR123456789"
+        },
+        {
+          "id": "pedido_002",
+          "data": "2025-05-22",
+          "status": "Processando",
+          "valor_total": 24590,
+          "itens": [
+            {
+              "produto_id": "prod2",
+              "nome": "Resina Composta Z350 XT",
+              "quantidade": 1,
+              "preco_unitario": 24590,
+              "descricao": "Resina composta de última geração para restaurações estéticas com excelente acabamento e durabilidade.",
+              "categoria": "Resina Composta",
+              "marca": "Z350",
+              "imagem": "/images/resina-composta.png"
+            }
+          ],
+          "endereco_entrega": "end_001",
+          "forma_pagamento": "PIX",
+          "numero_rastreamento": "BR987654321"
+        }
+      ]
+    },
+    {
+      "id": "user_002",
+      "login": "clinicadental",
+      "senha": "senha456",
+      "ativo": true,
+      "data_registro": "2024-02-20",
+      "perfil": {
+        "nome": "Clínica Dental Excellence",
+        "email": "contato@clinicadental.com.br",
+        "cnpj": "12.345.678/0001-90",
+        "telefone": "(71) 3344-5566",
+        "data_fundacao": "2020-01-01",
+        "tipo_usuario": "Clínica Odontológica"
+      },
+      "enderecos": [
+        {
+          "id": "end_003",
+          "tipo": "Principal",
+          "logradouro": "Rua Chile",
+          "numero": "100",
+          "complemento": "Edifício Saúde",
+          "bairro": "Comércio",
+          "cidade": "Salvador",
+          "estado": "BA",
+          "cep": "40010-000",
+          "principal": true
+        }
+      ],
+      "pedidos": [
+        {
+          "id": "pedido_003",
+          "data": "2025-04-05",
+          "status": "Entregue",
+          "valor_total": 89900,
+          "itens": [
+            {
+              "produto_id": "prod3",
+              "nome": "Anestésico Mepivacaína 3%",
+              "quantidade": 1,
+              "preco_unitario": 8990,
+              "descricao": "Anestésico local sem vasoconstritor para procedimentos odontológicos, ideal para pacientes com restrições cardiovasculares.",
+              "categoria": "Anestésico",
+              "marca": "Mepivacaína",
+              "imagem": "/images/anestesico.png"
+            },
+            {
+              "produto_id": "prod4",
+              "nome": "Broca Carbide FG 245",
+              "quantidade": 1,
+              "preco_unitario": 3490,
+              "descricao": "Broca carbide para corte de estruturas dentárias com alta precisão e durabilidade.",
+              "categoria": "Broca",
+              "marca": "Carbide",
+              "imagem": "/images/broca.png"
+            },
+            {
+              "produto_id": "prod6",
+              "nome": "Cimento de Ionômero de Vidro",
+              "quantidade": 1,
+              "preco_unitario": 5690,
+              "descricao": "Cimento de ionômero de vidro para cimentação e forramento com liberação contínua de flúor.",
+              "categoria": "Cimento",
+              "marca": "Vitro",
+              "imagem": "/images/ionomero.png"
+            },
+            {
+              "produto_id": "prod8",
+              "nome": "Ácido Fosfórico 37% Gel",
+              "quantidade": 1,
+              "preco_unitario": 2290,
+              "descricao": "Ácido fosfórico gel para condicionamento ácido da estrutura dental antes de restaurações adesivas.",
+              "categoria": "Ácido Fosfórico",
+              "marca": "SDI",
+              "imagem": "/images/acido.png"
+            }
+          ],
+          "endereco_entrega": "end_003",
+          "forma_pagamento": "Boleto Bancário",
+          "numero_rastreamento": "BR456789123"
+        }
+      ]
+    },
+    {
+      "id": "user_003",
+      "login": "estudanteodonto",
+      "senha": "senha789",
+      "ativo": true,
+      "data_registro": "2024-08-10",
+      "perfil": {
+        "nome": "Carlos Eduardo Oliveira",
+        "email": "carlos.oliveira@estudante.ufba.br",
+        "cpf": "987.654.321-00",
+        "telefone": "(71) 98765-4321",
+        "data_nascimento": "2000-11-30",
+        "genero": "Masculino",
+        "tipo_usuario": "Estudante de Odontologia"
+      },
+      "enderecos": [
+        {
+          "id": "end_004",
+          "tipo": "Entrega",
+          "logradouro": "Rua Professor Aristides Novis",
+          "numero": "789",
+          "complemento": "Apto 101",
+          "bairro": "Federação",
+          "cidade": "Salvador",
+          "estado": "BA",
+          "cep": "40210-000",
+          "principal": true
+        }
+      ],
+      "pedidos": [
+        {
+          "id": "pedido_004",
+          "data": "2025-06-18",
+          "status": "Cancelado",
+          "valor_total": 3490,
+          "itens": [
+            {
+              "produto_id": "prod4",
+              "nome": "Broca Carbide FG 245",
+              "quantidade": 1,
+              "preco_unitario": 3490,
+              "descricao": "Broca carbide para corte de estruturas dentárias com alta precisão e durabilidade.",
+              "categoria": "Broca",
+              "marca": "Carbide",
+              "imagem": "/images/broca.png"
+            }
+          ],
+          "endereco_entrega": "end_004",
+          "forma_pagamento": "Cartão de Débito",
+          "numero_rastreamento": ""
+        },
+        {
+          "id": "pedido_005",
+          "data": "2025-08-30",
+          "status": "Entregue",
+          "valor_total": 5690,
+          "itens": [
+            {
+              "produto_id": "prod6",
+              "nome": "Cimento de Ionômero de Vidro",
+              "quantidade": 1,
+              "preco_unitario": 5690,
+              "descricao": "Cimento de ionômero de vidro para cimentação e forramento com liberação contínua de flúor.",
+              "categoria": "Cimento",
+              "marca": "Vitro",
+              "imagem": "/images/ionomero.png"
+            }
+          ],
+          "endereco_entrega": "end_004",
+          "forma_pagamento": "PIX",
+          "numero_rastreamento": "BR789123456"
+        }
+      ]
+    }
+
+
+  ],
+  "sessoes": {
+    "tokens": {
+      "token_usuario_logado": {
+        "usuario_id": "user_001",
+        "data_inicio": "2025-09-25T10:30:00Z",
+        "ultimo_acesso": "2025-09-25T10:45:00Z",
+        "expiracao": "2025-09-25T16:30:00Z"
+      }
+    },
+    "estado_atual": "logado",
+    "usuario_atual_id": "user_001"
+  }
+}

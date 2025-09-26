@@ -1,6 +1,7 @@
  
 /* ===== COMPARTILHADO ENTRE TODOS OS COMPONENTES ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('../components/variables.css');
 
 :root {
   /* Cores principais */
@@ -1949,6 +1950,23 @@ a:focus {
     font-size: 12px;
     color: var(--cor-texto-secundaria);
     margin: 0;
+}
+
+.cart-item__image {
+    flex: 0 0 60px;
+    height: 60px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    background: var(--cor-fundo-secundaria);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .cart-item__actions {

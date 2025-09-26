@@ -107,12 +107,21 @@ const Utils = {
         }).format(price / 100);
     },
 
-    /**
+    /** 
      * Gera ID único
      * @returns {string} - ID único
      */
     generateId() {
         return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    },
+    
+    /**
+     * Obtém informações do produto do banco de dados
+     * @param {string} productId - ID do produto
+     * @returns {Object|null} - Informações do produto ou null se não encontrado
+     */
+    getProductInfo(productId) {
+        return window.app.productDB.getProduct(productId);
     }
 };
 
@@ -396,11 +405,30 @@ class ShoppingCart {
     }
 
     addItem(productId, name, price, quantity = 1) {
-        const existingItem = this.items.find(item => item.id === productId);
-        if (existingItem) {
-            existingItem.quantity += quantity;
+        // Verificar se o produto existe no banco de dados
+        const productFromDB = window.app.productDB.getProduct(productId);
+        if (productFromDB) {
+            // Usar informações do banco de dados para garantir consistência
+            const existingItem = this.items.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                this.items.push({ 
+                    id: productId, 
+                    name: productFromDB.name, 
+                    price: productFromDB.price, 
+                    quantity: quantity,
+                    image: productFromDB.image // Adicionando a imagem para uso no carrinho
+                });
+            }
         } else {
-            this.items.push({ id: productId, name, price, quantity });
+            // Se o produto não estiver no banco de dados, usar os parâmetros passados
+            const existingItem = this.items.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                this.items.push({ id: productId, name, price, quantity });
+            }
         }
         this.update();
     }
@@ -483,6 +511,9 @@ class ShoppingCart {
     }
 
     getCartItemHTML(item) {
+        // Obter imagem do produto do banco de dados se não estiver no item
+        const productFromDB = window.app.productDB.getProduct(item.id);
+        const itemImage = item.image || (productFromDB ? productFromDB.image : '');
         
         return `
             <div class="cart-item" data-id="${item.id}">
@@ -586,11 +617,31 @@ class ShoppingCart {
                 const productCard = productButton.closest('.product-card');
                 if (productCard && productCard.dataset.productId) {
                     const productId = productCard.dataset.productId;
-                    const productName = productCard.querySelector('.product-title')?.textContent || 'Produto';
-                    const price = parseInt(productCard.querySelector('.product-price--current')?.textContent.replace(/[^\d]/g, '')) || 0;
                     
-                    // Add item to cart
-                    this.addItem(productId, productName, price, 1);
+                    // Obter informações do produto do banco de dados para garantir consistência
+                    const productFromDB = window.app.productDB.getProduct(productId);
+                    
+                    if (productFromDB) {
+                        // Add item to cart using database information
+                        this.addItem(productId, productFromDB.name, productFromDB.price, 1);
+                    } else {
+                        // Fallback se o produto não estiver no banco de dados
+                        const productName = productCard.querySelector('.product-title')?.textContent || 'Produto';
+                        // Obter preço do produto do banco de dados ou do elemento HTML
+                        const productInfo = window.app ? window.app.productDB.getProduct(productId) : null;
+                        let price = 0;
+                        
+                        if (productInfo && productInfo.price_current) {
+                            // Usar preço atual do banco de dados
+                            price = productInfo.price_current;
+                        } else {
+                            // Fallback para extrair do elemento HTML
+                            price = parseInt(productCard.querySelector('.product-price--current')?.textContent.replace(/[^\d]/g, '')) || 0;
+                        }
+                        
+                        // Add item to cart
+                        this.addItem(productId, productName, price, 1);
+                    }
                     
                     // Visual feedback on button
                     productButton.classList.add('added');
@@ -1126,11 +1177,11 @@ class Carousel {
 }
 
 // =================================================================================
-// ===== CARROSSEL DE PRODUTOS (VERSÃO REVISADA E MULTI-INSTÂNCIA) ================
+// ===== CARROSSEL DE PRODUTOS (ATUALIZADO PARA USAR HTML ESTÁTICO) ================
 // =================================================================================
 class ProductsCarousel {
     
-    constructor(trackId, dotsId, productsData) {
+    constructor(trackId, dotsId) {
         this.track = document.getElementById(trackId);
         this.dotsContainer = document.getElementById(dotsId);
         this.container = this.track ? this.track.closest('.products-carousel-container') : null;
@@ -1140,7 +1191,6 @@ class ProductsCarousel {
             return;
         }
 
-        this.products = productsData;
         this.prevBtn = this.container.querySelector('.carousel-nav--prev');
         this.nextBtn = this.container.querySelector('.carousel-nav--next');
 
@@ -1148,13 +1198,15 @@ class ProductsCarousel {
         this.itemsPerView = this.getItemsPerView();
         this.isTransitioning = false;
 
+        this.slides = this.track.querySelectorAll('.product-slide');
+        this.totalSlides = this.slides.length;
+
         this.init();
     }
 
     init() {
-        this.renderProducts();
-        this.renderDots();
         this.bindEvents();
+        this.updateDots();
         this.updateNavButtons();
     }
 
@@ -1165,80 +1217,6 @@ class ProductsCarousel {
         if (width <= 992) return 2;
         if (width <= 1200) return 3;
         return 4;
-    }
-
-    extractCategoryFromTitle(title) {
-        // This is a simplified approach - in a real implementation, 
-        // this would come from the product data itself
-        const categories = [
-            'Clareamento Dental', 'Resina Composta', 'Anestésico', 'Broca', 
-            'Fotopolimerizador', 'Cimento', 'Kit Endodontia', 'Ácido Fosfórico',
-            'Autoclave', 'Cadeira Odontológica', 'Kit', 'Sugador'
-        ];
-        
-        for (const category of categories) {
-            if (title.toLowerCase().includes(category.toLowerCase())) {
-                return category;
-            }
-        }
-        
-        // Default fallback
-        return 'Produto';
-    }
-
-    extractBrandFromTitle(title) {
-        // This is a simplified approach - in a real implementation,
-        // this would come from the product data itself
-        const brands = ['Whiteness', 'Z350', 'Mepivacaína', 'Carbide', 'Radii', 'FGM', 'Ultradent', 'Angelus', 'Dentsply', 'Kavo', 'Vitale'];
-        
-        for (const brand of brands) {
-            if (title.toLowerCase().includes(brand.toLowerCase())) {
-                return brand;
-            }
-        }
-        
-        // Default fallback
-        return 'Marca';
-    }
-
-    renderProducts() {
-        const allProducts = [...this.products, ...this.products, ...this.products];
-        this.track.innerHTML = allProducts.map((product, index) => {
-            // Extract category and brand from product name (simplified approach)
-            // In a real implementation, this would come from actual product data
-            const category = this.extractCategoryFromTitle(product.name);
-            const brand = this.extractBrandFromTitle(product.name);
-            
-            return `
-            <div class="product-slide" data-index="${index}">
-                <article class="product-card" data-product-id="${product.id}">
-                    <a href="/pages/produto/produto.html?category=${encodeURIComponent(category)}&brand=${encodeURIComponent(brand)}&id=${product.id}" class="product-card-link">
-                        <div class="product-card__image">
-                            <img src="${product.image}" alt="${product.name}">
-                            <div class="product-badge product-badge--discount">${product.discount}% OFF</div>
-                        </div>
-                        <div class="product-card__content">
-                            <h3 class="product-title">${product.name}</h3>
-                            <div class="product-pricing">
-                                <span class="product-price--current">${Utils.formatPrice(product.price * 100)}</span>
-                            </div>
-                            <button class="product-button">ADICIONAR AO CARRINHO</button>
-                        </div>
-                    </a>
-                </article>
-            </div>
-        `}).join('');
-        this.currentIndex = this.products.length;
-        this.updatePosition(false);
-    }
-
-    
-
-    renderDots() {
-        const totalGroups = Math.ceil(this.products.length / this.itemsPerView);
-        this.dotsContainer.innerHTML = Array.from({ length: totalGroups }, (_, i) => `
-            <button class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}" aria-label="Ir para grupo ${i + 1}"></button>
-        `).join('');
     }
 
     bindEvents() {
@@ -1254,41 +1232,28 @@ class ProductsCarousel {
             const newItemsPerView = this.getItemsPerView();
             if (newItemsPerView !== this.itemsPerView) {
                 this.itemsPerView = newItemsPerView;
-                this.renderDots();
-                this.updatePosition(false);
+                this.updateDots();
             }
         }, 250));
     }
 
     prev() {
         if (this.isTransitioning) return;
-        this.currentIndex -= this.itemsPerView;
+        const maxIndex = Math.max(0, this.totalSlides - this.itemsPerView);
+        this.currentIndex = Math.max(0, this.currentIndex - this.itemsPerView);
         this.updatePosition();
-        if (this.currentIndex < 0) {
-            this.isTransitioning = true;
-            setTimeout(() => {
-                this.currentIndex = this.products.length + this.currentIndex;
-                this.updatePosition(false);
-            }, 400);
-        }
     }
 
     next() {
         if (this.isTransitioning) return;
-        this.currentIndex += this.itemsPerView;
+        const maxIndex = Math.max(0, this.totalSlides - this.itemsPerView);
+        this.currentIndex = Math.min(maxIndex, this.currentIndex + this.itemsPerView);
         this.updatePosition();
-        if (this.currentIndex >= this.products.length * 2) {
-            this.isTransitioning = true;
-            setTimeout(() => {
-                this.currentIndex -= this.products.length;
-                this.updatePosition(false);
-            }, 400);
-        }
     }
 
     goToGroup(groupIndex) {
         if (this.isTransitioning) return;
-        this.currentIndex = this.products.length + (groupIndex * this.itemsPerView);
+        this.currentIndex = Math.min(groupIndex * this.itemsPerView, Math.max(0, this.totalSlides - this.itemsPerView));
         this.updatePosition();
     }
 
@@ -1303,14 +1268,30 @@ class ProductsCarousel {
     }
 
     updateDots() {
+        const totalGroups = Math.ceil(this.totalSlides / this.itemsPerView);
+        
+        // Atualizar ou criar dots conforme necessário
+        if (this.dotsContainer.children.length !== totalGroups) {
+            this.dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalGroups; i++) {
+                const dot = document.createElement('button');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.dataset.index = i;
+                dot.setAttribute('aria-label', `Ir para grupo ${i + 1}`);
+                this.dotsContainer.appendChild(dot);
+            }
+        }
+        
+        // Atualizar estado ativo dos dots
         const dots = this.dotsContainer.querySelectorAll('.carousel-dot');
-        const currentGroup = Math.floor((this.currentIndex % this.products.length) / this.itemsPerView);
+        const currentGroup = Math.floor(this.currentIndex / this.itemsPerView);
         dots.forEach((dot, index) => dot.classList.toggle('active', index === currentGroup));
     }
 
     updateNavButtons() {
-        this.prevBtn.disabled = false;
-        this.nextBtn.disabled = false;
+        const maxIndex = Math.max(0, this.totalSlides - this.itemsPerView);
+        this.prevBtn.disabled = this.currentIndex <= 0;
+        this.nextBtn.disabled = this.currentIndex >= maxIndex || maxIndex <= 0;
     }
 
 }
@@ -1318,34 +1299,14 @@ class ProductsCarousel {
 
 
 // =================================================================================
-// ===== DADOS E INICIALIZAÇÃO DOS CARROSSÉIS (ADICIONE AO FINAL DO SCRIPT.JS) ====
+// ===== INICIALIZAÇÃO DOS CARROSSÉIS (ATUALIZADA PARA USAR HTML ESTÁTICO) =======
 // =================================================================================
-
-// Dados Mock para os carrosséis
-const mockProductsDestaques = [
-    { id: 'prod1', name: 'Kit Clareamento Dental Whiteness HP', price: 189.90, discount: 27, image: 'https://via.placeholder.com/300x300/1c5787/ffffff?text=Destaque+1' },
-    { id: 'prod2', name: 'Resina Composta Z350 XT', price: 245.90, discount: 15, image: 'https://via.placeholder.com/300x300/134a6b/ffffff?text=Destaque+2' },
-    { id: 'prod3', name: 'Anestésico Mepivacaína 3%', price: 89.90, discount: 30, image: 'https://via.placeholder.com/300x300/4CAF50/ffffff?text=Destaque+3' },
-    { id: 'prod4', name: 'Broca Carbide FG 245', price: 34.90, discount: 10, image: 'https://via.placeholder.com/300x300/CA69F5/ffffff?text=Destaque+4' },
-    { id: 'prod5', name: 'Fotopolimerizador LED Radii Plus', price: 899.00, discount: 20, image: 'https://via.placeholder.com/300x300/dc3545/ffffff?text=Destaque+5' },
-];
-
-const mockProductsLancamentos = [
-    { id: 'prod6', name: 'Cimento de Ionômero de Vidro', price: 56.90, discount: 18, image: 'https://via.placeholder.com/300x300/ffc107/ffffff?text=Lan%C3%A7amento+1' },
-    { id: 'prod7', name: 'Kit Endodontia Rotatória Avançado', price: 1450.00, discount: 25, image: 'https://via.placeholder.com/300x300/17a2b8/ffffff?text=Lan%C3%A7amento+2' },
-    { id: 'prod8', name: 'Ácido Fosfórico 37% Gel', price: 22.90, discount: 12, image: 'https://via.placeholder.com/300x300/28a745/ffffff?text=Lan%C3%A7amento+3' }
-];
-
-const mockProductsEquipamentos = [
-    { id: 'prod9', name: 'Autoclave Vitale Class CD 21 Litros', price: 4500.00, discount: 10, image: 'https://via.placeholder.com/300x300/6f42c1/ffffff?text=Equipamento+1' },
-    { id: 'prod10', name: 'Cadeira Odontológica Kavo Unik', price: 25000.00, discount: 15, image: 'https://via.placeholder.com/300x300/e83e8c/ffffff?text=Equipamento+2' },
-];
 
 // Inicialização dentro do DOMContentLoaded para garantir que os elementos existam
 document.addEventListener('DOMContentLoaded', () => {
-    new ProductsCarousel('productsTrack', 'carouselDots', mockProductsDestaques);
-    new ProductsCarousel('productsTrackLancamentos', 'carouselDotsLancamentos', mockProductsLancamentos);
-    new ProductsCarousel('productsTrackEquipamentos', 'carouselDotsEquipamentos', mockProductsEquipamentos);
+    new ProductsCarousel('productsTrack', 'carouselDots');
+    new ProductsCarousel('productsTrackLancamentos', 'carouselDotsLancamentos');
+    new ProductsCarousel('productsTrackEquipamentos', 'carouselDotsEquipamentos');
 });
 
 // ===== SISTEMA DE MEGA MENU =====
@@ -1543,10 +1504,82 @@ class PerformanceMonitor {
     }
 }
 
+// ===== SISTEMA DE BANCO DE DADOS DE PRODUTOS =====
+class ProductDatabase {
+    constructor() {
+        this.products = {};
+        this.loadProducts();
+    }
+
+    loadProducts() {
+        // Tentar carregar produtos do arquivo JSON primeiro
+        try {
+            // Em produção, isso seria uma chamada fetch para o arquivo JSON
+            // const response = await fetch('/data/products.json');
+            // this.products = await response.json();
+            
+            // Por ora, usar dados fixos replicados do arquivo products.json para evitar problema com fetch síncrono
+            // Em implementações futuras, pode-se carregar assíncrono e atualizar quando disponível
+            // this.products = await response.json();
+            
+            this.products = {
+                'prod1': { id: 'prod1', name: 'Kit Clareamento Dental Whiteness HP', price: 18990, discount: 27, price_original: 26000, price_current: 18990, installments: { count: 10, value: 18.99 }, image: '/images/clareador-whiteness.png', category: 'Clareamento Dental', brand: 'Whiteness' },
+                'prod2': { id: 'prod2', name: 'Resina Composta Z350 XT', price: 24590, discount: 15, price_original: 29000, price_current: 24590, installments: { count: 10, value: 24.59 }, image: '/images/resina-composta.png', category: 'Resina Composta', brand: 'Z350' },
+                'prod3': { id: 'prod3', name: 'Anestésico Mepivacaína 3%', price: 8990, discount: 30, price_original: 12900, price_current: 8990, installments: { count: 6, value: 14.98 }, image: '/images/anestesico.png', category: 'Anestésico', brand: 'Mepivacaína' },
+                'prod4': { id: 'prod4', name: 'Broca Carbide FG 245', price: 3490, discount: 10, price_original: 3900, price_current: 3490, installments: { count: 3, value: 11.63 }, image: '/images/broca.png', category: 'Broca', brand: 'Carbide' },
+                'prod5': { id: 'prod5', name: 'Fotopolimerizador LED Radii Plus', price: 89900, discount: 20, price_original: 112500, price_current: 89900, installments: { count: 12, value: 7491.67 }, image: '/images/fotopolimerizador.png', category: 'Fotopolimerizador', brand: 'Radii' },
+                'prod6': { id: 'prod6', name: 'Cimento de Ionômero de Vidro', price: 5690, discount: 18, price_original: 7000, price_current: 5690, installments: { count: 5, value: 11.38 }, image: '/images/ionomero.png', category: 'Cimento', brand: 'Vitro' },
+                'prod7': { id: 'prod7', name: 'Kit Endodontia Rotatória Avançado', price: 145000, discount: 25, price_original: 195000, price_current: 145000, installments: { count: 12, value: 12083.33 }, image: '/images/kit-endodontia.png', category: 'Kit', brand: 'Kerr' },
+                'prod8': { id: 'prod8', name: 'Ácido Fosfórico 37% Gel', price: 2290, discount: 12, price_original: 2600, price_current: 2290, installments: { count: 3, value: 7.63 }, image: '/images/acido.png', category: 'Ácido Fosfórico', brand: 'SDI' },
+                'prod9': { id: 'prod9', name: 'Autoclave Vitale Class CD 21 Litros', price: 450000, discount: 10, price_original: 500000, price_current: 450000, installments: { count: 12, value: 37500.00 }, image: '/images/autoclave.png', category: 'Autoclave', brand: 'Vitale' },
+                'prod10': { id: 'prod10', name: 'Cadeira Odontológica Kavo Unik', price: 2500000, discount: 15, price_original: 2950000, price_current: 2500000, installments: { count: 12, value: 208333.33 }, image: '/images/cadeira.png', category: 'Cadeira Odontológica', brand: 'Kavo' }
+            };
+        } catch (error) {
+            Logger.error('Erro ao carregar produtos:', error);
+            // Em caso de erro, usar dados padrão
+            this.products = {
+                'prod1': { id: 'prod1', name: 'Kit Clareamento Dental Whiteness HP', price: 18990, discount: 27, price_original: 26000, price_current: 18990, installments: { count: 10, value: 18.99 }, image: '/images/clareador-whiteness.png', category: 'Clareamento Dental', brand: 'Whiteness' },
+                'prod2': { id: 'prod2', name: 'Resina Composta Z350 XT', price: 24590, discount: 15, price_original: 29000, price_current: 24590, installments: { count: 10, value: 24.59 }, image: '/images/resina-composta.png', category: 'Resina Composta', brand: 'Z350' },
+                'prod3': { id: 'prod3', name: 'Anestésico Mepivacaína 3%', price: 8990, discount: 30, price_original: 12900, price_current: 8990, installments: { count: 6, value: 14.98 }, image: '/images/anestesico.png', category: 'Anestésico', brand: 'Mepivacaína' },
+                'prod4': { id: 'prod4', name: 'Broca Carbide FG 245', price: 3490, discount: 10, price_original: 3900, price_current: 3490, installments: { count: 3, value: 11.63 }, image: '/images/broca.png', category: 'Broca', brand: 'Carbide' },
+                'prod5': { id: 'prod5', name: 'Fotopolimerizador LED Radii Plus', price: 89900, discount: 20, price_original: 112500, price_current: 89900, installments: { count: 12, value: 7491.67 }, image: '/images/fotopolimerizador.png', category: 'Fotopolimerizador', brand: 'Radii' },
+                'prod6': { id: 'prod6', name: 'Cimento de Ionômero de Vidro', price: 5690, discount: 18, price_original: 7000, price_current: 5690, installments: { count: 5, value: 11.38 }, image: '/images/ionomero.png', category: 'Cimento', brand: 'Vitro' },
+                'prod7': { id: 'prod7', name: 'Kit Endodontia Rotatória Avançado', price: 145000, discount: 25, price_original: 195000, price_current: 145000, installments: { count: 12, value: 12083.33 }, image: '/images/kit-endodontia.png', category: 'Kit', brand: 'Kerr' },
+                'prod8': { id: 'prod8', name: 'Ácido Fosfórico 37% Gel', price: 2290, discount: 12, price_original: 2600, price_current: 2290, installments: { count: 3, value: 7.63 }, image: '/images/acido.png', category: 'Ácido Fosfórico', brand: 'SDI' },
+                'prod9': { id: 'prod9', name: 'Autoclave Vitale Class CD 21 Litros', price: 450000, discount: 10, price_original: 500000, price_current: 450000, installments: { count: 12, value: 37500.00 }, image: '/images/autoclave.png', category: 'Autoclave', brand: 'Vitale' },
+                'prod10': { id: 'prod10', name: 'Cadeira Odontológica Kavo Unik', price: 2500000, discount: 15, price_original: 2950000, price_current: 2500000, installments: { count: 12, value: 208333.33 }, image: '/images/cadeira.png', category: 'Cadeira Odontológica', brand: 'Kavo' }
+            };
+        }
+    }
+
+    getProduct(productId) {
+        return this.products[productId] || null;
+    }
+
+    getAllProducts() {
+        return this.products;
+    }
+
+    getProductsByIds(productIds) {
+        return productIds.map(id => this.getProduct(id)).filter(Boolean);
+    }
+
+    searchProducts(query) {
+        const searchTerm = query.toLowerCase();
+        return Object.values(this.products).filter(product => 
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.category.toLowerCase().includes(searchTerm) ||
+            product.brand.toLowerCase().includes(searchTerm)
+        );
+    }
+}
+
 // ===== APLICAÇÃO PRINCIPAL =====
 class OdontoMasterApp {
     constructor() {
         this.modules = {};
+        // Inicializar banco de dados de produtos
+        this.productDB = new ProductDatabase();
         this.isInitialized = false;
     }
     

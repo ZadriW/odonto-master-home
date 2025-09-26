@@ -1,0 +1,252 @@
+{
+  "prod1": {
+    "id": "prod1",
+    "name": "Kit Clareamento Dental Whiteness HP",
+    "price": 18990,
+    "discount": 27,
+    "price_original": 26000,
+    "price_current": 18990,
+    "installments": {
+      "count": 10,
+      "value": 18.99
+    },
+    "image": "/images/clareador-whiteness.png",
+    "category": "Clareamento Dental",
+    "brand": "Whiteness",
+    "description": "Kit completo para clareamento dental profissional com gel clareador Whiteness HP e acessórios necessários para um tratamento eficaz.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/clareador-whiteness-2.png",
+      "/images/clareador-whiteness-3.png",
+      "/images/clareador-whiteness-4.png"
+    ],
+    "specifications": {
+      "peso": "1.2 kg",
+      "componentes": "10 seringas de gel clareador",
+      "volume": "10ml cada",
+      "duracao": "2-3 semanas"
+    }
+  },
+  "prod2": {
+    "id": "prod2",
+    "name": "Resina Composta Z350 XT",
+    "price": 24590,
+    "discount": 15,
+    "price_original": 29000,
+    "price_current": 24590,
+    "installments": {
+      "count": 10,
+      "value": 24.59
+    },
+    "image": "/images/resina-composta.png",
+    "category": "Resina Composta",
+    "brand": "Z350",
+    "description": "Resina composta de última geração para restaurações estéticas com excelente acabamento e durabilidade.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/resina-composta-2.png",
+      "/images/resina-composta-3.png"
+    ],
+    "specifications": {
+      "peso": "0.5 kg",
+      "tamanhos": "A1, A2, A3, B1, C2",
+      "quantidade": "4 bisnagas"
+    }
+  },
+  "prod3": {
+    "id": "prod3",
+    "name": "Anestésico Mepivacaína 3%",
+    "price": 8990,
+    "discount": 30,
+    "price_original": 12900,
+    "price_current": 8990,
+    "installments": {
+      "count": 6,
+      "value": 14.98
+    },
+    "image": "/images/anestesico.png",
+    "category": "Anestésico",
+    "brand": "Mepivacaína",
+    "description": "Anestésico local sem vasoconstritor para procedimentos odontológicos, ideal para pacientes com restrições cardiovasculares.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/anestesico-2.png"
+    ],
+    "specifications": {
+      "concentracao": "3%",
+      "apresentacao": "100 carpules de 1,8ml",
+      "duracao": "45-90 minutos"
+    }
+  },
+  "prod4": {
+    "id": "prod4",
+    "name": "Broca Carbide FG 245",
+    "price": 3490,
+    "discount": 10,
+    "price_original": 3900,
+    "price_current": 3490,
+    "installments": {
+      "count": 3,
+      "value": 11.63
+    },
+    "image": "/images/broca.png",
+    "category": "Broca",
+    "brand": "Carbide",
+    "description": "Broca carbide para corte de estruturas dentárias com alta precisão e durabilidade.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/broca-2.png"
+    ],
+    "specifications": {
+      "tipo": "Carbide",
+      "codigo": "FG 245",
+      "comprimento": "16mm"
+    }
+  },
+  "prod5": {
+    "id": "prod5",
+    "name": "Fotopolimerizador LED Radii Plus",
+    "price": 89900,
+    "discount": 20,
+    "price_original": 112500,
+    "price_current": 89900,
+    "installments": {
+      "count": 12,
+      "value": 7491.67
+    },
+    "image": "/images/fotopolimerizador.png",
+    "category": "Fotopolimerizador",
+    "brand": "Radii",
+    "description": "Fotopolimerizador de alta potência para cura de resinas compostas com tecnologia LED avançada.",
+    "inStock": true,
+    "additionalImages": [],
+    "specifications": {
+      "potencia": "1200mW/cm2",
+      "comprimento": "430-490nm",
+      "bateria": "Li-ion recarregável"
+    }
+  },
+  "prod6": {
+    "id": "prod6",
+    "name": "Cimento de Ionômero de Vidro",
+    "price": 5690,
+    "discount": 18,
+    "price_original": 7000,
+    "price_current": 5690,
+    "installments": {
+      "count": 5,
+      "value": 11.38
+    },
+    "image": "/images/ionomero.png",
+    "category": "Cimento",
+    "brand": "Vitro",
+    "description": "Cimento de ionômero de vidro para cimentação e forramento com liberação contínua de flúor.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/ionomero-2.png"
+    ],
+    "specifications": {
+      "tipo": "Ionômero de vidro",
+      "apresentacao": "2 pastas de 15g",
+      "tempo": "3-5 minutos"
+    }
+  },
+  "prod7": {
+    "id": "prod7",
+    "name": "Kit Endodontia Rotatória Avançado",
+    "price": 145000,
+    "discount": 25,
+    "price_original": 195000,
+    "price_current": 145000,
+    "installments": {
+      "count": 12,
+      "value": 12083.33
+    },
+    "image": "/images/kit-endodontia.png",
+    "category": "Kit",
+    "brand": "Kerr",
+    "description": "Kit completo para terapia endodôntica com sistema rotatório e instrumentais de alta qualidade.",
+    "inStock": true,
+    "additionalImages": [],
+    "specifications": {
+      "itens": "60 instrumentos",
+      "tamanhos": "10-40",
+      "tipo": "NiTi rotatório"
+    }
+  },
+  "prod8": {
+    "id": "prod8",
+    "name": "Ácido Fosfórico 37% Gel",
+    "price": 2290,
+    "discount": 12,
+    "price_original": 2600,
+    "price_current": 2290,
+    "installments": {
+      "count": 3,
+      "value": 7.63
+    },
+    "image": "/images/acido.png",
+    "category": "Ácido Fosfórico",
+    "brand": "SDI",
+    "description": "Ácido fosfórico gel para condicionamento ácido da estrutura dental antes de restaurações adesivas.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/acido-2.png"
+    ],
+    "specifications": {
+      "concentracao": "37%",
+      "apresentacao": "10 seringas de 1,2ml",
+      "tempo": "15 segundos"
+    }
+  },
+  "prod9": {
+    "id": "prod9",
+    "name": "Autoclave Vitale Class CD 21 Litros",
+    "price": 450000,
+    "discount": 10,
+    "price_original": 500000,
+    "price_current": 450000,
+    "installments": {
+      "count": 12,
+      "value": 37500.00
+    },
+    "image": "/images/autoclave.png",
+    "category": "Autoclave",
+    "brand": "Vitale",
+    "description": "Autoclave classe B para esterilização de instrumentos odontológicos com câmara de 21 litros.",
+    "inStock": true,
+    "additionalImages": [],
+    "specifications": {
+      "capacidade": "21 litros",
+      "temperatura": "134°C",
+      "programas": "8 pré-programados"
+    }
+  },
+  "prod10": {
+    "id": "prod10",
+    "name": "Cadeira Odontológica Kavo Unik",
+    "price": 2500000,
+    "discount": 15,
+    "price_original": 2950000,
+    "price_current": 2500000,
+    "installments": {
+      "count": 12,
+      "value": 208333.33
+    },
+    "image": "/images/cadeira.png",
+    "category": "Cadeira Odontológica",
+    "brand": "Kavo",
+    "description": "Cadeira odontológica elétrica com sistema de controle avançado e design ergonômico.",
+    "inStock": true,
+    "additionalImages": [
+      "/images/cadeira-2.png",
+      "/images/cadeira-3.png",
+      "/images/cadeira-4.png"
+    ],
+    "specifications": {
+      "motor": "elétrico silencioso",
+      "apoios": "cabeça, braços, pernas",
+      "funcoes": "10 motores independentes"
+    }
+  }
+}

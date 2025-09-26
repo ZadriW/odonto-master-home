@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed');
+    
+    // Verificar se o app principal está inicializado
+    if (!window.app || !window.app.productDB) {
+        console.error('App principal não inicializado. Aguardando inicialização...');
+        // Aguardar a inicialização do app
+        const checkAppReady = setInterval(() => {
+            if (window.app && window.app.productDB) {
+                clearInterval(checkAppReady);
+                initializePage();
+            }
+        }, 100);
+    } else {
+        initializePage();
+    }
+    
+    // Add a simple test function to window for debugging
+    window.testTabSwitch = function(tabId) {
+        console.log('Testing tab switch to:', tabId);
+        switchTab(tabId);
+    };
+});
+
+// Função que inicializa a página após garantir que o app está pronto
+function initializePage() {
+    console.log('App está pronto, inicializando página de produto...');
     // Initialize product spot functionality
     console.log('Initializing product gallery...');
     initProductGallery();
@@ -25,13 +50,23 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Loading product from URL...');
     loadProductFromUrl();
     console.log('All initialization functions called');
-    
-    // Add a simple test function to window for debugging
-    window.testTabSwitch = function(tabId) {
-        console.log('Testing tab switch to:', tabId);
-        switchTab(tabId);
-    };
-});
+}
+
+// ===== ROBUST ERROR HANDLING =====
+// Melhorar a função getProductInfo para lidar com erros
+function getProductInfoSafely(productId) {
+    try {
+        if (window.app && window.app.productDB) {
+            return window.app.productDB.getProduct(productId);
+        } else {
+            console.warn('App ou banco de dados não disponível');
+            return null;
+        }
+    } catch (error) {
+        console.error('Erro ao obter informações do produto:', error);
+        return null;
+    }
+}
 
 // ===== PRODUCT DATA LOADING FROM URL =====
 function loadProductFromUrl() {
@@ -40,11 +75,202 @@ function loadProductFromUrl() {
     const brand = urlParams.get('brand');
     const id = urlParams.get('id');
     
-    if (category && brand) {
-        // Update product information based on URL parameters
-        updateProductInfo(category, brand, id);
-        updateBreadcrumb(category, brand);
-        updatePageTitle(category, brand);
+    if (id) {
+        // Tentar obter produto do banco de dados primeiro
+        const productFromDB = window.app ? window.app.productDB.getProduct(id) : null;
+        
+        if (productFromDB) {
+            // Usar dados do banco de dados para atualizar a página
+            updateProductInfoFromDB(productFromDB);
+            updatePageTitleFromProduct(productFromDB);
+        } else if (category && brand) {
+            // Fallback para lógica antiga se produto não estiver no banco de dados
+            updateProductInfo(category, brand, id);
+            updateBreadcrumb(category, brand);
+            updatePageTitle(category, brand);
+        } else {
+            // Se não houver informações suficientes, mostrar mensagem de erro
+            showProductNotFound();
+        }
+    } else {
+        // Se não houver ID, mostrar mensagem de erro
+        showProductNotFound();
+    }
+}
+
+// ===== PRODUCT NOT FOUND FUNCTIONALITY =====
+function showProductNotFound() {
+    const productContainer = document.querySelector('.product-spot-container');
+    if (productContainer) {
+        productContainer.innerHTML = `
+            <div class="product-not-found">
+                <h2>Produto não encontrado</h2>
+                <p>O produto que você está procurando não foi encontrado em nosso sistema.</p>
+                <a href="/pages/home/index.html" class="btn btn--primary">Voltar à Home</a>
+            </div>
+        `;
+    }
+}
+
+function updateProductInfoFromDB(product) {
+    // Update product title
+    const productTitle = document.getElementById('productDetailTitle');
+    if (productTitle) {
+        productTitle.textContent = product.name;
+    }
+    
+    // Update meta title
+    document.title = `${product.name} | Odonto Master`;
+    
+    // Update product images with real images from database
+    const mainImage = document.getElementById('mainImage');
+    if (mainImage) {
+        if (product.image) {
+            // Criar um objeto de imagem para verificar se a imagem existe antes de atribuir
+            const img = new Image();
+            img.onload = function() {
+                // Imagem carregou com sucesso
+                mainImage.src = product.image;
+                mainImage.alt = product.name;
+            };
+            img.onerror = function() {
+                // Imagem falhou ao carregar, usar placeholder
+                mainImage.src = 'https://placehold.co/600x600/e8ece9/333?text=Imagem+Indisponível';
+                mainImage.alt = 'Imagem indisponível - ' + product.name;
+            };
+            img.src = product.image;
+        } else {
+            // Imagem padrão se não estiver disponível
+            mainImage.src = 'https://placehold.co/600x600/e8ece9/333?text=Imagem+Indisponível';
+            mainImage.alt = 'Imagem indisponível - ' + product.name;
+        }
+    }
+    
+    // Update thumbnail images
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    if (thumbnails.length > 0) {
+        // Use the product's actual image for first thumbnail
+        if (product.image) {
+            thumbnails[0].src = product.image;
+            thumbnails[0].alt = `Imagem principal - ${product.name}`;
+            thumbnails[0].dataset.large = product.image;
+            thumbnails[0].classList.add('active'); // Marcar primeira thumbnail como ativa
+            
+            // Adicionar manipulador de erro para thumbnail
+            thumbnails[0].onerror = function() {
+                this.src = 'https://placehold.co/100x100/e8ece9/333?text=IMG';
+                this.alt = 'Thumbnail indisponível - ' + product.name;
+                this.dataset.large = this.src;
+            };
+        }
+        
+        // Adicionar mais thumbnails se necessário
+        for (let i = 1; i < thumbnails.length; i++) {
+            if (product.image) {
+                // Usar imagem adicional ou placeholder
+                const additionalImage = getAdditionalProductImage(product, i);
+                if (additionalImage) {
+                    thumbnails[i].src = additionalImage;
+                    thumbnails[i].alt = `Imagem ${i + 1} - ${product.name}`;
+                    thumbnails[i].dataset.large = additionalImage;
+                } else {
+                    // Use placeholder for additional thumbnails
+                    thumbnails[i].src = `https://placehold.co/100x100/e8ece9/333?text=${i + 1}`;
+                    thumbnails[i].alt = `Imagem ${i + 1} - ${product.name}`;
+                    thumbnails[i].dataset.large = `https://placehold.co/600x600/e8ece9/333?text=${product.name.replace(/\s+/g, '+')}+${i + 1}`;
+                }
+            } else {
+                // Use placeholder se não houver imagem principal
+                thumbnails[i].src = `https://placehold.co/100x100/e8ece9/333?text=${i + 1}`;
+                thumbnails[i].alt = `Thumbnail ${i + 1}`;
+                thumbnails[i].dataset.large = `https://placehold.co/600x600/e8ece9/333?text=Thumbnail+${i + 1}`;
+            }
+            
+            // Adicionar manipulador de erro para todas as thumbnails
+            thumbnails[i].onerror = function() {
+                this.src = 'https://placehold.co/100x100/e8ece9/333?text=THUMB';
+                this.alt = 'Thumbnail indisponível';
+                this.dataset.large = this.src;
+            };
+        }
+    }
+    
+    // Update pricing based on actual product data
+    updatePricingFromDB(product);
+    
+    // Update product brand and category in specifications
+    updateSpecifications(product);
+    
+    // Update product description if available
+    updateDescription(product);
+    
+    // Update product variations
+    updateVariations(product.category, product.brand);
+    
+    // Update breadcrumb with product information
+    updateBreadcrumbFromProduct(product);
+}
+
+// ===== HELPER FUNCTIONS =====
+function getAdditionalProductImage(product, index) {
+    // Se precisar de mais imagens para o produto, poderia retornar variantes
+    // Por enquanto, retornando null para usar placeholder
+    // Em versões futuras, poderia retornar imagens adicionais baseadas no produto
+    if (product.additionalImages && product.additionalImages[index - 1]) {
+        return product.additionalImages[index - 1];
+    }
+    return null;
+}
+
+function updateSpecifications(product) {
+    // Atualizar informações técnicas do produto
+    const specsTable = document.querySelector('.specifications-table');
+    if (specsTable) {
+        specsTable.innerHTML = `
+            <tr>
+                <td><strong>Marca</strong></td>
+                <td>${product.brand || 'Não especificada'}</td>
+            </tr>
+            <tr>
+                <td><strong>Categoria</strong></td>
+                <td>${product.category || 'Não especificada'}</td>
+            </tr>
+            <tr>
+                <td><strong>Nome</strong></td>
+                <td>${product.name || 'Não especificado'}</td>
+            </tr>
+            <tr>
+                <td><strong>ID</strong></td>
+                <td>${product.id || 'Não especificado'}</td>
+            </tr>
+            <tr>
+                <td><strong>Desconto</strong></td>
+                <td>${product.discount || 0}% OFF</td>
+            </tr>
+            <tr>
+                <td><strong>Em estoque</strong></td>
+                <td>${product.inStock ? 'Sim' : 'Não'}</td>
+            </tr>
+        `;
+    }
+}
+
+function updateDescription(product) {
+    // Atualizar descrição do produto
+    const descriptionPane = document.getElementById('description');
+    if (descriptionPane) {
+        const description = product.description || 'Descrição não disponível.';
+        descriptionPane.innerHTML = `
+            <h3>Descrição do Produto</h3>
+            <p>${description}</p>
+            <h4>Características:</h4>
+            <ul>
+                <li>Produto de alta qualidade</li>
+                <li>Indicado para profissionais da odontologia</li>
+                <li>Atende às normas de segurança</li>
+                <li>Design ergonômico</li>
+            </ul>
+        `;
     }
 }
 
@@ -80,6 +306,68 @@ function updateProductInfo(category, brand, id) {
 function getColorForIndex(index) {
     const colors = ['1c5787', '134a6b', '4CAF50', 'CA69F5', 'dc3545', 'ffc107', '17a2b8', '28a745'];
     return colors[index % colors.length];
+}
+
+function updatePricingFromDB(product) {
+    // Usar os dados reais do produto do banco de dados
+    // Verificar se temos price_current e price_original, senão calcular
+    let priceCurrent = product.price_current;
+    let priceOriginal = product.price_original;
+    let discount = product.discount;
+    
+    // Se não tivermos price_current, usar o campo price principal
+    if (!priceCurrent) {
+        priceCurrent = product.price;
+    }
+    
+    // Se não tivermos price_original, calcular com base no desconto
+    if (!priceOriginal) {
+        if (discount && discount > 0) {
+            priceOriginal = priceCurrent / (1 - discount / 100);
+        } else {
+            priceOriginal = priceCurrent * 1.15; // Preço original com 15% a mais
+        }
+    }
+    
+    // Se não tivermos desconto, calcular com base nos preços
+    if (!discount) {
+        discount = Math.round(((priceOriginal - priceCurrent) / priceOriginal) * 100);
+    }
+    
+    // Converter de centavos para reais se necessário
+    const priceInReais = (priceCurrent > 1000) ? priceCurrent / 100 : priceCurrent;
+    const originalPriceInReais = (priceOriginal > 1000) ? priceOriginal / 100 : priceOriginal;
+    
+    // Obter informações de parcelamento se disponíveis
+    let installmentCount = 10;
+    let installmentValue = priceInReais / 10;
+    
+    if (product.installments) {
+        installmentCount = product.installments.count || installmentCount;
+        installmentValue = product.installments.value || installmentValue;
+        
+        // Se o valor do parcelamento não estiver definido, calcular
+        if (!product.installments.value) {
+            installmentValue = priceInReais / installmentCount;
+        }
+    }
+    
+    // Update price elements in the DOM
+    const priceCurrentElement = document.querySelector('.price-current .price-value');
+    const priceOriginalElement = document.querySelector('.price-original .price-value');
+    const installmentElement = document.querySelector('.installment-text');
+    const discountBadge = document.querySelector('.discount-badge');
+    
+    if (priceCurrentElement) priceCurrentElement.textContent = `R$ ${priceInReais.toFixed(2).replace('.', ',')}`;
+    if (priceOriginalElement) priceOriginalElement.textContent = `R$ ${originalPriceInReais.toFixed(2).replace('.', ',')}`;
+    if (installmentElement) installmentElement.textContent = `${installmentCount}x sem juros de R$ ${installmentValue.toFixed(2).replace('.', ',')}`;
+    if (discountBadge) discountBadge.textContent = `${discount}% OFF`;
+    
+    // Atualizar o preço também no botão de adicionar ao carrinho para referência futura
+    const priceElements = document.querySelectorAll('[data-price]');
+    priceElements.forEach(el => {
+        el.dataset.price = Math.round(priceInReais * 100); // Armazenar em centavos
+    });
 }
 
 function updatePricing(category, brand) {
@@ -130,6 +418,22 @@ function updateVariations(category, brand) {
         variationLabels[0].textContent = "Cor:";
         variationLabels[1].textContent = "Tamanho:";
     }
+    
+    // Add event listeners to variation options to update price dynamically if needed
+    const variationOptions = document.querySelectorAll('.variation-option');
+    variationOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // This could be extended to update price based on selected variation
+            updatePriceBasedOnVariation();
+        });
+    });
+}
+
+// ===== DYNAMIC PRICE UPDATE FUNCTION =====
+function updatePriceBasedOnVariation() {
+    // Placeholder function to update price based on selected variations
+    // This would be expanded based on specific business rules
+    console.log('Updating price based on selected variations');
 }
 
 function updateBreadcrumb(category, brand) {
@@ -143,19 +447,56 @@ function updateBreadcrumb(category, brand) {
     }
     
     if (productNameBreadcrumb) {
-        // Show just the product name (brand) in the breadcrumb, not category + brand
+        // Show just the product name in the breadcrumb
         productNameBreadcrumb.textContent = brand;
     }
 }
 
+// ===== IMPROVED BREADCRUMB FUNCTION =====
+function updateBreadcrumbFromProduct(product) {
+    // Update breadcrumb navigation using product information
+    const categoryBreadcrumb = document.getElementById('categoryBreadcrumb');
+    const productNameBreadcrumb = document.getElementById('productNameBreadcrumb');
+    
+    if (categoryBreadcrumb && product.category) {
+        categoryBreadcrumb.textContent = product.category;
+        categoryBreadcrumb.href = `/categoria/${product.category.toLowerCase().replace(/\s+/g, '-')}/index.html`;
+    }
+    
+    if (productNameBreadcrumb && product.name) {
+        // Show the full product name in the breadcrumb
+        productNameBreadcrumb.textContent = product.name;
+    }
+}
+
 function updatePageTitle(category, brand) {
-    // Update page title
-    document.title = `${category} - ${brand} | Odonto Master`;
+    // Update page title with fallback values
+    const title = `${category} - ${brand} | Odonto Master`;
+    document.title = title;
     
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
         metaDescription.content = `Compre ${category} da marca ${brand} com desconto na Odonto Master. Produto de qualidade para profissionais da odontologia.`;
+    }
+}
+
+// ===== IMPROVED PAGE TITLE FUNCTION =====
+function updatePageTitleFromProduct(product) {
+    // Update page title using product information
+    const title = `${product.name} | Odonto Master`;
+    document.title = title;
+    
+    // Update meta description with product-specific information
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.content = `${product.description || `Compre ${product.name} na Odonto Master. Produto de qualidade para profissionais da odontologia.`} | Melhor preço e entrega rápida.`;
+    }
+    
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+        metaKeywords.content = `${product.name}, ${product.category}, ${product.brand}, odontologia, dental, produtos odontológicos`;
     }
 }
 
@@ -519,45 +860,81 @@ function initAddToCart() {
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', function() {
             const quantity = parseInt(document.getElementById('quantity').value);
-            const productName = document.getElementById('productDetailTitle').textContent;
-            const priceElement = document.querySelector('.price-current .price-value');
-            const priceText = priceElement ? priceElement.textContent : '0,00';
-            const price = parseFloat(priceText.replace('R$ ', '').replace(',', '.')) * 100; // Convert to cents
             
-            // Get product ID from URL or generate one
+            // Get product ID from URL
             const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id') || 'prod-' + Date.now();
+            const productId = urlParams.get('id');
             
-            // Get product image
-            const mainImage = document.getElementById('mainImage');
-            const imageUrl = mainImage ? mainImage.src : 'https://placehold.co/100x100';
-            
-            // Create product object
-            const product = {
-                id: productId,
-                name: productName,
-                price: price,
-                quantity: quantity,
-                image: imageUrl,
-                sku: 'SKU-' + productId.substring(0, 8)
-            };
-            
-            // Add loading state
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adicionando...';
-            this.disabled = true;
-            
-            // Add to cart
-            addToCart(product);
-            
-            // Restore button after a short delay
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.disabled = false;
+            if (productId) {
+                // Obter informações do produto do banco de dados
+                const productFromDB = window.app ? window.app.productDB.getProduct(productId) : null;
                 
-                // Show success feedback
-                showNotification('Produto adicionado ao carrinho!', 'success');
-            }, 1000);
+                let product;
+                
+                if (productFromDB) {
+                    // Usar informações do banco de dados para garantir consistência
+                    product = {
+                        id: productFromDB.id,
+                        name: productFromDB.name,
+                        price: productFromDB.price, // preço já está em centavos
+                        quantity: quantity,
+                        image: productFromDB.image,
+                        category: productFromDB.category,
+                        brand: productFromDB.brand,
+                        description: productFromDB.description,
+                        discount: productFromDB.discount,
+                        inStock: productFromDB.inStock !== undefined ? productFromDB.inStock : true,
+                        sku: 'SKU-' + productFromDB.id.substring(0, 8)
+                    };
+                } else {
+                    // Fallback para lógica antiga se produto não estiver no banco de dados
+                    const productName = document.getElementById('productDetailTitle')?.textContent || 'Produto não identificado';
+                    const priceElement = document.querySelector('.price-current .price-value');
+                    const priceText = priceElement ? priceElement.textContent : '0,00';
+                    const priceMatch = priceText.match(/[\d,]+/);
+                    let price = 0;
+                    
+                    if (priceMatch) {
+                        price = parseFloat(priceMatch[0].replace(',', '.')) * 100; // Convert to cents
+                    } else {
+                        // Se não encontrar o preço no formato esperado, tentar obter de outro lugar
+                        price = 0; // preço padrão caso não encontre
+                    }
+                    
+                    // Get product image
+                    const mainImage = document.getElementById('mainImage');
+                    const imageUrl = mainImage ? mainImage.src : 'https://placehold.co/100x100';
+                    
+                    // Create product object
+                    product = {
+                        id: productId,
+                        name: productName,
+                        price: price,
+                        quantity: quantity,
+                        image: imageUrl,
+                        sku: 'SKU-' + productId.substring(0, 8)
+                    };
+                }
+                
+                // Add loading state
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adicionando...';
+                this.disabled = true;
+                
+                // Add to cart
+                addToCart(product);
+                
+                // Restore button after a short delay
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    
+                    // Show success feedback
+                    showNotification('Produto adicionado ao carrinho!', 'success');
+                }, 1000);
+            } else {
+                alert('ID do produto não encontrado na URL');
+            }
         });
     }
 }
@@ -569,46 +946,82 @@ function initBuyNow() {
     if (buyNowBtn) {
         buyNowBtn.addEventListener('click', function() {
             const quantity = parseInt(document.getElementById('quantity').value);
-            const productName = document.getElementById('productDetailTitle').textContent;
-            const priceElement = document.querySelector('.price-current .price-value');
-            const priceText = priceElement ? priceElement.textContent : '0,00';
-            const price = parseFloat(priceText.replace('R$ ', '').replace(',', '.')) * 100; // Convert to cents
             
-            // Get product ID from URL or generate one
+            // Get product ID from URL
             const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id') || 'prod-' + Date.now();
+            const productId = urlParams.get('id');
             
-            // Get product image
-            const mainImage = document.getElementById('mainImage');
-            const imageUrl = mainImage ? mainImage.src : 'https://placehold.co/100x100';
-            
-            // Create product object
-            const product = {
-                id: productId,
-                name: productName,
-                price: price,
-                quantity: quantity,
-                image: imageUrl,
-                sku: 'SKU-' + productId.substring(0, 8)
-            };
-            
-            // Add loading state
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
-            this.disabled = true;
-            
-            // Add to cart first
-            addToCart(product);
-            
-            // Simulate checkout process
-            setTimeout(() => {
-                // Restore button
-                this.innerHTML = originalText;
-                this.disabled = false;
+            if (productId) {
+                // Obter informações do produto do banco de dados
+                const productFromDB = window.app ? window.app.productDB.getProduct(productId) : null;
                 
-                // Redirect to checkout
-                window.location.href = '/pages/checkout/index.html';
-            }, 1500);
+                let product;
+                
+                if (productFromDB) {
+                    // Usar informações do banco de dados para garantir consistência
+                    product = {
+                        id: productFromDB.id,
+                        name: productFromDB.name,
+                        price: productFromDB.price, // preço já está em centavos
+                        quantity: quantity,
+                        image: productFromDB.image,
+                        category: productFromDB.category,
+                        brand: productFromDB.brand,
+                        description: productFromDB.description,
+                        discount: productFromDB.discount,
+                        inStock: productFromDB.inStock !== undefined ? productFromDB.inStock : true,
+                        sku: 'SKU-' + productFromDB.id.substring(0, 8)
+                    };
+                } else {
+                    // Fallback para lógica antiga se produto não estiver no banco de dados
+                    const productName = document.getElementById('productDetailTitle')?.textContent || 'Produto não identificado';
+                    const priceElement = document.querySelector('.price-current .price-value');
+                    const priceText = priceElement ? priceElement.textContent : '0,00';
+                    const priceMatch = priceText.match(/[\d,]+/);
+                    let price = 0;
+                    
+                    if (priceMatch) {
+                        price = parseFloat(priceMatch[0].replace(',', '.')) * 100; // Convert to cents
+                    } else {
+                        // Se não encontrar o preço no formato esperado, tentar obter de outro lugar
+                        price = 0; // preço padrão caso não encontre
+                    }
+                    
+                    // Get product image
+                    const mainImage = document.getElementById('mainImage');
+                    const imageUrl = mainImage ? mainImage.src : 'https://placehold.co/100x100';
+                    
+                    // Create product object
+                    product = {
+                        id: productId,
+                        name: productName,
+                        price: price,
+                        quantity: quantity,
+                        image: imageUrl,
+                        sku: 'SKU-' + productId.substring(0, 8)
+                    };
+                }
+                
+                // Add loading state
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                this.disabled = true;
+                
+                // Add to cart first
+                addToCart(product);
+                
+                // Simulate checkout process
+                setTimeout(() => {
+                    // Restore button
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    
+                    // Redirect to checkout
+                    window.location.href = '/pages/checkout/index.html';
+                }, 1500);
+            } else {
+                alert('ID do produto não encontrado na URL');
+            }
         });
     }
 }

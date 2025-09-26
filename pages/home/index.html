@@ -37,7 +37,7 @@
     <!-- Main Header -->
     <header class="main-header">
         <!-- Top Banner -->
-        <div class="top-banner">
+        <div class="top-banner"> <!--Adicionar Top-banner intuitivo ás outras páginas-->
             <div class="container">
                 <div class="top-banner__content">
                     <div class="top-banner__warning">
@@ -304,7 +304,91 @@
                 
                 <div class="products-carousel-wrapper">
                     <div class="products-carousel-track" id="productsTrack">
-                        <!-- Os produtos serão inseridos aqui dinamicamente -->
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod1">
+                                <a href="/pages/produto/produto.html?category=Clareamento+Dental&brand=Whiteness&id=prod1" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/clareador-whiteness.png" alt="Kit Clareamento Dental Whiteness HP">
+                                        <div class="product-badge product-badge--discount">27% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Kit Clareamento Dental Whiteness HP</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 189,90</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod2">
+                                <a href="/pages/produto/produto.html?category=Resina+Composta&brand=Z350&id=prod2" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/resina-composta.png" alt="Resina Composta Z350 XT">
+                                        <div class="product-badge product-badge--discount">15% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Resina Composta Z350 XT</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 245,90</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod3">
+                                <a href="/pages/produto/produto.html?category=Anestésico&brand=Mepivacaína&id=prod3" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/anestesico.png" alt="Anestésico Mepivacaína 3%">
+                                        <div class="product-badge product-badge--discount">30% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Anestésico Mepivacaína 3%</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 89,90</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod4">
+                                <a href="/pages/produto/produto.html?category=Broca&brand=Carbide&id=prod4" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/broca.png" alt="Broca Carbide FG 245">
+                                        <div class="product-badge product-badge--discount">10% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Broca Carbide FG 245</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 34,90</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod5">
+                                <a href="/pages/produto/produto.html?category=Fotopolimerizador&brand=Radii&id=prod5" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/fotopolimerizador.png" alt="Fotopolimerizador LED Radii Plus">
+                                        <div class="product-badge product-badge--discount">20% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Fotopolimerizador LED Radii Plus</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 899,00</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
                     </div>
                 </div>
                 
@@ -312,13 +396,16 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
-                <div class="carousel-dots" id="carouselDots"></div>
+                <div class="carousel-dots" id="carouselDots">
+                    <button class="carousel-dot active" data-index="0" aria-label="Ir para grupo 1"></button>
+                    <button class="carousel-dot" data-index="1" aria-label="Ir para grupo 2"></button>
+                </div>
             </div>
         </section>
 
         <section class="products">
             <div class="container">
-            <h2 class="section-title">Lançamentos</h2>
+            <h2 class="section-title">LANÇAMENTOS</h2>
             
             <div class="products-carousel-container js-product-carousel" 
                  aria-roledescription="carousel" 
@@ -330,20 +417,73 @@
                 
                 <div class="products-carousel-wrapper">
                     <div class="products-carousel-track" id="productsTrackLancamentos">
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod6">
+                                <a href="/pages/produto/produto.html?category=Cimento&brand=Marca&id=prod6" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/ionomero.png" alt="Cimento de Ionômero de Vidro">
+                                        <div class="product-badge product-badge--discount">18% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Cimento de Ionômero de Vidro</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 56,90</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
                         </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod7">
+                                <a href="/pages/produto/produto.html?category=Kit&brand=Kit&id=prod7" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/kit-endodontia.png" alt="Kit Endodontia Rotatória Avançado">
+                                        <div class="product-badge product-badge--discount">25% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Kit Endodontia Rotatória Avançado</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 1.450,00</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod8">
+                                <a href="/pages/produto/produto.html?category=%C3%81cido+Fosf%C3%B3rico&brand=Marca&id=prod8" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/acido.png" alt="Ácido Fosfórico 37% Gel">
+                                        <div class="product-badge product-badge--discount">12% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Ácido Fosfórico 37% Gel</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 22,90</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
                 </div>
                 
                 <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
-                <div class="carousel-dots" id="carouselDotsLancamentos"></div>
+                <div class="carousel-dots" id="carouselDotsLancamentos">
+                    <button class="carousel-dot active" data-index="0" aria-label="Ir para grupo 1"></button>
+                </div>
             </div>
             </div>
         </section>
 
         <section class="products">
-            <h2 class="section-title">Equipamentos em Oferta</h2>
+            <h2 class="section-title">OS MELHORES PREÇOS</h2>
             
             <div class="products-carousel-container js-product-carousel" 
                  aria-roledescription="carousel" 
@@ -355,14 +495,50 @@
                 
                 <div class="products-carousel-wrapper">
                      <div class="products-carousel-track" id="productsTrackEquipamentos">
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod9">
+                                <a href="/pages/produto/produto.html?category=Autoclave&brand=Vitale&id=prod9" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/autoclave.png" alt="Autoclave Vitale Class CD 21 Litros">
+                                        <div class="product-badge product-badge--discount">10% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Autoclave Vitale Class CD 21 Litros</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 4.500,00</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
                         </div>
+                        <div class="product-slide">
+                            <article class="product-card" data-product-id="prod10">
+                                <a href="/pages/produto/produto.html?category=Cadeira+Odontol%C3%B3gica&brand=Kavo&id=prod10" class="product-card-link">
+                                    <div class="product-card__image">
+                                        <img src="/images/cadeira.png" alt="Cadeira Odontológica Kavo Unik">
+                                        <div class="product-badge product-badge--discount">15% OFF</div>
+                                    </div>
+                                    <div class="product-card__content">
+                                        <h3 class="product-title">Cadeira Odontológica Kavo Unik</h3>
+                                        <div class="product-pricing">
+                                            <span class="product-price--current">R$ 25.000,00</span>
+                                        </div>
+                                        <button class="product-button">ADICIONAR AO CARRINHO</button>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
                 </div>
                 
                 <button class="carousel-nav carousel-nav--next" aria-label="Próximo">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
-                <div class="carousel-dots" id="carouselDotsEquipamentos"></div>
+                <div class="carousel-dots" id="carouselDotsEquipamentos">
+                    <button class="carousel-dot active" data-index="0" aria-label="Ir para grupo 1"></button>
+                </div>
             </div>
         </section>
     </div>

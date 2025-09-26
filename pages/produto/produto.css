@@ -194,6 +194,14 @@
     display: inline-block;
 }
 
+/* ===== INSTALLMENT INFORMATION ===== */
+.item-installment {
+    color: var(--cor-texto-secundaria);
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
 /* ===== AVAILABILITY ===== */
 .product-availability {
     display: flex;

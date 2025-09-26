@@ -85,7 +85,7 @@
 
 .customer-info-section:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+    
 }
 
 .customer-details {
@@ -299,7 +299,7 @@ label {
 
 .order-summary-section:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+    
 }
 
 .order-items {
@@ -325,9 +325,10 @@ label {
     border-bottom: none;
 }
 
-.item-image {
-    width: 80px;
-    height: 80px;
+/* Estilos para imagem do item usando classes globais */
+.order-item .cart-item__image {
+    flex: 0 0 60px;
+    height: 60px;
     margin-right: var(--spacing-lg);
     border-radius: var(--border-radius-sm);
     overflow: hidden;
@@ -337,14 +338,14 @@ label {
     background-color: var(--cor-fundo-secundaria);
 }
 
-.item-image img {
+.order-item .cart-item__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-fast);
 }
 
-.item-image img:hover {
+.order-item .cart-item__image img:hover {
     transform: scale(1.05);
 }
 
@@ -368,6 +369,14 @@ label {
 .item-quantity {
     color: var(--cor-texto-secundaria);
     font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.item-installment {
+    color: var(--cor-texto-secundaria);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    margin-top: 5px;
 }
 
 .item-price {
@@ -553,23 +562,6 @@ label {
     transform: translateY(0);
 }
 
-/* Loading state for buttons */
-.btn.loading {
-    position: relative;
-    pointer-events: none;
-}
-
-.btn.loading::after {
-    content: "";
-    width: 16px;
-    height: 16px;
-    border: 2px solid transparent;
-    border-top-color: currentColor;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-left: 8px;
-}
-
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -600,14 +592,14 @@ label {
         text-align: left;
     }
     
-    .item-image {
+    .order-item .cart-item__image {
         margin-right: 0;
         margin-bottom: var(--spacing-sm);
         width: 100%;
-        height: 120px;
+        height: 80px;
     }
     
-    .item-details {
+    .cart-item__info {
         margin-right: 0;
         margin-bottom: var(--spacing-sm);
         width: 100%;
