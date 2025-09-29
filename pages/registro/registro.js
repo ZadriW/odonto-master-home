@@ -358,10 +358,11 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.innerHTML = originalButtonText;
             submitButton.disabled = false;
             
-            // Save user's first name to localStorage
+            // Save user's first name to localStorage along with login status
             const fullName = data.fullName || data.companyName || 'Cliente';
             const firstName = fullName.split(' ')[0];
             localStorage.setItem('userFirstName', firstName);
+            localStorage.setItem('isLoggedIn', 'true'); // Set login status to true after registration
             
             // Show success notification
             showNotification('Conta criada com sucesso! Você será redirecionado para a página inicial.', 'success');

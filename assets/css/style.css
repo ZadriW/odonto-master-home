@@ -215,7 +215,7 @@ input:focus, textarea:focus, select:focus {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* Garantir que o header esteja acima de outros elementos */
     
 }
 
@@ -701,7 +701,7 @@ input:focus, textarea:focus, select:focus {
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-normal);
-    z-index: 9998;
+    z-index: 9998; /* Deve estar abaixo do submenu mas acima do conteúdo */
 }
 
 .submenu-overlay.active {
@@ -720,7 +720,7 @@ input:focus, textarea:focus, select:focus {
     background: #fff;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-xl);
-    z-index: 9999;
+    z-index: 9999; /* Garantir que o submenu esteja acima do overlay */
     display: flex;
     flex-direction: column;
     opacity: 0;
@@ -770,15 +770,20 @@ input:focus, textarea:focus, select:focus {
 
 .submenu__columns {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 16px;
     padding: 20px;
     background-color: #f9f9f9;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .submenu__column {
     padding: 0 20px;
     position: relative;
+    flex: 1 1 calc(25% - 16px); /* Aproximadamente 4 colunas */
+    min-width: 200px; /* Mínimo para legibilidade */
 }
 
 .submenu__column:last-child {
@@ -886,6 +891,8 @@ input:focus, textarea:focus, select:focus {
     max-width: 1400px;
 }
 
+
+
 .home-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Layout responsivo */
@@ -930,6 +937,60 @@ input:focus, textarea:focus, select:focus {
     font-size: 13px;
     color: var(--cor-texto-secundaria); /* Cor de texto secundária */
     line-height: 1.4;
+}
+
+/* ===== BANNER GRID BETWEEN CAROUSELS ===== */
+.banner-grid-section {
+    padding: 30px 0;
+    background: #E8ECE9;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: center;
+    padding: 0 60px; /* Same padding as product carousel */
+    margin: 30px auto; /* Same margin as product carousel */
+}
+
+.banner-item {
+    background: #fff;
+    border: 1px solid var(--cor-borda-clara);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+.banner-item__image {
+    position: relative;
+    height: 280px; /* Same height as product-card__image */
+    width: 100%;
+    background: var(--cor-fundo-secundaria);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
 }
 
 /* Carrossel */
@@ -1636,7 +1697,13 @@ input:focus, textarea:focus, select:focus {
     }
     
     .submenu__columns {
-        grid-template-columns: repeat(3, 1fr);
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    
+    .submenu__column {
+        flex: 1 1 calc(33.333% - 16px); /* Aproximadamente 3 colunas */
+        min-width: 180px;
     }
 }
 
@@ -1647,11 +1714,14 @@ input:focus, textarea:focus, select:focus {
     }
     
     .submenu__columns {
-        grid-template-columns: repeat(2, 1fr);
+        flex-wrap: wrap;
+        justify-content: flex-start;
         gap: 10px;
     }
     
     .submenu__column {
+        flex: 1 1 calc(50% - 10px); /* 2 colunas */
+        min-width: 200px; /* Aumentando o mínimo para melhor legibilidade */
         padding: 0 15px;
     }
     

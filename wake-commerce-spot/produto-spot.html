@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/pages/produto/produto.css">
+    <link rel="stylesheet" href="/wake-commerce-spot/produto-spot.css">
     <meta name="description" content="Detalhes do produto - Odonto Master">
 </head>
 <body>
@@ -16,7 +16,6 @@
     </div>
 
     <header class="main-header">
-
         <!-- Top Banner -->
         <div class="top-banner">
             <div class="container">
@@ -42,14 +41,14 @@
                         </a>
                     </div>
 
-        <!-- Search Bar --> 
+                    <!-- Search Bar -->
                     <div class="search-bar">
                         <form class="search-form" id="searchForm" autocomplete="off" method="get" action="/pages/busca/index.html">
                             <div class="search-form__wrapper">
-                                <input type="text" 
-                                       class="search-form__input" 
-                                       id="searchInput" 
-                                       name="busca" 
+                                <input type="text"
+                                       class="search-form__input"
+                                       id="searchInput"
+                                       name="busca"
                                        placeholder="Busque aqui..."
                                        autocomplete="on">
                                 <button type="submit" class="search-form__button" aria-label="Buscar">
@@ -59,10 +58,9 @@
                             <div class="search-autocomplete" id="searchAutocomplete" style="display: none;"></div>
                         </form>
                     </div>
-                    
-        <!-- Header Actions -->
+
+                    <!-- Header Actions -->
                     <section class="header-actions">
-                        
                         <!-- Contact Info -->
                         <div class="contact-info">
                             <div class="contact-info__phone">
@@ -84,12 +82,12 @@
                                     <p>(75) 3322-8498 - Feira de Santana/BA</p>
                                     <p>(79) 3085-0710 - Aracaju/SE</p>
                                 </div>
-                                
+
                                 <div class="customer-service__section">
                                     <strong>Pelo WhatsApp:</strong>
                                     <p>(71) 9 9401-9924</p>
                                 </div>
-                                
+
                                 <div class="customer-service__section">
                                     <strong>Horário de Atendimento:</strong>
                                     <p>Segunda a Sexta das 08:00 às 18:00</p>
@@ -104,7 +102,7 @@
                                 <a class="my-account__link" href="#"></a>
                         </div>
 
-                        <!--Carrinho -->
+                        <!-- Carrinho -->
                         <div class="shopping-cart">
                             <button class="shopping-cart__trigger" aria-label="Carrinho de compras">
                                 <i class="fas fa-shopping-cart"></i>
@@ -130,13 +128,11 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Barra de navegação -->
         <nav class="main-navigation" id="main-navigation">
             <div class="container">
                 <div class="main-navigation__content">
-                    
-                    
                     <!-- Menu de Navegação -->
                     <div class="navigation-menu">
                         <ul class="menu-list">
@@ -159,36 +155,35 @@
 
                     <div class="submenu-overlay"></div>
                     <div class="submenu submenu--mega" id="mega-menu-content" aria-hidden="true">
-                    <div class="submenu__header">
-                        <h2>Navegue por todas as categorias</h2>
-                        <button class="submenu__close" aria-label="Fechar menu">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        <div class="submenu__header">
+                            <h2>Navegue por todas as categorias</h2>
+                            <button class="submenu__close" aria-label="Fechar menu">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="submenu__columns">
+                            <div class="submenu__column">
+                                <a href="/acessorios-e-vestuarios" class="submenu__title-link">
+                                    <h3 class="submenu__title">Acessórios e Vestuários</h3>
+                                </a>
+                            </div>
+                            <div class="submenu__column">
+                                <a href="/anestesico" class="submenu__title-link">
+                                    <h3 class="submenu__title">Anestésico</h3>
+                                </a>
+                            </div>
+                            <div class="submenu__column">
+                                <a href="/biosseguranca" class="submenu__title-link">
+                                    <h3 class="submenu__title">Biossegurança</h3>
+                                </a>
+                            </div>
+                            <div class="submenu__column">
+                                <a href="/brocas" class="submenu__title-link">
+                                    <h3 class="submenu__title">Brocas</h3>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="submenu__columns">
-                        <!-- Apenas títulos clicáveis -->
-                        <div class="submenu__column">
-                            <a href="/acessorios-e-vestuarios" class="submenu__title-link">
-                                <h3 class="submenu__title">Acessórios e Vestuários</h3>
-                            </a>
-                        </div>
-                        <div class="submenu__column">
-                            <a href="/anestesico" class="submenu__title-link">
-                                <h3 class="submenu__title">Anestésico</h3>
-                            </a>
-                        </div>
-                        <div class="submenu__column">
-                            <a href="/biosseguranca" class="submenu__title-link">
-                                <h3 class="submenu__title">Biossegurança</h3>
-                            </a>
-                        </div>
-                        <div class="submenu__column">
-                            <a href="/brocas" class="submenu__title-link">
-                                <h3 class="submenu__title">Brocas</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </nav>
@@ -211,15 +206,79 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content - Wake Commerce Spot Fusionado -->
     <main class="main-content product-spot-page">
         <div class="container">
-            <div class="product-spot-container">
-                
-                <!-- Product Gallery -->
-                <section class="product-gallery">
+            <!-- Wake Commerce Product Spot Adaptado -->
+            <div class="fbits-spot-container">
+                <li class="item nth-child-2n spot spot-hover spot-destaque spot-disponivel" id="produto-spot-item">
+                    <div class="item-area">
+                        <div class="product-image-area">
+                            <a href="#" title="Produto" class="product-image">
+                                <img src="https://via.placeholder.com/400x400/1c5787/ffffff?text=Produto" alt="Imagem do Produto" id="spotMainImage" class="spot-image">
+                            </a>
+                            <div class="etiquetas-spot">
+                                <span class="etiqueta-destaque">DESTAQUE</span>
+                                <span class="etiqueta-desconto" id="spotDiscount">33% OFF</span>
+                            </div>
+                        </div>
+
+                        <div class="details-area fbits-spot-conteudo">
+                            <h2 class="product-name">
+                                <a href="#" title="Nome do Produto" id="spotProductTitle">Nome do Produto Completo com Especificações</a>
+                            </h2>
+                            <div class="info" id="spotInfo">Informações adicionais do produto</div>
+                            <div class="price-box">
+                                <!-- Preços adaptados do Wake Commerce -->
+                                <div class="spot-pricing">
+                                    <div class="price-original">
+                                        <span class="price-label">De:</span>
+                                        <span class="price-value" id="spotPriceOriginal">R$ 299,90</span>
+                                    </div>
+                                    <div class="price-current">
+                                        <span class="price-label">Por:</span>
+                                        <span class="price-value" id="spotPriceCurrent">R$ 199,90</span>
+                                    </div>
+                                    <div class="price-installments">
+                                        <span class="installment-text" id="spotInstallments">10x sem juros de R$ 19,99</span>
+                                    </div>
+                                    <div class="price-boleto">
+                                        <span class="boleto-text" id="spotBoleto">R$ 189,90 (Desconto de 5%) Boleto/Pix</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="actions">
+                                <a class="addtowishlist" title="Adicionar à Lista de Desejos">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                                <a class="addtocart spot-add-to-cart" title="Adicionar ao Carrinho">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Adicionar ao Carrinho</span>
+                                </a>
+                                <a class="comparelink" href="#" title="Comparar Produto">
+                                    <i class="fas fa-balance-scale"></i>
+                                </a>
+                                <div class="botoes-comprar">
+                                    <button class="btn-comprar-agora" id="spotBuyNow">
+                                        <i class="fas fa-bolt"></i>
+                                        <span>Comprar Agora</span>
+                                    </button>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+
+            <!-- Seção de Detalhes Expandida -->
+            <div class="product-spot-expanded">
+
+                <!-- Product Gallery Expandida -->
+                <section class="product-gallery-expanded">
                     <div class="gallery-main-image">
-                        <img src="https://via.placeholder.com/600x600/1c5787/ffffff?text=Imagem+Principal" alt="Nome do Produto" id="mainImage">
+                        <img src="https://via.placeholder.com/600x600/1c5787/ffffff?text=Imagem+Principal" alt="Nome do Produto" id="mainImageExpanded">
                     </div>
                     <div class="gallery-thumbnails">
                         <button class="thumbnail-nav thumbnail-nav--prev" aria-label="Imagens anteriores">
@@ -239,39 +298,8 @@
                     </div>
                 </section>
 
-                <!-- Product Info -->
-                <section class="product-info">
-                    <div class="product-header">
-                        <h1 class="product-title" id="productDetailTitle">Nome do Produto Completo com Todas as Especificações</h1>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star rated"></i>
-                                <i class="fas fa-star rated"></i>
-                                <i class="fas fa-star rated"></i>
-                                <i class="fas fa-star rated"></i>
-                                <i class="fas fa-star-half-alt rated"></i>
-                                <span class="rating-count">(128 avaliações)</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-pricing">
-                        <div class="price-original">
-                            <span class="price-label">De:</span>
-                            <span class="price-value">R$ 299,90</span>
-                        </div>
-                        <div class="price-current">
-                            <span class="price-label">Por:</span>
-                            <span class="price-value">R$ 199,90</span>
-                        </div>
-                        <div class="price-installments">
-                            <span class="installment-text">10x sem juros de R$ 19,99</span>
-                        </div>
-                        <div class="price-discount">
-                            <span class="discount-badge">33% OFF</span>
-                        </div>
-                    </div>
-
+                <!-- Product Info Expandida -->
+                <section class="product-info-expanded">
                     <div class="product-availability">
                         <i class="fas fa-check-circle availability-icon"></i>
                         <span class="availability-text">Em estoque - Pronta entrega</span>
@@ -297,7 +325,7 @@
                         </div>
                     </div>
 
-                    <div class="product-actions">
+                    <div class="product-actions-expanded">
                         <div class="quantity-selector">
                             <label for="quantity" class="quantity-label">Quantidade:</label>
                             <div class="quantity-controls">
@@ -309,17 +337,6 @@
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
-                        </div>
-
-                        <div class="action-buttons">
-                            <button class="add-to-cart-button" id="addToCartBtn">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span>Adicionar ao Carrinho</span>
-                            </button>
-                            <button class="buy-now-button" id="buyNowBtn">
-                                <i class="fas fa-bolt"></i>
-                                <span>Comprar Agora</span>
-                            </button>
                         </div>
                     </div>
 
@@ -426,42 +443,42 @@
                                     <label for="reviewName">Nome Completo *</label>
                                     <input type="text" id="reviewName" class="form-control" placeholder="Digite seu nome" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="reviewEmail">E-mail *</label>
                                     <input type="email" id="reviewEmail" class="form-control" placeholder="Digite seu e-mail" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="reviewRating">Nota *</label>
                                     <div class="rating-input">
                                         <input type="radio" id="star5" name="reviewRating" value="5">
                                         <label for="star5" class="star-label"><i class="fas fa-star"></i></label>
-                                        
+
                                         <input type="radio" id="star4" name="reviewRating" value="4">
                                         <label for="star4" class="star-label"><i class="fas fa-star"></i></label>
-                                        
+
                                         <input type="radio" id="star3" name="reviewRating" value="3">
                                         <label for="star3" class="star-label"><i class="fas fa-star"></i></label>
-                                        
+
                                         <input type="radio" id="star2" name="reviewRating" value="2">
                                         <label for="star2" class="star-label"><i class="fas fa-star"></i></label>
-                                        
+
                                         <input type="radio" id="star1" name="reviewRating" value="1">
                                         <label for="star1" class="star-label"><i class="fas fa-star"></i></label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="reviewTitle">Título da Avaliação *</label>
                                     <input type="text" id="reviewTitle" class="form-control" placeholder="Resumo da sua avaliação" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="reviewComment">Comentário *</label>
                                     <textarea id="reviewComment" class="form-control" rows="5" placeholder="Conte detalhes sobre sua experiência com o produto" required></textarea>
                                 </div>
-                                
+
                                 <button type="submit" class="submit-review-btn">Enviar Avaliação</button>
                             </form>
                         </div>
@@ -480,9 +497,9 @@
                 <p class="newsletter-description">E FIQUE POR DENTRO DAS NOVIDADES</p>
                 <form class="newsletter-form" id="newsletterForm">
                     <div class="newsletter-form__wrapper">
-                        <input type="email" 
-                               placeholder="Seu e-mail" 
-                               class="newsletter-form__input" 
+                        <input type="email"
+                               placeholder="Seu e-mail"
+                               class="newsletter-form__input"
                                required>
                         <button type="submit" class="newsletter-form__button">Assinar</button>
                     </div>
@@ -570,6 +587,6 @@
     </footer>
 
     <script src="/assets/js/script.js"></script>
-    <script src="/pages/produto/produto.js"></script>
+    <script src="/wake-commerce-spot/produto-spot.js"></script>
 </body>
 </html>

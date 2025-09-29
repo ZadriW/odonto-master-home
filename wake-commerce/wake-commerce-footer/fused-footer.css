@@ -1,0 +1,465 @@
+/* ===== WAKE COMMERCE FOOTER - VERSÃO CORRIGIDA E OTIMIZADA ===== */
+
+/* Container e Grid System */
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Base Footer Styles */
+.footer {
+    clear: both;
+}
+
+.footer .col-lg-3 {
+    min-height: 11em !important;
+}
+
+.footer .container {
+    width: 100%;
+}
+
+.footer .container > .row {
+    margin: 0;
+}
+
+.footer .container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Block Styles */
+.block {
+    margin: 0 0 40px;
+}
+
+.block .block-title {
+    margin: 5px 0 10px;
+    line-height: 1.2;
+    font-size: 16px;
+    font-weight: 700;
+    color: #313131;
+}
+
+.footer-container {
+    border-top: 0;
+}
+
+.footer .block .block-content {
+    background-color: transparent;
+    padding: 0;
+}
+
+.block,
+.block .block-title,
+.block .block-title:before,
+.block .block-content {
+    border-radius: 0 !important;
+}
+
+/* Links System */
+.links {
+    padding: 0;
+}
+
+.links li {
+    display: inline;
+}
+
+.footer:after,
+.block .block-content:after,
+.block-content:after {
+    display: block;
+    content: ".";
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* Footer Middle Section */
+.footer-middle {
+    background-color: #fff;
+    color: #687176;
+    padding: 24px 0;
+    font-size: 13px;
+    margin: 0 auto;
+}
+
+.footer-middle a {
+    color: #687176;
+    font-size: 0.9em;
+}
+
+.footer-middle a:hover {
+    color: #687176;
+    text-decoration: underline;
+}
+
+.footer-middle ul.links {
+    padding: 0;
+    margin-top: -5px;
+}
+
+.footer-middle ul.links li {
+    position: relative;
+    padding: 5px 0;
+    line-height: 1;
+    display: block;
+}
+
+.footer-middle ul.links li i {
+    margin-left: -5px;
+}
+
+.footer-middle ul {
+    padding: 0;
+}
+
+.footer-middle .block {
+    text-align: left;
+    line-height: 1.5;
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+    float: none;
+    width: auto;
+}
+
+.footer-middle .block .block-title {
+    margin-bottom: 15px;
+}
+
+.footer-middle .block .block-title strong {
+    color: #1b65a9;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 0;
+    font-size: 16px;
+    line-height: inherit;
+    text-transform: none;
+}
+
+.footer-middle > .container {
+    position: relative;
+}
+
+/* Contact Icons */
+.icophone {
+    background: url(https://recursos.odontomaster.com.br/i/odonto/telephone.svg);
+    background-size: 1em !important;
+    background-repeat: no-repeat !important;
+    background-position: left;
+    border-right: solid 1px #dde0e2;
+    padding-left: 1.4em !important;
+}
+
+.icoatend {
+    background: url(https://recursos.odontomaster.com.br/i/odonto/email.svg);
+    background-size: 1em !important;
+    background-repeat: no-repeat !important;
+    background-position: left;
+    border-right: solid 1px #dde0e2;
+    padding-left: 1.4em !important;
+}
+
+.icochat {
+    background: url(https://recursos.odontomaster.com.br/i/odonto/fale-conosco__.svg);
+    background-size: 1em !important;
+    background-repeat: no-repeat !important;
+    background-position: left;
+    border-right: solid 1px #dde0e2;
+    padding-left: 1.4em !important;
+}
+
+/* Payment Icons */
+img.formaspag {
+    max-width: 100%;
+    width: 370px;
+}
+
+span.icones-pagamento-footer {
+    display: block;
+    float: left;
+    width: 50px;
+    height: 40px;
+    background-size: 95%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+span.icones-pagamento-footer.icone-boleto {
+    background-image: url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/boleto.svg);
+    opacity: .9;
+}
+
+span.icones-pagamento-footer.icone-visa {
+    background-image: url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/visa-cor.svg);
+}
+
+span.icones-pagamento-footer.icone-master {
+    background-image: url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/master-cor.svg);
+}
+
+span.icones-pagamento-footer.icone-amex {
+    background-image: url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/american-cor.svg);
+}
+
+span.icones-pagamento-footer.icone-diners {
+    background-image: url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/diners-cor.svg);
+}
+
+/* Social Icons */
+.social-icons {
+    float: right;
+}
+
+.social-icons a {
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+    display: inline-block;
+    text-indent: -9999px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    margin-left: 10px;
+    line-height: 30px;
+}
+
+.social-icons a:hover {
+    background: url(https://recursos.odontomaster.com.br/i/social-icons-hover-sprite.png) 0 0 no-repeat;
+    width: 30px;
+    height: 30px;
+    background-color: #E0E0E0;
+    display: inline-block;
+    text-indent: -9999px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    margin-left: 10px;
+    line-height: 30px;
+}
+
+.footer .social-icons {
+    float: left;
+}
+
+.social-icons a:first-child {
+    margin: 0;
+}
+
+.footer .social-icons a {
+    background-color: transparent;
+    border-radius: 50%;
+    position: relative;
+    font-size: 20px;
+    display: inline-block;
+    text-indent: 0;
+}
+
+/* FontAwesome Icons */
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.fa-facebook:before,
+.fa-facebook-f:before {
+    content: "\f09a";
+    color: #1b65a9;
+    font-size: 21px;
+    margin-left: 0;
+    position: absolute;
+    width: 20px;
+    top: 0;
+    left: 0;
+    opacity: 1;
+}
+
+.fa-instagram:before {
+    content: "\f16d";
+    color: #1b65a9;
+    font-size: 21px;
+    margin-left: 0;
+    position: absolute;
+    width: 20px;
+    top: 0;
+    left: 0;
+    opacity: 1;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    min-height: 50px;
+    line-height: 40px;
+    background-color: transparent;
+    padding: 5px 0;
+    border-top: 1px solid #1b65a9;
+    margin: 0 auto;
+    max-width: 1050px;
+}
+
+.footer-bottom,
+.footer-bottom p {
+    color: #687176;
+}
+
+.footer-bottom a {
+    color: #687176;
+}
+
+.footer-bottom address {
+    margin-right: 0;
+    line-height: 0.5em;
+    text-align: center;
+    padding-top: 1em;
+    float: none;
+    margin-bottom: 0;
+}
+
+.footer-bottom address * {
+    font-size: 1.1rem !important;
+}
+
+ul.blockfooter.noborder.copyright {
+    font-size: 0.9rem;
+    line-height: 1.8em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+/* FBITS/Tray Corp Logos */
+.fstore {
+    float: none;
+    display: block;
+    text-indent: -9999px;
+    line-height: 9999px;
+    opacity: 1;
+    width: 80px;
+    height: 40px;
+    background: url(https://static.fbits.net/i/logo-tray-corp-rodape.svg) 0% 0% / 80px no-repeat;
+    margin: 0.8rem auto 0.3rem;
+    overflow: hidden;
+}
+
+i.fstore.replace {
+    display: block;
+}
+
+ul.blockfooter.noborder.logo-fbits {
+    margin-left: -9em;
+    display: block;
+    margin: 0 auto;
+    float: none;
+    max-width: 100px;
+    left: -4em;
+    position: relative;
+}
+
+span.blockfooter.noborder.logo-aprospect {
+    display: block;
+    float: none;
+    width: 100px;
+    text-align: right;
+    top: -3.6em;
+    display: block;
+    margin-left: 3em;
+    margin: 0 auto;
+    right: -4em;
+    position: relative;
+}
+
+span.blockfooter.noborder.logo-aprospect a img.logoaprospect {
+    width: 100%;
+    max-width: 80px;
+    margin-right: 15px;
+}
+
+/* Carrinho Styles */
+.fbits-carrinho-frete-item .fbits-frete-retirada-mais {
+    float: none;
+    margin-left: 1em;
+    margin-top: 0.6em;
+    margin-bottom: 9.5px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .footer-middle,
+    .footer-bottom {
+        width: 690px;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer-middle,
+    .footer-bottom {
+        width: 930px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer-middle,
+    .footer-bottom {
+        width: 1110px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-bottom {
+        text-align: center;
+    }
+
+    .footer-bottom address {
+        float: none;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-bottom address {
+        float: left;
+        line-height: 1.4;
+        margin: 5px 0;
+    }
+}

@@ -1312,14 +1312,39 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== SISTEMA DE MEGA MENU =====
 class MegaMenu {
     constructor() {
-        this.trigger = document.querySelector('.menu-item--has-submenu .menu-link');
-        this.menu = document.querySelector('.submenu--mega');
+        // Debug: verificar se elementos existem
+        console.log('MegaMenu: Iniciando construtor');
+
+        // Usar ID específico para maior precisão
+        this.trigger = document.getElementById('mega-menu-trigger');
+        this.menu = document.getElementById('mega-menu-content');
         this.overlay = document.querySelector('.submenu-overlay');
         this.closeBtn = this.menu?.querySelector('.submenu__close');
         this.isOpen = false;
-        
+
+        // Debug detalhado
+        console.log('MegaMenu elementos encontrados:', {
+            trigger: this.trigger,
+            menu: this.menu,
+            overlay: this.overlay,
+            closeBtn: this.closeBtn
+        });
+
+        // Verificar se todos os elementos necessários foram encontrados
         if (this.trigger && this.menu && this.overlay) {
+            console.log('MegaMenu: Inicializando com sucesso');
             this.init();
+        } else {
+            console.error('MegaMenu: Falha na inicialização - elementos não encontrados:', {
+                trigger: !!this.trigger,
+                menu: !!this.menu,
+                overlay: !!this.overlay
+            });
+            Logger.warn('Não foi possível inicializar o MegaMenu. Alguns elementos não foram encontrados:', {
+                trigger: !!this.trigger,
+                menu: !!this.menu,
+                overlay: !!this.overlay
+            });
         }
     }
     
@@ -1329,8 +1354,11 @@ class MegaMenu {
     }
     
     bindEvents() {
+        console.log('MegaMenu: Configurando event listeners');
+
         // Trigger events
         this.trigger.addEventListener('click', e => {
+            console.log('MegaMenu: Trigger clicado!');
             e.preventDefault();
             this.toggle();
         });
@@ -1367,6 +1395,7 @@ class MegaMenu {
     }
     
     toggle() {
+        console.log('MegaMenu: Toggle chamado, isOpen:', this.isOpen);
         if (this.isOpen) {
             this.close();
         } else {
@@ -1375,19 +1404,34 @@ class MegaMenu {
     }
     
     open() {
+        console.log('MegaMenu: Abrindo menu');
         this.isOpen = true;
         document.body.classList.add('no-scroll');
-        
+
         this.overlay.classList.add('active');
         this.menu.classList.add('submenu--active');
-        
+
         this.trigger.setAttribute('aria-expanded', 'true');
         this.menu.setAttribute('aria-hidden', 'false');
-        
+
         // Focus management
         this.menu.focus();
-        
+
+        // Ajustar layout dinamicamente com base no número de colunas
+        this.adjustLayout();
+
+        console.log('MegaMenu: Menu aberto com sucesso');
         Logger.debug('Mega menu aberto');
+    }
+    
+    adjustLayout() {
+        // Ajustar layout para acomodar mais colunas
+        const columns = this.menu.querySelectorAll('.submenu__column');
+        if (columns.length > 4) {
+            // Se tivermos mais de 4 colunas, garantir que o layout se adapte corretamente
+            this.menu.style.width = '95%';
+            this.menu.style.maxWidth = '1200px';
+        }
     }
     
     close() {
@@ -1406,6 +1450,9 @@ class MegaMenu {
         Logger.debug('Mega menu fechado');
     }
 }
+
+// MegaMenu é inicializado dentro da classe OdontoMasterApp
+// Removida inicialização duplicada
 
 // ===== SISTEMA DE ANIMAÇÕES =====
 class AnimationManager {
@@ -1831,8 +1878,25 @@ document.addEventListener('DOMContentLoaded', () => {
     window.app = new OdontoMasterApp();
     window.app.init();
     
-    // Atualizar saudação do usuário
+    // Sempre iniciar como deslogado por padrão, a menos que o usuário faça login explicitamente
+    const isLoggedIn = localStorage.getItem('isLoggedIn');                             
+                        
+   if (isLoggedIn === 'true') {                                      
+       // Apenas manter o estado de login se o usuário tiver feito login explicitamente na sessão atual                        
+        updateUserGreeting();                                                          
+     } else {                                                                           
+        // Limpar qualquer dado de sessão que possa estar armazenado                          
+        localStorage.removeItem('userFirstName');  
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFullName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userCpf');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userAddresses');    
+
+    // Update greeting to show as logged out
     updateUserGreeting();
+     }
 });
 
 // Teste rápido para verificar se as funções estão disponíveis
