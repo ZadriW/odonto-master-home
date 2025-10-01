@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree -a -I '.git' --dirsfirst)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

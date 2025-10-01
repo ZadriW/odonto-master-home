@@ -1,523 +1,1539 @@
 <style>
-img.formaspag {
+
+/* ===== CONTROLE DOS BANNERS DO TOPO ===== */
+/* Banner Mobile Topo e Banner Topo - Controle de tamanho */
+section.fbits-section-home.fbits-banner-mobiletopo-home,
+section.fbits-section-home.fbits-banner-topo-home {
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
     max-width: 100%;
-    width: 370px;
-}
-.fbits-carrinho-frete-item .fbits-frete-retirada-mais {
-    float: none;
-    margin-left: 1em;
-    margin-top: 0.6em;
-    margin-bottom: 9.5px;
+    background: transparent;
 }
 
-.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
-@@media (min-width:576px){
-.container{max-width:540px;}
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item {
+    padding: 0;
 }
-@@media (min-width:768px){
-.container{max-width:720px;}
-}
-@@media (min-width:992px){
-.container{max-width:960px;}
-}
-@@media (min-width:1200px){
-.container{max-width:1140px;}
-}
-.footer .col-lg-3 {
-    min-height: 11em!important;
-}
-.social-icons{float:right;}
-.social-icons a{width:30px;height:30px;background-color:#000;display:inline-block;text-indent:-9999px;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;margin-left:10px;line-height:30px;}
-.social-icons a:hover{background:url(https://recursos.odontomaster.com.br/i/social-icons-hover-sprite.png) 0 0 no-repeat;width:30px;height:30px;background-color:#E0E0E0;display:inline-block;text-indent:-9999px;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;margin-left:10px;line-height:30px;}
 
-.links li{display:inline;}
-.block{margin:0 0 40px;}
-.block .block-title{margin:5px 0 10px;line-height:1.2;font-size:16px;font-weight:700;color:#313131;}
-.footer-container{border-top:0;}
-.footer .block .block-content{background-color:transparent;padding:0;}
-.footer-middle{background-color:#121214;color:#777;padding:40px 0;font-size:13px;}
-.footer-middle a{color:#fff;}
-.footer-middle a:hover{color:#fff;text-decoration:underline;}
-.footer-middle ul.links{padding:0;margin-top:-5px;}
-.footer-middle ul.links li{position:relative;padding:10px 0;line-height:1;display:block;}
-.footer-middle ul.links li i{margin-left:-5px;}
-.footer-middle ul{padding:0;}
-.footer-middle .block{text-align:left;line-height:1.5;border:0;margin:0;background-color:transparent;float:none;width:auto;}
-.footer-middle .block .block-title{margin-bottom:20px;}
-.footer-middle .block .block-title strong{font-weight:400;padding:0;font-size:16px;line-height:inherit;color:#fff;text-transform:none;}
-.footer-bottom{min-height:50px;line-height:40px;background-color:#0c0c0c;padding:25px 0;}
-.footer-bottom address{float:right;line-height:40px;}
-.footer .social-icons{float:left;}
-.social-icons a:first-child{margin:0;}
-.footer .social-icons a{background-color:#9e9e9e;border-radius:50%;}
-.footer:after,.block .block-content:after,.block-content:after{display:block;content:".";clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
-.footer .container{width:100%;}
-@@media (max-width:767px){
-.footer-bottom{text-align:center;}
-.footer-bottom address{float:none;text-align:center;}
+section.fbits-section-home.fbits-banner-mobiletopo-home img,
+section.fbits-section-home.fbits-banner-topo-home img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 12px;
 }
-@@media (max-width:480px){
-.footer-bottom address{float:left;line-height:1.4;margin:5px 0;}
-}
-.block,.block .block-title,.block .block-title:before,.block .block-content{border-radius:0!important;}
 
-.footer-middle{background-color:#fff;}
-.footer-middle{color:#687176;}
-.footer-middle a{color:#687176;}
-.footer-middle a:hover{color:#687176;}
-.footer-middle .block .block-title strong{color:#2b2b2d;}
-.footer-bottom{background-color:transparent;}
-.footer-bottom,.footer-bottom p{color:#687176;}
-.footer-bottom a{color:#687176;}
-.footer .container>.row{margin:0;}
-.footer-middle,.footer-bottom{margin:0 auto;}
-.footer .social-icons{float:left;}
-.footer-middle{padding:24px 0;}
-.footer-middle .block .block-title{margin-bottom:15px;}
-.footer-middle .block .block-title strong{font-size:14px;font-weight:700;text-transform:uppercase;}
-.footer-middle ul.links li{padding:6px 0;}
-.footer-bottom address{margin-right:60px;}
-@@media (min-width:768px){
-.footer-middle,.footer-bottom{width:690px;}
+@@media (max-width: 1280px) {
+    section.fbits-section-home.fbits-banner-mobiletopo-home img,
+    section.fbits-section-home.fbits-banner-topo-home img {
+        max-width: 200px;
+    }
 }
-@@media (min-width:992px){
-.footer-middle,.footer-bottom{width:930px;}
+
+@@media (max-width: 768px) {
+    section.fbits-section-home.fbits-banner-mobiletopo-home,
+    section.fbits-section-home.fbits-banner-topo-home {
+        margin: 0;
+        padding: 0;
+        overflow: hidden !important;
+        background: transparent !important;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .row,
+    section.fbits-section-home.fbits-banner-topo-home .row {
+        overflow: hidden !important;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .slick-list,
+    section.fbits-section-home.fbits-banner-topo-home .slick-list {
+        overflow: hidden !important;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home img,
+    section.fbits-section-home.fbits-banner-topo-home img {
+        max-width: 150px;
+    }
 }
-@@media (min-width:1200px){
-.footer-middle,.footer-bottom{width:1110px;}
+
+@@media (max-width: 480px) {
+    section.fbits-section-home.fbits-banner-mobiletopo-home,
+    section.fbits-section-home.fbits-banner-topo-home {
+        margin: 0;
+        padding: 0;
+        overflow: hidden !important;
+        background: transparent !important;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .row,
+    section.fbits-section-home.fbits-banner-topo-home .row {
+        overflow: hidden !important;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .slick-list,
+    section.fbits-section-home.fbits-banner-topo-home .slick-list {
+        overflow: hidden !important;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home img,
+    section.fbits-section-home.fbits-banner-topo-home img {
+        max-width: 120px;
+    }
 }
-.footer-middle>.container{position:relative;}
-.container:after{content:"";display:table;clear:both;}
-/*! CSS Used from: Embedded */
-.footer{clear:both;}
-.icophone{background:url(https://recursos.odontomaster.com.br/i/odonto/telephone.svg);background-size:1em!important;background-repeat:no-repeat!important;background-position:left;border-right:solid 1px #dde0e2;padding-left:1.4em!important;}
-.icoatend{background:url(https://recursos.odontomaster.com.br/i/odonto/email.svg);background-size:1em!important;background-repeat:no-repeat!important;background-position:left;border-right:solid 1px #dde0e2;padding-left:1.4em!important;}
-.icochat{background:url(https://recursos.odontomaster.com.br/i/odonto/fale-conosco__.svg);background-size:1em!important;background-repeat:no-repeat!important;background-position:left;border-right:solid 1px #dde0e2;padding-left:1.4em!important;}
-/*! CSS Used from: Embedded */
-.footer-middle .block .block-title strong{font-size:12px;font-weight:900;text-transform:uppercase;}
-.footer-middle .block .block-title strong{color:#1b65a9;}
-.footer-middle a{color:#687176;font-size:0.9em;}
-.footer-middle ul.links li{padding:5px 0;}
-span.icones-pagamento-footer{display:block;float:left;width:50px;height:40px;background-size:95%;background-position:center top;background-repeat:no-repeat;cursor:pointer;}
-span.icones-pagamento-footer.icone-boleto{background-image:url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/boleto.svg);}
-span.icones-pagamento-footer.icone-boleto{opacity:.9;}
-span.icones-pagamento-footer.icone-visa{background-image:url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/visa-cor.svg);}
-span.icones-pagamento-footer.icone-master{background-image:url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/master-cor.svg);}
-span.icones-pagamento-footer.icone-amex{background-image:url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/american-cor.svg);}
-span.icones-pagamento-footer.icone-diners{background-image:url(https://recursos.odontomaster.com.br/i/SVG-formasPagamento/diners-cor.svg);}
-.footer-bottom{border-top:1px solid #1b65a9;}
-.footer-bottom{padding:5px 0;}
-.footer-bottom address *{font-size:0.8rem!important;}
-.footer-bottom address{margin-right:0;line-height:1.5em;text-align:center;padding-top:1em;}
-ul.blockfooter.noborder.copyright{font-size:0.8rem;}
-.footer-bottom address{float:none;}
-.footer-bottom{padding:5px 0;max-width:1050px;}
-.fstore{float:none;display:block;text-indent:-9999px;line-height:9999px;opacity:1;width:80px;height:40px;background:url(https://static.fbits.net/i/logo-tray-corp-rodape.svg) 0% 0% / 80px no-repeat;margin:0.8rem auto 0.3rem;overflow:hidden;}
 
-
-
-
-.fstore{float:none;display:block;text-indent:-9999px;line-height:9999px;opacity:1;width:80px;height:40px;background:url(https://static.fbits.net/i/logo-tray-corp-rodape.svg) 0% 0% / 80px no-repeat;margin:0.8rem auto 0.3rem;overflow:hidden;}
-
-
-ul.blockfooter.noborder.logo-fbits{margin-left:-6em;}
-.footer-bottom address * {
-    font-size: 1.1rem!important;
+/* ===== EFEITOS HOVER BANNER TOPO - PREMIUM ===== */
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-list,
+section.fbits-section-home.fbits-banner-topo-home .slick-list {
+    margin: 0 auto;
+    padding: 10px 0 !important;
+    max-width: 100%;
+    overflow: hidden;
 }
-address {
-    margin-bottom: 0;
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-track,
+section.fbits-section-home.fbits-banner-topo-home .slick-track {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }
-.footer-bottom address {
-    margin-right: 0;
-    line-height: 0.5em;
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-slide,
+section.fbits-section-home.fbits-banner-topo-home .slick-slide {
+    padding: 0 5px;
+    outline: none;
 }
-ul.blockfooter.noborder.copyright {
-    font-size: 0.9rem;
-    line-height: 1.8em;
-    margin-top: 1em;
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .row,
+section.fbits-section-home.fbits-banner-topo-home .row {
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
     text-align: center;
 }
 
-span.blockfooter.noborder.logo-aprospect a img.logoaprospect {
-    width: 100%;
-    max-width: 80px;
-    margin-right: 15px;
+section.fbits-section-home.fbits-banner-mobiletopo-home .row-fbits-banner-topo,
+section.fbits-section-home.fbits-banner-topo-home .row-fbits-banner-topo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-span.blockfooter.noborder.logo-aprospect {
-    display: block;
-    float: none;
-    width: 100px;
-    text-align: right;
-    /* position: absolute; */
-    top: -3.6em;
-    display: block;
-    margin-left: 3em;
-    margin: 0 auto;
-    right: -4em;
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item {
     position: relative;
-}
-.fstore {
-    float: none;
-    display: block;
-    text-indent: -9999px;
-    line-height: 9999px;
-    opacity: 1;
-    width: 80px;
-    height: 40px;
-    background: url(https://static.fbits.net/i/logo-tray-corp-rodape.svg) 0% 0% / 80px no-repeat;
-    margin: 0.8rem auto 0.3rem;
     overflow: hidden;
-}
-ul.blockfooter.noborder.logo-fbits {
-    margin-left: -9em;
-    /* height: 100px; */
-    display: block;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
     margin: 0 auto;
-    float: none;
-    max-width: 100px;
-    left: -4em;
-    position: relative;
+    max-width: 100%;
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-radius 0.3s ease;
+    will-change: transform;
 }
-i.fstore.replace {
-    display: block;
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item img,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item img {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* Transição refinada para zoom */
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, filter;
 }
-</style>
 
-
-<div class="footer">
-                        
-                        <div class="footer-middle">
-                        <div class="container">
-                                        <div class="row">
-            <div class="col-lg-3">
-                <div class="block">
-                      <div class="block-title"><strong><span>INSTITUCIONAL</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                <li><a href="https://www.odontomaster.com.br/quemsomos">Quem Somos</a></li> 
-                                <li><a href="https://www.odontomaster.com.br/estudantes">Estudantes</a></li>
-                                <li><a href="https://checkout.odontomaster.com.br/Parceiros/Cliente">Revenda</a></li> 
-                                <li><a href="https://checkout.odontomaster.com.br/Login/Authenticate">Login/Cadastro</a></li> 
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-            
-             <div class="col-lg-3">
-                <div class="block">
-                      <div class="block-title"><strong><span>AJUDA</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                <li><a href="https://www.odontomaster.com.br/comocomprar">Como Comprar</a></li> 
-                                <li><a href="https://www.odontomaster.com.br/trocasedevolucoes">Trocas e Devoluções</a></li>
-                                <li><a href="https://www.odontomaster.com.br/politicadeprivacidade">Política de Privacidade</a></li>
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-             <div class="col-lg-3">
-                <div class="block">
-                      <div class="block-title"><strong><span>ATENDIMENTO</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                <li class="icochat"><a href="https://api.whatsapp.com/send?phone=5571988670812" target="_blank">Chat Online</a></li>
-                                <li class="icophone"><a href="tel:+557131737300" target="_blank">(71) 3173-7300</a></li>
-                                <li class="icoatend"><a href="mailto:atendimento@odontomaster.com.br" target="_blank">atendimento@odontomaster.com.br</a></li> 
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-            <div class="col-lg-3">
-                <div class="block">
-                      <div class="block-title"><strong><span>HORÁRIO DE FUNCIONAMENTO</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                <li>Segunda a Sexta das 08h às 18h</li>
-                                <li>Sábados das 08h às 12h</li>
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-            <div class="col-lg-6">
-                <div class="block"><br><br>
-                      <div class="block-title"><strong><span>FORMAS DE PAGAMENTO</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                     <img class="formaspag" src="https://recursos.odontomaster.com.br/i/bandeiras-cards.png" />
-                                  @*
-                                <li>
-                                    
-                                   
-                                      <span class="icones-pagamento-footer icone-boleto"></span>
-                                      <span class="icones-pagamento-footer icone-visa"></span>
-                                      <span class="icones-pagamento-footer icone-master"></span>
-                                      <span class="icones-pagamento-footer icone-amex"></span>
-                                      <span class="icones-pagamento-footer icone-diners"></span>
-                                   
-                                    
-                                </li>*@
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-            
-              <style>
-                a#seloEbit {
-                    float: left;
-                    margin-right: 0.6em;
-                }
-            </style>
-            
-            <div class="col-lg-3">
-                <div class="block"><br><br>
-                      <div class="block-title"><strong><span>SELOS DE SEGURANÇA</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                <li> 
-                                 <!--<a id="seloEbit" href="http://www.ebit.com.br/103112" target="_blank" data-noop="redir(this.href);"></a> <script type="text/javascript" id="getSelo" src="https://imgs.ebit.com.br/ebitBR/selo-ebit/js/getSelo.js?103112"> </script>-->
-                            
-                                <!--- Secure Site Seal - DO NOT EDIT --->
-                                     <span id="ss_img_wrapper_115-55_image_en"><a href="http://www.alphassl.com/ssl-certificates/wildcard-ssl.html" target="_blank" title="SSL Certificates"><img alt="Wildcard SSL Certificates" border=0 id="ss_img" src="//seal.alphassl.com/SiteSeal/images/alpha_noscript_115-55_en.gif" title="SSL Certificate"></a></span><script type="text/javascript" src="//seal.alphassl.com/SiteSeal/alpha_image_115-55_en.js"></script>
-                                
-                                </li>
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-            <div class="col-lg-3">
-                <div class="block"><br><br>
-                      <div class="block-title"><strong><span>REDES SOCIAIS</span></strong></div>
-                      <div class="block-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <ul class="links">
-                                <li>
-                                    
-                                    <div class="social-icons"> 
-                                        <a href="https://www.facebook.com/DentalOdontoMaster/" title="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
-                                        <a href="https://www.instagram.com/dentalodontomaster/" title="Instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
-                                    </div>
-                                    
-                                </li>
-                              </ul>
-                            </div>
-                         
-                          </div> 
-                        </div>
-                </div>
-            </div>   
-            
-    
-            
-            
-            </div>
-                </div>
-                    </div>
-                        <div class="footer-bottom">
-                        <div class="container">
-                           <ul class="blockfooter noborder endereço-footer">
-            					<address class="fbits-dadosEmpresa">
-            						<span class="razaoSocial" data-nome="Razão Social">© Todos os direitos reservados - ODM COMERCIO E SERVICOS DE EQUIPAMENTOS E MATERIAIS ODONTOLOGICOS LTDA -</span>
-            						<span class="cnpj" data-nome="CNPJ">CNPJ: 07.030.958/0001-74</span></br>
-            						<span class="endereco" data-nome="Endereço">Alameda das Cajazeiras, 430 -</span>
-            						<span class="bairro" data-nome="Bairro">Caminho das Árvores -</span>
-            						<span class="cidade" data-nome="Cidade">Salvador/BA -</span>
-            						<span class="cep" data-nome="CEP">CEP: 41.820-470</span>        
-            					 </address>				
-            				</ul>
-            			
-            				<ul class="blockfooter noborder copyright">					
-            					<p>Eventuais promoções, descontos e prazos de pagamento expostos aqui são válidos apenas para compras via internet. As fotos, textos e layout aqui veiculados são de propriedade da Loja. É proibida a utilização total ou parcial sem nossa autorização.</p>
-            				</ul> 
-                        </div>
-                        
-                        
-                        <div class="development">
-                            	<ul class="blockfooter noborder logo-fbits">
-                					<a target="_blank" href="https://www.traycorp.com.br/?utm_source=Odonto Master-Loja&amp;utm_medium=loja&amp;utm_campaign=RodapeAdmin&amp;utm_term=loja" title="Tray Corp by FBITS"><i class="fstore replace">Tray Corp by FBITS</i></a> 
-                				</ul>
-                				<span class="blockfooter noborder logo-aprospect">
-							<a target="_blank" href="" title="Aprospect">
-								<img src="https://recursos.lentesdecontato.net/i/Icone-Aprospect.png" alt="Aprodpect" class="logoaprospect">
-							</a> 
-						</span>
-                        </div>
-                    </div>
-                    </div>
-
-<script>
-    
-Fbits.Carrinho.Pedido.Valido = function () {
-    var resultado = true;    
-    // var tamanhoTela = 1280;
-    // $('.tyc-mensagem').html('');
-
-    if ($("ul[class='fbits-info-pessoal'] li[class='fbits-info-item']").length == 0) {
-        marcarAtivo("USUARIO");
-    
-        // if(tamanhoTela <= 1024) {
-        //     alert('Por favor, preencha seus dados de usuário');
-        // } else {
-            $('.checkout-active').append('<div class="tyc-mensagem"><div class="tyc-border-progress"></div><p class="tyc-mensagem-error">Por favor, preencha seus dados de usuário</p></div>').show("slow");
-        //}
-
-        resultado = false;
-    }
-    else if ($('#div-endereco-body div[data-selecionado="true"]').length == 0) {
-    
-        marcarAtivo("ENDERECO");
-        
-        // if(tamanhoTela <= 1024) {
-        //  alert('Por favor, selecione um endereço');
-        // } else {
-            $('.checkout-active').append('<div class="tyc-mensagem"><div class="tyc-border-progress"></div><p class="tyc-mensagem-error">Por favor, selecione um endereço</p></div>').show("slow");
-        // }
-        
-        resultado = false;   
-    }
-    else if ($('#fbits-frete-body div[class="item-frete-option selected"]').length == 0) {
-        marcarAtivo("ENVIO");
-        
-        // if(tamanhoTela <= 1024) {
-        //     alert('Por favor, selecione uma forma de envio');
-        // } else {
-            $('.checkout-active').append('<div class="tyc-mensagem"><div class="tyc-border-progress"></div><p class="tyc-mensagem-error">Por favor, selecione uma forma de envio</p></div>').show("slow");
-        // }
-
-        resultado = false;
-    }
-    else if ($('.formas-pagamento li[class="nav-item active"]').length == 0) {
-        
-        marcarAtivo("PAGAMENTO");
-        
-        // if(tamanhoTela <= 1024) {
-        //     alert('Por favor, selecione uma forma de pagamento');
-            
-        // } else {
-            $('.checkout-active').append('<div class="tyc-mensagem"><div class="tyc-border-progress"></div><p class="tyc-mensagem-error">Por favor, selecione uma forma de pagamento</p></div>').show("slow");
-        // }
-        
-        resultado = false;
-    }
-
-    return resultado;
-};
-
-$('.btfinalizar').click(function(){ 
-    $('html, body').animate({ 
-        scrollTop: $('.checkout-active').offset().top 
-    }, 1000); 
-    
-    setTimeout(function(){ $('.tyc-mensagem').hide("slow").fadeOut() }, 3500);
-});
-
-</script>
-
-<style>
-    
-.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.fa-facebook:before{content:"\f09a";}
-.fa-instagram:before{content:"\f16d";}
-
-.fa{display:inline-block;font-family:FontAwesome;font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.fa-facebook:before{content:"\f09a";}
-.fa-instagram:before{content:"\f16d";}
-.social-icons{float:right;}
-.social-icons a{width:30px;height:30px;background-color:#000;display:inline-block;text-indent:-9999px;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;margin-left:10px;line-height:30px;}
-.social-icons a:hover{background:url(https://recursos.odontomaster.com.br/i/social-icons-hover-sprite.png) 0 0 no-repeat;width:30px;height:30px;background-color:#E0E0E0;display:inline-block;text-indent:-9999px;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;margin-left:10px;line-height:30px;}
-
-.footer .social-icons{float:left;}
-.social-icons a:first-child{margin:0;}
-.footer .social-icons a{background-color:#9e9e9e;border-radius:50%;}
-.footer .social-icons{float:left;}
-
-.footer .social-icons a{background-color:transparent;border-radius:50%;position:relative;font-size:20px;display:inline-block;text-indent:0;}
-.fa-facebook:before{content:"\f09a";color:#1b65a9;font-size:21px;margin-left:0;position:absolute;width:20px;top:0;left:0;opacity:1;}
-.fa-instagram:before{content:"\f16d";color:#1b65a9;font-size:21px;margin-left:0;position:absolute;width:20px;top:0;left:0;opacity:1;}
-
-.fa-facebook-f:before, .fa-facebook:before {
-    content: "\f09a";
-    color: #1b65a9;
-    font-size: 21px;
-    margin-left: 0;
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item::before,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item::before {
+    content: '';
     position: absolute;
-    width: 20px;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:hover,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:hover::before,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:hover::before {
     opacity: 1;
-} 
-
-
-
-
-.footer-bottom{min-height:50px;line-height:40px;background-color:#0c0c0c;padding:25px 0;}
-.footer-bottom address{float:right;line-height:40px;}
-.footer .container{width:100%;}
-@@media (max-width:767px){
-.footer-bottom{text-align:center;}
-.footer-bottom address{float:none;text-align:center;}
-}
-@@media (max-width:480px){
-.footer-bottom address{float:left;line-height:1.4;margin:5px 0;}
 }
 
-.footer-bottom{background-color:transparent;}
-.footer-bottom,.footer-bottom p{color:#687176;}
-.footer-bottom a{color:#687176;}
-.footer-bottom{margin:0 auto;}
-.footer-bottom address{margin-right:60px;}
-@@media (min-width:768px){
-.footer-bottom{width:690px;}
-}
-@@media (min-width:992px){
-.footer-bottom{width:930px;}
-}
-@@media (min-width:1200px){
-.footer-bottom{width:1110px;}
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:hover img,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.06) contrast(1.02);
 }
 
-.footer-bottom{border-top:1px solid #1b65a9;}
-.footer-bottom{padding:5px 0;}
-.footer-bottom address *{font-size:0.8rem!important;}
-.footer-bottom address{margin-right:0;line-height:1.5em;text-align:center;padding-top:1em;}
-ul.blockfooter.noborder.copyright{font-size:0.8rem;}
-.footer-bottom address{float:none;}
-.footer-bottom{padding:5px 0;max-width:1050px;}
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:active,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:active {
+    transform: translateY(-7px) scale(1.015);
+    transition-duration: 0.15s;
+}
+
+/* Animação de entrada dos banners */
+section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item {
+    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+}
+
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-slide:nth-child(1) .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .slick-slide:nth-child(1) .fbits-banner-item { 
+    animation-delay: 0.1s; 
+}
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-slide:nth-child(2) .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .slick-slide:nth-child(2) .fbits-banner-item { 
+    animation-delay: 0.2s; 
+}
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-slide:nth-child(3) .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .slick-slide:nth-child(3) .fbits-banner-item { 
+    animation-delay: 0.3s; 
+}
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-slide:nth-child(4) .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .slick-slide:nth-child(4) .fbits-banner-item { 
+    animation-delay: 0.4s; 
+}
+section.fbits-section-home.fbits-banner-mobiletopo-home .slick-slide:nth-child(5) .fbits-banner-item,
+section.fbits-section-home.fbits-banner-topo-home .slick-slide:nth-child(5) .fbits-banner-item { 
+    animation-delay: 0.5s; 
+}
+
+/* Responsivo - Mobile/Tablet */
+@@media (max-width: 1024px) {
+    section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item,
+    section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item {
+        cursor: default;
+        box-shadow: none;
+        transition: none;
+        will-change: auto;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:hover,
+    section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:hover {
+        transform: none;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:hover::before,
+    section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:hover::before {
+        opacity: 0;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:hover img,
+    section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:hover img {
+        transform: none;
+        filter: none;
+    }
+    
+    section.fbits-section-home.fbits-banner-mobiletopo-home .slick-list,
+    section.fbits-section-home.fbits-banner-topo-home .slick-list {
+        padding: 5px 0 !important;
+    }
+}
+/* ===== FIM EFEITOS HOVER BANNER TOPO ===== */
+
+/* ===== BANNER CENTRO RESPONSIVO ===== */
+/* Controle de visibilidade Desktop/Mobile via CSS */
+section.fbits-banner-centro-home.bdesk {
+    display: block;
+}
+
+section.fbits-banner-centro-home.bmob {
+    display: none;
+}
+
+section.fbits-banner-centro-home {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: transparent;
+}
+
+section.fbits-banner-centro-home .row-fbits-banner-centro {
+    margin: 0;
+}
+
+section.fbits-banner-centro-home .fbits-banner-item {
+    width: 100%;
+    max-width: 100%;
+}
+
+section.fbits-banner-centro-home .fbits-banner-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Mobile - Banner Centro Full Width (Ocupa Todo Espaço) */
+@@media (max-width: 990px) {
+    /* Esconde desktop, mostra mobile */
+    section.fbits-banner-centro-home.bdesk {
+        display: none !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100vw !important;
+    position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+    }
+    
+    /* Container sem padding lateral */
+    section.fbits-banner-centro-home.bmob .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob .row-fbits-banner-centro {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob .col-md-12 {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob .fbits-banner-item {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Imagem responsiva - altura automática para manter proporção */
+    section.fbits-banner-centro-home.bmob .fbits-banner-item img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        object-fit: contain !important;
+    }
+    
+    /* Slick Carousel - altura automática */
+    section.fbits-banner-centro-home.bmob .slick-list {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob .slick-track {
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob .slick-slide {
+        padding: 0 !important;
+        margin: 0 !important;
+        float: none !important;
+        display: flex !important;
+    }
+    
+    section.fbits-banner-centro-home.bmob .slick-slide > div {
+        width: 100% !important;
+    }
+}
+/* ===== FIM BANNER CENTRO RESPONSIVO ===== */
+
+/* ===== BANNER MEIO RESPONSIVO (DESKTOP/MOBILE) ===== */
+section.fbits-banner-meio-home.bdesk {
+    display: block;
+}
+
+section.fbits-banner-meio-home.bmob {
+    display: none;
+}
+
+@@media (max-width: 990px) {
+    section.fbits-banner-meio-home.bdesk {
+        display: none !important;
+    }
+    
+    section.fbits-banner-meio-home.bmob {
+        display: block !important;
+        margin: 2em 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Banner Meio Mobile - Dimensões 1100x225 */
+    section.fbits-banner-meio-home.bmob .row-fbits-banner-meio {
+        margin: 0 !important;
+    }
+    
+    section.fbits-banner-meio-home.bmob .col-md-12 {
+        padding: 0 !important;
+    }
+    
+    section.fbits-banner-meio-home.bmob .fbits-banner-item {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    section.fbits-banner-meio-home.bmob .fbits-banner-item img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1100 / 225 !important; /* Proporção 1100x225 */
+        object-fit: cover !important;
+        display: block !important;
+    }
+}
+
+/* Mobile Pequeno - Mantém proporção */
+@@media (max-width: 768px) {
+    section.fbits-banner-meio-home.bmob .fbits-banner-item img {
+        aspect-ratio: 1100 / 225 !important;
+        object-fit: cover !important;
+    }
+}
+
+/* Mobile - Aproxima seções do banner-meio para harmonia visual */
+@@media (max-width: 990px) {
+    /* Reduz margem inferior do banner-meio mobile */
+    section.fbits-banner-meio-home.bmob {
+        margin: 2em 0 1em 0 !important;
+    }
+    
+    /* Reduz margem superior das vitrines após o banner-meio */
+    section.fbits-banner-meio-home.bmob + section.fbits-vitrine-home h3.title.big,
+    section.fbits-banner-meio-home.bmob ~ section.fbits-vitrine-home h3.title.big {
+        margin-top: 1.5em !important;
+    }
+    
+    /* Reduz margem superior de ofertas por departamento após banner-meio */
+    section.fbits-banner-meio-home.bmob + section.fbits-ofertas-departamento h3.title.big,
+    section.fbits-banner-meio-home.bmob ~ section.fbits-ofertas-departamento h3.title.big {
+        margin-top: 1.5em !important;
+    }
+}
+
+@@media (max-width: 768px) {
+    /* Margem ainda menor em telas pequenas */
+    section.fbits-banner-meio-home.bmob {
+        margin: 1.5em 0 0.5em 0 !important;
+    }
+    
+    section.fbits-banner-meio-home.bmob + section.fbits-vitrine-home h3.title.big,
+    section.fbits-banner-meio-home.bmob ~ section.fbits-vitrine-home h3.title.big,
+    section.fbits-banner-meio-home.bmob + section.fbits-ofertas-departamento h3.title.big,
+    section.fbits-banner-meio-home.bmob ~ section.fbits-ofertas-departamento h3.title.big {
+        margin-top: 1em !important;
+    }
+}
+/* ===== FIM BANNER MEIO RESPONSIVO ===== */
+
+/* ===== VITRINE COM BANNER RESPONSIVO (DESKTOP/MOBILE) ===== */
+/* IMPORTANTE: Banner lateral SEMPRE visível no desktop */
+section.fbits-vitrine-com-banner.bdesk {
+    display: block !important;
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 25% !important;
+    float: left !important;
+}
+
+section.fbits-vitrine-com-banner.bmob {
+    display: none !important;
+}
+
+@@media (max-width: 990px) {
+    section.fbits-vitrine-com-banner.bdesk {
+        display: none !important;
+    }
+    
+    section.fbits-vitrine-com-banner.bmob {
+        display: block !important;
+    }
+    
+    /* Banner Lateral Mobile - Dimensões 1100x225 */
+    section.fbits-vitrine-com-banner.bmob .col-banner-ofertas {
+        width: 100% !important;
+        max-width: 100% !important;
+        float: none !important;
+        margin-bottom: 2em !important;
+        padding: 0 !important;
+    }
+    
+    section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+    
+    section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item:first-child {
+        display: block !important;
+    }
+    
+    section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1100 / 225 !important; /* Proporção 1100x225 */
+        object-fit: cover !important;
+        display: block !important;
+        border-radius: 0 !important;
+    }
+    
+    /* Carrossel abaixo do banner */
+    section.fbits-vitrine-com-banner.bmob .col-carrossel-ofertas {
+        width: 100% !important;
+        max-width: 100% !important;
+        float: none !important;
+        padding: 0 !important;
+    }
+}
+
+/* Mobile Pequeno - Mantém proporção */
+@@media (max-width: 768px) {
+    section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item img {
+        aspect-ratio: 1100 / 225 !important;
+        object-fit: cover !important;
+    }
+}
+/* ===== FIM VITRINE COM BANNER RESPONSIVO ===== */
+
+/* ===== BANNER RODAPÉ  ===== */
+
+
+section.fbits-banner-rodape {
+    padding: 2em 0;
+}
+
+section.fbits-banner-rodape .slick-list {
+    margin: 0 -10px;
+    padding: 20px 0 !important;
+}
+
+section.fbits-banner-rodape .slick-slide {
+    padding: 0 10px;
+    outline: none;
+}
+
+section.fbits-banner-rodape .fbits-banner-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-radius 0.3s ease;
+    will-change: transform, box-shadow;
+}
+
+section.fbits-banner-rodape .fbits-banner-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* Transição refinada para zoom */
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, filter;
+}
+
+section.fbits-banner-rodape .fbits-banner-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(29, 101, 186, 0.06) 0%, 
+        rgba(29, 101, 186, 0.02) 50%,
+        rgba(29, 101, 186, 0.04) 100%);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hover - Animação fluida e elástica */
+section.fbits-banner-rodape .fbits-banner-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16), 
+                0 6px 18px rgba(29, 101, 186, 0.15);
+    border-radius: 16px;
+}
+
+section.fbits-banner-rodape .fbits-banner-item:hover::before {
+    opacity: 1;
+}
+
+section.fbits-banner-rodape .fbits-banner-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.06) contrast(1.02);
+}
+
+/* Feedback ao clicar - bounce suave */
+section.fbits-banner-rodape .fbits-banner-item:active {
+    transform: translateY(-7px) scale(1.015);
+    transition-duration: 0.15s;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+/* Animação de entrada dos banners */
+section.fbits-banner-rodape .fbits-banner-item {
+    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+}
+
+@@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section.fbits-banner-rodape .slick-slide:nth-child(1) .fbits-banner-item { animation-delay: 0.1s; }
+section.fbits-banner-rodape .slick-slide:nth-child(2) .fbits-banner-item { animation-delay: 0.2s; }
+section.fbits-banner-rodape .slick-slide:nth-child(3) .fbits-banner-item { animation-delay: 0.3s; }
+section.fbits-banner-rodape .slick-slide:nth-child(4) .fbits-banner-item { animation-delay: 0.4s; }
+
+/* Responsivo - Mobile/Tablet */
+@@media (max-width: 1024px) {
+    section.fbits-banner-rodape .fbits-banner-item {
+        cursor: default;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        transition: none;
+        will-change: auto;
+    }
+    
+    section.fbits-banner-rodape .fbits-banner-item:hover {
+        transform: none;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+    }
+    
+    section.fbits-banner-rodape .fbits-banner-item:hover::before {
+        opacity: 0;
+    }
+    
+    section.fbits-banner-rodape .fbits-banner-item:hover img {
+        transform: none;
+        filter: none;
+    }
+    
+    section.fbits-banner-rodape .slick-list {
+        padding: 10px 0 !important;
+    }
+}
+/* ===== FIM BANNER RODAPÉ - REFINADO ===== */
+
+h3.title.big {
+    color: #000;
+    margin-top: 3em;
+    margin-bottom: 1.3em;
+    text-transform: uppercase;
+    border-bottom: 3px solid #1d70ba;
+}
+
+ul,li {
+    list-style: none;
+}
+
+section.fbits-section-home.fbits-vitrine-home {
+    padding-bottom: 4em;
+}
+section.fbits-section-home.fbits-ofertas-departamento {
+    margin-bottom: 5em;
+}
+section.fbits-section-home.fbits-banner-meio-home {
+    margin: 4em 0;
+    padding: 2em 0;
+}
+section.fbits-section-home.fbits-banner-meio-home .fbits-banner-item {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+}
+section.fbits-section-home.fbits-banner-meio-home .fbits-banner-item img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Melhores Ofertas com Banner Lateral - DESKTOP */
+section.fbits-vitrine-com-banner.bdesk {
+    display: block !important;
+}
+
+section.fbits-vitrine-com-banner.bdesk .row-vitrine-home {
+    display: block !important;
+    overflow: hidden;
+    clear: both;
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas {
+    float: left !important;
+    width: 25% !important;
+    padding-right: 15px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 1px !important;
+    position: relative !important;
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-carrossel-ofertas {
+    float: left !important;
+    width: 75% !important;
+    padding-left: 15px !important;
+    display: block !important;
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas .fbits-banner-item {
+    background: #fff !important;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas .fbits-banner-item:first-child {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas .fbits-banner-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas .fbits-banner-item img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Clearfix para garantir layout correto */
+section.fbits-vitrine-com-banner.bdesk .row-vitrine-home:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Força display no desktop - sobrescreve qualquer regra Bootstrap */
+@@media (min-width: 991px) {
+    section.fbits-vitrine-com-banner.bdesk .col-md-3.col-banner-ofertas {
+        float: left !important;
+        width: 25% !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    section.fbits-vitrine-com-banner.bdesk .col-md-9.col-carrossel-ofertas {
+        float: left !important;
+        width: 75% !important;
+        display: block !important;
+    }
+    
+    /* Garante que elementos dentro do banner lateral sejam visíveis */
+    section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas * {
+        visibility: visible !important;
+    }
+    
+    section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas > * {
+        display: block !important;
+    }
+}
+
+.product-name {
+    margin: 10px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    color: #000;
+    margin: 0 0 3px;
+    min-height: 2.9em;
+    max-height: 2.9em;
+    overflow: hidden;
+    text-align: center;
+}
+.spotPreco {
+    height: 70px;
+    text-align: center;
+}
+.item .details-area .actions {
+    text-align: center;
+}
+
+
+    @@media (min-width:1300px){
+       
+        .spot {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+        section.fbits-section-home.fbits-banner-topo-home img {
+            max-width: 97%;
+            margin: 0 auto;
+        }
+         section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:first-child img {
+            margin: 0;
+        }
+         section.fbits-section-home.fbits-banner-topo-home .fbits-banner-item:last-child img {
+            margin: 0;
+            float:right;
+        }
+        
+        section.fbits-section-home.fbits-banner-rodape img {
+            max-width: 97%;
+            margin: 0 auto;
+        }
+         section.fbits-section-home.fbits-banner-rodape .fbits-banner-item:first-child img {
+            margin: 0;
+        }
+         section.fbits-section-home.fbits-banner-rodape .fbits-banner-item:last-child img {
+            margin: 0;
+            float:right;
+         }
+        section.fbits-section-home.fbits-banner-mobiletopo-home img {
+            max-width: 250px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+         section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:first-child img {
+            margin: 0;
+        }
+         section.fbits-section-home.fbits-banner-mobiletopo-home .fbits-banner-item:last-child img {
+            margin: 0;
+            float:right;
+        }
+        
+        section.fbits-section-home.fbits-banner-meio-home {
+            margin: 3em 0;
+            padding: 1em 0;
+        }
+        section.fbits-section-home.fbits-banner-meio-home .row-fbits-banner-meio {
+            margin: 0;
+        }
+        section.fbits-section-home.fbits-banner-meio-home img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        section.fbits-section-home.fbits-banner-meio-home .fbits-banner-item {
+            padding: 0;
+            margin: 0;
+        }
+        section.fbits-section-home.fbits-banner-meio-home .fbits-banner-item img {
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    }
+    
+    
+    @@media (max-width:1023px){
+        section.fbits-section-home.fbits-banner-centro-home img {
+            margin: 0 auto!important;
+        }
+        body .fbits-banner-rodape img {
+            max-width: 100%;
+        }
+        section.fbits-section-home.fbits-banner-meio-home img {
+            max-width: 100%!important;
+            width: 100%!important;
+            height: auto!important;
+            margin: 0 auto!important;
+            border-radius: 6px;
+        }
+        section.fbits-section-home.fbits-banner-meio-home {
+            margin: 2em 0;
+            padding: 1em 0;
+        }
+        
+        /* Melhores Ofertas com Banner - Mobile Horizontal (igual banner-meio) */
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas,
+        section.fbits-vitrine-com-banner.bmob .col-carrossel-ofertas {
+            width: 100%;
+            max-width: 100%;
+            float: none;
+            padding: 0 !important;
+        }
+        
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas {
+            margin-bottom: 2em;
+            padding: 0 !important;
+        }
+        
+        /* Banner horizontal em mobile (como banner-meio) */
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item {
+            border-radius: 6px !important;
+            box-shadow: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 6px !important;
+            object-fit: cover !important;
+        }
+    }
+    
+    @@media (max-width:1600px){
+        .row.row-fbits-banner-topo >div {
+            padding: 0;
+        }
+        .fbits-banner-rodape {
+            margin-bottom: 5px;
+            display: block;
+            float: none;
+        }
+        section.fbits-section-home.fbits-banner-rodape {
+            /* display: none!important; */
+            width: 100%;
+        }
+        section.fbits-section-home.fbits-banner-topo-home img {
+            max-width: 250px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+        body .fbits-banner-rodape img {
+            float: none;
+            display: block!important;
+            margin: 0 auto;
+        }
+        section.fbits-section-home.fbits-banner-meio-home img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            float: none;
+            display: block!important;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+        section.fbits-section-home.fbits-banner-meio-home {
+            margin: 1.5em 0;
+            padding: 0.5em 0;
+        }
+        .row.row-fbits-banner-meio >div {
+            padding: 0 10px;
+        }
+        
+        /* Melhores Ofertas com Banner - Ajustes Responsivos Desktop */
+        section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas {
+            padding-right: 15px !important;
+        }
+        
+        section.fbits-vitrine-com-banner.bdesk .col-carrossel-ofertas {
+            padding-left: 15px !important;
+        }
+    }
+    
+    /* Mobile Extra - Banner Ofertas Horizontal Otimizado */
+    @@media (max-width: 768px) {
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas {
+            margin-bottom: 1.5em;
+        }
+        
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item {
+            border-radius: 4px !important;
+        }
+        
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item img {
+            border-radius: 4px !important;
+        }
+    }
+    
+    @@media (max-width: 480px) {
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas {
+            margin-bottom: 1em;
+        }
+        
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item,
+        section.fbits-vitrine-com-banner.bmob .col-banner-ofertas .fbits-banner-item img {
+            border-radius: 0 !important;
+        }
+    }
+    
+/* Remove background cinza dos containers */
+.main-container.col1-layout {
+    background: #fff !important;
+    padding: 0 !important;
+}
+
+.main-container .main.container {
+    background: #fff !important;
+    padding: 0 !important;
+}
+
+.main-container .col-main {
+    background: #fff !important;
+    padding: 0 !important;
+}
+
+/* Remove espaços cinzas em mobile e corrige faixa branca lateral */
+@@media (max-width: 990px) {
+    /* Reset completo HTML/Body - Apenas overflow-x no body */
+    html {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        background: #fff !important;
+    }
+    
+    /* Containers principais - Full Width SEM overflow-x */
+    .main-container.col1-layout,
+    .main-container .main.container,
+    .main-container .col-main {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Remove padding dos containers Bootstrap */
+    .container,
+    .main.container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Remove margens negativas das rows */
+    .row,
+    .row-fbits-banner-topo,
+    .row-fbits-banner-centro,
+    .row-fbits-banner-meio,
+    .row-fbits-banner-rodape,
+    .row-vitrine-home,
+    .row-ofertas-departamento {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Remove padding das colunas */
+    .col-md-12,
+    .col-sm-12,
+    [class*="col-"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    /* Width 100% APENAS para colunas que não são do banner lateral desktop */
+    .col-md-12,
+    .col-sm-12 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Seções ocupam 100% SEM overflow-x (só no body) */
+    section.fbits-section-home {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Corrige margin negativa do slick-list que causa overflow */
+    section.fbits-banner-rodape .slick-list {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    section.fbits-banner-rodape .slick-slide {
+        padding: 0 5px !important;
+    }
+    
+    /* Adiciona padding mínimo apenas nos carrosséis de produtos para respiração */
+    section.fbits-vitrine-home .slick-list,
+    section.fbits-ofertas-departamento .slick-list {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    /* Títulos com padding interno para não colar na borda */
+    h3.title.big {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Garante que o line (título com barra) não cause overflow */
+    .line {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+    
 </style>
+ <div class="main-container col1-layout">
+        <div class="main container">
+            <div class="col-main">
+    
+    <!--BANNER TOPO-->
+    <section class="fbits-section-home fbits-banner-topo-home">
+        <div class="row row-fbits-banner-topo">
+                            <div class="col-md-12">
+                <FBITS:Banner filtroPosicao="mobiletopo" idsBanners="" tipo="carrossel"  configuracaoCarrossel="{
+                
+                  infinite: true,
+                  speed: '300',
+                  autoplay: true,
+                  slidesToShow: 5,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1920,
+                      settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                      }
+                    },
+                    {
+                      breakpoint: 1280,
+                      settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 767,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 440,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                }" classeItens="" />
+                          </div> 
+                        </div>
+    </section>  
+                </div>
+            </div>   
+            
+    <!--BANNER CENTRO DESKTOP-->
+    <section class="fbits-section-home fbits-banner-centro-home bdesk">
+        <div class="container">
+            <div class="row row-fbits-banner-centro">
+                            <div class="col-md-12">
+                    <FBITS:Banner filtroPosicao="centro" idsBanners="" tipo="carrossel" configuracaoCarrossel="{
+                        dots: true,
+                        fade: true,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        arrows: true,
+                        infinite: true,
+                        speed: 500
+                    }" classeItens="" />
+                            </div>
+                          </div> 
+                        </div>
+    </section>
+    
+    <!--BANNER CENTRO MOBILE (mesma posição "centro")-->
+    <section class="fbits-section-home fbits-banner-centro-home bmob">
+        <div class="container">
+            <div class="row row-fbits-banner-centro">
+                <div class="col-md-12">
+                    <FBITS:Banner filtroPosicao="mobile centro" idsBanners="" tipo="carrossel" configuracaoCarrossel="{
+                        dots: true,
+                        fade: false,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        arrows: false,
+                        infinite: true,
+                        speed: 500
+                    }" classeItens="" />
+                </div>
+            </div>   
+        </div>
+    </section>
+    
+    <!--MELHORES OFERTAS COM BANNER LATERAL DESKTOP-->
+    <section class="fbits-section-home fbits-vitrine-home fbits-vitrine-com-banner bdesk">
+        <div class="row row-vitrine-home">
+            <div class="col-md-12">
+                <div class="line">
+                    <h3 class="title big"> melhores ofertas</h3>
+                    <span></span>
+                          </div> 
+                        </div>
+                </div>
+        <div class="row row-vitrine-home">
+            <!-- Banner Vertical Desktop -->
+            <div class="col-md-3 col-sm-12 col-banner-ofertas">
+                <FBITS:Banner filtroPosicao="Lateral Direita" idsBanners="" tipo="estatico" configuracaoCarrossel="" classeItens="banner-ofertas-lateral" />
+            </div>   
+            
+            <!-- Carrossel de Produtos -->
+            <div class="col-md-9 col-sm-12 col-carrossel-ofertas">
+                <FBITS:ListaSpots idsHotsites="117326" tipo="carrossel" configuracaoCarrossel="{
+                    dots: false,
+                    infinite: true,
+                    speed: '300',
+                    autoplay: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 990,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                }" classeItens="componente-vitrine" />
+            </div>
+        </div>
+    </section>
+    
+    <!--MELHORES OFERTAS COM BANNER LATERAL MOBILE-->
+    <section class="fbits-section-home fbits-vitrine-home fbits-vitrine-com-banner bmob">
+        <div class="row row-vitrine-home">
+            <div class="col-md-12">
+                <div class="line">
+                    <h3 class="title big"> melhores ofertas</h3>
+                    <span></span>
+                          </div> 
+                        </div>
+                </div>
+        <div class="row row-vitrine-home">
+            <!-- Banner Vertical Mobile -->
+            <div class="col-md-3 col-sm-12 col-banner-ofertas">
+                <FBITS:Banner filtroPosicao="Lateral Esquerda" idsBanners="" tipo="estatico" configuracaoCarrossel="" classeItens="banner-ofertas-lateral-mobile" />
+            </div>   
+            
+            <!-- Carrossel de Produtos -->
+            <div class="col-md-9 col-sm-12 col-carrossel-ofertas">
+                <FBITS:ListaSpots idsHotsites="117326" tipo="carrossel" configuracaoCarrossel="{
+                  dots: false,
+                  infinite: true,
+                  speed: 300,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1920,
+                      settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 1280,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 767,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                }" classeItens="componente-vitrine" />
+                          </div> 
+                        </div>
+    </section>
+
+    
+   <!--VITRINE DOIS-->
+    <section class="fbits-section-home fbits-vitrine-home">
+        <div class="row row-vitrine-home">
+            <div class="col-md-12">
+                <div class="line">
+                    <h3 class="title big"> novidades! </h3>
+                    <span></span>
+                            </div>
+                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117167" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
+                  dots: false,
+                  infinite: true,
+                  speed: 300,
+                  adaptiveHeight: true,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1920,
+                      settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 1280,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 767,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                }" classeItens="componente-vitrine" />
+                          </div> 
+                        </div>
+    </section>
+    
+
+    
+   <!--BANNER RODAPE-->
+    <section class="fbits-section-home fbits-banner-rodape" style="width: 100%;">
+        <div class="row row-fbits-banner-rodape">
+                            <div class="col-md-12">
+                <div class="line">
+                    <h3 class="title big"> </h3>
+                    <span></span>
+                            </div>
+                <FBITS:Banner filtroPosicao="rodape" idsBanners="" tipo="carrossel" configuracaoCarrossel="{
+                  dots: false,
+                  infinite: true,
+                  speed: 300,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1920,
+                      settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 1280,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 767,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 400,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                }" classeItens="componente-banner-rodape" />
+                          </div> 
+                        </div>
+    </section>
+
+        <!--OFERTAS POR DEPARTAMENTO-->
+    <section class="fbits-section-home fbits-ofertas-departamento">
+        <div class="row row-ofertas-departamento">
+                            <div class="col-md-12">
+                <div class="line">
+                    <h3 class="title big">os melhores equipamentos! </h3>
+                    <span></span>
+                                    </div>
+                <FBITS:OfertasPorDepartamento idHotsite="117268" tipo="carrossel" configuracaoCarrossel="{
+                  dots: false,
+                  infinite: true,
+                  speed: 300,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1920,
+                      settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 1280,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 767,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                }" classeItens="componente-vitrine componente-ofertas-departamento" />
+                          </div> 
+                        </div>
+    </section>  
+    
+    <!-- Futuramente Mobile Centro Lower>
+    <!--BANNER MEIO DESKTOP - Entre Equipamentos e Clareador-->
+    <section class="fbits-section-home fbits-banner-meio-home bdesk">
+        <div class="row row-fbits-banner-meio">
+            <div class="col-md-12">
+                <FBITS:Banner filtroPosicao="Centro Lower" idsBanners="" tipo="estatico" configuracaoCarrossel="" classeItens="banner-meio-equipamentos" />
+                </div>
+            </div>   
+    </section>
+    
+    <!--BANNER MEIO MOBILE - Entre Equipamentos e Clareador-->
+    <section class="fbits-section-home fbits-banner-meio-home bmob">
+        <div class="row row-fbits-banner-meio">
+            <div class="col-md-12">
+                <FBITS:Banner filtroPosicao="Mobile Centro Lower" idsBanners="" tipo="estatico" configuracaoCarrossel="" classeItens="banner-meio-equipamentos-mobile" />
+                </div>
+            </div>   
+    </section>
+    
+        <!--LUVAS-->
+    <section class="fbits-section-home fbits-vitrine-home">
+        <div class="row row-vitrine-home">
+            <div class="col-md-12">
+                <div class="line">
+                    <h3 class="title big">os melhores preços em clareador</h3>
+                    <span></span>
+                </div>               
+                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117272" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
+                  dots: false,
+                  infinite: true,
+                  speed: 300,
+                  adaptiveHeight: true,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  responsive: [
+                    {
+                      breakpoint: 1920,
+                      settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 1280,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 767,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                }" classeItens="componente-vitrine" />
+            </div>
+                </div>
+    </section>
+
+                        </div>
+                    </div>
+                    </div>
 
