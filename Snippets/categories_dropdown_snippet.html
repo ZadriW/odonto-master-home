@@ -1,0 +1,35 @@
+{{ ##
+    Description: Renders the categories dropdown for the navbar
+    Params:
+        - Uses categories.graphql
+    Usage:
+        await client.snippet.render("categories_dropdown_snippet.html", "SnippetQueries/categories.graphql", variables);
+## }}
+{{~ categories = data.categories.nodes ~}}
+{{~ if categories && categories.size > 0 ~}}
+    {{~ # Ordena as categorias alfabeticamente pelo nome ~}}
+    {{~ sortedCategories = categories | array.sort "name" ~}}
+    <div class="categories-dropdown-list">
+        {{~ for category in sortedCategories ~}}
+            {{~ # Valida o hotsiteUrl ~}}
+            {{~ categoryUrl = category.hotsiteUrl ?? "" ~}}
+            {{~ # Se hotsiteUrl estiver vazio, tenta construir a URL ~}}
+            {{~ if !categoryUrl || categoryUrl == "" || categoryUrl == null ~}}
+                {{~ # Usa o nome da categoria para construir a URL (normalizado) ~}}
+                {{~ categoryUrl = category.name | string.downcase | string.replace " " "-" | string.replace "á" "a" | string.replace "é" "e" | string.replace "í" "i" | string.replace "ó" "o" | string.replace "ú" "u" | string.replace "ç" "c" | string.replace "ã" "a" | string.replace "õ" "o" ~}}
+                {{~ categoryUrl = "/" + categoryUrl ~}}
+            {{~ end ~}}
+            {{~ # Garante que a URL comece com / se não começar com http ~}}
+            {{~ if !(categoryUrl | string.starts_with "/") && !(categoryUrl | string.starts_with "http") ~}}
+                {{~ categoryUrl = "/" + categoryUrl ~}}
+            {{~ end ~}}
+            <a href="{{ categoryUrl }}" class="categories-dropdown-item">
+                <span class="categories-dropdown-item-name">{{ category.name }}</span>
+            </a>
+        {{~ end ~}}
+    </div>
+{{~ else ~}}
+    <div class="categories-dropdown-empty">
+        <span>Nenhuma categoria encontrada</span>
+    </div>
+{{~ end ~}}

@@ -1,0 +1,10 @@
+<div class="flex flex-col w-full">
+    {{ for information in informations }}
+        <div class="flex flex-col w-full mb-6 p-5 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="product-information-title text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wide pb-3">{{ information.title }}</h2>
+            <div class="product-information-content text-gray-700 leading-relaxed">
+            {{ information.value }}
+            </div>
+        </div>
+    {{ end }}
+</div>

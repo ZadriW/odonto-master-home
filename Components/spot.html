@@ -1,0 +1,94 @@
+{{ ##
+    Description: Renders a product spot containing the main image, the product name,
+                 list price, price and the button "comprar".
+    Params:
+      - product: the product that will be displayed
+    Usage:
+      spot product: product
+## }}
+<div class="product-card" onclick="window.location.href='/{{product.alias}}'" style="cursor: pointer;">
+    <div class="product-card__image">
+        {{ spot_image product: product priority: img_priority lazy: img_lazy_load}}
+    </div>
+    {{~ if product.product_id ~}}
+        <div class="product-wishlist" onclick="event.stopPropagation();">
+            {{ wishlist_button product_id: product.product_id }}
+        </div>
+    {{~ end ~}}
+    
+    {{~ if product.promotions && product.promotions.size > 0 ~}}
+        {{~ for promotion in product.promotions ~}}
+            {{~ if promotion.disclosure_type == "Spot" ~}}
+                <div class="product-badge product-badge--promotion">
+                    {{ promotion.title }}
+                </div>
+            {{~ end ~}}
+        {{~ end ~}}
+    {{~ end ~}}
+    
+    <div class="product-card__content">
+        <a href="/{{product.alias}}" class="product-title-link">
+            <h3 class="product-title">{{ product.product_name }}</h3>
+        </a>
+        
+        {{~ if product.informations && product.informations.size > 0 ~}}
+        {{~ product_spot_info informations: product.informations ~}}
+        {{~ end ~}}
+        
+        {{~
+            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
+            promotionsSpot = promotionsTypes | group.get "Spot"
+            promotionsNull = promotionsTypes | group.get null
+            promotionsGrouped = promotionsSpot | array.add_range promotionsNull
+            stamps promotions: promotionsGrouped
+        }}
+        
+        {{~ if product.available ~}}
+            {{~ if product.prices ~}}
+                {{ product_price prices: product.prices }}
+            {{~ end ~}}
+            {{~ if product.add_to_cart_from_spot # Add product directly to cart~}}
+                {{~ spot_add_to_cart_click = "spotAddToCartButtonClick(" + product.product_variant_id + "); event.stopPropagation(); return false;" ~}}
+                <div class="product-actions-wrapper">
+                    <div class="product-quantity-wrapper">
+                        <button type="button" class="product-quantity-btn product-quantity-minus" onclick="decreaseSpotQuantity('{{product.product_variant_id}}'); event.stopPropagation(); return false;" aria-label="Diminuir quantidade">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+                            </svg>
+                        </button>
+                        <input type="number" id="spot-quantity-{{product.product_variant_id}}" class="product-quantity-input" value="1" min="1" readonly aria-label="Quantidade">
+                        <button type="button" class="product-quantity-btn product-quantity-plus" onclick="increaseSpotQuantity('{{product.product_variant_id}}'); event.stopPropagation(); return false;" aria-label="Aumentar quantidade">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="product-button" onclick="{{ spot_add_to_cart_click }}">
+                        Comprar
+                    </button>
+                </div>
+            {{~ else # Opens up a modal for choosing the variant to be added to the cart~}}
+                {{~ if product.product_id > 0 ~}}
+                    <button class="product-button product-button-variant" onclick="showModalSpot('{{product.product_id}}'); event.stopPropagation(); return false;">
+                        Ver Opções
+                    </button>
+                {{~ else ~}}
+                    <button class="product-button product-button-variant" onclick="event.stopPropagation();">
+                        <a href="/{{product.alias}}" class="flex items-center justify-center" onclick="event.stopPropagation();">
+                            Ver Opções
+                        </a>
+                    </button>
+                {{~ end ~}}
+            {{~ end ~}}
+        {{~ else ~}}
+            {{ if product.product_variant_id != null }}
+                {{ product_back_in_stock product_variant_id: product.product_variant_id message: "Produto esgotado" }}
+            {{ end }}
+        {{~ end ~}}
+    </div>
+    <div class="modal" id="add-to-cart-modal-{{ product.product_id }}" aria-labelledby="addToCartFromSpot" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered" >
+            <div id="add-to-cart-modal-content-{{ product.product_id }}"></div>
+        </div>
+    </div>
+</div>

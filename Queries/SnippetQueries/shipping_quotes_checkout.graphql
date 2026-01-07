@@ -1,0 +1,12 @@
+query ShippingQuotesCheckout($checkoutId: Uuid!, $useSelectedAddress: Boolean) {
+  shippingQuotes(
+    checkoutId: $checkoutId
+    useSelectedAddress: $useSelectedAddress
+  ) {
+    name
+    shippingQuoteId
+    type
+    value
+  }
+}
+

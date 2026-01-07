@@ -1,0 +1,19 @@
+query ShippingQuoteGroups($checkoutId: Uuid!, $useSelectedAddress: Boolean) {
+  shippingQuoteGroups(
+    checkoutId: $checkoutId
+    useSelectedAddress: $useSelectedAddress
+  ) {
+    distributionCenter {
+      id
+      sellerName
+      name
+    }
+    shippingQuotes {
+      name
+      shippingQuoteId
+      type
+      value
+    }
+  }
+}
+

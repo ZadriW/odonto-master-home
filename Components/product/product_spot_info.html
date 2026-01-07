@@ -1,0 +1,29 @@
+{{~ 
+    # Filtrar apenas informações do tipo "Spot" ou pegar a primeira informação disponível
+    spot_info = null
+    
+    if informations && informations.size > 0
+        for information in informations
+            if information.type == "Spot" || information.title == "Spot"
+                spot_info = information
+                break
+            end
+        end
+        
+        # Se não encontrou informação do tipo Spot, pega a primeira disponível
+        if !spot_info
+            spot_info = informations | array.first
+        end
+    end
+~}}
+
+{{~ if spot_info ~}}
+    <div class="product-spot-info" onclick="event.stopPropagation();">
+        <div class="product-spot-info-content">
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-3">
+                {{ spot_info.value }}
+            </p>
+        </div>
+    </div>
+{{~ end ~}}
+

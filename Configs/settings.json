@@ -1,0 +1,119 @@
+{
+  "access_token": "tcs_odont_803f41baa4af4d42ae096a75514ea458",
+  "wake_components_version": "v1",
+  "show_information_groups_fields": false,
+  "favicon_path": "favicon.png",
+  "checkout": {
+    "birthdate_required": true
+  },
+  "page_size": {
+    "default": 24,
+    "options": [
+      12,
+      24,
+      36,
+      48
+    ]
+  },
+  "pagination_by_offset": {
+    "window": 3
+  },
+  "payment_groups": {
+    "display": [
+      ""
+    ]
+  },
+  "filter": {
+    "price_type": "price_field_filter"
+  },
+  "breadcrumb": {
+    "home_text": "Página inicial"
+  },
+  "sort": {
+    "hotsite": {
+      "options": [
+        {
+          "name": "Nome A-Z",
+          "setting": {
+            "key": "NAME",
+            "direction": "ASC"
+          }
+        },
+        {
+          "name": "Vendas",
+          "setting": {
+            "key": "SALES",
+            "direction": "DESC"
+          }
+        },
+        {
+          "name": "Menor Preço",
+          "setting": {
+            "key": "PRICE",
+            "direction": "ASC"
+          }
+        },
+        {
+          "name": "Maior Preço",
+          "setting": {
+            "key": "PRICE",
+            "direction": "DESC"
+          }
+        },
+        {
+          "name": "Data Lançamento",
+          "setting": {
+            "key": "RELEASE_DATE",
+            "direction": "DESC"
+          }
+        }
+      ]
+    },
+    "search": {
+      "options": [
+        {
+          "name": "Relevância",
+          "setting": {
+            "key": "RELEVANCE",
+            "direction": "DESC"
+          }
+        },
+        {
+          "name": "Nome A-Z",
+          "setting": {
+            "key": "NAME",
+            "direction": "ASC"
+          }
+        },
+        {
+          "name": "Vendas",
+          "setting": {
+            "key": "SALES",
+            "direction": "DESC"
+          }
+        },
+        {
+          "name": "Menor Preço",
+          "setting": {
+            "key": "PRICE",
+            "direction": "ASC"
+          }
+        },
+        {
+          "name": "Maior Preço",
+          "setting": {
+            "key": "PRICE",
+            "direction": "DESC"
+          }
+        },
+        {
+          "name": "Data Lançamento",
+          "setting": {
+            "key": "RELEASE_DATE",
+            "direction": "DESC"
+          }
+        }
+      ]
+    }
+  }
+}

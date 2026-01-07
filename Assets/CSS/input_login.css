@@ -1,0 +1,691 @@
+@tailwind components;
+
+@layer components {
+
+  /* authenticate */
+  .wake-autenticate-wrapper {
+    @apply flex flex-col items-center w-full lg:w-[1330px] mx-auto my-20;
+  }
+
+  .wake-autenticate-wrapper > div {
+    @apply flex flex-col p-2 md:min-w-[600px] w-80 items-center;
+  }
+
+  .wake-autenticate-wrapper > div > h3:first-of-type {
+    @apply flex justify-center mb-2 text-black font-normal text-2xl;
+  }
+
+  .wake-autenticate-wrapper > div > span:first-of-type {
+    @apply flex text-center justify-center text-black font-normal	text-sm;
+  }
+
+  .wake-autenticate-wrapper > div form {
+    @apply flex flex-col my-4 items-center;
+  }
+
+  .wake-autenticate-wrapper > div form > div:nth-of-type(1),
+  .wake-autenticate-wrapper > div form div:nth-of-type(2) {
+    @apply my-3 items-center min-w-[350px];
+  }
+
+  .wake-autenticate-wrapper > div form > div:first-child > div {
+    @apply flex relative;
+  }
+
+  .wake-autenticate-wrapper > div form div div input {
+    @apply flex h-[40px] px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[4px] appearance-none focus:outline-none focus:ring-0;
+  }
+
+  .wake-autenticate-wrapper > div form div div label {
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-[0] bg-white px-2;
+  }
+
+  .wake-autenticate-wrapper > div form .hide-show-password {
+    @apply w-5 h-5 absolute right-3 top-3 antialiased cursor-pointer;
+  }
+  .wake-autenticate-wrapper > div form .input-error {
+    @apply text-sm text-red-600  ml-3 mt-1;
+  }
+
+  .wake-autenticate-wrapper > div form .forgot-password {
+    @apply mb-4 min-w-[350px];
+  }
+  
+  .wake-autenticate-wrapper > div form .forgot-password span {
+    @apply text-secondary-600 my-2 w-full text-xs;
+  }
+  
+  .wake-autenticate-wrapper > div form .forgot-password a {
+    @apply text-[#00000099] underline;
+  }
+
+  .wake-autenticate-wrapper > div .button-login,
+  .wake-autenticate-wrapper > div .button-register {
+    @apply flex min-w-[350px] h-[42px] justify-center font-semibold text-center text-base uppercase rounded-[4px] p-2 mb-2 text-white bg-black;
+  }
+
+   /* login-social */
+  .wake-login-social {
+    @apply flex flex-col items-center justify-center w-full;
+  }
+
+  .wake-login-social span {
+    @apply flex mb-4 text-base text-black;
+  }
+
+  .wake-login-social > div {
+    @apply flex flex-row justify-center items-center w-full;
+  }
+
+  .wake-login-social .wake-apple-login-note {
+    @apply flex min-w-[350px] mt-3 p-4 border border-gray-300 rounded-md bg-white;
+  }
+  
+  .wake-login-social .wake-apple-login-note-text {
+    @apply text-xs text-gray-500 leading-relaxed m-0;
+  }
+  
+  .wake-login-social button {
+    @apply relative flex items-center justify-center h-12 w-12 rounded-full border border-gray-300 bg-white transition-colors duration-200 ease-out;
+  }
+
+  .wake-login-social button:nth-of-type(1) {
+    @apply mr-4;
+  }
+
+  .wake-login-social button img {
+    @apply hidden;
+  }
+
+  .wake-login-social button::before {
+    content: "";
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #0e167a;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.wake-login-social button:nth-of-type(1)::before {
+    content: "\f09a";
+}
+
+.wake-login-social button:nth-of-type(2)::before {
+    content: "\f1a0";
+}
+
+.wake-login-social button:hover {
+    border-color: #1a2cb0;
+}
+
+.wake-login-social button:hover::before {
+    color: #1a2cb0;
+    transform: scale(1.05);
+}
+
+  .wake-autenticate-wrapper .register {
+    @apply flex flex-col justify-center items-center mt-12;
+  }
+
+  .wake-autenticate-wrapper .register h3 {
+    @apply flex text-2xl;
+  }
+
+  .wake-autenticate-wrapper .register span {
+    @apply flex justify-center text-center w-full my-4  text-black;
+  }
+
+  /* password-recovery */
+  .wake-password-recovery-wrapper {
+    @apply flex flex-col items-center w-full lg:w-[1330px] mx-auto my-20;
+  }
+
+  .wake-password-recovery-wrapper > div {
+    @apply flex flex-col p-2 md:min-w-[600px];
+  }
+
+  .wake-password-recovery-wrapper > div h3 {
+    @apply flex justify-center mb-2 text-black font-normal text-2xl;
+  }
+
+  .wake-password-recovery-wrapper > div .step-one span {
+    @apply flex text-center justify-center text-black font-normal	text-sm;
+  }
+
+  .wake-password-recovery-wrapper > div .step-one form {
+    @apply flex flex-col my-6 items-center;
+  }
+
+  .wake-password-recovery-wrapper > div .step-one form > div {
+    @apply relative my-3 w-[350px] items-center;
+  }
+
+  .wake-password-recovery-wrapper > div .step-one form > div input {
+    @apply flex text-center w-[350px] h-[40px] border-secondary-400 rounded-[4px] p-2 mb-4 antialiased text-slate-600;
+  }
+
+  .wake-password-recovery-wrapper > div .step-one form > div button {
+    @apply flex w-[350px] h-[42px] justify-center font-semibold text-center text-lg rounded-[4px] p-2 mb-2 text-white bg-black;
+  }
+
+  .wake-password-recovery-wrapper > div .step-two span {
+    @apply flex text-center justify-center text-black font-normal	text-sm;
+  }
+
+  .wake-password-recovery-wrapper > div .step-two form {
+    @apply flex flex-col my-4 items-center;
+  }
+
+  .wake-password-recovery-wrapper > div .step-two form > div {
+    @apply relative my-3 items-center;
+  }
+
+  .wake-password-recovery-wrapper > div .step-two form > div input {
+    @apply flex text-center border-secondary-400 rounded-[4px] p-2 mb-4 antialiased text-slate-600 w-[350px] h-[40px];
+  }
+
+  .wake-password-recovery-wrapper > div .step-two form > div button {
+    @apply flex w-[350px] h-[42px] justify-center font-semibold text-center text-lg rounded-[4px] p-2 mb-2 text-white bg-black;
+  }
+
+  /* wake-signup */
+  .wake-signup-wrapper {
+    @apply flex flex-col w-full p-2 md:p-0 items-center;
+  }
+
+  .wake-signup-wrapper > h3 {
+    @apply flex justify-center mb-2 text-black font-normal text-2xl;
+  }
+
+  .wake-signup-wrapper > p {
+    @apply text-black text-center text-base;
+  }
+
+  .wake-signup-wrapper > form {
+    @apply justify-between my-10 w-full md:max-w-4xl md:rounded-md md:shadow-md;
+  }
+  
+  .wake-signup-wrapper > form > div {
+    @apply divide-x flex flex-col md:flex-row ;
+  }
+
+  /* registration */
+   .wake-signup-wrapper > form > div .registration .error {
+    @apply text-xs text-red-600 mt-1;
+  } 
+
+  .wake-signup-wrapper > form > div .registration .error-absolute {
+    @apply absolute mb-2 top-11;
+  }
+  
+  .wake-signup-wrapper > form > div .registration {
+    @apply flex flex-col w-full md:w-3/6 relative p-5;
+  }
+  
+  .wake-signup-wrapper > form > div .registration > div {
+    @apply relative;
+  }
+
+  .wake-signup-wrapper > form > div .registration > div {
+    @apply w-full mb-4;
+  }
+
+  .wake-signup-wrapper > form > div .registration > div:last-child {
+    @apply mb-4;
+  }
+
+  .wake-signup-wrapper > form > div .registration > div > div {
+    @apply relative w-full flex-col mb-4;
+  }
+
+  .wake-signup-wrapper > form > div .registration > div > div > span.error {
+    @apply text-sm text-red-600 mt-1;
+  }
+
+  .wake-signup-wrapper > form > div .registration > div > div > span.error-absolute {
+    @apply absolute top-12 text-sm text-red-600;
+  }
+
+  .wake-signup-wrapper > form > div .registration #error-email {
+    @apply static mt-1 text-sm text-red-600;
+  }
+  .wake-signup-wrapper > form > div .registration #cnpj ~ span.error-absolute {
+    @apply static mt-1 text-sm text-red-600;
+  }
+  .wake-signup-wrapper > form > div .registration #corporatename-error {
+    @apply static mt-1 text-sm text-red-600;
+  }
+
+  .wake-signup-wrapper > form > div .registration #cpf ~ span.error-absolute {
+    @apply static mt-1 text-sm text-red-600;
+  }
+  .wake-signup-wrapper > form > div .registration #fullName ~ span.error-absolute {
+    @apply static mt-1 text-sm text-red-600;
+  }
+    
+  .wake-signup-wrapper > form > div .registration > div > h3 {
+    @apply mb-6 text-black font-medium text-xl;
+  }
+  
+  .wake-signup-wrapper > form > div .registration > div .custom-cpf-cnpj {
+    @apply flex items-center mb-4;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label {
+    @apply cursor-pointer flex w-80 justify-center font-semibold text-center text-lg p-2 border-solid border-2 border-black bg-transparent text-black;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label span {
+    @apply text-sm uppercase;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label:first-child {
+    @apply rounded-[4px] rounded-r-none p-2 ;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label:last-child {
+    @apply rounded-l-none ;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label:last-child {
+    @apply rounded-l-none ;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj input {
+    @apply mr-2 focus:ring-0 cursor-pointer hidden  ;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj span {
+    @apply text-sm uppercase ;
+  }
+  /* estado selecionado do toggle PF/PJ */
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label:has(input:checked) {
+    @apply bg-black text-white;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .birthdate {
+    @apply flex flex-col md:flex-row gap-3;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree {
+    @apply flex items-center mt-2;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .phones {
+    @apply flex flex-row gap-3;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .phones .numbers {
+    @apply w-full relative;
+  }
+  /* Garantir contexto relativo para wrappers internos do telefone (DDD e número) */
+  .wake-signup-wrapper > form > div .registration .phones > div > div {
+    @apply relative;
+  }
+  .wake-signup-wrapper > form > div .registration .phones label {
+    @apply absolute text-base text-gray-500 z-10 bg-white duration-300 transform -translate-y-3 scale-75 top-1 left-1 origin-[0] px-2 peer-focus:px-2  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 start-1 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto;
+  }
+  .wake-signup-wrapper > form > div .registration .birthdate label {
+    @apply absolute text-base text-gray-500 z-10 bg-white duration-300 transform -translate-y-3 scale-75 top-1 left-1 origin-[0] px-2;
+  }
+  
+  .wake-signup-wrapper > form > div .registration .passwords {
+    @apply flex flex-row gap-3;
+  }
+  /* Posicionamento consistente do erro de senha inválida */
+  .wake-signup-wrapper > form > div .registration #invalidPassword {
+    @apply absolute top-12 text-sm text-red-600;
+  }
+
+  /* Regras genéricas para inputs, labels e campos dentro de registration */
+  .wake-signup-wrapper > form > div .registration input[type="text"],
+  .wake-signup-wrapper > form > div .registration input[type="email"],
+  .wake-signup-wrapper > form > div .registration input[type="password"],
+  .wake-signup-wrapper > form > div .registration input[type="date"],
+  .wake-signup-wrapper > form > div .registration select {
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] border border-gray-300 appearance-none focus:outline-none focus:ring-0;
+  }
+    
+  .wake-signup-wrapper > form > div .registration input[type="checkbox"] {
+    @apply focus:ring-0 cursor-pointer;
+  }
+  /* Checkbox com label ao lado */
+  .wake-signup-wrapper > form > div .registration input[type="checkbox"] + label {
+    @apply ml-2 inline-block align-middle;
+  }
+
+  /* Labels flutuantes apenas quando o label vem após o input/select */
+  .wake-signup-wrapper > form > div .registration input:not([type="checkbox"]):not([type="radio"]) + label,
+  .wake-signup-wrapper > form > div .registration select + label {
+    @apply absolute left-1 top-1 text-gray-500 bg-white px-2 text-base duration-300 transform -translate-y-3 scale-75 origin-[0] peer-focus:px-2 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto;
+  }
+
+  /* Telefones: DDD com largura fixa */
+  .wake-signup-wrapper > form > div .registration .phones input[name="primaryPhoneAreaCode"],
+  .wake-signup-wrapper > form > div .registration .phones input[name="secondaryPhoneAreaCode"] {
+    @apply w-12 mr-2;
+  }
+
+  /* Telefones lado a lado: DDD antes do número */
+  .wake-signup-wrapper > form > div .registration .phones {
+    @apply flex flex-col md:flex-row gap-3;
+  }
+  .wake-signup-wrapper > form > div .registration .phones > div {
+    @apply flex flex-row gap-3 w-full;
+  } 
+
+  /* Rótulos em grupos específicos sem depender da ordem */
+  .wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree label {
+    @apply ml-2 cursor-pointer text-sm text-gray-900;
+  } 
+  
+  /* Botões Pessoa Física/Jurídica lado a lado */
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj {
+    @apply flex flex-row items-center gap-2;
+  } 
+  .wake-signup-wrapper > form > div .registration .custom-cpf-cnpj > label:has(input:checked) {
+    @apply bg-black text-white;
+  }   
+
+  .wake-signup-wrapper > form > div .registration .CustomAttr {
+    @apply relative;
+  }
+  .wake-signup-wrapper > form > div .registration label[for="stateRegistration"] {
+    @apply absolute text-base text-gray-500 z-10 bg-white duration-300 transform -translate-y-3 scale-75 top-1 left-1 origin-[0] px-2;
+  }
+  /* Erro específico da Inscrição Estadual: manter abaixo do input e dentro do bloco */
+  .wake-signup-wrapper > form > div .registration #stateregistration-error {
+    @apply static mt-1 text-sm text-red-600;
+  }
+    
+  /* registration_address */
+  .wake-signup-wrapper > form > div .registration_address {
+    @apply flex flex-col w-full md:w-3/6 relative p-5;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address h3 {
+    @apply mb-6 text-black font-medium text-xl ;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address > div > div:first-child {
+    @apply flex flex-col md:flex-row justify-start w-full mb-0;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address > div > div:first-child > div {
+    @apply flex relative my-3 w-full items-center mt-0;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address > div > div:first-child > div input{
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] appearance-none   focus:outline-none focus:ring-0 ;
+  }
+ 
+  .wake-signup-wrapper > form > div .registration_address > div > div:first-child > div label{
+    @apply  absolute  left-1 text-gray-500 z-10 bg-white px-2 start-1;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address > div > div:last-child {
+    @apply flex items-center;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address > div > div:last-child span{
+    @apply text-sm pr-1;
+  }
+  
+  .wake-signup-wrapper > form > div .registration_address > div > div:last-child a{
+    @apply flex text-xs hover:cursor-pointer hover:underline;
+  }
+  
+  .wake-signup-wrapper > form > div:last-child {
+    @apply w-full flex items-center justify-center pt-7;
+  }
+  
+  .wake-signup-wrapper > form > div:last-child button {
+    @apply flex justify-center items-center bg-black text-white uppercase font-semibold p-2 rounded-md w-64 mb-7;
+  }
+  
+  .wake-signup-wrapper .wake-address-form {
+    @apply flex flex-col;
+  }
+  
+  .wake-signup-wrapper .wake-address-form .zipcode input {
+    @apply border-none p-0 w-24 ml-1 rounded-[4px];
+  }
+  
+  .wake-signup-wrapper .wake-address-form .zipcode a {
+    @apply text-sky-500 text-sm px-2.5 underline;
+  }
+  
+  .wake-signup-wrapper .wake-address-form .address-complete input{
+    @apply border-none p-0 w-full text-base;
+  }
+  
+  .wake-signup-wrapper .address {
+    @apply relative flex-col w-full justify-start items-center my-6;
+  }
+  
+  .wake-signup-wrapper .address label {
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 left-1 z-10 origin-[0] bg-white px-2;;
+  }
+  
+  .wake-signup-wrapper .address input {
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] border border-gray-300 appearance-none disabled:bg-secondary-100;
+  }
+  
+  .wake-signup-wrapper .address-autocomplete {
+    @apply flex-col md:flex-row justify-start md:items-center w-full space-y-6 my-6;
+  }
+  
+  .wake-signup-wrapper .address-autocomplete label {
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 left-1 z-10 origin-[0] bg-white px-2;
+  }
+  
+  .wake-signup-wrapper .address-autocomplete input {
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] border border-gray-300 appearance-none disabled:bg-secondary-100;
+  }
+
+  .wake-signup-wrapper .address-autocomplete .neighborhood {
+    @apply flex-col relative w-full md:mr-4;
+  }
+  
+  .wake-signup-wrapper .address-autocomplete .city, .wake-signup-wrapper .address-autocomplete .state {
+    @apply flex-col relative justify-start w-full mt-4 md:mt-0;
+  }
+    
+  .wake-signup-wrapper .address-complement {
+    @apply flex flex-col w-full space-y-6 mt-4;
+  }
+  
+  .wake-signup-wrapper .address-complement div {
+    @apply relative w-full flex-col;
+  }
+  
+  .wake-signup-wrapper .address-complement div input {
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] border border-gray-300 appearance-none;
+  }
+  
+  .wake-signup-wrapper .address-complement div label {
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 left-1 z-10 origin-[0] bg-white px-2;
+  }
+  
+  .wake-signup-wrapper .address-complement div > span {
+    @apply text-sm mb-2 text-red-600 absolute top-11;
+  }
+  
+  /* wake-simple-login */
+  .wake-simple-login-wrapper {
+    @apply flex flex-col items-center w-full lg:w-[1330px] mx-auto my-20;
+  }
+  
+  .wake-simple-login-wrapper > div {
+    @apply flex flex-col p-2;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin > h3{
+    @apply flex justify-center mb-2 text-black font-normal text-2xl;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin > span{
+    @apply flex text-secondary-600 text-center text-sm;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin > form{
+    @apply flex flex-col my-4 items-center;
+  }
+ 
+  .wake-simple-login-wrapper > div .mainSimpleLogin form > div{
+    @apply relative my-3 items-center;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin form > div > input{
+    @apply flex w-[350px] h-[40px] px-2.5 pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rounded-[4px]  border-gray-300 appearance-none focus:outline-none focus:ring-0;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin form > div > label{
+    @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 left-1 z-10 origin-[0] bg-white px-2;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin form > div > .error{
+    @apply mb-0 text-sm text-red-600;
+  }
+  
+  .wake-simple-login-wrapper > div .mainSimpleLogin form > button{
+    @apply flex w-[350px] h-[42px] justify-center font-semibold text-center text-lg rounded-[4px] p-2 mb-2 text-white bg-black;
+  }
+  
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form){
+    @apply flex-col justify-center items-center my-4;
+  }
+  
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form) > div:first-child{
+    @apply flex flex-col text-center w-[350px] mb-8 ;
+  }
+
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form) > div:first-child p:first-child{
+    @apply text-sm mb-4;
+  }
+  
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form) > div:first-child p:last-child{
+    @apply text-sm;
+  }
+  
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form) > div:nth-of-type(2) {
+    @apply flex flex-col w-[350px] justify-center items-center my-2;
+  }
+  
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form) button{
+    @apply flex w-[350px] h-[42px] justify-center font-semibold text-center text-lg rounded-[4px] p-2 mb-2 text-white bg-black;
+  }
+  
+  .wake-simple-login-wrapper form:not(.mainSimpleLogin form) a{
+    @apply flex w-[350px] h-[42px] justify-center text-center text-base text-blue-600;
+  }
+  
+  .wake-simple-login-wrapper .wake-authenticate-simple-questions{
+    @apply flex flex-col w-full;
+  }
+  
+  .wake-simple-login-wrapper .wake-authenticate-simple-questions h3{
+    @apply mb-4;
+  }
+  
+  .wake-simple-login-wrapper .wake-authenticate-simple-questions label{
+    @apply flex flex-col items-center cursor-pointer justify-center text-[15px] mb-2 py-2 w-full border rounded-[4px];
+  }
+  
+  .wake-simple-login-wrapper .wake-authenticate-simple-questions .wake-authenticate-simple-answer-selected{
+    @apply border-black font-semibold;
+  }
+  
+  .wake-simple-login-wrapper .wake-authenticate-simple-questions div {
+    @apply flex flex-col text-center items-center w-full;
+  }
+
+  /* impersonate */
+  .wake-impersonate-wrapper{
+    @apply flex flex-col items-center w-full lg:w-[1330px] mx-auto my-20;
+  }
+  
+  .wake-impersonate-wrapper > div{
+    @apply flex flex-col p-2 md:min-w-[600px];
+  }
+  
+  .wake-impersonate-wrapper > div h3{
+    @apply flex text-3xl text-secondary-600 justify-center mb-2;
+  }
+
+  .wake-impersonate-wrapper > div button{
+    @apply  flex justify-center font-semibold text-center text-lg rounded-xl p-2 mb-2 antialiased text-white bg-primary-500 hover:bg-primary-600;
+  }
+  
+  .wake-impersonate-wrapper > div > button{
+    @apply mt-2;
+  }
+  
+  .wake-impersonate-wrapper > div > h4{
+    @apply flex text-2xl text-secondary-600 justify-center mt-2;
+  }
+  
+  .wake-impersonate-wrapper > div > form{
+    @apply flex flex-col my-6;
+  }
+  
+  .wake-impersonate-wrapper > div > form input{
+    @apply flex text-center border-secondary-400 rounded-xl p-2 mb-4 antialiased text-slate-600;
+  }
+
+  /* Campos dinâmicos de informationGroups na página de cadastro */
+  .wake-signup-wrapper #informationGroups {
+    @apply flex flex-col gap-4;
+  }
+
+  .wake-signup-wrapper #informationGroups .card {
+    @apply flex flex-row gap-4 w-full;
+  }
+
+  .wake-signup-wrapper #informationGroups .group-form {
+    @apply flex-1 relative;
+  }
+  .wake-signup-wrapper #informationGroups .group-form .radio-label {
+    @apply block text-sm text-gray-900 mb-2;
+  }
+  
+  .wake-signup-wrapper #informationGroups input[type="text"],
+  .wake-signup-wrapper #informationGroups textarea {
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] border border-gray-300 appearance-none focus:outline-none focus:ring-0;
+  }
+
+  .wake-signup-wrapper #informationGroups select {
+    @apply block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-[4px] border border-gray-300 appearance-none focus:outline-none focus:ring-0;    
+  }
+  .wake-signup-wrapper #informationGroups select option {
+    @apply text-sm;
+  }
+
+  .wake-signup-wrapper #informationGroups input[type="radio"] {
+    @apply w-4 h-4 mr-2 accent-black align-middle inline-block;
+  }
+
+  .wake-signup-wrapper #informationGroups .radio-group {
+    @apply flex flex-col gap-2 mt-3;
+  }
+  .wake-signup-wrapper #informationGroups .radio-group label {
+    @apply gap-2 text-base;
+  }
+
+  .wake-signup-wrapper #informationGroups label {
+    @apply absolute left-1 top-1 text-gray-500 bg-white px-2 text-base duration-300 transform -translate-y-3 scale-75 origin-[0];
+  }
+
+  .wake-signup-wrapper #informationGroups .radio-group label,
+  .wake-signup-wrapper #informationGroups label[for^="information-radio-"] {
+    @apply static relative flex items-center gap-2 m-0 p-0 text-gray-900 text-base bg-transparent;
+  }
+  .wake-signup-wrapper #informationGroups label[for^="information-radio-"]:first-of-type {
+    @apply mt-2;
+  }
+
+  .wake-signup-wrapper #informationGroups .error,
+  .wake-signup-wrapper #informationGroups .error-absolute {
+    @apply text-xs text-red-600 absolute top-11 mb-2;
+  }
+}

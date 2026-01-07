@@ -1,0 +1,228 @@
+[
+    {
+        "type": "search",
+        "path": "search.html",
+        "query": "search.graphql"
+    },
+    {
+        "type": "hotsite",
+        "path": "hotsite.html",
+        "query": "hotsite_with_cursor.graphql",
+        "customs": [
+            {
+                "urlMatch": "",
+                "path": "home.html",
+                "query": "home.graphql"
+            },
+            {
+                "urlMatch": "listadedesejos",
+                "path": "custom/wishlist.html"
+            },
+            {
+                "urlMatch": "buybox",
+                "path": "custom/buy_box_hotsite.html",
+                "query": "buy_box_hotsite.graphql"
+            },
+            {
+                "urlMatch": "comocomprar",
+                "path": "custom/comocomprar.html",
+                "query": "about.graphql"
+            },
+            {
+                "urlMatch": "cashback",
+                "path": "custom/cashback.html",
+                "query": "about.graphql"
+            },
+            {
+                "urlMatch": "privacidade|politicadeprivacidade",
+                "path": "custom/privacidade.html",
+                "query": "about.graphql"
+            },
+            {
+                "urlMatch": "quemsomos",
+                "path": "custom/about.html",
+                "query": "about.graphql"
+            },
+            {
+                "urlMatch": "formulario|comprasegura|duvidasfrequentes|trocasedevolucoes|formaspagamento|entrega|atendimento|contratodecompraevenda",
+                "path": "custom/about.html",
+                "query": "about.graphql"
+            }
+        ]
+    },
+    {
+        "type": "product",
+        "path": "product.html",
+        "query": "product.graphql",
+        "customs": [
+            {
+                "productIds": [100129],
+                "path": "custom/buy_box_product.html",
+                "query": "buy_box_product.graphql",
+                "priority": 11
+            }
+        ]
+    },
+    {
+        "type": "buy_list",
+        "path": "buy_list.html",
+        "query": "buy_list.graphql"
+    },
+    {
+        "type": "not_found",
+        "path": "not_found.html",
+        "query": "not_found.graphql"
+    },
+    {
+        "type": "checkout",
+        "url": "checkout",
+        "routes": [
+            {
+                "name": "home",
+                "url": "",
+                "path": "checkout/checkout.html",
+                "query": "checkout/checkout.graphql"
+            },
+            {
+                "name": "complete",
+                "url": "complete",
+                "path": "checkout/close.html",
+                "query": "checkout/close.graphql",
+                "authLevel": "New",
+                "authFallback": "login"
+            },
+            {
+                "name": "confirmation",
+                "url": "confirmation",
+                "path": "checkout/confirmation.html",
+                "query": "checkout/confirmation.graphql",
+                "queryStrings": [
+                    {
+                        "name": "checkoutId",
+                        "type": "Uuid"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "login",
+        "url": "login",
+        "routes": [
+            {
+                "name": "simple",
+                "url": "",
+                "path": "login/simple.html",
+                "query": "login/simple.graphql"
+            },
+            {
+                "name": "authenticate",
+                "url": "authenticate",
+                "path": "login/authenticate.html",
+                "query": "login/authenticate.graphql"
+            },
+            {
+                "name": "password_recovery",
+                "url": "password/recovery",
+                "path": "login/password_recovery.html"
+            },
+            {
+                "name": "signup",
+                "url": "signup",
+                "path": "login/signup.html",
+                "query": "login/signup.graphql"
+            },
+            {
+                "name": "impersonate",
+                "url": "impersonate",
+                "path": "login/impersonate.html",
+                "query": "login/impersonate.graphql"
+            },
+            {
+                "name": "access_key",
+                "url": "access-key",
+                "path": "login/access_key.html",
+                "query": "login/access_key.graphql"
+            }
+        ]
+    },
+    {
+        "type": "account",
+        "url": "account",
+        "routes": [
+            {
+                "name": "orders",
+                "url": "",
+                "path": "account/orders.html",
+                "query": "account/orders.graphql",
+                "authLevel": "Authenticated",
+                "authFallback": "login/authenticate",
+                "queryStrings": [
+                    {
+                        "name": "orderId",
+                        "type": "Long"
+                    }
+                ]
+            },
+            {
+                "name": "data",
+                "url": "my-data",
+                "path": "account/account.html",
+                "query": "account/account.graphql",
+                "authLevel": "Simple",
+                "authFallback": "login/authenticate"
+            },
+            {
+                "name": "password",
+                "url": "password",
+                "path": "account/password_change.html",
+                "query": "account/password_change.graphql",
+                "authLevel": "Authenticated",
+                "authFallback": "login/authenticate"
+            },
+            {
+                "name": "addresses",
+                "url": "addresses",
+                "path": "account/addresses.html",
+                "query": "account/addresses.graphql",
+                "authLevel": "Simple",
+                "authFallback": "login/authenticate"
+            },
+            {
+                "name": "checking_account",
+                "url": "checking_account",
+                "path": "account/checking_account.html",
+                "query": "account/checking_account.graphql",
+                "authLevel": "Simple",
+                "authFallback": "login/authenticate"
+            },
+            {
+                "name": "subscriptions",
+                "url": "subscriptions",
+                "path": "account/subscriptions.html",
+                "query": "account/subscriptions.graphql",
+                "authLevel": "Simple",
+                "authFallback": "login/authenticate"
+            }
+        ]
+    },
+    {
+        "type": "partner",
+        "url": "partner",
+        "routes": [
+            {
+                "name": "client",
+                "url": "list",
+                "path": "partner/list_client.html",
+                "query": "partner/list_client.graphql",
+                "authLevel": "Simple",
+                "authFallback": "login/authenticate"
+            },
+            {
+                "name": "closed",
+                "url": "closed",
+                "path": "partner/closed.html"
+            }
+        ]
+    }
+]

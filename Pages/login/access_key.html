@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+  {{ asset type: "css" paths: ["output_base", "custom_theme", "header", "output_login", "footer"]}}
+  {{ wake_recaptcha_script }}
+  {{ head title: "Chave de Acesso" store: store }}
+  {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+</head>
+<body class="bg-mainBg">
+  {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+  <header class="login-minimal-header">
+      <div class="flex items-center justify-center login-minimal-header__inner">
+          <a href="/" class="logo-link">
+              <img src="{{- store.urls.static_img}}logo_site.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="Odonto Master" class="logo-image">
+          </a>
+      </div>
+  </header>
+  {{ wake_overlay }}
+  <div class="wake-autenticate-wrapper">
+    <div class="wake-access-key">
+      {{ wake_login_access_key }}
+    </div>
+  </div>
+  {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+  {{ footer is_preview: is_preview store: store }}
+  {{ sdk_client }}
+  {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+  {{ wake_scripts scripts: ["wake_utils", "wake_login"] }}
+  {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+</body>
+</html>

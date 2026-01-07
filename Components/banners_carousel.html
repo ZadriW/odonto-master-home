@@ -1,0 +1,84 @@
+{{ ##
+    Description: Renders a banner carousel from a list of banners
+    Params:
+      - banners: list of banners
+      - position: banner position to use
+      - id: optional id for the carousel wrapper
+    Usage:
+      banners_carousel banners: data.hotsite.banners position: "Topo"
+## }}
+{{~ 
+  if banners && position
+    all_banners = banners | array.sort "order"
+    grouped_banners = all_banners | group.by @(do; ret $0.position;end)
+    filtered_banners = grouped_banners | group.get position
+    banners_by_name = filtered_banners | group.by @(do; ret $0.banner_name;end)
+    banners_names = banners_by_name | object.keys
+  end 
+~}}
+{{~ if filtered_banners && filtered_banners.size > 0 ~}}
+  <div {{if id}}id="{{id}}"{{end}} class="banners-carousel-wrapper w-full">
+    <div class="swiffy-slider slider-nav-dark slider-nav-visible slider-nav-autoplay slider-nav-autopause slider-indicators-round 
+    slider-indicators-dark slider-indicators-highlight slider-indicators-sm" data-slider-nav-autoplay-interval="5000">
+      <ul class="slider-container">
+        {{~ for banner_name in banners_names ~}}
+          {{ banner_by_name = banners_by_name | group.get banner_name | array.sort "width" }}
+          {{ if banner_by_name.size == 1 }}
+            {{- alt = banner_by_name[0].title ?? "banner" -}}
+            <li>
+              {{ if banner_by_name[0].url_on_click }} 
+                <a href="{{ banner_by_name[0].url_on_click }}" {{ if banner_by_name[0].open_new_tab }} target="_blank" {{ end }}>
+              {{ end }}
+              <img src="{{banner_by_name[0].banner_url}}" alt="{{alt}}" class="object-cover w-full h-auto" loading="lazy">
+              {{ if banner_by_name[0].url_on_click }}</a>{{ end }}
+            </li>
+          {{ else }}
+            {{
+              current_sources = []
+              for cb in banner_by_name
+                current_media = "(max-width: " + (cb.width+40) + "px)"
+                if for.last
+                  default = cb.banner_url
+                  default_url_on_click = cb.url_on_click
+                  default_open_new_tab = cb.open_new_tab
+                end
+                current_sources = current_sources | array.add {src:cb.banner_url, w:cb.width, media: current_media}
+            	end 
+            ~}}
+            <li>
+              {{ if default_url_on_click }} 
+                <a href="{{ default_url_on_click }}" {{ if default_open_new_tab }} target="_blank" {{ end }}>
+              {{ end }}
+              <picture>
+                  {{~ for source in current_sources ~}}
+                      <source media="{{source.media}}" srcset="{{source.src}}?w={{source.w}}&h={{source.h}}">   
+                  {{~ end ~}}
+                  
+                  <img src="{{default}}" alt="banner" width="640" height="100" class="object-cover w-full h-auto" 
+                    {{ if for.first }}fetchpriority="high"{{else}}loading="lazy"{{end}}>
+              </picture>
+              {{ if default_url_on_click }} 
+                </a>
+              {{ end }}
+            </li>
+          {{ end }}
+        {{~ end ~}}
+      </ul>
+      {{ if filtered_banners.size >= 2}}
+        <button type="button" class="slider-nav" name="prev">
+          <img src="{{- store.urls.static_img}}icons/arrow-left.svg?theme={{store.theme}}&v={{store.last_modified}}" 
+      alt="arrow-left" class="w-6 h-6 m-2"/>
+        </button>
+        <button type="button" class="slider-nav slider-nav-next" name="next">
+          <img src="{{- store.urls.static_img}}icons/arrow-right.svg?theme={{store.theme}}&v={{store.last_modified}}" 
+      alt="arrow-right" class="w-6 h-6 m-2"/>
+        </button>
+
+        <div class="slider-indicators">
+            <button class="active" aria-label="Indicador de slide"></button>
+            <button aria-label="Indicador de slide"></button>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+{{~ end ~}}

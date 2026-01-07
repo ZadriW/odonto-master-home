@@ -1,0 +1,308 @@
+
+
+#user-login {
+    position: relative;
+    display: inline-block;
+    margin: auto;
+}
+
+#user-icon {
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(81deg) brightness(97%) contrast(108%);
+}
+
+.user-href {
+    text-decoration: none !important;
+}
+
+.user-href:hover {
+    text-decoration: none !important;
+}
+
+#user-action {
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #0e167a;
+    transition: all 0.2s ease;
+}
+
+#user-action:hover {
+    color: #0c1369;
+    text-decoration: none;
+}
+
+#logged-user {
+    position: relative;
+}
+
+/* Quando não está hidden, exibe como flex */
+#logged-user:not(.hidden) {
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Quando está hidden, força display none mesmo com outras classes Tailwind */
+#logged-user.hidden,
+#logged-user.hidden.flex,
+#logged-user.hidden.items-center,
+#logged-user.hidden.group,
+#logged-user.hidden.relative,
+#logged-user.hidden.w-full {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+
+#logged-user > span[class*="flex"][class*="justify-start"][class*="items-center"],
+#logged-user > span.flex.justify-start.items-center,
+#logged-user > span:first-child {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    margin-bottom: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 8px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    color: #0e167a !important;
+    font-weight: 500 !important;
+    background: rgba(249, 250, 252, 0.6) !important;
+    border: 1px solid rgba(14, 22, 122, 0.1) !important;
+    box-shadow: 0 2px 8px -2px rgba(14, 22, 122, 0.08) !important;
+}
+
+#logged-user:hover > span[class*="flex"][class*="justify-start"][class*="items-center"],
+#logged-user:hover > span.flex.justify-start.items-center,
+#logged-user:hover > span:first-child {
+    background: rgba(249, 250, 252, 0.9) !important;
+    border-color: rgba(14, 22, 122, 0.15) !important;
+    box-shadow: 0 4px 12px -4px rgba(14, 22, 122, 0.12) !important;
+    transform: translateY(-1px) !important;
+}
+
+
+#logged-user > span[class*="flex"][class*="justify-start"][class*="items-center"] svg,
+#logged-user > span.flex.justify-start.items-center svg,
+#logged-user > span:first-child svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    margin-right: 0.5rem !important;
+    color: #0e167a !important;
+    stroke: currentColor !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
+}
+
+#logged-user:hover > span[class*="flex"][class*="justify-start"][class*="items-center"] svg,
+#logged-user:hover > span.flex.justify-start.items-center svg,
+#logged-user:hover > span:first-child svg {
+    color: #0c1369 !important;
+    transform: scale(1.05) !important;
+}
+
+/* User name styling */
+#logged-user #user-name {
+    font-weight: 600 !important;
+    color: #0e167a !important;
+    margin-left: 0.25rem !important;
+    transition: color 0.2s ease !important;
+}
+
+#logged-user:hover #user-name {
+    color: #0c1369 !important;
+}
+
+/* ===== DROPDOWN MENU - Premium Refined Design ===== */
+/* Target the dropdown div - using multiple selectors for compatibility */
+#logged-user > div.lg\:hidden.group-hover\:flex,
+#logged-user > div[class*="group-hover"],
+#logged-user > div.flex-col.lg\:absolute {
+    position: absolute !important;
+    top: calc(100% + 0.5rem) !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #ffffff !important;
+    border: 1.5px solid rgba(14, 22, 122, 0.12) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 20px 48px -16px rgba(14, 22, 122, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+    z-index: 1000 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-8px) !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease !important;
+    overflow: hidden !important;
+    min-width: 220px !important;
+    padding: 0.5rem 0 !important;
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    #logged-user > div.lg\:hidden.group-hover\:flex.user-dropdown-open,
+    #logged-user > div[class*="group-hover"].user-dropdown-open,
+    #logged-user > div.flex-col.lg\:absolute.user-dropdown-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+        display: flex !important;
+    }
+}
+
+#logged-user > div.lg\:hidden.group-hover\:flex::before,
+#logged-user > div[class*="group-hover"]::before,
+#logged-user > div.flex-col.lg\:absolute::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #0e167a, #1e3a8a, #0e167a) !important;
+    opacity: 0.6 !important;
+}
+
+
+#logged-user > div.lg\:hidden.group-hover\:flex ul,
+#logged-user > div[class*="group-hover"] ul,
+#logged-user > div.flex-col.lg\:absolute ul {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+#logged-user > div.lg\:hidden.group-hover\:flex ul li,
+#logged-user > div[class*="group-hover"] ul li,
+#logged-user > div.flex-col.lg\:absolute ul li {
+    width: 100% !important;
+    display: flex !important;
+}
+
+/* ===== DROPDOWN ===== */
+#logged-user .dropdown-option {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.625rem 1.25rem !important;
+    color: #334155 !important;
+    text-decoration: none !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    line-height: 1.25rem !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    border-left: 3px solid transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#logged-user .dropdown-option:hover {
+    background: linear-gradient(90deg, rgba(14, 22, 122, 0.05), rgba(14, 22, 122, 0.02)) !important;
+    color: #0e167a !important;
+    border-left-color: #0e167a !important;
+    padding-left: 1.5rem !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+}
+
+#logged-user .dropdown-option:active {
+    background: linear-gradient(90deg, rgba(14, 22, 122, 0.08), rgba(14, 22, 122, 0.04)) !important;
+    transform: translateX(2px) !important;
+}
+
+/* Border separator between items */
+#logged-user > div.lg\:hidden.group-hover\:flex ul li.border-t,
+#logged-user > div[class*="group-hover"] ul li.border-t,
+#logged-user > div.flex-col.lg\:absolute ul li.border-t {
+    border-top: 1px solid rgba(14, 22, 122, 0.08) !important;
+    margin-top: 0.25rem !important;
+    padding-top: 0.25rem !important;
+}
+
+#logged-user > div.lg\:hidden.group-hover\:flex ul li.border-b,
+#logged-user > div[class*="group-hover"] ul li.border-b,
+#logged-user > div.flex-col.lg\:absolute ul li.border-b {
+    border-bottom: 1px solid rgba(14, 22, 122, 0.08) !important;
+    margin-bottom: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+}
+
+/* ===== LOGOUT BUTTON - Special Styling ===== */
+#logged-user #user-logout {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(220, 38, 38, 0.03)) !important;
+    color: #dc2626 !important;
+    font-weight: 600 !important;
+    margin-top: 0.5rem !important;
+    border-top: 1px solid rgba(220, 38, 38, 0.1) !important;
+    border-radius: 0 0 12px 12px !important;
+}
+
+#logged-user #user-logout:hover {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.06)) !important;
+    color: #b91c1c !important;
+    border-left-color: #dc2626 !important;
+}
+
+#logged-user #user-logout:active {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.08)) !important;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    /* Show dropdown on mobile without hover */
+    #logged-user > div.lg\:hidden,
+    #logged-user > div[class*="lg:hidden"] {
+        position: relative !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        margin-top: 0.5rem !important;
+        box-shadow: 0 4px 12px -4px rgba(14, 22, 122, 0.15) !important;
+        display: flex !important;
+    }
+    
+    /* Adjust welcome message for mobile */
+    #logged-user > span[class*="flex"][class*="justify-start"][class*="items-center"],
+    #logged-user > span.flex.justify-start.items-center,
+    #logged-user > span:first-child {
+        font-size: 0.8125rem !important;
+        padding: 0.4rem 0.6rem !important;
+    }
+    
+    #logged-user > span[class*="flex"][class*="justify-start"][class*="items-center"] svg,
+    #logged-user > span.flex.justify-start.items-center svg,
+    #logged-user > span:first-child svg {
+        width: 1.1rem !important;
+        height: 1.1rem !important;
+    }
+}
+
+/* ===== LEGACY SUPPORT ===== */
+#user-options {
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 99;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.user-text {
+    color: white;
+}

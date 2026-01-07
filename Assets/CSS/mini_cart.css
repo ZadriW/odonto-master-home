@@ -1,0 +1,228 @@
+#cart-icon {
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(81deg) brightness(97%) contrast(108%);
+}
+
+.label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+#label-cart-count {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px; 
+}
+
+.cart-href{
+    text-decoration: none;
+}
+
+.cart-href-div {
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+
+.flex-div{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.checkout-list-div{
+    margin-top: 0.04rem;
+    width: 35%;
+    position: absolute;
+    visibility: hidden;
+    background-color: white;
+    box-shadow: 0 0 0.5em black;
+    z-index: 1;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+    padding: 3px;
+}
+
+.quantity-column{
+    width: 18%;
+    text-align: center;
+}
+
+.table-title{
+    background-color: #dddddd;
+}
+
+.empty-mini-cart-message{
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-finish-btn {
+    position: relative;
+    background: #0e167a;
+    color: #fff;
+    overflow: hidden;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-finish-btn:hover {
+    background: #1a2cb0;
+}
+
+.checkout-finish-btn:focus-visible {
+    outline: 2px solid #1a2cb0;
+    outline-offset: 2px;
+}
+
+.checkout-finish-btn:active {
+    transform: scale(0.98);
+}
+
+.checkout-share-btn {
+    position: relative;
+    background: #25d366;
+    color: #fff;
+    overflow: hidden;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.checkout-share-btn:hover {
+    background: #20ba5a;
+}
+
+.checkout-share-btn:focus-visible {
+    outline: 2px solid #20ba5a;
+    outline-offset: 2px;
+}
+
+.checkout-share-btn:active {
+    transform: scale(0.98);
+}
+
+.mini-cart-continue-link {
+    color: #0e167a; 
+    transition: color 0.2s ease;
+}
+
+.mini-cart-continue-link:hover {
+    color: #1a2cb0;
+}
+
+.mini-cart-continue-link:focus-visible {
+    outline: 2px solid #1a2cb0;
+    outline-offset: 2px;
+}
+
+.mini-cart-remove-btn {
+    background: transparent;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.mini-cart-remove-btn img {
+    transition: filter 0.2s ease;
+}
+
+.mini-cart-remove-btn:hover {
+    background-color: #dc2626;
+}
+
+.mini-cart-remove-btn:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.mini-cart-remove-btn:active {
+    transform: scale(0.96);
+}
+
+.mini-cart-remove-btn:focus-visible {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+}
+
+.mini-cart-qty-btn {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.mini-cart-qty-btn img {
+    transition: filter 0.2s ease;
+}
+
+.mini-cart-qty-btn:hover {
+    background-color: #1a2cb0;
+    border-color: #1a2cb0;
+}
+
+.mini-cart-qty-btn:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.mini-cart-qty-btn:active {
+    transform: scale(0.96);
+}
+
+.mini-cart-qty-btn:focus-visible {
+    outline: 2px solid #1a2cb0;
+    outline-offset: 2px;
+}
+
+.empty-cart-continue {
+    color: #0e167a;
+    transition: color 0.2s ease;
+}
+
+.empty-cart-continue:hover {
+    color: #1a2cb0;
+}
+
+.empty-cart-continue:focus-visible {
+    outline: 2px solid #1a2cb0;
+    outline-offset: 2px;
+}
+
+li.flex.py-6 div.flex.justify-between p.ml-4 {
+    text-align: center !important;
+    flex: 0 0 auto; /* tamanho automático */
+    margin-left: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem !important; /* diminuir fonte de 1rem (text-base) para 0.875rem (14px) */
+    white-space: nowrap !important; /* evitar quebra de linha no preço */
+}
+
+/* Diminuir fonte do nome do produto no mini cart e permitir quebra de linha */
+li.flex.py-6 div.flex.justify-between h3 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; /* permitir quebra de linha */
+    margin-right: 0.75rem; /* manter distância do preço */
+}
+

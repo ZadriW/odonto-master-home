@@ -1,0 +1,11 @@
+<div class="mt-2">        
+    {{~ if best_installment.display_name | string.contains "Boleto" ~}}
+        <p class="text-sm text-gray-600">{{ best_installment.value | math.format "c" "pt-BR" }} no boleto</p>
+    {{~ else if best_installment.display_name | string.contains "Cartão" ~}}
+        <p class="text-sm text-gray-600">ou <b class="text-gray-900 font-semibold">em {{ best_installment.number }}x de {{ best_installment.value | math.format "c" "pt-BR" }} {{ if best_installment.fees }}com juros{{ else }}sem juros{{ end }} no cartão</b></p>
+    {{~ else if best_installment.display_name | string.contains "Pix" ~}}
+        <p class="text-sm text-gray-600">{{ best_installment.value | math.format "c" "pt-BR" }} no PIX</p>
+    {{~ else ~}}
+        <p class="text-sm text-gray-600">ou <b class="text-gray-900 font-semibold">em {{ best_installment.number }}x de {{ best_installment.value | math.format "c" "pt-BR" }} {{ if best_installment.fees }}com juros{{ else }}sem juros{{ end }}</b></p>
+    {{~ end ~}}
+</div>

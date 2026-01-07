@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+        {{ head title:"Erro 404" store: store }}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "glider", "slider_price"]}}
+        {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body class="bg-mainBg">
+        {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+        <header class="shadow-xl lg:shadow-none bg-mainBg">
+            {{ header }}
+            {{ navbar store: store menu_groups: common.menu_groups position: "Lateral Esquerda" }}            
+        </header>
+        <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center">
+            <div class="flex relative justify-center w-full lg:max-w-[1330px] p-2 lg:p-0">
+                <div class="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16">
+                    <div class="xl:pt-24 w-full xl:w-1/2 relative pb-12 lg:pb-0">
+                        <div class="relative">
+                            <div class="absolute">
+                                <div class="">
+                                    <h1 class="my-2 text-secondary-800 font-bold text-2xl">
+                                        Não encontramos nenhum resultado para esta página
+                                    </h1>
+                                    <p class="my-2 text-secondary-800">Desculpe por isso! Por favor navegue por nossa loja e explore nossos produtos.</p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="https://i.ibb.co/G9DC8S0/404-2.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://i.ibb.co/ck1SGFJ/Group.png" />
+                    </div>
+                </div>                
+            </div>
+        </div>
+        {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+        {{ footer is_preview: is_preview store: store }}
+        {{ sdk_client }}
+        {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+        {{ wake_scripts scripts: ["wake_utils"] }}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "newsletter", "wishlist", "shipping_quotes", "event_manager"] options: "async"}}
+        {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
+        {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+    </body>
+</html>

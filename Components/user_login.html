@@ -1,0 +1,28 @@
+{{ ##
+    Description: Renders user component
+## }}
+<div class="flex">
+    <div id="login" class="w-full">
+        {{~ login_url = store.urls.checkout_pages.login.authenticate ~}}
+        <input type="hidden" id="login-url" value="{{ login_url }}">
+        <a class="user-href" href="{{ login_url }}">
+            <span class="max-lg:hidden text-sm" id="user-action"><i class="fa-solid fa-user"></i> ENTRAR</span>
+            
+        </a>
+    </div>
+    <div id="logged-user" class="hidden group relative">
+        <span class="flex justify-start items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Bem-vindo(a),<span id="user-name" class="ml-1"></span>
+        </span>
+        <div class="lg:hidden group-hover:flex flex-col lg:absolute lg:top-6 bg-mainBg lg:shadow-2xl w-full lg:min-w-[200px] z-50">
+            <ul class="w-full">
+                <li><a class="dropdown-option" href="{{store.urls.checkout_pages.account.data}}">Minha conta</a></li>
+                <li class="border-t border-b"><a class="dropdown-option" href="{{store.urls.checkout_pages.account.orders}}">Meus pedidos</a></li>
+                <li><a class="dropdown-option lg:bg-white w-full bg-secondary-100 flex lg:justify-start justify-center items-center cursor-pointer" id="user-logout" onclick="logout('{{store.urls.checkout_pages.login.authenticate}}')">Sair</a></li>
+            </ul>
+        </div>
+    </div>    
+</div>

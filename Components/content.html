@@ -1,0 +1,8 @@
+{{~ grouped_contents = contents | group.by @(do; ret $0.position;end) ~}}
+{{~ filtered_contents = grouped_contents | group.get position ~}}
+{{ for content in filtered_contents }}
+    <div class="lg:max-w-[1330px] text-justify">
+        <h2 class="text-lg lg:text-2xl uppercase my-2 p-2 border-b">{{content.title}}</h2>
+        <div class="flex p-2 lg:text-base text-sm">{{content.content}}</div>
+    </div>
+{{ end }}

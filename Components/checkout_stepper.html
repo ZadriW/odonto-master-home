@@ -1,0 +1,44 @@
+{{ ##
+    Description: Renders checkout stepper showing the progress through checkout process
+    Params:
+        - current_step: "cart", "payment", or "confirmation" (optional, auto-detected if not provided)
+    Usage:
+        checkout_stepper
+        checkout_stepper current_step: "cart"
+## }}
+
+{{
+    current_step = current_step ?? null
+    if !current_step
+        url = store.urls.current | string.downcase
+        if url | string.contains "/checkout/confirmation"
+            current_step = "confirmation"
+        else if url | string.contains "/checkout/close"
+            current_step = "payment"
+        else if url | string.contains "/checkout"
+            current_step = "cart"
+        else
+            current_step = "cart"
+        end
+    end
+}}
+
+<div class="checkout-stepper-container">
+    <div class="checkout-stepper">
+        <div class="checkout-stepper-step {{ if current_step == "cart" }}checkout-stepper-step-active{{ end }}">
+            <div class="checkout-stepper-step-number">1</div>
+            <span class="checkout-stepper-step-label">Carrinho</span>
+        </div>
+        <div class="checkout-stepper-connector {{ if current_step == "payment" || current_step == "confirmation" }}checkout-stepper-connector-active{{ end }}"></div>
+        <div class="checkout-stepper-step {{ if current_step == "payment" }}checkout-stepper-step-active{{ end }}">
+            <div class="checkout-stepper-step-number">2</div>
+            <span class="checkout-stepper-step-label">Pagamento</span>
+        </div>
+        <div class="checkout-stepper-connector {{ if current_step == "confirmation" }}checkout-stepper-connector-active{{ end }}"></div>
+        <div class="checkout-stepper-step {{ if current_step == "confirmation" }}checkout-stepper-step-active{{ end }}">
+            <div class="checkout-stepper-step-number">3</div>
+            <span class="checkout-stepper-step-label">Confirmação</span>
+        </div>
+    </div>
+</div>
+

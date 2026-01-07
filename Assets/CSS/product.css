@@ -1,0 +1,2160 @@
+.first-row-column{
+    width: 23%;
+}
+
+.matrix-column, .matrix-title{
+    text-align: center;
+}
+
+.subscription-div{
+    border-radius: 5%;
+    border-width: 1px;
+    border-color: black;
+    border-style: ridge;
+    width: 70%;
+    text-align: center;
+}
+
+.radio-label{
+    background-color: white;
+    color: black;
+}
+
+.wholesale-div{
+    color: white;
+    background-color: #198754;
+    border: 1px solid white;
+}
+
+ul.reset{
+    list-style: none;
+    padding: 0;
+}
+
+/* ===== LARGURA FIXA DA PÁGINA DE PRODUTO ===== */
+
+body.bg-mainBg > div[class*="flex"][class*="flex-col"][class*="w-full"][class*="lg:flex-row"][class*="lg:justify-center"] > div:first-child,
+body.bg-mainBg > div[class*="flex"][class*="flex-col"][class*="w-full"] > div:first-child[class*="relative"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 1024px) {
+    body.bg-mainBg > div[class*="flex"][class*="flex-col"][class*="w-full"][class*="lg:flex-row"][class*="lg:justify-center"] > div:first-child,
+    body.bg-mainBg > div[class*="flex"][class*="flex-col"][class*="w-full"] > div:first-child[class*="relative"] {
+        width: 1200px !important;
+        max-width: 1200px !important;
+        min-width: 1200px !important;
+        flex-shrink: 0 !important;
+        flex-grow: 0 !important;
+    }
+}
+
+/* Garantir que o product-view-row não altere a largura */
+[product-view-row] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Garantir que o product-view-div não altere a largura */
+[product-view-div] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Garantir que o conteúdo interno do product_view não altere a largura */
+[product-view-div] > div.flex {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Garantir que elementos com justify-start e items-start não quebrem a largura */
+[product-view-div] .flex[class*="justify-start"],
+[product-view-div] .flex[class*="items-start"],
+[product-view-div] .flex.flex-wrap[class*="justify-start"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    flex-wrap: wrap !important;
+}
+
+/* Garantir que imagens e thumbnails não quebrem a largura */
+[product-view-div] .flex.flex-wrap[class*="justify-start"] img,
+[product-view-div] .flex.flex-wrap[class*="justify-start"] > * {
+    flex-shrink: 1 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Garantir que o container de imagens do produto respeite a largura */
+[product-view-div] > div.flex.flex-col[class*="relative"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Garantir que as colunas de imagem e conteúdo não quebrem a largura */
+[product-view-div] > div.flex.flex-col[class*="relative"] > div:first-child {
+    flex-shrink: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 640px) {
+    [product-view-div] > div.flex.flex-col[class*="relative"] {
+        flex-direction: row !important;
+    }
+    
+    [product-view-div] > div.flex.flex-col[class*="relative"] > div:first-child {
+        max-width: 40% !important;
+        flex-shrink: 0 !important;
+    }
+    
+    [product-view-div] > div.flex.flex-col[class*="relative"] > div:last-child {
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
+        max-width: 60% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ===== ESTÉTICA VISUAL DA PÁGINA DE PRODUTO ===== */
+
+/* Título do produto */
+[product-view-div] h1,
+.product-name {
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+}
+
+/* Preços */
+[product-view-div] #product-prices-div {
+    margin-bottom: 1rem !important;
+}
+
+[product-view-div] #product-prices-div .text-xl p {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #1e1e1e !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[product-view-div] #product-prices-div .text-xl p s {
+    font-size: 1.125rem !important;
+    color: #6c757d !important;
+    font-weight: 500 !important;
+    text-decoration: line-through !important;
+}
+
+[product-view-div] #product-prices-div .text-xl p b {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
+}
+
+/* Melhor parcela */
+[product-view-div] #product-prices-div p {
+    font-size: 0.9375rem !important;
+    color: #6c757d !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[product-view-div] #product-prices-div p b {
+    font-weight: 600 !important;
+    color: #1e1e1e !important;
+}
+
+/* Formas de pagamento - OCULTO */
+[product-view-div] .flex.flex-col.items-start[class*="border-t"][class*="border-b"] {
+    display: none !important;
+}
+
+/* Título "Formas de pagamento" - OCULTO */
+[product-view-div] .flex.flex-col.items-start[class*="border-t"][class*="border-b"] h2 {
+    display: none !important;
+}
+
+/* Botões de formas de pagamento - OCULTO */
+[product-view-div] .flex.flex-col.items-start[class*="border-t"][class*="border-b"] button {
+    display: none !important;
+}
+
+[product-view-div] .flex.flex-col.items-start[class*="border-t"][class*="border-b"] button:hover {
+    display: none !important;
+}
+
+[product-view-div] .flex.flex-col.items-start[class*="border-t"][class*="border-b"] button img {
+    display: none !important;
+}
+
+/* Tabelas de parcelas */
+[product-view-div] #installments-tab {
+    margin-top: 0.75rem !important;
+    padding: 0.75rem !important;
+    background-color: #f8f9fa !important;
+    border-radius: 8px !important;
+}
+
+[product-view-div] #installments-tab table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+[product-view-div] #installments-tab table tr {
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+[product-view-div] #installments-tab table tr:last-child {
+    border-bottom: none !important;
+}
+
+[product-view-div] #installments-tab table td {
+    padding: 0.5rem 0.375rem !important;
+    font-size: 0.8125rem !important;
+    color: #1e1e1e !important;
+}
+
+[product-view-div] #installments-tab table td:first-child {
+    color: #6c757d !important;
+}
+
+[product-view-div] #installments-tab table td.font-semibold {
+    font-weight: 600 !important;
+    color: #0e167a !important;
+    text-align: right !important;
+}
+
+
+[product-view-div] .bg-gray-50.rounded-lg {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Input de CEP do frete */
+[product-view-div] input[id="shipping-quote-cep"],
+.shipping-cep-input {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+[product-view-div] input[id="shipping-quote-cep"]:hover,
+.shipping-cep-input:hover {
+    border-color: #0e167a !important;
+    box-shadow: 0 2px 4px 0 rgba(14, 22, 122, 0.1) !important;
+}
+
+[product-view-div] input[id="shipping-quote-cep"]:focus,
+.shipping-cep-input:focus {
+    border-color: #0e167a !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1), 0 2px 4px 0 rgba(14, 22, 122, 0.15) !important;
+    outline: none !important;
+}
+
+/* Botão OK do frete */
+[product-view-div] input[type="submit"][value="OK"] {
+    background-color: #0e167a !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+[product-view-div] input[type="submit"][value="OK"]:hover {
+    background-color: #3b4fd4 !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.3) !important;
+    transform: translateY(-1px) scale(1.02) !important;
+}
+
+[product-view-div] input[type="submit"][value="OK"]:active {
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Opções de frete em row */
+[product-view-div] div[id^="shipping-quotes-snippet-div-"] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+}
+
+[product-view-div] .product-shipping-quote {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1rem !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    min-width: 200px !important;
+    flex: 1 1 200px !important;
+    max-width: 300px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+[product-view-div] .product-shipping-quote:hover {
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.15) !important;
+    transform: translateY(-2px) !important;
+    border-color: #0e167a !important;
+}
+
+[product-view-div] .product-shipping-quote strong {
+    color: #1e1e1e !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+[product-view-div] .product-shipping-quote span[style*="font-size: 20px"],
+[product-view-div] .product-shipping-quote span.text-xl {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
+    margin-bottom: 0.25rem !important;
+}
+
+[product-view-div] .product-shipping-quote span[style*="font-size: 12px"],
+[product-view-div] .product-shipping-quote span.text-sm {
+    font-size: 0.75rem !important;
+    color: #6c757d !important;
+}
+
+[product-view-div] .bg-gray-50.rounded-lg h2 {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    color: #1e1e1e !important;
+}
+
+[product-view-div] .bg-gray-50.rounded-lg form input[type="text"] {
+    transition: all 0.2s ease !important;
+}
+
+[product-view-div] .bg-gray-50.rounded-lg form input[type="submit"] {
+    transition: all 0.2s ease !important;
+}
+
+/* Badge de desconto */
+[product-view-div] .absolute[class*="top-1"][class*="left-1"] {
+    background-color: #0e167a !important;
+    color: #ffffff !important;
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 6px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 4px rgba(14, 22, 122, 0.2) !important;
+}
+
+/* Botões de compra */
+[product-view-div] button[add-to-cart-button] {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    background-color: #0e167a !important;
+    color: #ffffff !important;
+}
+
+[product-view-div] button[add-to-cart-button]:hover:not(:disabled) {
+    background-color: #3b4fd4 !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.3) !important;
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+[product-view-div] button[add-to-cart-button]:disabled {
+    background-color: #9ca3af !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+[product-view-div] button[buy-button] {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[product-view-div] button[buy-button]:hover:not(:disabled) {
+    background-color: #ffd700 !important;
+    color: #0e167a !important;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4) !important;
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+[product-view-div] button[buy-button]:disabled {
+    background-color: #9ca3af !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+/* Marca do produto */
+[product-view-div] .flex.justify-between[class*="items-center"] img[alt*="brand"] {
+    max-height: 50px !important;
+    object-fit: contain !important;
+}
+
+/* Espaçamento geral */
+[product-view-div] > div.flex.flex-col[class*="relative"] > div:last-child > div {
+    margin-bottom: 1.5rem !important;
+}
+
+[product-view-div] > div.flex.flex-col[class*="relative"] > div:last-child > div:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ===== BORDER-RADIUS NAS IMAGENS DE PRODUTO ===== */
+
+/* Imagens principais de produto dentro de flex flex-col */
+[product-view-div] .flex.flex-col img.img-fluid,
+[product-view-div] .flex.flex-col img[id="firstImage"],
+[product-view-div] .flex.flex-col img[class*="w-full"]:not([class*="w-20"]):not([class*="w-28"]) {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* Miniaturas de imagens de produto dentro de flex flex-col */
+[product-view-div] .flex.flex-col img[class*="w-16"],
+[product-view-div] .flex.flex-col img[class*="w-20"],
+[product-view-div] .flex.flex-col img[class*="w-28"],
+[product-view-div] .flex.flex-col img[class*="h-16"],
+[product-view-div] .flex.flex-col img[class*="h-20"],
+[product-view-div] .flex.flex-col img[class*="h-28"],
+[product-view-div] .flex.flex-col img[class*="object-cover"]:not([id="firstImage"]) {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+
+[product-view-div] .flex.flex-wrap.justify-start.items-center.my-2 img,
+.wake-modal [product-view-div] .flex.flex-wrap.justify-start.items-center.my-2 img,
+.modal [product-view-div] .flex.flex-wrap.justify-start.items-center.my-2 img,
+.wake-modal .flex.flex-wrap.justify-start.items-center.my-2 img {
+    width: 4rem !important; /* 64px */
+    height: 4rem !important; /* 64px */
+    min-width: 4rem !important;
+    min-height: 4rem !important;
+    max-width: 4rem !important;
+    max-height: 4rem !important;
+}
+
+@media (min-width: 1024px) {
+    [product-view-div] .flex.flex-wrap.justify-start.items-center.my-2 img,
+    .wake-modal [product-view-div] .flex.flex-wrap.justify-start.items-center.my-2 img,
+    .modal [product-view-div] .flex.flex-wrap.justify-start.items-center.my-2 img,
+    .wake-modal .flex.flex-wrap.justify-start.items-center.my-2 img {
+        width: 5rem !important; /* 80px */
+        height: 5rem !important; /* 80px */
+        min-width: 5rem !important;
+        min-height: 5rem !important;
+        max-width: 5rem !important;
+        max-height: 5rem !important;
+    }
+}
+
+/* Imagens de produto em qualquer container flex flex-col na página de produto */
+body.bg-mainBg .flex.flex-col img[src*="/products/"],
+body.bg-mainBg .flex.flex-col img[id="firstImage"],
+body.bg-mainBg .flex.flex-col img[class*="img-fluid"] {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* Garantir border-radius em todas as imagens dentro de product_image component */
+body.bg-mainBg .flex.flex-col > div img,
+body.bg-mainBg .flex.flex-col img[onclick*="changeFirstImage"] {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+body.bg-mainBg .flex.flex-col > div:first-child img,
+body.bg-mainBg .flex.flex-col img[id="firstImage"] {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* ===== PERSONALIZAÇÃO DAS DIVS ROW (VARIANTES DO PRODUTO) ===== */
+
+/* Container row dentro de attribute-selections */
+[attribute-selections] .row {
+    margin-bottom: 1.5rem !important;
+    padding: 0 !important;
+}
+
+[attribute-selections] .row:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Títulos/labels dos atributos */
+[attribute-selections] .row p {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: #1e1e1e !important;
+    margin-bottom: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+}
+
+/* Labels de seleção de variantes (DIV) */
+[attribute-selections] .row label[class*="flex"][class*="border"] {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 0.625rem 1rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #1e1e1e !important;
+    background-color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    margin-top: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[attribute-selections] .row label[class*="flex"][class*="border"]:hover:not([class*="cursor-default"]) {
+    border-color: #0e167a !important;
+    background-color: #f8f9fa !important;
+    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.15) !important;
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+/* Variantes selecionadas - Fundo Azul e Texto Amarelo */
+[attribute-selections] .row label[class*="flex"][class*="border"][class*="border-primary-600"],
+[attribute-selections] .row label[class*="flex"][class*="border"][class*="bg-primary-600"],
+[attribute-selections] .row input[type="radio"]:checked + label[class*="flex"][class*="border"],
+[attribute-selections] .flex[class*="justify-start"][class*="items-start"][class*="flex-wrap"] input[type="radio"]:checked + label[class*="flex"][class*="border"] {
+    border-color: #0e167a !important;
+    background-color: #0e167a !important;
+    color: #ffd700 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: scale(1.02) !important;
+}
+
+[attribute-selections] .row label[class*="flex"][class*="border"][class*="cursor-default"] {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    background-color: #f8f9fa !important;
+}
+
+/* Selects (Combo) */
+[attribute-selections] .row select.form-select {
+    width: 100% !important;
+    padding: 0.625rem 2.5rem 0.625rem 0.75rem !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #1e1e1e !important;
+    background-color: #ffffff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236c757d' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.5rem center !important;
+    background-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+}
+
+[attribute-selections] .row select.form-select:hover {
+    border-color: #0e167a !important;
+    background-color: #f8f9fa !important;
+}
+
+[attribute-selections] .row select.form-select:focus {
+    outline: none !important;
+    border-color: #0e167a !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1) !important;
+    background-color: #ffffff !important;
+}
+
+[attribute-selections] .row select.form-select option {
+    padding: 0.5rem !important;
+    background-color: #ffffff !important;
+    color: #1e1e1e !important;
+}
+
+[attribute-selections] .row select.form-select option:disabled {
+    color: #9ca3af !important;
+}
+
+/* ===== SELECT (COMBO) NO MODAL ===== */
+/* Diminuir muito a largura do select no modal */
+.wake-modal [attribute-selections] .row select.form-select,
+.modal [attribute-selections] .row select.form-select,
+[product-view-row] [attribute-selections] .row select.form-select,
+.wake-modal select.form-select.w-full,
+.modal select.form-select.w-full,
+[product-view-row] select.form-select.w-full {
+    width: auto !important;
+    max-width: 200px !important; /* largura máxima reduzida */
+    min-width: 150px !important; /* largura mínima */
+    padding: 0.5rem 2rem 0.5rem 0.625rem !important; /* padding reduzido */
+    font-size: 0.8125rem !important; /* fonte um pouco menor */
+    margin-bottom: 0.75rem !important;
+}
+
+/* Ajustar options do select no modal */
+.wake-modal [attribute-selections] .row select.form-select option,
+.modal [attribute-selections] .row select.form-select option,
+[product-view-row] [attribute-selections] .row select.form-select option,
+.wake-modal select.form-select.w-full option,
+.modal select.form-select.w-full option,
+[product-view-row] select.form-select.w-full option {
+    padding: 0.5rem 0.625rem !important;
+    font-size: 0.8125rem !important;
+    background-color: #ffffff !important;
+    color: #1e1e1e !important;
+}
+
+.wake-modal [attribute-selections] .row select.form-select option:disabled,
+.modal [attribute-selections] .row select.form-select option:disabled,
+[product-view-row] [attribute-selections] .row select.form-select option:disabled,
+.wake-modal select.form-select.w-full option:disabled,
+.modal select.form-select.w-full option:disabled,
+[product-view-row] select.form-select.w-full option:disabled {
+    color: #9ca3af !important;
+    background-color: #f8f9fa !important;
+}
+
+/* Input de quantidade */
+[attribute-selections] .row input[type="number"][id="selected-quantity"],
+[attribute-selections] .row input.form-control[type="number"],
+.quantity-input {
+    width: 100% !important;
+    max-width: 150px !important;
+    padding: 0.625rem 0.75rem !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    font-size: 0.875rem !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    color: #1e1e1e !important;
+    background-color: #ffffff !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+[attribute-selections] .row input[type="number"][id="selected-quantity"]:hover,
+[attribute-selections] .row input.form-control[type="number"]:hover,
+.quantity-input:hover {
+    border-color: #0e167a !important;
+    box-shadow: 0 2px 4px 0 rgba(14, 22, 122, 0.1) !important;
+}
+
+[attribute-selections] .row input[type="number"][id="selected-quantity"]:focus,
+[attribute-selections] .row input.form-control[type="number"]:focus,
+.quantity-input:focus {
+    outline: none !important;
+    border-color: #0e167a !important;
+    --tw-ring-color: #0e167a !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1), 0 2px 4px 0 rgba(14, 22, 122, 0.15) !important;
+}
+
+[attribute-selections] .row input[type="number"][id="selected-quantity"]:active,
+[attribute-selections] .row input.form-control[type="number"]:active,
+.quantity-input:active {
+    border-color: #0e167a !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.15) !important;
+}
+
+[attribute-selections] .row input[type="number"][id="selected-quantity"]::-webkit-inner-spin-button,
+[attribute-selections] .row input[type="number"][id="selected-quantity"]::-webkit-outer-spin-button,
+[attribute-selections] .row input.form-control[type="number"]::-webkit-inner-spin-button,
+[attribute-selections] .row input.form-control[type="number"]::-webkit-outer-spin-button {
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+/* Label "Quantidade" */
+[attribute-selections] .row p:has(+ input[type="number"][id="selected-quantity"]),
+[attribute-selections] .row > div > div > p {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: #1e1e1e !important;
+    margin-bottom: 0.5rem !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Container de quantidade */
+[attribute-selections] .row > div > div.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Título "Produto esgotado" */
+[attribute-selections] .row h3.text-xl {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    color: #dc2626 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Colunas dentro do row */
+[attribute-selections] .row .col-12,
+[attribute-selections] .row .col-xl-4 {
+    padding: 0 !important;
+}
+
+/* Flex container dentro do row */
+[attribute-selections] .row .flex[class*="justify-start"] {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+}
+
+/* Imagens de variantes (DIV com foto) */
+[attribute-selections] .row img[class*="cursor-pointer"] {
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 0.25rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    margin-right: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[attribute-selections] .row img[class*="cursor-pointer"]:hover {
+    border-color: #0e167a !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.2) !important;
+}
+
+[attribute-selections] .row img[class*="border"][class*="p-1"],
+[attribute-selections] .row img[class*="border-primary-600"],
+[attribute-selections] .row input[type="radio"]:checked + img[class*="border-primary-600"] {
+    border-color: #0e167a !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4), 0 0 0 4px rgba(14, 22, 122, 0.2) !important;
+    background-color: #0e167a !important;
+    padding: 0.25rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: scale(1.03) !important;
+}
+
+/* Cores de variantes (DIV com cor) */
+[attribute-selections] .row .col-md-2 img[height="50"][width="50"] {
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 0.125rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[attribute-selections] .row .col-md-2 label {
+    display: inline-block !important;
+    cursor: pointer !important;
+}
+
+[attribute-selections] .row .col-md-2 img[height="50"][width="50"]:hover {
+    border-color: #0e167a !important;
+    transform: scale(1.08) !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.25) !important;
+}
+
+[attribute-selections] .row .col-md-2 input[type="radio"]:checked + img,
+[attribute-selections] .row input[type="radio"]:checked + img[class*="border-primary-600"] {
+    border-color: #0e167a !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.4), 0 0 0 4px rgba(14, 22, 122, 0.2) !important;
+    background-color: #0e167a !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: scale(1.05) !important;
+}
+
+[attribute-selections] .row .col-md-2 input[type="radio"]:disabled + img {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    filter: grayscale(100%) !important;
+}
+
+/* Container de cores (row d-flex) */
+[attribute-selections] .row .row.d-flex {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Botões de variantes (btn-outline-success) */
+[attribute-selections] .row label.btn-outline-success {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 0.625rem 1rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #1e1e1e !important;
+    background-color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    margin-bottom: 0.5rem !important;
+}
+
+[attribute-selections] .row label.btn-outline-success:hover {
+    border-color: #0e167a !important;
+    background-color: #f8f9fa !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.15) !important;
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+/* ===== SEÇÃO DE INFORMAÇÕES/DESCRIÇÃO DO PRODUTO ===== */
+.product-information-title {
+    position: relative !important;
+}
+
+.product-information-title::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 60px !important;
+    height: 3px !important;
+    background-color: #ffc107 !important;
+    border-radius: 1px !important;
+}
+
+.product-information-content {
+    color: #374151 !important;
+    line-height: 1.75 !important;
+    font-size: 0.9375rem !important;
+}
+
+.product-information-content p {
+    margin-bottom: 1rem !important;
+    color: #374151 !important;
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+.product-information-content p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Remover bordas e linhas entre textos */
+.product-information-content hr {
+    display: none !important;
+}
+
+.product-information-content *[class*="border-b"]:not(.product-information-title),
+.product-information-content *[class*="border-t"] {
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+.product-information-content div[style*="border-bottom"],
+.product-information-content div[style*="border-top"] {
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+.product-information-content h1,
+.product-information-content h2,
+.product-information-content h3,
+.product-information-content h4,
+.product-information-content h5,
+.product-information-content h6 {
+    color: #1e1e1e !important;
+    font-weight: 600 !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.product-information-content h1 {
+    font-size: 1.5rem !important;
+}
+
+.product-information-content h2 {
+    font-size: 1.25rem !important;
+}
+
+.product-information-content h3 {
+    font-size: 1.125rem !important;
+}
+
+.product-information-content ul,
+.product-information-content ol {
+    margin-left: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    color: #374151 !important;
+}
+
+.product-information-content li {
+    margin-bottom: 0.5rem !important;
+    color: #374151 !important;
+}
+
+.product-information-content strong,
+.product-information-content b {
+    color: #1e1e1e !important;
+    font-weight: 600 !important;
+}
+
+.product-information-content a {
+    color: #0e167a !important;
+    text-decoration: underline !important;
+    transition: color 0.2s ease !important;
+}
+
+.product-information-content a:hover {
+    color: #3b4fd4 !important;
+}
+
+.product-information-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    margin: 1rem 0 !important;
+}
+
+.product-information-content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 1rem 0 !important;
+}
+
+.product-information-content table th,
+.product-information-content table td {
+    padding: 0.75rem !important;
+    border: 1px solid #e5e7eb !important;
+    text-align: left !important;
+}
+
+.product-information-content table th {
+    background-color: #f9fafb !important;
+    font-weight: 600 !important;
+    color: #1e1e1e !important;
+}
+
+.product-information-content table td {
+    color: #374151 !important;
+}
+
+.product-information-content code {
+    background-color: #f3f4f6 !important;
+    padding: 0.125rem 0.375rem !important;
+    border-radius: 4px !important;
+    font-size: 0.875rem !important;
+    color: #1e1e1e !important;
+}
+
+.product-information-content blockquote {
+    border-left: 4px solid #0e167a !important;
+    padding-left: 1rem !important;
+    margin: 1rem 0 !important;
+    color: #6b7280 !important;
+    font-style: italic !important;
+}
+
+[attribute-selections] .row input[type="radio"]:checked ~ label.btn-outline-success {
+    border-color: #0e167a !important;
+    background-color: #0e167a !important;
+    color: #ffd700 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: scale(1.02) !important;
+}
+
+/* ===== AJUSTES DO MODAL DE PRODUTO ===== */
+
+/* Limitar tamanho da imagem principal no modal em no MÁXIMO 380x380 */
+/* Container relative que envolve a imagem - largura máxima de 380px */
+.wake-modal [product-view-div] .flex.flex-col > div.relative:first-child,
+.modal [product-view-div] .flex.flex-col > div.relative:first-child,
+.wake-modal [product-view-div] .flex.mr-5 > div.relative:first-child,
+.modal [product-view-div] .flex.mr-5 > div.relative:first-child {
+    width: auto !important; /* largura automática baseada no conteúdo */
+    max-width: 380px !important; /* largura máxima de 380px */
+    margin: 0 auto !important; /* centralizar o container */
+    padding: 0 !important;
+}
+
+/* Apenas a imagem principal, excluindo thumbnails */
+/* Limitar ao MÁXIMO de 380x380, permitindo tamanhos menores */
+.wake-modal [product-view-div] .flex.flex-col > div.relative:first-child img.img-fluid.w-full,
+.modal [product-view-div] .flex.flex-col > div.relative:first-child img.img-fluid.w-full,
+.wake-modal [product-view-div] .flex.flex-col > div.relative:first-child img#firstImage,
+.modal [product-view-div] .flex.flex-col > div.relative:first-child img#firstImage,
+.wake-modal [product-view-div] .flex.mr-5 > div.relative:first-child img.img-fluid.w-full,
+.modal [product-view-div] .flex.mr-5 > div.relative:first-child img.img-fluid.w-full,
+.wake-modal [product-view-div] .flex.mr-5 > div.relative:first-child img#firstImage,
+.modal [product-view-div] .flex.mr-5 > div.relative:first-child img#firstImage,
+.wake-modal [product-view-div] img#firstImage:not(.product-thumbnail),
+.modal [product-view-div] img#firstImage:not(.product-thumbnail) {
+    width: 100% !important; /* largura total do container */
+    height: auto !important; /* altura proporcional */
+    max-width: 380px !important; /* largura máxima de 380px */
+    max-height: 380px !important; /* altura máxima de 380px */
+    object-fit: contain !important; /* manter proporção sem cortar */
+    margin: 0 auto !important; /* centralizar a imagem */
+    padding: 0 !important;
+}
+
+/* Garantir que thumbnails não sejam afetadas - regra adicional de proteção */
+.wake-modal [product-view-div] .product-thumbnails-container img,
+.modal [product-view-div] .product-thumbnails-container img,
+[product-view-row] [product-view-div] .product-thumbnails-container img,
+.wake-modal [product-view-div] img.product-thumbnail,
+.modal [product-view-div] img.product-thumbnail,
+[product-view-row] [product-view-div] img.product-thumbnail {
+    width: 3rem !important;
+    height: 3rem !important;
+    max-width: 3rem !important;
+    max-height: 3rem !important;
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+}
+
+/* Garantir que thumbnails no modal não sejam afetadas pelas regras da imagem principal */
+.wake-modal [product-view-div] .product-thumbnails-slider img,
+.modal [product-view-div] .product-thumbnails-slider img,
+[product-view-row] [product-view-div] .product-thumbnails-slider img {
+    max-width: 3rem !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+}
+
+@media (min-width: 1024px) {
+    .wake-modal [product-view-div] .product-thumbnails-slider img,
+    .modal [product-view-div] .product-thumbnails-slider img,
+    [product-view-row] [product-view-div] .product-thumbnails-slider img {
+        max-width: 3.5rem !important;
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        min-width: 3.5rem !important;
+        min-height: 3.5rem !important;
+    }
+}
+
+/* Aumentar largura da seção de imagens no modal */
+.wake-modal [product-view-div] .flex.flex-col.relative.sm\:flex-row > div:first-child,
+.modal [product-view-div] .flex.flex-col.relative.sm\:flex-row > div:first-child,
+[product-view-row] [product-view-div] .flex.flex-col.relative.sm\:flex-row > div:first-child,
+.wake-modal [product-view-div] .flex.flex-col.relative > div:first-child,
+.modal [product-view-div] .flex.flex-col.relative > div:first-child,
+[product-view-row] [product-view-div] .flex.flex-col.relative > div:first-child,
+.wake-modal [product-view-div] .flex.mr-5,
+.modal [product-view-div] .flex.mr-5,
+[product-view-row] [product-view-div] .flex.mr-5 {
+    max-width: 40% !important; /* aumentado de 24% para 55% */
+    min-width: 40% !important;
+    width: 40% !important;
+    flex-shrink: 0 !important;
+    margin-right: 1rem !important; /* aumentado para melhor espaçamento */
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Ajustar largura da seção de conteúdo no modal e posicionar à direita */
+.wake-modal [product-view-div] .flex.flex-col.relative.sm\:flex-row > div:last-child,
+.modal [product-view-div] .flex.flex-col.relative.sm\:flex-row > div:last-child,
+[product-view-row] [product-view-div] .flex.flex-col.relative.sm\:flex-row > div:last-child,
+.wake-modal [product-view-div] .flex.flex-col.relative > div:last-child,
+.modal [product-view-div] .flex.flex-col.relative > div:last-child,
+[product-view-row] [product-view-div] .flex.flex-col.relative > div:last-child,
+.wake-modal [product-view-div] .flex.flex-col.md\:min-w-\[55\%\],
+.modal [product-view-div] .flex.flex-col.md\:min-w-\[55\%\],
+[product-view-row] [product-view-div] .flex.flex-col.md\:min-w-\[55\%\] {
+    max-width: 60% !important; /* reduzido de 76% para 45% */
+    min-width: 60% !important;
+    width: 60% !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: auto !important; /* posicionar à direita */
+}
+
+/* Aproximar input de quantidade das variantes */
+.wake-modal [product-view-div] .row[class*="mt-4"] .mb-4,
+.modal [product-view-div] .row[class*="mt-4"] .mb-4,
+.wake-modal [product-view-div] .row.mt-4 .mb-4,
+.modal [product-view-div] .row.mt-4 .mb-4 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.wake-modal [product-view-div] .row[class*="mt-4"],
+.modal [product-view-div] .row[class*="mt-4"],
+.wake-modal [product-view-div] .row.mt-4,
+.modal [product-view-div] .row.mt-4 {
+    margin-top: 0.75rem !important;
+}
+
+/* Subir os botões de ação no modal */
+.wake-modal [product-view-div] .flex[class*="flex-col"][class*="lg:flex-row"][class*="justify-between"][class*="items-center"][class*="w-full"],
+.modal [product-view-div] .flex[class*="flex-col"][class*="lg:flex-row"][class*="justify-between"][class*="items-center"][class*="w-full"],
+.wake-modal [product-view-div] .flex.flex-col.lg\:flex-row.justify-between.items-center,
+.modal [product-view-div] .flex.flex-col.lg\:flex-row.justify-between.items-center {
+    margin-top: 0.5rem !important;
+    gap: 0.75rem !important;
+}
+
+@media (min-width: 1024px) {
+    .wake-modal [product-view-div] .flex[class*="flex-col"][class*="lg:flex-row"][class*="justify-between"][class*="items-center"][class*="w-full"],
+    .modal [product-view-div] .flex[class*="flex-col"][class*="lg:flex-row"][class*="justify-between"][class*="items-center"][class*="w-full"],
+    .wake-modal [product-view-div] .flex.flex-col.lg\:flex-row.justify-between.items-center,
+    .modal [product-view-div] .flex.flex-col.lg\:flex-row.justify-between.items-center {
+        gap: 1rem !important;
+    }
+}
+
+/* Margem entre seções no modal */
+.wake-modal [product-view-div] .flex[class*="flex-col"][class*="relative"] > div:first-child,
+.modal [product-view-div] .flex[class*="flex-col"][class*="relative"] > div:first-child {
+    margin-right: 0.375rem !important;
+}
+
+/* Reduzir espaçamento entre elementos no modal */
+.wake-modal [product-view-div] > div > div,
+.modal [product-view-div] > div > div {
+    margin-bottom: 0.25rem !important;
+}
+
+/* Reduzir espaçamento geral dos elementos internos */
+.wake-modal [product-view-div] .flex.flex-col > *,
+.modal [product-view-div] .flex.flex-col > * {
+    margin-bottom: 0.25rem !important;
+}
+
+.wake-modal [product-view-div] .flex.flex-col > *:last-child,
+.modal [product-view-div] .flex.flex-col > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Remover espaços em branco da seção de imagens */
+.wake-modal [product-view-div] .flex.flex-col.relative.sm\:flex-row,
+.modal [product-view-div] .flex.flex-col.relative.sm\:flex-row {
+    gap: 0.25rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.wake-modal [product-view-div] h1,
+.modal [product-view-div] h1 {
+    margin-bottom: 0.25rem !important;
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+}
+
+.wake-modal [product-view-div] .flex.justify-between.items-center.w-full.p-1.mb-4,
+.modal [product-view-div] .flex.justify-between.items-center.w-full.p-1.mb-4 {
+    margin-bottom: 0.5rem !important;
+    padding: 0.25rem !important;
+}
+
+/* Adicionar margem ao container do modal e border-radius */
+.wake-modal [product-view-row],
+.modal [product-view-row] {
+    padding: 1rem !important; /* aumentado para afastar elementos das bordas */
+    margin: 0.5rem !important; /* margem externa ao redor */
+    border-radius: 0.75rem !important;
+}
+
+@media (min-width: 640px) {
+    .wake-modal [product-view-row],
+    .modal [product-view-row] {
+        padding: 1.25rem !important; /* aumentado para afastar elementos das bordas */
+        margin: 0.75rem !important; /* margem externa ao redor */
+        border-radius: 0.875rem !important;
+    }
+}
+
+/* Ocultar seção de formas de pagamento no modal */
+.wake-modal [product-view-div] #product-prices-div .flex.flex-col.items-start.w-full.border-t.border-b,
+.modal [product-view-div] #product-prices-div .flex.flex-col.items-start.w-full.border-t.border-b,
+.wake-modal [product-view-div] #product-prices-div > div.flex.flex-col.items-start.w-full,
+.modal [product-view-div] #product-prices-div > div.flex.flex-col.items-start.w-full {
+    display: none !important;
+}
+
+/* Ocultar seção de quantidade no modal */
+.wake-modal [product-view-div] .row.mt-4 .mb-4,
+.modal [product-view-div] .row.mt-4 .mb-4,
+.wake-modal [product-view-div] .row[class*="mt-4"] .mb-4,
+.modal [product-view-div] .row[class*="mt-4"] .mb-4,
+.wake-modal [product-view-div] [attribute-selections] .row.mt-4 .mb-4,
+.modal [product-view-div] [attribute-selections] .row.mt-4 .mb-4 {
+    display: none !important;
+}
+
+/* Container flex-col para variantes com imagens */
+[attribute-selections] .row .flex.flex-col {
+    margin-bottom: 1rem !important;
+}
+
+[attribute-selections] .row .flex.flex-col p.mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+/* Reduzir espaçamentos de preços e outros elementos no modal */
+.wake-modal [product-view-div] #product-prices-div,
+.modal [product-view-div] #product-prices-div {
+    margin-bottom: 0.25rem !important;
+}
+
+.wake-modal [product-view-div] .text-xl,
+.modal [product-view-div] .text-xl {
+    font-size: 0.8125rem !important;
+    margin-bottom: 0.125rem !important;
+}
+
+.wake-modal [product-view-div] .text-2xl,
+.modal [product-view-div] .text-2xl {
+    font-size: 1rem !important;
+}
+
+.wake-modal [product-view-div] .mb-4,
+.modal [product-view-div] .mb-4 {
+    margin-bottom: 0.375rem !important;
+}
+
+.wake-modal [product-view-div] .mt-4,
+.modal [product-view-div] .mt-4 {
+    margin-top: 0.375rem !important;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+    [attribute-selections] .row label[class*="flex"][class*="border"] {
+        font-size: 0.8125rem !important;
+        padding: 0.5rem 0.75rem !important;
+        margin-right: 0.375rem !important;
+        margin-bottom: 0.375rem !important;
+    }
+    
+    [attribute-selections] .row select.form-select {
+        font-size: 0.8125rem !important;
+        padding: 0.5rem 2rem 0.5rem 0.625rem !important;
+    }
+    
+    [attribute-selections] .row input[type="number"][id="selected-quantity"] {
+        max-width: 100% !important;
+    }
+    
+    [attribute-selections] .row img[class*="cursor-pointer"] {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        margin-right: 0.375rem !important;
+        margin-bottom: 0.375rem !important;
+    }
+    
+    [attribute-selections] .row .col-md-2 img[height="50"][width="50"] {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+    }
+}
+
+/* ===== Z-INDEX DO MODAL - GARANTIR SOBERANIA SOBRE HEADER ===== */
+/* Garantir que o modal tenha z-index máximo quando aberto */
+.wake-modal:not([style*="display: none"]),
+.wake-modal.show,
+.modal:not([style*="display: none"]),
+.modal.show {
+    z-index: 900 !important;
+}
+
+/* Notificações acima do modal */
+.wake-overlay {
+    z-index: 950 !important;
+}
+
+.wake-overlay .overlay-box,
+.wake-overlay .overlay-wrapper {
+    z-index: inherit !important;
+}
+
+.wake-modal:not([style*="display: none"]) .modal-opacity,
+.wake-modal.show .modal-opacity,
+.modal:not([style*="display: none"]) .modal-opacity,
+.modal.show .modal-opacity {
+    z-index: 900 !important;
+}
+
+.wake-modal:not([style*="display: none"]) .modal-content,
+.wake-modal.show .modal-content,
+.modal:not([style*="display: none"]) .modal-content,
+.modal.show .modal-content {
+    z-index: 910 !important;
+}
+
+.wake-modal:not([style*="display: none"]) .wrapper,
+.wake-modal.show .wrapper,
+.modal:not([style*="display: none"]) .wrapper,
+.modal.show .wrapper {
+    z-index: 920 !important;
+    position: relative !important;
+}
+
+/* Garantir que o header fique abaixo do modal */
+body:has(.wake-modal:not([style*="display: none"])) .main-header,
+body:has(.wake-modal.show) .main-header,
+body:has(.modal:not([style*="display: none"])) .main-header,
+body:has(.modal.show) .main-header {
+    z-index: 800 !important;
+}
+
+/* Garantir que a navbar fique abaixo do modal */
+body:has(.wake-modal:not([style*="display: none"])) .navbar-main,
+body:has(.wake-modal.show) .navbar-main,
+body:has(.modal:not([style*="display: none"])) .navbar-main,
+body:has(.modal.show) .navbar-main {
+    z-index: 790 !important;
+}
+
+/* ===== OCULTAR BADGES DUPLICADOS NA PÁGINA DE PRODUTO E MODAL ===== */
+/* Ocultar TODOS os badges de desconto na página de produto e modal que não estão dentro de product-price-with-discount */
+[product-view-div] .product-badge.product-badge--discount,
+[product-view-div] .product-badge--discount,
+[product-view-div] .product-discount-page,
+.wake-modal [product-view-div] .product-badge.product-badge--discount,
+.wake-modal [product-view-div] .product-badge--discount,
+.wake-modal [product-view-div] .product-discount-page,
+.modal [product-view-div] .product-badge.product-badge--discount,
+.modal [product-view-div] .product-badge--discount,
+.modal [product-view-div] .product-discount-page,
+[product-view-row] [product-view-div] .product-badge.product-badge--discount,
+[product-view-row] [product-view-div] .product-badge--discount,
+[product-view-row] [product-view-div] .product-discount-page {
+    display: none !important;
+}
+
+/* ===== BADGE DE DESCONTO INLINE AO LADO DO PREÇO RISCADO ===== */
+/* Badge inline ao lado do preço riscado - APLICA EM TODOS OS CONTEXTOS (cards, página, modal) */
+/* IMPORTANTE: Esta regra sobrescreve a regra de ocultação acima para badges dentro de product-price-with-discount */
+.product-price-with-discount .product-discount-page,
+.product-price-with-discount .product-badge--discount,
+.product-price-with-discount .product-badge.product-badge--discount,
+[product-view-div] .product-price-with-discount .product-discount-page,
+[product-view-div] .product-price-with-discount .product-badge--discount,
+[product-view-div] .product-price-with-discount .product-badge.product-badge--discount,
+.wake-modal [product-view-div] .product-price-with-discount .product-discount-page,
+.wake-modal [product-view-div] .product-price-with-discount .product-badge--discount,
+.wake-modal [product-view-div] .product-price-with-discount .product-badge.product-badge--discount,
+.modal [product-view-div] .product-price-with-discount .product-discount-page,
+.modal [product-view-div] .product-price-with-discount .product-badge--discount,
+.modal [product-view-div] .product-price-with-discount .product-badge.product-badge--discount,
+[product-view-row] [product-view-div] .product-price-with-discount .product-discount-page,
+[product-view-row] [product-view-div] .product-price-with-discount .product-badge--discount,
+[product-view-row] [product-view-div] .product-price-with-discount .product-badge.product-badge--discount {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Container do preço riscado com badge inline - APLICA EM TODOS OS CONTEXTOS */
+.product-price-with-discount,
+.product-card .product-price-with-discount,
+[product-view-div] .product-price-with-discount,
+.wake-modal [product-view-div] .product-price-with-discount,
+.modal [product-view-div] .product-price-with-discount,
+[product-view-row] [product-view-div] .product-price-with-discount {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+/* Preço riscado dentro do container flex */
+.product-price-with-discount p.text-base.text-gray-500,
+.product-card .product-price-with-discount p.text-base.text-gray-500,
+[product-view-div] .product-price-with-discount p.text-base.text-gray-500,
+.wake-modal [product-view-div] .product-price-with-discount p.text-base.text-gray-500,
+.modal [product-view-div] .product-price-with-discount p.text-base.text-gray-500,
+[product-view-row] [product-view-div] .product-price-with-discount p.text-base.text-gray-500 {
+    margin-bottom: 0 !important;
+}
+
+/* ===== PRODUCT SPOT INFO NO MODAL ===== */
+/* Spot do produto no modal - mesma fonte dos cards (11px/text-xs) */
+.wake-modal .product-spot-info-modal,
+.modal .product-spot-info-modal,
+[product-view-row] .product-spot-info-modal {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.wake-modal .product-spot-info-modal .product-spot-info,
+.modal .product-spot-info-modal .product-spot-info,
+[product-view-row] .product-spot-info-modal .product-spot-info {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.wake-modal .product-spot-info-modal .product-spot-info-content,
+.modal .product-spot-info-modal .product-spot-info-content,
+[product-view-row] .product-spot-info-modal .product-spot-info-content {
+    width: 100%;
+}
+
+.wake-modal .product-spot-info-modal .product-spot-info-content p,
+.modal .product-spot-info-modal .product-spot-info-content p,
+[product-view-row] .product-spot-info-modal .product-spot-info-content p {
+    font-size: 11px !important; /* mesma fonte dos cards */
+    color: #4b5563 !important; /* mesma cor dos cards */
+    line-height: 1.4 !important; /* mesma line-height dos cards */
+    margin: 0 !important;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: block;
+    -webkit-line-clamp: unset !important; /* remover limitação de linhas no modal */
+    -webkit-box-orient: unset !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+}
+
+/* ===== NOME DO PRODUTO NO MODAL ===== */
+/* Aumentar fonte e adicionar margin-top no modal */
+.wake-modal .product-name,
+.modal .product-name,
+[product-view-row] .product-name,
+.wake-modal [product-view-div] h1.product-name,
+.modal [product-view-div] h1.product-name,
+[product-view-row] [product-view-div] h1.product-name {
+    font-size: 1.5rem !important; 
+    margin-top: 0.75rem !important; /* adicionar espaço superior */
+}
+
+/* ===== SEPARAÇÃO DE ELEMENTOS: BRAND E WISHLIST ===== */
+/* Wrapper da logo da marca/fornecedora - agora inline dentro do h1 */
+.product-brand-wrapper {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Wrapper do botão de wishlist - posicionado sobre a imagem img-fluid w-full */
+/* O wrapper está dentro de um container relative que envolve product_image */
+.product-wishlist-wrapper {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Garantir que o container que envolve product_image seja relativo */
+[product-view-div] .flex.mr-5 > div.relative,
+[product-view-div] div.relative.w-full {
+    position: relative !important;
+}
+
+/* Estilos específicos para a logo da marca na página de produto */
+.product-brand-wrapper img,
+.product-brand-logo {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* Estilos específicos para o botão de wishlist na página de produto */
+.product-wishlist-wrapper button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.product-wishlist-wrapper button:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-wishlist-wrapper svg {
+    width: 20px;
+    height: 20px;
+    stroke: #374151;
+    transition: all 0.3s ease;
+}
+
+.product-wishlist-wrapper button:hover svg {
+    stroke: #ef4444;
+}
+
+/* Wishlist - produto favoritado */
+.product-wishlist-wrapper button svg.fill-red-300 {
+    fill: #fca5a5 !important;
+}
+
+.product-wishlist-wrapper button svg.stroke-red-700 {
+    stroke: #b91c1c !important;
+}
+
+/* Estilos específicos para o modal */
+.wake-modal .product-brand-wrapper,
+.modal .product-brand-wrapper,
+[product-view-row] .product-brand-wrapper {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+}
+
+.wake-modal .product-wishlist-wrapper,
+.modal .product-wishlist-wrapper,
+[product-view-row] .product-wishlist-wrapper {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wake-modal .product-brand-wrapper img,
+.modal .product-brand-wrapper img,
+[product-view-row] .product-brand-wrapper img,
+.wake-modal .product-brand-logo,
+.modal .product-brand-logo,
+[product-view-row] .product-brand-logo {
+    max-height: 35px;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.wake-modal .product-wishlist-wrapper button,
+.modal .product-wishlist-wrapper button,
+[product-view-row] .product-wishlist-wrapper button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wake-modal .product-wishlist-wrapper button:hover,
+.modal .product-wishlist-wrapper button:hover,
+[product-view-row] .product-wishlist-wrapper button:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.wake-modal .product-wishlist-wrapper svg,
+.modal .product-wishlist-wrapper svg,
+[product-view-row] .product-wishlist-wrapper svg {
+    width: 20px;
+    height: 20px;
+    stroke: #374151;
+    transition: all 0.3s ease;
+}
+
+.wake-modal .product-wishlist-wrapper button:hover svg,
+.modal .product-wishlist-wrapper button:hover svg,
+[product-view-row] .product-wishlist-wrapper button:hover svg {
+    stroke: #ef4444;
+}
+
+/* Wishlist - produto favoritado no modal */
+.wake-modal .product-wishlist-wrapper button svg.fill-red-300,
+.modal .product-wishlist-wrapper button svg.fill-red-300,
+[product-view-row] .product-wishlist-wrapper button svg.fill-red-300 {
+    fill: #fca5a5 !important;
+}
+
+.wake-modal .product-wishlist-wrapper button svg.stroke-red-700,
+.modal .product-wishlist-wrapper button svg.stroke-red-700,
+[product-view-row] .product-wishlist-wrapper button svg.stroke-red-700 {
+    stroke: #b91c1c !important;
+}
+
+/* ===== SEÇÃO DE PRODUTO INDISPONÍVEL ===== */
+/* Wrapper externo na página de produto */
+[attribute-selections] .product-unavailable-wrapper,
+.product-unavailable-wrapper {
+    width: 100% !important;
+    margin-top: 1rem !important;
+}
+
+/* Título "Produto esgotado" */
+[attribute-selections] .product-unavailable-title,
+.product-unavailable-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #dc2626 !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+}
+
+/* Container principal do formulário de avise-me */
+[attribute-selections] .product-unavailable-section,
+.product-unavailable-section {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 1.5rem !important;
+    background: #FEE2E2 !important;
+    border: 1px solid #fca5a5 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.1), 0 2px 4px -1px rgba(220, 38, 38, 0.06) !important;
+}
+
+/* Mensagem informativa */
+[attribute-selections] .product-unavailable-message,
+.product-unavailable-message {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    font-size: 0.9375rem !important;
+    font-weight: 500 !important;
+    color: #374151 !important;
+    text-align: center !important;
+    margin-bottom: 1.25rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Formulário de avise-me - sobrescreve estilos globais */
+[attribute-selections] #form-avise-me.product-unavailable-form,
+#form-avise-me.product-unavailable-form,
+.product-unavailable-form {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    align-items: stretch !important;
+}
+
+@media (min-width: 1024px) {
+    [attribute-selections] #form-avise-me.product-unavailable-form,
+    #form-avise-me.product-unavailable-form,
+    .product-unavailable-form {
+        flex-direction: row !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+    }
+}
+
+/* Inputs - sobrescreve estilos globais de input[type=text] e input[type=email] */
+[attribute-selections] input.product-unavailable-input,
+input.product-unavailable-input,
+.product-unavailable-input {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0.75rem 1rem !important;
+    margin: 0 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    font-size: 0.9375rem !important;
+    color: #111827 !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+}
+
+[attribute-selections] input.product-unavailable-input::placeholder,
+input.product-unavailable-input::placeholder,
+.product-unavailable-input::placeholder {
+    color: #9ca3af !important;
+}
+
+[attribute-selections] input.product-unavailable-input:hover,
+input.product-unavailable-input:hover,
+.product-unavailable-input:hover {
+    border-color: #0e167a !important;
+    box-shadow: 0 2px 4px 0 rgba(14, 22, 122, 0.1) !important;
+}
+
+[attribute-selections] input.product-unavailable-input:focus,
+input.product-unavailable-input:focus,
+.product-unavailable-input:focus {
+    outline: none !important;
+    border-color: #0e167a !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1), 0 2px 4px 0 rgba(14, 22, 122, 0.15) !important;
+}
+
+/* Wrapper do botão */
+[attribute-selections] .product-unavailable-button-wrapper,
+.product-unavailable-button-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+@media (min-width: 1024px) {
+    [attribute-selections] .product-unavailable-button-wrapper,
+    .product-unavailable-button-wrapper {
+        flex: 0 0 auto !important;
+        width: auto !important;
+    }
+}
+
+/* Botão AVISE-ME - sobrescreve estilos globais de .btn-avise-me */
+[attribute-selections] button.product-unavailable-button,
+button.product-unavailable-button,
+.product-unavailable-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0.75rem 1.5rem !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    background: #0e167a !important;
+    color: #ffffff !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+    font-size: 0.9375rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 6px rgba(14, 22, 122, 0.25) !important;
+}
+
+[attribute-selections] button.product-unavailable-button:hover,
+button.product-unavailable-button:hover,
+.product-unavailable-button:hover {
+    background: #0c1369 !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.35) !important;
+    transform: translateY(-1px) !important;
+}
+
+[attribute-selections] button.product-unavailable-button:active,
+button.product-unavailable-button:active,
+.product-unavailable-button:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(14, 22, 122, 0.25) !important;
+}
+
+[attribute-selections] button.product-unavailable-button:disabled,
+button.product-unavailable-button:disabled,
+.product-unavailable-button:disabled {
+    background: #9ca3af !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+@media (min-width: 1024px) {
+    [attribute-selections] button.product-unavailable-button,
+    button.product-unavailable-button,
+    .product-unavailable-button {
+        width: auto !important;
+        min-width: 200px !important;
+    }
+}
+
+/* ===== SISTEMA DE MINIATURAS DE PRODUTO ===== */
+
+/* ----- CONTAINER PRINCIPAL (PÁGINA E MODAL) ----- */
+.product-thumbnails-container {
+    position: relative;
+    width: 100%;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ----- SLIDER DE THUMBNAILS (SCROLL HORIZONTAL COM BOTÕES - EXIBE 4 IMAGENS) ----- */
+.product-thumbnails-slider {
+    display: flex;
+    flex-direction: row; /* Garantir direção horizontal */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    gap: 0.5rem;
+    width: calc(4 * 3rem + 3 * 0.5rem); /* Largura fixa para exibir exatamente 4 imagens de 48px + 3 gaps */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.product-thumbnails-slider::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+@media (min-width: 1024px) {
+    .product-thumbnails-slider {
+        width: calc(4 * 3.5rem + 3 * 0.75rem); /* Largura fixa para exibir exatamente 4 imagens de 56px + 3 gaps */
+        gap: 0.75rem;
+    }
+}
+
+/* ----- BOTÕES DE NAVEGAÇÃO (ESTILO SWIFFY-SLIDER) ----- */
+.product-thumbnails-nav {
+    position: absolute;
+    top: 50%;
+    border: 0;
+    background-color: #0e167a;
+    cursor: pointer;
+    padding: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    filter: none;
+    transform: translateY(-50%);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.3);
+}
+
+.product-thumbnails-nav-prev {
+    left: -60px;
+    right: auto;
+}
+
+.product-thumbnails-nav-next {
+    right: -60px;
+    left: auto;
+}
+
+.product-thumbnails-nav i {
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+}
+
+.product-thumbnails-nav:hover {
+    background-color: #1a2cb0;
+    box-shadow: 0 2px 12px rgba(14, 22, 122, 0.4);
+}
+
+.product-thumbnails-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.product-thumbnails-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ----- THUMBNAILS (MINIATURAS) - TAMANHO FIXO ----- */
+.product-thumbnail {
+    width: 3rem !important; /* 48px */
+    height: 3rem !important; /* 48px */
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+    max-width: 3rem !important;
+    max-height: 3rem !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border: 1px solid #e5e7eb !important; /* sobrescreve border do Tailwind */
+    border-radius: 6px !important;
+    background-color: #f9fafb !important; /* sobrescreve bg-secondary-300 */
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    margin: 0 !important; /* remove m-1 do Tailwind */
+    padding: 0 !important;
+    box-sizing: border-box !important; /* garante que border não adicione à largura */
+    display: block !important;
+}
+
+@media (min-width: 1024px) {
+    .product-thumbnail {
+        width: 3.5rem !important; /* 56px */
+        height: 3.5rem !important; /* 56px */
+        min-width: 3.5rem !important;
+        min-height: 3.5rem !important;
+        max-width: 3.5rem !important;
+        max-height: 3.5rem !important;
+    }
+}
+
+.product-thumbnail:hover {
+    border-color: #0e167a !important;
+    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.2) !important;
+}
+
+.product-thumbnail.active,
+.product-thumbnail:focus {
+    border-color: #0e167a !important;
+    border-width: 2px !important;
+    box-shadow: 0 0 0 2px rgba(14, 22, 122, 0.2) !important;
+}
+
+/* ----- MODAL (SLIDER COM TAMANHO MÁXIMO) ----- */
+.wake-modal .product-thumbnails-container,
+.modal .product-thumbnails-container,
+[product-view-row] .product-thumbnails-container {
+    margin: 0.25rem 0;
+    width: auto !important;
+    max-width: 380px !important; /* respeitar limites máximos da coluna */
+    margin-left: auto !important;
+    margin-right: auto !important; /* centralizar */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+}
+
+.wake-modal .product-thumbnails-slider,
+.modal .product-thumbnails-slider,
+[product-view-row] .product-thumbnails-slider {
+    display: flex !important;
+    flex-direction: row !important; /* Garantir direção horizontal */
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth !important;
+    gap: 0.5rem !important;
+    width: calc(4 * 3rem + 3 * 0.5rem) !important; /* Largura fixa para exibir exatamente 4 imagens de 48px + 3 gaps */
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.wake-modal .product-thumbnails-slider::-webkit-scrollbar,
+.modal .product-thumbnails-slider::-webkit-scrollbar,
+[product-view-row] .product-thumbnails-slider::-webkit-scrollbar {
+    display: none !important; /* Chrome/Safari */
+}
+
+@media (min-width: 1024px) {
+    .wake-modal .product-thumbnails-slider,
+    .modal .product-thumbnails-slider,
+    [product-view-row] .product-thumbnails-slider {
+        width: calc(4 * 3.5rem + 3 * 0.75rem) !important; /* Largura fixa para exibir exatamente 4 imagens de 56px + 3 gaps */
+        gap: 0.75rem !important;
+    }
+}
+
+/* Botões de navegação no modal */
+.wake-modal .product-thumbnails-nav,
+.modal .product-thumbnails-nav,
+[product-view-row] .product-thumbnails-nav {
+    position: absolute !important;
+    top: 50% !important;
+    border: 0 !important;
+    background-color: #0e167a !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease !important;
+    margin: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    filter: none !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.3) !important;
+}
+
+.wake-modal .product-thumbnails-nav-prev,
+.modal .product-thumbnails-nav-prev,
+[product-view-row] .product-thumbnails-nav-prev {
+    left: -60px !important;
+    right: auto !important;
+}
+
+.wake-modal .product-thumbnails-nav-next,
+.modal .product-thumbnails-nav-next,
+[product-view-row] .product-thumbnails-nav-next {
+    right: -60px !important;
+    left: auto !important;
+}
+
+.wake-modal .product-thumbnails-nav i,
+.modal .product-thumbnails-nav i,
+[product-view-row] .product-thumbnails-nav i {
+    color: #fff !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+}
+
+.wake-modal .product-thumbnails-nav:hover,
+.modal .product-thumbnails-nav:hover,
+[product-view-row] .product-thumbnails-nav:hover {
+    background-color: #1a2cb0 !important;
+    box-shadow: 0 2px 12px rgba(14, 22, 122, 0.4) !important;
+}
+
+.wake-modal .product-thumbnails-nav:disabled,
+.modal .product-thumbnails-nav:disabled,
+[product-view-row] .product-thumbnails-nav:disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
+/* Thumbnails no modal - tamanho fixo como antes */
+.wake-modal .product-thumbnail,
+.modal .product-thumbnail,
+[product-view-row] .product-thumbnail,
+.wake-modal img.product-thumbnail,
+.modal img.product-thumbnail,
+[product-view-row] img.product-thumbnail {
+    width: 3rem !important; /* 48px */
+    height: 3rem !important; /* 48px */
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+    max-width: 3rem !important;
+    max-height: 3rem !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+@media (min-width: 1024px) {
+    .wake-modal .product-thumbnail,
+    .modal .product-thumbnail,
+    [product-view-row] .product-thumbnail,
+    .wake-modal img.product-thumbnail,
+    .modal img.product-thumbnail,
+    [product-view-row] img.product-thumbnail {
+        width: 3.5rem !important; /* 56px */
+        height: 3.5rem !important; /* 56px */
+        min-width: 3.5rem !important;
+        min-height: 3.5rem !important;
+        max-width: 3.5rem !important;
+        max-height: 3.5rem !important;
+    }
+}
+
+/* ===== AJUSTES DO PRODUCT-ACTIONS-WRAPPER NO MODAL ===== */
+
+/* Estilo geral do product-button - border-radius aumentado */
+.product-actions-wrapper .product-button {
+    border-radius: 28px !important; /* aumentado para deixar mais circular */
+}
+
+/* Aumentar o product-quantity-wrapper no modal */
+.wake-modal .product-actions-wrapper .product-quantity-wrapper,
+.modal .product-actions-wrapper .product-quantity-wrapper,
+[product-view-row] .product-actions-wrapper .product-quantity-wrapper {
+    height: 48px !important; /* aumentado de 44px */
+}
+
+.wake-modal .product-actions-wrapper .product-quantity-btn,
+.modal .product-actions-wrapper .product-quantity-btn,
+[product-view-row] .product-actions-wrapper .product-quantity-btn {
+    width: 40px !important; /* aumentado de 36px */
+    height: 48px !important; /* aumentado de 44px */
+}
+
+.wake-modal .product-actions-wrapper .product-quantity-input,
+.modal .product-actions-wrapper .product-quantity-input,
+[product-view-row] .product-actions-wrapper .product-quantity-input {
+    width: 52px !important; /* aumentado de 48px */
+    height: 48px !important; /* aumentado de 44px */
+    font-size: 16px !important; /* aumentado de 15px */
+}
+
+/* Diminuir o product-button no modal para ficar levemente maior que o wrapper */
+.wake-modal .product-actions-wrapper .product-button,
+.modal .product-actions-wrapper .product-button,
+[product-view-row] .product-actions-wrapper .product-button {
+    height: 48px !important; 
+    padding: 8px 12px !important; /* reduzido */
+    font-size: 12px !important; /* reduzido de 12px */
+    flex: 0.8 !important; /* reduzido de 1.2 para diminuir largura */
+    min-width: 90px !important; /* reduzido de 120px */
+    max-width: 220px !important; /* limitar largura máxima */
+    border-radius: 28px !important; /* aumentado de 20px para deixar mais circular */
+}
+
+/* Ajustar gap do wrapper no modal e centralizar */
+.wake-modal .product-actions-wrapper,
+.modal .product-actions-wrapper,
+[product-view-row] .product-actions-wrapper {
+    gap: 10px !important; /* aumentado de 8px para melhor espaçamento */
+    justify-content: center !important; /* centralizar */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* ===== ÂNCORA "VER MAIS" NO MODAL ===== */
+/* Garantir que a âncora seja sempre exibida no modal, mesmo após atualização */
+.wake-modal .product-view-more-link,
+.modal .product-view-more-link,
+[product-view-row] .product-view-more-link,
+.wake-modal [product-view-div] .product-view-more-link,
+.modal [product-view-div] .product-view-more-link,
+[product-view-row] [product-view-div] .product-view-more-link,
+.wake-modal .mb-4 .product-view-more-link,
+.modal .mb-4 .product-view-more-link,
+[product-view-row] .mb-4 .product-view-more-link,
+.wake-modal [product-view-div] .mb-4 .product-view-more-link,
+.modal [product-view-div] .mb-4 .product-view-more-link,
+[product-view-row] [product-view-div] .mb-4 .product-view-more-link,
+.wake-modal [product-view-div] h1.product-name + a.product-view-more-link,
+.modal [product-view-div] h1.product-name + a.product-view-more-link,
+[product-view-row] [product-view-div] h1.product-name + a.product-view-more-link {
+    font-size: 0.875rem !important; /* texto pequeno (14px) */
+    color: #0e167a !important; /* cor azul principal do site */
+    text-decoration: underline !important;
+    transition: color 0.2s ease !important;
+    display: block !important; /* elemento de bloco para aparecer abaixo do nome */
+    margin-top: 0.5rem !important; /* espaçamento abaixo do nome do produto */
+    margin-bottom: 0.5rem !important; /* espaçamento antes do product-spot-info-modal */
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+}
+
+.wake-modal .product-view-more-link:hover,
+.modal .product-view-more-link:hover,
+[product-view-row] .product-view-more-link:hover,
+.wake-modal [product-view-div] .product-view-more-link:hover,
+.modal [product-view-div] .product-view-more-link:hover,
+[product-view-row] [product-view-div] .product-view-more-link:hover {
+    color: #3b4fd4 !important; /* cor mais clara no hover */
+    text-decoration: underline !important;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+        {{ head title: "Quem Somos | Odonto Master" store: store }}
+        {{ data_layer_config }}
+        {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price"]}}
+        {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+        {{ meta_tags seo: data.hotsite.seo }}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Wake Commerce">
+        <meta name="robots" content="all">
+        <input hidden id="data-layer-page-type" value="ABOUT"/>
+    </head>
+    <body class="bg-mainBg page-about">
+        {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+        <header class="shadow-xl lg:shadow-none bg-mainBg">
+            {{ header }}
+            {{ navbar store: store menu_groups: common.menu_groups position: "Lateral Esquerda" }}            
+        </header>
+        {{ side_cart }}
+        {{ wake_overlay }}
+        {{ wake_modal }}
+        <div id="add-cart-alert" style="display: flex; justify-content: center; visibility: hidden; z-index: 99;"></div>
+        <section class="about-header-wrapper mt-6 flex w-full justify-center px-4 lg:mt-8">
+            <header class="about-header">
+                <h1 class="about-title">Quem Somos</h1>
+                <p class="about-subtitle">Conheça a história da maior distribuidora de materiais odontológicos do Nordeste</p>
+            </header>
+        </section>
+        <main class="mt-4 flex w-full justify-center px-4 pb-10 lg:mt-6">
+            <section class="about-content flex w-full flex-col gap-10 rounded-3xl bg-white p-6 shadow-lg lg:max-w-[1330px] lg:p-12">
+                <article class="about-sections">
+                    <section class="about-section" id="nossa-historia">
+                        <h2 class="section-title">Nossa História</h2>
+                        <div class="section-body">
+                            <p>A Dental Odonto Master foi fundada em 1994 na cidade de Salvador/BA. Inicialmente em uma sala de 30 m² na Avenida Antônio Carlos Magalhães, comercializando Material Odontológico Clínico.</p>
+                            <p>Com o sucesso da loja, em 1998 visando oferecer mais conforto, variedade, estacionamento e praticidade aos clientes, a matriz foi transferida para o bairro do Caminho das Árvores, inovando com o serviço de autoatendimento no ramo odontológico.</p>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="expansao-inovacao">
+                        <h2 class="section-title">Expansão e Inovação</h2>
+                        <div class="section-body">
+                            <p>No ano de 2003 são inauguradas duas filiais, uma localizada no centro da cidade de Salvador/BA, próximo ao Relógio São Pedro e a outra na Kalilândia, situada na cidade de Feira de Santana/BA.</p>
+                            <p>A Odonto Master prossegue com uma história de inovação, empreendedorismo, respeito, oferecendo produtos de qualidade e preço baixo. Nesses 25 anos de trabalho a empresa acumulou larga experiência, credibilidade e reconhecimento no mercado.</p>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="era-digital">
+                        <h2 class="section-title">Era Digital</h2>
+                        <div class="section-body">
+                            <p>Agora em nossa loja virtual você poderá encontrar tudo o que precisa com segurança em qualquer lugar do país!</p>
+                            <p>Por isso, em 2016, lançamo-nos em novos desafios, a expansão dos negócios para o e-commerce e abertura de filial na cidade de Aracaju/SE.</p>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="nossa-jornada">
+                        <h2 class="section-title">Nossa Jornada</h2>
+                        <div class="section-body">
+                            <div class="history-timeline">
+                                <div class="history-item">
+                                    <div class="history-year">1994</div>
+                                    <div class="history-content">Fundação da Dental Odonto Master em Salvador/BA, em uma sala de 30 m² na Avenida Antônio Carlos Magalhães.</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-year">1998</div>
+                                    <div class="history-content">Mudança da matriz para o bairro do Caminho das Árvores, inovando com o serviço de autoatendimento.</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-year">2003</div>
+                                    <div class="history-content">Inauguração de duas filiais: uma no centro de Salvador/BA e outra na Kalilândia em Feira de Santana/BA.</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-year">2016</div>
+                                    <div class="history-content">Expansão para o e-commerce e abertura de filial em Aracaju/SE.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="nossos-valores">
+                        <h2 class="section-title">Nossos Valores</h2>
+                        <div class="section-body">
+                            <p>Ao longo desses anos, mantivemos nosso compromisso com a <strong>inovação</strong>, <strong>empreendedorismo</strong> e <strong>respeito</strong> aos nossos clientes, oferecendo sempre produtos de qualidade com os melhores preços do mercado.</p>
+                            <p>Com <strong>25 anos de experiência</strong>, construímos uma sólida reputação baseada em <strong>credibilidade</strong> e <strong>reconhecimento</strong> no setor odontológico, sempre buscando superar as expectativas dos nossos clientes.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <footer class="about-footer">
+                    <p>Hoje, seguimos firmes na missão de oferecer soluções completas para o universo odontológico, conectando profissionais à tecnologia, conhecimento e fornecimento de materiais com excelência. Seja bem-vindo à Odonto Master.</p>
+                </footer>
+            </section>
+        </main>
+        {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+        {{ footer is_preview: is_preview store: store }}
+        {{ sdk_client }}
+        {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+        {{ wake_scripts scripts: ["wake_utils"] }}
+        {{ asset type: "js" paths: ["checkout_pages"]}}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager"] options: "async"}}
+        {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
+        {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+    </body>
+</html>

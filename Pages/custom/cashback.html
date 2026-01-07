@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+        {{ head title: "Cashback | Odonto Master" store: store }}
+        {{ data_layer_config }}
+        {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price"]}}
+        {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+        {{ meta_tags seo: data.hotsite.seo }}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Wake Commerce">
+        <meta name="robots" content="all">
+        <style>
+            body.policy-page {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background-color: #f7f8fc;
+                color: #1f2933;
+                line-height: 1.8;
+            }
+            .policy-container {
+                max-width: 1120px;
+                margin: 0 auto;
+                padding: 3rem 2rem 4rem;
+            }
+            .policy-container h1,
+            .policy-container h2,
+            .policy-container h3 {
+                font-weight: 700;
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            .policy-container h1 {
+                font-size: 2rem;
+                margin-top: 0;
+            }
+            .policy-container h2 {
+                font-size: 1.5rem;
+                color: #1a2cb0;
+            }
+            .policy-container h3 {
+                font-size: 1.25rem;
+            }
+            .policy-container p {
+                margin-bottom: 1rem;
+            }
+            .policy-container ul {
+                margin: 1rem 0 1.5rem;
+                padding-left: 1.5rem;
+            }
+            .policy-container li {
+                margin-bottom: 0.75rem;
+            }
+        </style>
+        <input hidden id="data-layer-page-type" value="CASHBACK"/>
+    </head>
+    <body class="policy-page">
+        {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+        <header class="shadow bg-white">
+            {{ header }}
+            {{ navbar store: store menu_groups: common.menu_groups position: "Lateral Esquerda" }}
+        </header>
+        {{ side_cart }}
+        {{ wake_overlay }}
+        {{ wake_modal }}
+        <div id="add-cart-alert" style="display: flex; justify-content: center; visibility: hidden; z-index: 99;"></div>
+        <main>
+            <div class="policy-container">
+                <h1 style="color:#1a2cb0;">Programa de Cashback</h1>
+                <p>Bem-vindo ao programa de cashback da <strong style="color:#1a2cb0;">Odonto Master</strong>! Aqui você acumula pontos a cada compra e pode trocar por descontos em futuras compras.</p>
+
+                <h2>Como Funciona</h2>
+                <p>Nosso programa de cashback é simples e transparente:</p>
+                <ul>
+                    <li>A cada compra aprovada, você acumula uma porcentagem do valor em pontos;</li>
+                    <li>Os pontos são creditados automaticamente em sua conta após a confirmação do pagamento;</li>
+                    <li>Você pode acompanhar seu saldo de pontos diretamente na sua área de cliente;</li>
+                    <li>Os pontos podem ser utilizados como desconto em compras futuras.</li>
+                </ul>
+
+                <h2>Regras de Acúmulo</h2>
+                <p>Para participar do programa de cashback da <strong style="color:#1a2cb0;">Odonto Master</strong>, é necessário estar cadastrado e logado no momento da compra.</p>
+                <p>As seguintes regras se aplicam ao acúmulo de pontos:</p>
+                <ul>
+                    <li>Pontos são creditados apenas após a confirmação do pagamento;</li>
+                    <li>Compras canceladas ou devolvidas terão os pontos correspondentes estornados;</li>
+                    <li>O percentual de cashback pode variar conforme a categoria de produto ou promoções específicas;</li>
+                    <li>Promoções especiais de cashback serão divulgadas no site e por e-mail;</li>
+                    <li>Os pontos têm validade de 12 meses a partir da data de crédito.</li>
+                </ul>
+
+                <h2>Como Utilizar seus Pontos</h2>
+                <p>Para utilizar seus pontos acumulados:</p>
+                <ul>
+                    <li>Faça login na sua conta;</li>
+                    <li>Adicione os produtos desejados ao carrinho;</li>
+                    <li>No momento do checkout, selecione a opção de utilizar pontos de cashback;</li>
+                    <li>Escolha quantos pontos deseja utilizar (até o limite do valor da compra);</li>
+                    <li>O desconto será aplicado automaticamente ao valor total.</li>
+                </ul>
+
+                <h2>Conversão de Pontos</h2>
+                <p>A conversão de pontos em reais é feita da seguinte forma:</p>
+                <ul>
+                    <li>Cada ponto equivale a R$ 0,01 (um centavo);</li>
+                    <li>É necessário um saldo mínimo de 100 pontos para utilização;</li>
+                    <li>Os pontos podem cobrir até 50% do valor total de uma compra;</li>
+                    <li>Frete e taxas adicionais não são elegíveis para desconto com pontos.</li>
+                </ul>
+
+                <h2>Validade e Expiração</h2>
+                <p>Os pontos de cashback têm validade de 12 meses a partir da data de crédito. Pontos expirados são automaticamente removidos da sua conta e não podem ser recuperados.</p>
+                <p>Recomendamos que você utilize seus pontos regularmente para aproveitar ao máximo os benefícios do programa.</p>
+
+                <h2>Alterações no Programa</h2>
+                <p>A <strong style="color:#1a2cb0;">Odonto Master</strong> reserva-se o direito de alterar as regras do programa de cashback a qualquer momento. Notificaremos os clientes sobre mudanças significativas por e-mail ou através do site.</p>
+                <p>O uso continuado do programa após alterações será considerado como aceitação das novas regras.</p>
+
+                <h2>Suporte e Dúvidas</h2>
+                <p>Para dúvidas sobre o programa de cashback, consulte de saldo, ou problemas na utilização dos pontos, entre em contato com nossa equipe de atendimento:</p>
+                <ul>
+                    <li><strong>Chat Online:</strong> <a href="https://api.whatsapp.com/send?phone=5571988670812" target="_blank" style="color:#1a2cb0;">Clique aqui</a></li>
+                    <li><strong>Telefone:</strong> (71) 3173-7300</li>
+                    <li><strong>E-mail:</strong> atendimento@odontomaster.com.br</li>
+                </ul>
+
+                <p>Data da última atualização: novembro de 2025.</p>
+
+                <p>Aproveite o programa de cashback da <strong style="color:#1a2cb0;">Odonto Master</strong> e economize ainda mais em suas compras!</p>
+            </div>
+        </main>
+        {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+        {{ footer is_preview: is_preview store: store }}
+        {{ sdk_client }}
+        {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+        {{ wake_scripts scripts: ["wake_utils"] }}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager"] options: "async"}}
+        {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+    </body>
+</html>
+

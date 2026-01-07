@@ -1,0 +1,80 @@
+{{ ##
+    Description: Renders filter fields to filter the products
+    Params:
+        - aggregations: products aggregations data
+    Usage:
+        filter aggregations: data...aggregations
+## }}
+
+<div class="flex flex-col overflow-auto px-2">
+    {{ if aggregations?.filters }}
+        <div class="flex lg:hidden justify-end mb-4" onclick="openFilter()">
+            <img src="{{- store.urls.static_img}}icons/close.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="close" class="w-5 h-5">
+        </div>
+        <div class="flex mb-4">
+            <a href="#" onclick="clearFilters();" 
+            class="flex justify-center items-center border w-full p-2 rounded-md uppercase text-sm hover:bg-secondary-200">
+                Limpar filtros
+                <img src="{{- store.urls.static_img}}icons/clean.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="clean" class="w-5 h-5 ml-2">
+            </a>
+            <input type="hidden" id="hidden-min-price-value" name="hidden-min-price-value" 
+                value="{{ aggregations.minimum_price }}">
+            <input type="hidden" id="hidden-max-price-value" name="hidden-max-price-value" 
+                value="{{ aggregations.maximum_price }}">
+        </div>
+        <div class="flex flex-col mb-4">
+            {{ if settings.filter.price_type == "price_field_filter" }}
+                {{ price_field_filter minimum_price: aggregations.minimum_price maximum_price: aggregations.maximum_price }}
+            {{ else if settings.filter.price_type == "price_range_filter" && aggregations?.price_ranges}}
+                {{ price_range_filter price_ranges: aggregations.price_ranges }}
+            {{ end }}
+        </div>
+        <div class="flex flex-col mb-4 overflow-auto">
+            {{ for filter in aggregations.filters }}
+                {{ filter_id = filter.field | html.url_encode }}
+                <div class="filter-category-wrapper mb-3">
+                    <h4 class="text-base font-semibold uppercase mb-2 filter-category-title cursor-pointer flex items-center justify-between" 
+                        onclick="toggleFilterCategory('{{ filter_id }}')">
+                        <span>{{ filter.field }}</span>
+                        <svg id="filter-arrow-{{ filter_id }}" class="filter-arrow w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </h4>
+                    <div id="filter-content-{{ filter_id }}" class="filter-category-content">
+                        {{~ if filter.field == "Cor" || filter.field == "cor" ~}}
+                            <div class="flex flex-row flex-wrap justify-start mb-4 max-w-[210px]">
+                                {{ for value in filter.values }}
+                                    <label class="cursor-pointer">
+                                        <div id="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}" class="rounded-full m-1 ring-primary-500 ring-offset-2">
+                                            <input type="radio" class="hidden"
+                                                id="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}"
+                                                value="{{ filter.field }}__{{ value.name }}"
+                                                onclick="setFilter(this.value)">
+                                            <img src="/colorhandler?cor={{ value.name }}" alt="{{ value.name }}" title="{{ value.name }}" 
+                                            class="w-7 h-7 rounded-full">
+                                        </div>
+                                    </label>
+                                {{ end }}
+                            </div>
+                        {{~ else ~}}
+                            <ul class="mb-4">
+                                {{ for value in filter.values }}
+                                    <li class="ml-1">
+                                        <input type="checkbox"
+                                            id="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}"
+                                            class="w-4 h-4 mr-1 text-primary-600 bg-secondary-100 border-secondary-300 rounded focus:ring-primary-500 focus:ring-2 cursor-pointer"
+                                            value="{{ filter.field }}__{{ value.name }}"
+                                            onchange="setFilter(this.value)">
+                                        <label for="filter_{{ filter.field | html.url_encode }}_{{ value.name | html.url_encode }}" class="cursor-pointer">
+                                            {{- value.name + ' (' + value.quantity + ")" -}}
+                                        </label>
+                                    </li>
+                                {{ end }}
+                            </ul>
+                        {{~ end ~}}
+                    </div>
+                </div>
+            {{ end }}
+        </div>
+    {{ end }}
+</div>

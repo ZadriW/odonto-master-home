@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+               {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+               {{ head title: "Como Comprar | Odonto Master" store: store }}
+        {{ data_layer_config }}
+        {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price"]}}
+        {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+        {{ meta_tags seo: data.hotsite.seo }}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Wake Commerce">
+        <meta name="robots" content="all">
+        <input hidden id="data-layer-page-type" value="ABOUT"/>
+    </head>
+    <body class="bg-mainBg page-about">
+        {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+        <header class="shadow-xl lg:shadow-none bg-mainBg">
+            {{ header }}
+            {{ navbar store: store menu_groups: common.menu_groups position: "Lateral Esquerda" }}            
+        </header>
+        {{ side_cart }}
+        {{ wake_overlay }}
+        {{ wake_modal }}
+        <div id="add-cart-alert" style="display: flex; justify-content: center; visibility: hidden; z-index: 99;"></div>
+        <section class="about-header-wrapper mt-6 flex w-full justify-center px-4 lg:mt-8">
+            <header class="about-header">
+                <h1 class="about-title">Como Comprar</h1>
+                <p class="about-subtitle">Aprenda a realizar suas compras na Odonto Master com segurança e facilidade.</p>
+            </header>
+        </section>
+        <main class="mt-4 flex w-full justify-center px-4 pb-10 lg:mt-6">
+            <section class="about-content flex w-full flex-col gap-10 rounded-3xl bg-white p-6 shadow-lg lg:max-w-[1330px] lg:p-12">
+
+                <article class="about-sections">
+                    <section class="about-section" id="passo-a-passo">
+                        <h2 class="section-title">Passo a passo para comprar</h2>
+                        <div class="section-body">
+                            <p>Comprar na Odonto Master é simples. Em quatro etapas você garante os produtos ideais para sua clínica com total segurança.</p>
+                            <div class="history-timeline">
+                                <div class="history-item">
+                                    <div class="history-year">01</div>
+                                    <div class="history-content">Crie sua conta ou faça login para salvar endereços, preferências e acompanhar pedidos.</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-year">02</div>
+                                    <div class="history-content">Explore as categorias, utilize filtros e adicione ao carrinho os itens desejados, conferindo variantes e estoque disponível.</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-year">03</div>
+                                    <div class="history-content">Acesse o carrinho, informe CEP para calcular frete, selecione a forma de entrega e prossiga para pagamento.</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-year">04</div>
+                                    <div class="history-content">Finalize a compra escolhendo a condição de pagamento e acompanhe o status pelo painel “Meus Pedidos”.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="formas-de-pagamento">
+                        <h2 class="section-title">Formas de pagamento disponíveis</h2>
+                        <div class="section-body">
+                            <p>Oferecemos opções flexíveis para garantir praticidade e segurança nas suas compras.</p>
+                            <ul>
+                                <li>Cartões de crédito das principais bandeiras com parcelamento facilitado.</li>
+                                <li>PIX para aprovação instantânea e liberação rápida do pedido.</li>
+                                <li>Boletos à vista com condições especiais em campanhas promocionais.</li>
+                                <li>Condições diferenciadas para compras corporativas mediante análise.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="frete-prazos">
+                        <h2 class="section-title">Entrega, frete e prazos</h2>
+                        <div class="section-body">
+                            <p>Informe o CEP antes de finalizar o pedido para visualizar transportadoras, valores e prazos estimados. Trabalhamos com parceiros confiáveis e retiradas expressas em unidades selecionadas.</p>
+                            <p>Pedidos aprovados até as 14h são encaminhados para separação no mesmo dia útil. Você será notificado em cada etapa até a entrega.</p>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="duvidas-frequentes">
+                        <h2 class="section-title">Dúvidas frequentes</h2>
+                        <div class="section-body">
+                            <ul>
+                                <li><strong>Alterei o carrinho, preciso atualizar o frete?</strong> Sim, sempre que adicionar ou remover itens, recalculamos automaticamente as opções.</li>
+                                <li><strong>Consigo usar mais de um endereço?</strong> Cadastre diversos endereços no perfil e escolha o destino preferido durante o checkout.</li>
+                                <li><strong>Preciso de nota fiscal?</strong> Todas as compras acompanham NF-e emitida com seus dados cadastrais.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="about-section" id="atendimento">
+                        <h2 class="section-title">Suporte especializado</h2>
+                        <div class="section-body">
+                            <p>Nossa equipe está pronta para ajudar em cada etapa da compra. Fale com o atendimento pelos canais oficiais ou via WhatsApp para recomendações de produtos, dúvidas sobre cadastro e agilidade na aprovação do pedido.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <footer class="about-footer">
+                    <p>Ficou com alguma dúvida? Nossa equipe está pronta para te acompanhar desde o primeiro acesso até o recebimento do produto. Conte sempre com a Odonto Master.</p>
+                </footer>
+            </section>
+        </main>
+        {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+        {{ footer is_preview: is_preview store: store }}
+        {{ sdk_client }}
+        {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+        {{ wake_scripts scripts: ["wake_utils"] }}
+        {{ asset type: "js" paths: ["checkout_pages"]}}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager"] options: "async"}}
+        {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
+        {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+    </body>
+</html>

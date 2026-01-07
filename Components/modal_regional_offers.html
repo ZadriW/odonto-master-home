@@ -1,0 +1,21 @@
+<div id="dialog_input_cep" class="relative z-40 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-secondary-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 rounded-md">
+        <div class="flex flex-col lg:flex-row lg:w-1/3 lg:h-80 bg-white relative">
+            <img src="{{- store.urls.static_img}}icons/close.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="regional offer" class="w-5 h-5 m-2 cursor-pointer absolute top-0 right-0" loading="lazy" onclick="openInputCepModal(false)">
+            <div class="flex lg:flex-col justify-center items-center bg-primary-600 lg:w-4/12 p-4">
+                <img src="{{- store.urls.static_img}}header/map.png?theme={{store.theme}}&v={{store.last_modified}}" alt="regional offer" class="w-32" loading="lazy">
+            </div>
+            <div class="flex flex-col lg:w-8/12 justify-center items-start p-4">
+                <h3 class="text-2xl font-semibold text-gray-600 mb-2">Qual sua localização?</h3>
+                <span class="text-md text-gray-600 text-left mb-4">Veja as melhores ofertas de acordo com a sua região</span>
+                <div class="flex justify-start items-center">
+                    <input type="text" maxlength="9" placeholder="Digite seu cep" id="cep_input" class="flex p-2" onkeyup="handleZipCode(event)">
+                    <button id="submit-region-form" onclick="setRegionalOffers()" class="flex p-2 bg-gray-400 text-white ml-2 mt-1 uppercase" disabled>Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

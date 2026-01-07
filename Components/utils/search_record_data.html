@@ -1,0 +1,18 @@
+{{ products = search_data.products?? search_data.products_by_offset }}
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get("busca") ?? urlParams.get("termoBusca");
+    let search_record_data = null;
+    if (searchTerm) {
+        search_record_data = {
+            input: {
+                query: searchTerm, 
+                pageUrl: window.location.href, 
+                page: {{ current_page ?? 1 }}, 
+                pageSize: {{ search_data.page_size }},
+                totalResults: {{ products.total_count }}
+            }
+        };
+    }
+</script>

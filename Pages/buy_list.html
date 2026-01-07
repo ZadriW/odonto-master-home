@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {{~ buy_list = data.buy_list ~}}
+        {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+        {{ head title: data.buy_list.product_name store: store }}
+        {{ data_layer_config }}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "glider", "slider_price"]}}
+        {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+        {{~ if  buy_list.seo ~}}
+        {{ meta_tags seo: buy_list.seo }} 
+        {{~ end ~}}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <input hidden id="data-layer-page-type" value="PRODUCT - BUYLIST"/>
+    </head>
+    
+    <body class="bg-mainBg">
+        {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+        <header class="shadow-xl lg:shadow-none bg-mainBg">
+            {{ header }}
+            {{ navbar store: store menu_groups: common.menu_groups position: "Lateral Esquerda" }}            
+        </header>
+        {{ side_cart }}
+        {{ wake_overlay }}
+        <input type="hidden" id="buy-list-id" name="buy-list-id" value="{{ data.buy_list.buy_list_id }}">
+        <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center bg-mainBg">
+            <div class="flex flex-col items-start w-full lg:max-w-[1330px] px-2 relative">
+                {{ buy_list_view buy_list: buy_list }}
+                {{~ product_information informations: buy_list.informations ~}}
+                {{~ if  buy_list.product_recommendations ~}}
+                    {{ spot_carousel products: buy_list.product_recommendations }}
+                {{~ end ~}}
+                {{~ if  buy_list.reviews ~}}
+                    {{ product_reviews products: buy_list.reviews }}
+                {{~ end ~}}
+            </div>
+        </div>
+        {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+        {{ footer is_preview: is_preview store: store }}
+        {{ sdk_client }}
+        {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+        {{ wake_scripts scripts: ["wake_utils"] }}
+        {{ asset type: "js" paths: ["checkout_pages"]}}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager"] options: "async"}}
+        {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
+        {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+    </body>
+</html>

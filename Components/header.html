@@ -1,0 +1,75 @@
+<!-- Main Header baseado no projeto Base -->
+<header class="main-header">
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="top-banner__content">
+                <div class="top-banner__warning">
+                    <strong>ATENÇÃO!</strong> Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Area -->
+    <div class="header-area">
+        <div class="container">
+            <div class="header-area__content">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a href="/" class="logo-link">
+                        <img src="{{- store.urls.static_img}}logo_site.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="Odonto Master" class="logo-image">
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <form class="search-form" id="searchForm" autocomplete="off" method="get" action="/search" onsubmit="search(event, null)">
+                        <div class="search-form__wrapper">
+                            <input type="text" 
+                                   class="search-form__input" 
+                                   id="search-bar" 
+                                   name="q" 
+                                   placeholder='{{ "Busque aqui" | lang }}...'
+                                   autocomplete="off">
+                            <button type="submit" class="search-form__button" aria-label="Buscar">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div class="search-autocomplete" id="autocomplete-list"></div>
+                    </form>
+                </div>
+
+                <!-- Header Actions -->
+                <section class="header-actions">
+                    <!-- Wishlist -->
+                    <div class="wishlist-header">
+                        <a href="/listadedesejos" class="wishlist-header__link" aria-label="Lista de desejos">
+                            <i class="fa-solid fa-heart" style="color: #0e167a;"></i>
+                        </a>
+                    </div>
+
+                    <!-- My Account -->
+                    <div class="my-account">
+                        {{ user_login }}
+                    </div>
+
+                    <!-- Shopping Cart -->
+                    <div class="shopping-cart">
+                        <button class="shopping-cart__trigger" aria-label="Carrinho de compras" onclick="setCartDivVisibility()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="shopping-cart__text">Carrinho</span>
+                            <span class="shopping-cart__count" id="cart-qty-label">0</span>
+                            <span class="shopping-cart__label">Item(s)</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Abrir menu" id="mobileMenuToggle" onclick="showNavBar(true)">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

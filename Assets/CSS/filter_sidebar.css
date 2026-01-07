@@ -1,0 +1,402 @@
+/* ===== FILTER SIDEBAR STYLES ===== */
+
+/* ===== ESTRUTURA E LAYOUT DO FILTRO ===== */
+#category-filters {
+    overflow: hidden !important;
+    max-height: calc(100vh - 2rem) !important;
+    overflow-y: auto !important;
+    border-right: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    min-width: 256px !important; /* w-64 = 16rem = 256px */
+    max-width: 256px !important;
+    flex-shrink: 0 !important;
+}
+
+@media (min-width: 1024px) {
+    #category-filters {
+        width: 256px !important;
+    }
+}
+
+#category-filters .flex.flex-col.overflow-auto {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-height: calc(100vh - 6rem) !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    padding-right: 0.5rem !important;
+}
+
+#category-filters .overflow-auto {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-height: calc(100vh - 6rem) !important;
+}
+
+/* ===== ESPAÇAMENTO ===== */
+#category-filters .flex.flex-col.mb-4 {
+    margin-bottom: 1rem !important;
+}
+
+#category-filters ul {
+    padding-left: 0.5rem !important;
+}
+
+#category-filters li {
+    margin-bottom: 0.5rem !important;
+}
+
+/* ===== TIPOGRAFIA ===== */
+.cursor-pointer,
+input[type="checkbox"].cursor-pointer,
+input[type="radio"].cursor-pointer {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+}
+
+
+label.cursor-pointer {
+    font-size: 0.8125rem !important;
+    color: #6c757d !important;
+    line-height: 1.25rem !important;
+}
+
+#category-filters h4 {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    line-height: 1.25rem !important;
+}
+
+#category-filters a {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    background-color: #f9fafb !important;
+    border: 1px solid #d1d5db !important;
+    color: #374151 !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+#category-filters a:hover {
+    background-color: #0e167a !important;
+    border-color: #0e167a !important;
+    color: #ffffff !important;
+}
+
+#category-filters a:hover img {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* ===== SLIDER DE PREÇO ===== */
+#category-filters .w-48 {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+#price-range-slider {
+    height: 8px !important;
+    background-color: #e5e7eb !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    width: 100% !important;
+    min-width: 220px !important;
+    max-width: 100% !important;
+    margin-top: 1rem !important;
+}
+
+#price-range-slider > div {
+    width: 100% !important;
+}
+
+#price-range-slider > div.absolute {
+    width: calc(100% - 1.5rem) !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+}
+
+#price-range-slider .bg-primary-500,
+#price-range-slider .bg-primary-600 {
+    background-color: #0e167a !important;
+}
+
+#slider-thumb-left,
+#slider-thumb-right {
+    background-color: #0e167a !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+}
+
+#selected-range-slider {
+    background-color: #0e167a !important;
+}
+
+#unselected-left,
+#unselected-right {
+    background-color: #d1d5db !important;
+    border-radius: 4px !important;
+}
+
+/* ===== CAMPOS DE PREÇO ===== */
+#minimum-price-filter,
+#maximum-price-filter {
+    font-size: 0.875rem !important;
+}
+
+#price-selection-fields {
+    gap: 0.75rem !important;
+    margin-top: 0.75rem !important;
+}
+
+#price-selection-fields input[type="number"] {
+    font-size: 0.875rem !important;
+    padding: 0.5rem !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.375rem !important;
+    background-color: #f9fafb !important;
+    margin-right: 0.5rem !important;
+}
+
+#price-selection-fields input[type="number"]:last-of-type {
+    margin-right: 0 !important;
+}
+
+#price-selection-fields input[type="number"]:focus {
+    border-color: #0e167a !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1) !important;
+}
+
+/* ===== BOTÃO APLICAR FILTRO ===== */
+#apply-price-filter {
+    font-size: 0.875rem !important;
+    background-color: #0e167a !important;
+    border-color: #0e167a !important;
+    padding: 0.5rem !important;
+    border-radius: 0.375rem !important;
+    transition: all 0.2s ease !important;
+}
+
+#apply-price-filter:hover {
+    background-color: #0a0f5a !important;
+    border-color: #0a0f5a !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(14, 22, 122, 0.3) !important;
+}
+
+/* ===== CHECKBOXES ===== */
+#category-filters input[type="checkbox"] {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 0.5rem !important;
+    accent-color: #0e167a !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-color: #ffffff !important;
+    border: 2px solid #d1d5db !important;
+    border-radius: 3px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    outline: none !important;
+    --tw-ring-offset-shadow: none !important;
+    --tw-ring-shadow: none !important;
+    --tw-shadow: none !important;
+    --tw-shadow-colored: none !important;
+}
+
+#category-filters input[type="checkbox"]:checked {
+    background-color: #0e167a !important;
+    border-color: #0e167a !important;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e") !important;
+    background-size: 12px 12px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+#category-filters input[type="checkbox"]:checked::before {
+    color: #ffffff !important;
+}
+
+#category-filters input[type="checkbox"]:checked::after {
+    content: "✓" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+}
+
+/* Remover efeitos de focus */
+#category-filters input[type="checkbox"]:focus,
+#category-filters input[type="checkbox"]:focus-visible,
+#category-filters input[type="checkbox"]:focus-within,
+#category-filters input[type="checkbox"]:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #d1d5db !important;
+    background-color: #ffffff !important;
+}
+
+#category-filters input[type="checkbox"]:focus:checked,
+#category-filters input[type="checkbox"]:focus-visible:checked,
+#category-filters input[type="checkbox"]:focus-within:checked,
+#category-filters input[type="checkbox"]:active:checked {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #0e167a !important;
+    background-color: #0e167a !important;
+}
+
+/* Fallback para navegadores antigos */
+@supports not (accent-color: #0e167a) {
+    #category-filters input[type="checkbox"]:checked {
+        background-color: #0e167a !important;
+        border-color: #0e167a !important;
+    }
+    
+    #category-filters input[type="checkbox"]:checked::after {
+        content: "✓" !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        color: #ffffff !important;
+        font-size: 12px !important;
+        font-weight: bold !important;
+        line-height: 1 !important;
+    }
+}
+
+/* ===== RADIO BUTTONS ===== */
+#category-filters input[type="radio"] {
+    accent-color: #0e167a !important;
+}
+
+/* ===== FILTROS DE COR ===== */
+#category-filters .rounded-full {
+    border: 2px solid #e5e7eb !important;
+    transition: all 0.2s ease !important;
+}
+
+#category-filters .rounded-full:hover {
+    border-color: #0e167a !important;
+    transform: scale(1.1) !important;
+}
+
+/* ===== SCROLLBAR CUSTOMIZADA ===== */
+#category-filters::-webkit-scrollbar,
+#category-filters .flex.flex-col.overflow-auto::-webkit-scrollbar,
+#category-filters .overflow-auto::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+#category-filters::-webkit-scrollbar-track,
+#category-filters .flex.flex-col.overflow-auto::-webkit-scrollbar-track,
+#category-filters .overflow-auto::-webkit-scrollbar-track {
+    background: #f1f5f9 !important;
+    border-radius: 2px !important;
+}
+
+#category-filters::-webkit-scrollbar-thumb,
+#category-filters .flex.flex-col.overflow-auto::-webkit-scrollbar-thumb,
+#category-filters .overflow-auto::-webkit-scrollbar-thumb {
+    background: #0e167a !important;
+    border-radius: 2px !important;
+}
+
+#category-filters::-webkit-scrollbar-thumb:hover,
+#category-filters .flex.flex-col.overflow-auto::-webkit-scrollbar-thumb:hover,
+#category-filters .overflow-auto::-webkit-scrollbar-thumb:hover {
+    background: #0a0f5a !important;
+}
+
+/* Scrollbar para Firefox */
+#category-filters,
+#category-filters .flex.flex-col.overflow-auto,
+#category-filters .overflow-auto {
+    scrollbar-width: thin !important;
+    scrollbar-color: #0e167a #f1f5f9 !important;
+}
+
+/* ===== SISTEMA DE SLIDE DAS CATEGORIAS ===== */
+.filter-category-wrapper {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.filter-category-wrapper:last-child {
+    border-bottom: none;
+}
+
+.filter-category-title {
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.filter-category-title:hover {
+    color: #0e167a !important;
+}
+
+.filter-category-title span {
+    flex: 1;
+}
+
+.filter-arrow {
+    color: #6b7280;
+    transition: transform 0.3s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.filter-arrow.rotated {
+    transform: rotate(180deg);
+}
+
+.filter-category-title:hover .filter-arrow {
+    color: #0e167a;
+}
+
+.filter-category-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: none;
+}
+
+.filter-category-content.collapsed {
+    max-height: 0 !important;
+    overflow: hidden;
+}
+
+/* Garantir que elementos interativos funcionem normalmente */
+.filter-category-content input,
+.filter-category-content button,
+.filter-category-content label,
+.filter-category-content a {
+    pointer-events: auto !important;
+}
+
+/* Quando colapsado, desabilitar interação */
+.filter-category-content.collapsed * {
+    pointer-events: none !important;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+    #category-filters {
+        background-color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 0.5rem !important;
+        margin: 1rem !important;
+        border-right: none !important;
+    }
+}

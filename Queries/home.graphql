@@ -1,0 +1,119 @@
+query Home($partnerAccessToken: String){
+  hotsite(url: "", partnerAccessToken: $partnerAccessToken) {
+    banners {
+      altText
+      bannerName
+      bannerUrl
+      position
+      urlOnClick
+      openNewTab
+      height
+      title
+      width
+      order
+    }
+    contents {
+      content
+      height
+      title
+      width
+      position
+    }
+    seo {
+      content
+      name
+      type
+      httpEquiv
+      scheme
+    }
+  }
+  
+  carrossel1: hotsite(url: "bluefriday", partnerAccessToken: $partnerAccessToken) {
+    products {
+      ...productsCon
+  	}
+  }
+  carrossel2: hotsite(url: "orthometric", partnerAccessToken: $partnerAccessToken) {
+    products {
+      ...productsCon
+  	}
+  }
+  carrossel3: hotsite(url: "fgm", partnerAccessToken: $partnerAccessToken) {
+    products {
+      ...productsCon
+  	}
+  }
+  carrossel4: hotsite(url: "resinassolventum", partnerAccessToken: $partnerAccessToken) {
+    products {
+      ...productsCon
+  	}
+  }
+  carrossel5: hotsite(url: "clareadores", partnerAccessToken: $partnerAccessToken) {
+    products {
+      ...productsCon
+  	}
+  }
+}
+
+fragment productsCon on ProductsConnection {
+  nodes {
+    id
+    productId
+    productName
+    productVariantId
+    alias: aliasComplete
+    freeShipping
+    averageRating
+    newRelease
+    similarProducts{
+      alias
+      image
+      name
+      imageUrl(w: 50, h: 50)
+    }
+    images(width:275, height:275) {
+      url
+      print
+    }
+    available
+    prices {
+      listPrice
+      price
+      discountPercentage
+      installmentPlans{
+        displayName
+        name
+        installments{
+          discount
+          fees
+          number
+          value
+        }
+      }
+      bestInstallment {
+        name
+        displayName
+        discount
+        fees
+        number
+        value
+      }
+    }
+    promotions{
+      content
+      id
+      stamp
+      fullStampUrl
+      title
+      disclosureType
+    }
+    informations{
+      id
+      title
+      type
+      value
+    }
+    addToCartFromSpot
+  }
+}
+

@@ -1,0 +1,43 @@
+{{ ##
+    Description: Renders the list of suggested products in a dropdown list
+    Params:
+        - Uses autocomplete.graphql
+    Usage:
+        await client.snippet.render("autocomplete_snippet.html", ...);
+## }}
+{{ if !data.autocomplete.suggestions.empty? || !data.autocomplete.products.empty? }}
+    <div class="autocomplete-container">
+        {{~ if !data.autocomplete.suggestions.empty? ~}}
+            <div class="autocomplete-section">
+                {{~ for suggestion in data.autocomplete.suggestions ~}}
+                    <div suggestion onclick="search(event, '{{ suggestion }}')" class="suggestion-item">
+                        <i class="fas fa-search suggestion-icon"></i>
+                        <span>{{ suggestion }}</span>
+                    </div>
+                {{~ end ~}}
+            </div>
+        {{~ end ~}}
+        {{~ if !data.autocomplete.products.empty? ~}}
+            <div class="products-section">
+                {{~ for product in data.autocomplete.products ~}}
+                    <a href="/{{ product.alias }}">
+                        <div suggestion product-suggestion class="product-item" id="{{ product.alias }}">
+                            <div class="product-image-wrapper">
+                                {{~ imageUrl = "https://" + store.store_name + ".fbitsstatic.net/img/p/produto-nao-possui-foto-no-momento/sem-foto.jpg?w=100" ~}}
+                                {{~ if product.images.size > 0 ~}}
+                                    {{~ firstImage = product.images | array.first ~}}
+                                    {{~ imageUrl = firstImage.url ~}}
+                                {{~ end ~}}
+                                <img src="{{ imageUrl }}" alt="{{ product.product_name }}" class="product-image">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">{{ product.product_name }}</div>
+                                <div class="product-price">{{ product.prices.price | math.format "c" "pt-BR" }}</div>
+                            </div>
+                        </div>
+                    </a>
+                {{~ end ~}}
+            </div>
+        {{~ end ~}}
+    </div>
+{{ end }}

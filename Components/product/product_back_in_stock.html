@@ -1,0 +1,10 @@
+<div class="product-card-unavailable-section">
+    <p class="product-card-unavailable-message">{{ message }}</p>
+    <form id="form-avise-me" onsubmit="backInStockOnClick('{{ product_variant_id }}', event)" class="product-card-unavailable-form">
+        <input id="bis-name-{{ product_variant_id }}" class="product-card-unavailable-input" type="text" placeholder='{{ "Nome" | lang }}' required>
+        <input id="bis-email-{{ product_variant_id }}" class="product-card-unavailable-input" type="email" placeholder='{{ "E-mail" | lang }}' required>
+        <div class="product-card-unavailable-button-wrapper">
+            <button type="submit" class="product-card-unavailable-button">AVISE-ME</button>
+        </div>
+    </form>
+</div>

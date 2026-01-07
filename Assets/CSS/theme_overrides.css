@@ -1,0 +1,218 @@
+/* ===== THEME OVERRIDES - CARREGA POR ÚLTIMO PARA SOBRESCREVER TAILWIND ===== */
+
+/* Este arquivo deve SEMPRE carregar após output_base.css para garantir que
+   as customizações do tema não sejam sobrescritas pelo Tailwind */
+
+/* ========================================
+   HEADER - CORREÇÕES DE COR
+   ======================================== */
+
+/* Background do Header - SEMPRE BRANCO */
+.main-header,
+header.main-header,
+.header-area {
+  background-color: #ffffff !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Barra de Busca - SEMPRE BRANCA COM BORDA CINZA */
+.search-form__wrapper {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  --tw-bg-opacity: 1 !important;
+  --tw-border-opacity: 1 !important;
+}
+
+.search-form__input {
+  background-color: transparent !important;
+  color: #1e293b !important;
+  border: none !important;
+  --tw-text-opacity: 1 !important;
+}
+
+.search-form__button {
+  background-color: #0e167a !important;
+  color: #ffffff !important;
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+.search-form__button:hover {
+  background-color: #0c1369 !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Ícones do Header - SEMPRE AZUL PRINCIPAL */
+.wishlist-header__link,
+.wishlist-header__link i,
+.my-account__trigger,
+.my-account__trigger i,
+.mobile-menu-toggle,
+.mobile-menu-toggle i {
+  color: #0e167a !important;
+  background-color: transparent !important;
+  --tw-text-opacity: 1 !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Carrinho - Texto Azul */
+.shopping-cart__trigger {
+  background-color: transparent !important;
+  color: #333 !important;
+  border-color: #ddd !important;
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+  --tw-border-opacity: 1 !important;
+}
+
+.shopping-cart__text {
+  color: #0e167a !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* Contador do Carrinho - SEMPRE AZUL PRINCIPAL */
+.shopping-cart__count,
+#cart-qty-label {
+  background-color: #0e167a !important;
+  color: #ffffff !important;
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* Força o contador a ser azul mesmo com classes Tailwind */
+.shopping-cart__count.bg-primary-600,
+.shopping-cart__count.bg-secondary-600,
+.shopping-cart__count.bg-secondary-500,
+#cart-qty-label.bg-primary-600,
+#cart-qty-label.bg-secondary-600,
+#cart-qty-label.bg-secondary-500 {
+  background-color: #0e167a !important;
+  color: #ffffff !important;
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+
+/* ========================================
+   NAVBAR - CORREÇÕES DE COR
+   ======================================== */
+
+/* Navbar Background - SEMPRE AZUL PRINCIPAL */
+.main-navigation,
+nav.main-navigation,
+#navbar {
+  background-color: #0e167a !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Links da Navbar - SEMPRE BRANCOS */
+.menu-link,
+.main-navigation .menu-link,
+.main-navigation a {
+  color: #ffffff !important;
+  --tw-text-opacity: 1 !important;
+}
+
+.menu-link:hover,
+.main-navigation .menu-link:hover {
+  color: #90CAF9 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* ========================================
+   SOBRESCREVER CLASSES TAILWIND NO HEADER
+   ======================================== */
+
+/* Qualquer bg-white no header deve permanecer branco */
+.main-header .bg-white {
+  background-color: #ffffff !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Qualquer bg-secondary no header vira azul principal */
+.main-header .bg-secondary-50,
+.main-header .bg-secondary-100,
+.main-header .bg-secondary-200,
+.main-header .bg-secondary-300,
+.main-header .bg-secondary-400,
+.main-header .bg-secondary-500,
+.main-header .bg-secondary-600,
+.main-header [class*="bg-secondary"] {
+  background-color: #0e167a !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Qualquer text-gray no header vira azul principal */
+.main-header .text-gray-500,
+.main-header .text-gray-600,
+.main-header .text-gray-700,
+.main-header .text-gray-800,
+.main-header .text-gray-900,
+.main-header [class*="text-gray"] {
+  color: #0e167a !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* ========================================
+   OVERLAY DO CARRINHO
+   ======================================== */
+
+/* Overlay escuro do carrinho lateral */
+#side-card-over-list .bg-secondary-500,
+#side-card-over-list [class*="bg-secondary"] {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  --tw-bg-opacity: 0.5 !important;
+}
+
+.bg-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  --tw-bg-opacity: 0.5 !important;
+}
+
+/* ========================================
+   BOTÕES PRIMÁRIOS GLOBAIS
+   ======================================== */
+
+/* Botões com bg-primary devem usar azul principal */
+.btn-primary,
+button.bg-primary-500,
+a.bg-primary-500,
+[class*="bg-primary"] {
+  background-color: #0e167a !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+.btn-primary:hover,
+button.bg-primary-500:hover,
+a.bg-primary-500:hover {
+  background-color: #0c1369 !important;
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Links com text-primary devem usar azul principal */
+a.text-primary-500,
+[class*="text-primary"] {
+  color: #0e167a !important;
+  --tw-text-opacity: 1 !important;
+}
+
+a.text-primary-500:hover {
+  color: #0c1369 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* ========================================
+   GARANTIR ESPECIFICIDADE MÁXIMA
+   ======================================== */
+
+/* Força todos os elementos do header a respeitarem as cores */
+.main-header * {
+  /* Remove variáveis do Tailwind que podem interferir */
+}
+
+.main-header button,
+.main-header a,
+.main-header div {
+  /* Herda as cores corretas */
+}
+

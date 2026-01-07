@@ -1,0 +1,87 @@
+{{##
+    Description: Renders the 'buy' and 'add to cart' buttons and calls attribute components.
+    Params:
+        - product: product data
+    Usage:
+        product_attribute product: product
+##}}
+{{~ if product.attribute_selections ~}}
+    {{~ attribute_selections = product.attribute_selections ~}}
+    {{~ if attribute_selections.can_be_matrix ~}}
+        <div attribute-selections>
+            {{ product_matrix_attribute attribute_selections: attribute_selections on_change: "productMatrixOnChange(this);" }}
+            <br>  
+            <div class="row">
+                <div class="col-12">
+                    {{ product_buy_button add_to_cart_click: "addToCartMatrixClick(this)" buy_click: "buyMatrixClick(this)" }}
+                </div>
+            </div>
+        </div>
+    {{~ else ~}}
+        <div attribute-selections>
+            {{~
+                grouped_attribute_selections = attribute_selections.selections | group.by @(do; ret $0.display_type;end)
+                combo_attr = grouped_attribute_selections | group.get "Combo"
+                div_attr = grouped_attribute_selections | group.get "DIV"
+                div_img_attr = grouped_attribute_selections | group.get "DIV com foto do produto variante"
+                div_color_attr = grouped_attribute_selections | group.get "DIV com cor"
+                product_combo_attribute attribute_selections: combo_attr product_id: product.product_id on_click: "selectAttribute"
+                product_div_attribute attribute_selections: div_attr product_id: product.product_id on_click: "selectAttribute"
+                product_div_with_image_attribute attribute_selections: div_img_attr product_id: product.product_id on_click: "selectAttribute"
+                product_div_with_color_attribute attribute_selections: div_color_attr product_id: product.product_id on_click: "selectAttribute"
+            ~}}
+        </div>
+        {{~ 
+            available = true
+            variant_id = ""
+            stock = 0
+            if attribute_selections.selected_variant
+                variant_id = attribute_selections.selected_variant.product_variant_id
+                available = attribute_selections.selected_variant.available
+                stock = attribute_selections.selected_variant.stock
+            else if attribute_selections.selections.size == 0
+                variant_id = product.product_variant_id
+                available = product.available
+                stock = product.stock
+            end 
+        ~}}
+        <div class="row mt-4">
+            {{~ if available ~}}
+                {{~ disabled = variant_id == "" ~}}
+                {{~ btn_value = variant_id ~}}
+                <div class="w-full">
+                    <div class="flex">
+                        {{~ 
+                            if product.subscription_groups && product.subscription_groups.size > 0
+                                product_subscription subscription_groups: product.subscription_groups btn_value: btn_value btn_click: "subscriptionClick(this.value);" disabled: disabled
+                            end 
+                        ~}}
+                    </div>
+                    {{~ 
+                        grouped_subscription_only_list = product.subscription_groups | group.by @(do; ret $0.subscription_only;end)
+                        subscription_only_list = grouped_subscription_only_list | group.get true
+                        subscription_only = subscription_only_list && subscription_only_list.size > 0
+                        if !subscription_only
+                            product_buy_button btn_value: btn_value max: stock add_to_cart_click: "addToCartClick(this.value)" buy_click: "buyClick(this.value)"
+                        end 
+                    ~}}
+                </div>
+            {{~ else ~}}
+                <div class="product-unavailable-wrapper">
+                    <h3 class="product-unavailable-title">Produto esgotado!</h3>
+                    <div class="product-unavailable-section">
+                        <p class="product-unavailable-message">Preencha os campos para ser avisado assim que o produto voltar ao estoque!</p>
+                        <form id="form-avise-me" onsubmit="backInStockOnClick('{{ variant_id }}', event)" class="product-unavailable-form">
+                            <input id="bis-name-{{ variant_id }}" class="product-unavailable-input" type="text" placeholder='{{ "Nome" | lang }}' required>
+                            <input id="bis-email-{{ variant_id }}" class="product-unavailable-input" type="email" placeholder='{{ "E-mail" | lang }}' required>
+                            <div class="product-unavailable-button-wrapper">
+                                <button type="submit" class="product-unavailable-button">AVISE-ME</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {{~ end ~}}
+        </div>
+    {{~ end ~}}
+{{~ end ~}}
+<br>

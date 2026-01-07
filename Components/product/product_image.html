@@ -1,0 +1,22 @@
+<div class="flex flex-col">
+    <div class="relative">
+        {{~ firstImage = images | array.first ~}}    
+        {{ if firstImage }}
+            <img src="{{ firstImage.url }}" alt="Product main image - {{math.uuid}}" class="img-fluid w-full" id="firstImage">
+        {{ end }}
+    </div>    
+    <div class="product-thumbnails-container relative my-2">
+        <button type="button" class="product-thumbnails-nav product-thumbnails-nav-prev" aria-label="Imagens anteriores">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="product-thumbnails-slider">
+            {{ for image in images }}
+                <img src="{{ image.url }}" class="product-thumbnail w-12 h-12 lg:w-14 lg:h-14 object-cover object-center border bg-secondary-300 m-1 cursor-pointer flex-shrink-0" 
+                alt="image_{{ math.uuid }}" onclick="changeFirstImage('{{image.url}}')">
+            {{ end }}
+        </div>
+        <button type="button" class="product-thumbnails-nav product-thumbnails-nav-next" aria-label="Próximas imagens">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>   
+</div>

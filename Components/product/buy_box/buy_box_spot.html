@@ -1,0 +1,78 @@
+{{ ##
+    Description: Renders a product spot containing the main image, the product name,
+                 list price, price and the button "comprar".
+    Params:
+      - product: the product that will be displayed
+    Usage:
+      spot product: product
+## }}
+<div class="product-card" onclick="window.location.href='/{{product.alias}}'" style="cursor: pointer;">
+    <div class="product-card__image">
+        {{ spot_image product: product priority: img_priority lazy: img_lazy_load}}
+    </div>
+    {{~ if product.promotions && product.promotions.size > 0 ~}}
+        {{~ for promotion in product.promotions ~}}
+            {{~ if promotion.disclosure_type == "Spot" ~}}
+                <div class="product-badge product-badge--promotion">
+                    {{ promotion.title }}
+                </div>
+            {{~ end ~}}
+        {{~ end ~}}
+    {{~ end ~}}
+    
+    <div class="product-card__content">
+        <a href="/{{product.alias}}" class="product-title-link">
+            <h3 class="product-title">{{ product.product_name }}</h3>
+        </a>
+        
+        {{~ product_spot_info informations: product.informations ~}}
+        
+        {{~
+            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
+            promotionsSpot = promotionsTypes | group.get "Spot"
+            stamps promotions: promotionsSpot
+            if product.prices
+                product_price prices: product.prices
+            end
+        ~}}
+        
+        {{~ if product.similar_products ~}}
+            <div class="flex justify-start items-center w-full mt-2">
+                {{~ for sim_prod in product.similar_products | array.limit 4 ~}}
+                    <div class="border">
+                        <a href="/{{ sim_prod.alias }}" onclick="event.stopPropagation();">
+                            <img src="{{ sim_prod.image_url }}" alt="{{ sim_prod.name }}" title="{{ sim_prod.name }}" class="w-10 h-10" />
+                        </a>
+                    </div>
+                {{~ end ~}}
+            </div>
+        {{~ end ~}}
+        
+        {{~ if product.available ~}}
+            <div class="product-pricing">
+                <div class="text-sm text-gray-600 mb-2">
+                    <span>{{ product.buy_box.quantity_offers }} vendedores com ofertas</span>
+                    <br>
+                    <span>
+                        De {{ product.buy_box.minimum_price | math.format "c" "pt-BR" }} 
+                        até {{ product.buy_box.maximum_price | math.format "c" "pt-BR" }} 
+                    </span>
+                </div>
+            </div>
+            
+            <button class="product-button-buy" onclick="window.location.href='{{product.alias}}'; event.stopPropagation(); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+                DETALHES
+            </button>
+        {{~ else ~}}
+            <p class="text-gray-500 text-sm">Produto indisponível</p>
+        {{~ end ~}}
+    </div>
+    <div class="modal" id="add-to-cart-modal-{{ product.product_id }}" aria-labelledby="addToCartFromSpot" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered" >
+            <div id="add-to-cart-modal-content-{{ product.product_id }}"></div>
+        </div>
+    </div>
+</div>

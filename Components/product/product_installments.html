@@ -1,0 +1,56 @@
+{{##
+    Description: Renders a modal with all the installment options
+    Params:
+        - installments: product installment plans (available on Admin).
+            If needed, the config option payment_groups.display on settings.json
+            can be used to define which plans to display on modal.
+            (e.g., display: ["Boleto Yapay", "Cartão Sem Desconto", "Pix"])
+    Usage:
+        product_installments installments: product.prices.installment_plans
+##}}
+{{~ #Function used to filter the installment plans available if any display option is set on settings.json
+    func select_display(plans)
+        contains = false
+        if settings.payment_groups.display && (settings.payment_groups.display | array.contains plans.display_name)
+            contains = true
+        end
+        ret contains
+    end
+    
+    installment_plans = installments | array.filter @select_display
+    if installment_plans == empty
+        installment_plans = installments
+    end
+~}}
+
+<div class="flex flex-col items-start w-full border-t border-b py-5 my-6">
+    <h2 class="mb-4 text-lg font-semibold text-gray-900">Formas de pagamento</h2>
+    <div class="flex justify-start items-start gap-2 flex-wrap">
+        {{~ for plan in installment_plans ~}}
+            <button class="flex items-center justify-center border rounded-md py-2 px-4 transition-all duration-200 bg-white hover:bg-gray-50 hover:border-primary-500 hover:shadow-md" value="{{plan.display_name}}" onclick="showInstallments(this)">
+                {{if plan.display_name == 'Boleto'}}
+                    <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/a001af4e-b81c-4e2f-a1a1-e6ee19638dd2.png" alt="boleto" class="w-6 h-6 mr-1">
+                {{else if plan.display_name == 'Pix' || plan.display_name == 'PIX'}}
+                    <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/94f26f55-f921-4084-8973-843047e9f56c.png" alt="pix" class="w-6 h-6 mr-1">
+                {{else}}
+                    <img src="{{- store.urls.static_img}}icons/credit-card.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="credit-card" class="w-6 h-6 mr-1">
+                {{end}}
+                    {{plan.display_name}}
+            </button>
+        {{~ end ~}}
+    </div>
+    {{~ for plan in installment_plans ~}}
+        <div id="installments-tab" class="hidden mt-3" value="{{plan.display_name}}">
+            <div class="bg-gray-50 rounded-lg p-3">
+                <table class="w-full">
+                    {{~ for installment in plan.installments~}}
+                    <tr class="border-b border-gray-200 last:border-b-0">
+                        <td class="py-2 px-2 text-sm text-gray-600">{{installment.number}}x de {{installment.value | math.format "c" "pt-BR"}} {{if installment.fees}}com juros{{else}}sem juros{{end}}</td>
+                        <td class="py-2 px-2 text-sm font-semibold text-primary-600 text-right">{{installment.number | math.times installment.value | math.format "c" "pt-BR"}}</td>
+                    </tr>
+                    {{~ end ~}}
+                </table>
+            </div>
+        </div>
+    {{~ end ~}}
+</div>

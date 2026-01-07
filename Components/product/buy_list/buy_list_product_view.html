@@ -1,0 +1,56 @@
+{{ ##
+    Description: Renders the buy list view
+    Params:
+        - product: buy list single product data
+    Usage:
+        buy_list_product_view product: product
+## }}
+{{~ 
+    product_id = product.product_id
+    product_available = false
+    product_prices = 0 
+    if product.attribute_selections.selected_variant
+        product_available = product.attribute_selections.selected_variant.available
+        product_prices = product.attribute_selections.selected_variant.prices
+    else if product.attribute_selections.selections.size == 0
+        product_available = product.available
+        product_prices = product.prices
+    else
+        product_prices = product.prices
+    end 
+~}}
+
+<div class="flex justify-start w-full">
+    <label class="flex justify-start items-center cursor-pointer">
+        {{~ if !is_kit ~}}
+            <input id="buy-list-product-checked-{{ product_id }}" class="mr-4" type="checkbox"
+            {{ if product_available || product.attribute_selections.can_be_matrix}} 
+                onchange="buyListCalculatePrices('{{ product_id }}');" checked
+            {{ else }}
+                disabled
+            {{ end }}>
+        {{~ end ~}}
+        <div class="flex justify-between items-center w-full">
+            <div class="flex flex-col justify-start items-center w-1/5 mr-3">
+                <div class="border p-1">
+                    {{ spot_image product: product }}
+                </div>
+            </div>
+            <div class="flex flex-col items-start justify-start w-10/12">
+                <h3 class="flex text-2xl font-normal">{{ product.product_name }}</h3>
+                <div id="buy-list-product-price-{{ product_id }}" class="">
+                    {{~ if !is_kit ~}}
+                        {{~ if product_available ~}}
+                            {{ product_price prices: product_prices }}
+                        {{~ else ~}}
+                            Selecione uma das opções.
+                        {{~ end ~}}
+                    {{~ end ~}}
+                </div>
+                <div class="">
+                    {{ buy_list_product_attribute product: product is_kit: is_kit }}
+                </div>
+            </div>
+        </div>
+    </label>
+</div>

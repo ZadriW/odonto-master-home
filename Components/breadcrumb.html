@@ -1,0 +1,22 @@
+<div class="breadcrumb-container mb-3 text-xs lg:text-sm">
+    {{~ if settings.breadcrumb?.home_text ~}}
+        <a href="/" class="breadcrumb-link">{{ settings.breadcrumb.home_text }}</a>
+        {{~ if breadcrumbs.size > 0 ~}}
+            <span class="breadcrumb-separator"> &gt; </span>
+        {{~ end ~}}
+    {{~ end ~}}
+    {{~ for breadcrumb in breadcrumbs ~}}
+        {{~ breadcrumbLink = "" ~}}
+        {{~ if breadcrumb.link | string.starts_with "/" ~}}
+            {{~ breadcrumbLink = breadcrumb.link ~}}
+        {{~ else ~}}
+            {{~ breadcrumbLink = "/" | string.append breadcrumb.link ~}}
+        {{~ end ~}}
+        {{~ if for.last ~}}
+            <span class="breadcrumb-current">{{ breadcrumb.text }}</span>
+        {{~ else ~}}
+            <a href="{{ breadcrumbLink }}" class="breadcrumb-link">{{ breadcrumb.text }}</a>
+            <span class="breadcrumb-separator"> &gt; </span>
+        {{~ end ~}}
+    {{~ end ~}}
+</div>

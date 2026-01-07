@@ -1,0 +1,100 @@
+{{~ ##
+    Description: Renders nav item with links
+    Params:
+        - menus: all the menus from a group
+        - current_menu: the currnt menu being rendered
+        - is_submenu: if this is a menu already inside another one
+    Usage:
+        nav_item menus: menus current_menu: menu
+## ~}}
+{{~ 
+    is_submenu = is_submenu ?? false
+    children = menus | group.get current_menu.menu_id
+    link = current_menu.link 
+    
+    if link && !(link | string.starts_with "/") && !(link | string.starts_with "http")
+        link = link | string.prepend "/" 
+    end
+~}}
+{{~ if children.size == 0 && !is_submenu ~}}
+    <li class="hover:bg-secondary-900 hover:text-white border-b lg:border-none">
+        <a href="{{link ? link : '#'}}">{{-current_menu.name-}}</a>
+    </li>
+{{~ else if children.size == 0 && is_submenu ~}}
+    <li class="only:border-b md:text-base lg:text-sm">
+        <a href="{{link ? link : '#'}}">{{-current_menu.name-}}</a>
+    </li>
+{{~ else if !is_submenu ~}}
+    {{~ menuNameLower = current_menu.name | string.downcase ~}}
+    <li class="group lg:flex lg:relative">            
+        <div class="flex-col" id="menu-button">
+            <div class="flex justify-between nav-dropdown-item items-center lg:border-none">
+                    {{~ if menuNameLower == "categorias" ~}}
+                    <a href="#" id="menu" class="flex items-center gap-2" onclick="event.preventDefault(); toggleCategoriesDropdown();">
+                        <span class="categorias-link-text">{{-current_menu.name-}}</span>
+                        <img src="{{- store.urls.static_img}}icons/double-arrow-right.svg?theme={{store.theme}}&v={{store.last_modified}}" 
+                             alt="double-arrow" 
+                             class="double-arrow-icon" 
+                             id="double-arrow-categories" />
+                    </a>
+                    {{~ else ~}}
+                    <a {{if link}}href="{{link}}"{{end}} id="menu" class="flex items-center gap-2">
+                        <span>{{-current_menu.name-}}</span>
+                        <svg class="hidden lg:inline-block w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                    {{~ end ~}}
+                <img src="{{- store.urls.static_img}}icons/arrow-down.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="arrow-down" class="mx-2 h-5 w-5 md:w-8 md:h-8 lg:hidden" />
+            </div>
+            {{~ if menuNameLower == "categorias" ~}}
+                <!-- Dropdown de Categorias -->
+                <div id="categories-dropdown" class="categories-dropdown">
+                    <div class="categories-dropdown-header">
+                        <span class="categories-dropdown-title">Todas as Categorias</span>
+                        <button type="button" class="categories-dropdown-close" onclick="toggleCategoriesDropdown()">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="categories-dropdown-content" class="categories-dropdown-content">
+                        <div class="categories-dropdown-loading">
+                            <div class="categories-dropdown-spinner"></div>
+                            <span>Carregando categorias...</span>
+                        </div>
+                    </div>
+                </div>
+            {{~ end ~}}
+            <div id="drop-nav-menu-{{ current_menu.menu_id }}" class="absolute top-0 lg:top-7 left-0 transition lg:group-hover:translate-y-5
+            translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible
+            duration-500 ease-in-out lg:z-50 w-full lg:w-[1200px] h-screen lg:h-auto bg-mainBg lg:bg-secondary-900 sm:max-lg:hidden
+            flex-wrap lg:left-1/2 lg:-translate-x-1/2">
+                <ul class="flex flex-col lg:flex-row lg:flex-wrap relative w-full lg:top-2 items-start justify-start lg:justify-between
+                lg:bg-secondary-900 lg:p-8 lg:shadow-2xl lg:z-50 lg:text-white" role="menu">
+                    <li class="flex flex-wrap lg:hidden px-4 py-2 justify-between items-center w-full border-b bg-secondary-200 md:text-base lg:text-sm" 
+                    {{- "onclick='hideSubMenu(" + current_menu.menu_id + ")'" -}}>
+                        <span>Voltar</span>
+                        <img src="{{- store.urls.static_img}}icons/arrow-back.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="arrow-back" class="mr-1 ml-2 h-4 w-4 md:w-5 md:h-5 lg:h-4 lg:w-4" />
+                    </li>
+                    {{~ for child in children ~}}
+                        {{~ if child.name != "menu-imagem-dentistisca" && child.name != "Menu Imagem Ortodontia" ~}}
+                            {{ nav_item menus: menus current_menu: child is_submenu: true }}
+                        {{~ end ~}}
+                    {{~ end ~}}
+                </ul>
+            </div>
+        </div>
+    </li>
+{{~ else ~}}
+    <li class="flex flex-col w-full lg:w-auto" role="none">
+        <a href="{{link ? link : '#'}}" class="dropdown-section-title">{{-current_menu.name-}}</a>
+        <ul class="dropdown-section-list">
+            {{~ for child in children ~}}
+                {{~ if child.name != "menu-imagem-dentistisca" && child.name != "Menu Imagem Ortodontia" ~}}
+                    {{ nav_item menus: menus current_menu: child is_submenu: true }}
+                {{~ end ~}}
+            {{~ end ~}}
+        </ul>
+    </li>
+{{~ end ~}}
