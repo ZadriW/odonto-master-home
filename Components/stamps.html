@@ -9,8 +9,15 @@
 {{~ if promotions ~}}
     <div class="stamps d-flex row">
         {{~ for promotion in promotions ~}}
-            {{~ if promotion.full_stamp_url ~}}        
-                <img class="stamp-image" alt="promotion-stamp" src="{{promotion.full_stamp_url}}" style="max-width: 80px" />
+            {{~ if promotion.full_stamp_url ~}}
+                <div class="stamp-wrapper" style="position: relative; display: inline-block;">
+                    <img class="stamp-image" alt="promotion-stamp" src="{{promotion.full_stamp_url}}" style="max-width: 80px" />
+                    {{~ if promotion.title ~}}
+                        <div class="product-badge product-badge--promotion product-badge--promotion-stamp">
+                            {{ promotion.title }}
+                        </div>
+                    {{~ end ~}}
+                </div>
             {{~ end ~}}
         {{~ end ~}}
     </div>

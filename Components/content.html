@@ -1,8 +1,17 @@
 {{~ grouped_contents = contents | group.by @(do; ret $0.position;end) ~}}
 {{~ filtered_contents = grouped_contents | group.get position ~}}
 {{ for content in filtered_contents }}
-    <div class="lg:max-w-[1330px] text-justify">
-        <h2 class="text-lg lg:text-2xl uppercase my-2 p-2 border-b">{{content.title}}</h2>
-        <div class="flex p-2 lg:text-base text-sm">{{content.content}}</div>
+    <div class="wake-content-wrapper flex flex-col w-full items-center justify-center px-4 py-6 lg:py-8">
+        <div class="wake-content-container w-full lg:max-w-[1450px] p-6 lg:p-8">
+            {{~ if content.title && content.title != "" ~}}
+                <h2 class="wake-content-title text-xl lg:text-2xl font-bold mb-4 pb-3 uppercase">
+                    <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
+                    <span>{{content.title}}</span>
+                </h2>
+            {{~ end ~}}
+            <div class="wake-content-body">
+                {{content.content}}
+            </div>
+        </div>
     </div>
 {{ end }}

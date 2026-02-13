@@ -1,10 +1,39 @@
 <div class="product-card-unavailable-section">
     <p class="product-card-unavailable-message">{{ message }}</p>
     <form id="form-avise-me" onsubmit="backInStockOnClick('{{ product_variant_id }}', event)" class="product-card-unavailable-form">
-        <input id="bis-name-{{ product_variant_id }}" class="product-card-unavailable-input" type="text" placeholder='{{ "Nome" | lang }}' required>
-        <input id="bis-email-{{ product_variant_id }}" class="product-card-unavailable-input" type="email" placeholder='{{ "E-mail" | lang }}' required>
+        <input id="bis-name-{{ product_variant_id }}" class="product-card-unavailable-input product-card-unavailable-input-desktop" type="text" placeholder='{{ "Nome" | lang }}' required>
+        <input id="bis-email-{{ product_variant_id }}" class="product-card-unavailable-input product-card-unavailable-input-desktop" type="email" placeholder='{{ "E-mail" | lang }}' required>
         <div class="product-card-unavailable-button-wrapper">
-            <button type="submit" class="product-card-unavailable-button">AVISE-ME</button>
+            <button type="submit" class="product-card-unavailable-button product-card-unavailable-button-desktop">AVISE-ME</button>
         </div>
     </form>
+    <!-- Botão para mobile que abre o modal -->
+    <div class="product-card-unavailable-button-wrapper-mobile">
+        <button type="button" class="product-card-unavailable-button product-card-unavailable-button-mobile" data-variant-id="{{ product_variant_id }}">AVISE-ME</button>
+    </div>
+</div>
+
+<!-- Modal para mobile - será movido para o body via JS -->
+<div id="unavailable-modal-{{ product_variant_id }}" class="product-card-unavailable-modal" data-variant-id="{{ product_variant_id }}" style="display: none !important;">
+    <div class="product-card-unavailable-modal-overlay" data-close-modal="{{ product_variant_id }}"></div>
+    <div class="product-card-unavailable-modal-content">
+        <div class="product-card-unavailable-modal-header">
+            <h3 class="product-card-unavailable-modal-title">Avise-me quando disponível</h3>
+            <button type="button" class="product-card-unavailable-modal-close" data-close-modal="{{ product_variant_id }}">
+                <svg class="product-card-unavailable-modal-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="product-card-unavailable-modal-body">
+            <p class="product-card-unavailable-message product-card-unavailable-message-modal">{{ message }}</p>
+            <form id="form-avise-me-modal-{{ product_variant_id }}" onsubmit="backInStockOnClick('{{ product_variant_id }}', event)" class="product-card-unavailable-form product-card-unavailable-form-modal">
+                <input id="bis-name-modal-{{ product_variant_id }}" class="product-card-unavailable-input product-card-unavailable-input-modal" type="text" placeholder='{{ "Nome" | lang }}' required>
+                <input id="bis-email-modal-{{ product_variant_id }}" class="product-card-unavailable-input product-card-unavailable-input-modal" type="email" placeholder='{{ "E-mail" | lang }}' required>
+                <div class="product-card-unavailable-button-wrapper product-card-unavailable-button-wrapper-modal">
+                    <button type="submit" class="product-card-unavailable-button product-card-unavailable-button-modal">AVISE-ME</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

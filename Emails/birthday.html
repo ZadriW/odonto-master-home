@@ -1,34 +1,32 @@
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Awake" lang="en" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: Arial, Helvetica, sans-serif;">
+    <table role="Newsletter" aria-label="{{ configuracao?.nome_ecommerce ?? 'Odonto Master' }}" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f6f6f6;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
 
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
                         <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 15px 0;padding: 10px;">
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
                             <tbody>
                                 <tr align="center">
-                                    <td>
-                                        <h1 style="font-size: 36px; line-height: 100%;">Feliz Aniversário!</h1>
+                                    <td style="padding-bottom: 30px;">
+                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">🎉 Feliz Aniversário! 🎉</h1>
                                     </td>
                                 </tr>
-                                <tr align="center">
-                                    <td>
-                                        <p>Parabéns, {{usuario.nome}}!</p><br>
-                                        <p>Feliz aniversário da <strong> {{configuracao.nome_ecommerce}} </strong>! Que tudo de
-                                            bom lhe aconteça neste dia, em {{usuario.endereco.cidade}}, aqui na {{usuario.endereco.bairro}},
-                                            tão marcante e especial na sua vida. Aproveite com um grande sorriso no rosto, e divirta-se muito!</p>
-                                        <p>Mas acima de tudo rodeie-se dos melhores amigos e dos familiares que sempre estiveram ao seu lado.
-                                            Orgulhe-se de tudo aquilo que conquistou neste ano que termina hoje, e prepare-se para o novo que começa agora mesmo. Parabéns!</p>
-                                        <p>Enviamos para esse email {{usuario.email}} um desconto... Aproveite</p>
+                                <tr>
+                                    <td style="padding: 0 20px 20px 20px;">
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 18px; line-height: 1.6; color: #0e167a; font-weight: 600; margin: 0 0 20px 0;">Parabéns, <strong style="color: #0e167a;">{{usuario.nome}}</strong>!</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Feliz aniversário da <strong style="color: #0e167a;">{{configuracao.nome_ecommerce}}</strong>! Que tudo de bom lhe aconteça neste dia, em {{usuario.endereco.cidade}}, aqui na {{usuario.endereco.bairro}}, tão marcante e especial na sua vida. Aproveite com um grande sorriso no rosto, e divirta-se muito!</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Mas acima de tudo rodeie-se dos melhores amigos e dos familiares que sempre estiveram ao seu lado. Orgulhe-se de tudo aquilo que conquistou neste ano que termina hoje, e prepare-se para o novo que começa agora mesmo. Parabéns!</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 20px 0;">Enviamos para esse email <strong style="color: #0e167a;">{{usuario.email}}</strong> um desconto especial... Aproveite!</p>
                                     </td>
                                 </tr>
                             </tbody>

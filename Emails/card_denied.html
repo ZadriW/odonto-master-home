@@ -1,35 +1,39 @@
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Awake" lang="en" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: Arial, Helvetica, sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f6f6f6;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
                         <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 15px 0;padding: 10px;">
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
                             <tbody>
                                 <tr align="center">
-                                    <td>
-                                        <h1 style="font-size: 36px; line-height: 100%;">Pagamento não aprovado</h1>
+                                    <td style="padding-bottom: 30px;">
+                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Pagamento não aprovado</h1>
                                     </td>
                                 </tr>
-                                <tr align="center">
-                                    <td>
-                                        <p>Olá {{pedido.usuario.nome}},</p>
-                                        <p>Identificamos que o pagamento com cartão para o seu pedido #{{pedido.pedido_id}} não foi aprovado.</p>
-                                        <p>Gostaríamos de informar que você ainda pode finalizar a compra utilizando outras formas de pagamento disponíveis.</p>
-
-                                        <p>Acesse o nosso site em {{configuracao.url_ecommerce}} para escolher a forma de pagamento que melhor atenda às suas necessidades.</p>
-                                        <p>Se você acredita que houve algum equívoco ou se precisar de suporte adicional, entre em contato conosco.</p>
-                                        <p>Estamos à disposição para ajudar e garantir que você tenha uma excelente experiência de compra.</p>
-                                        <p>Obrigado por escolher o {{configuracao.nome_ecommerce}}!</p>
-                                        <p>Equipe {{configuracao.nome_ecommerce}}</p>
+                                <tr>
+                                    <td style="padding: 0 20px 20px 20px;">
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá <strong style="color: #0e167a;">{{pedido.usuario.nome}}</strong>,</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Identificamos que o pagamento com cartão para o seu pedido <strong style="color: #0e167a;">#{{pedido.pedido_id}}</strong> não foi aprovado.</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Gostaríamos de informar que você ainda pode finalizar a compra utilizando outras formas de pagamento disponíveis.</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Acesse o nosso site em <a href="{{configuracao.url_ecommerce}}" style="color: #0e167a; text-decoration: none; font-weight: 600;">{{configuracao.url_ecommerce}}</a> para escolher a forma de pagamento que melhor atenda às suas necessidades.</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Se você acredita que houve algum equívoco ou se precisar de suporte adicional, entre em contato conosco.</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Estamos à disposição para ajudar e garantir que você tenha uma excelente experiência de compra.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 20px 0 20px; border-top: 1px solid #e5e7eb;">
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.6; color: #6c757d; margin: 0;">Obrigado por escolher o <strong style="color: #0e167a;">{{configuracao.nome_ecommerce}}</strong>!</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.6; color: #0e167a; font-weight: 600; margin: 8px 0 0 0;">Equipe {{configuracao.nome_ecommerce}}</p>
                                     </td>
                                 </tr>
                             </tbody>

@@ -38,43 +38,54 @@ body:has(.modal.show) .main-header {
 
 /* Top Banner */
 .top-banner {
-    background: #ffc107 !important;
-    border-bottom: 1px solid #e9ecef;
-    padding: 8px 0;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
 
-.top-banner__content {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    font-size: 12px;
-    gap: 20px;
+/* Banner Desktop - Pop-up */
+.top-banner-desktop {
+    width: 100%;
+    display: block;
 }
 
-.top-banner__warning {
-    color: #007bff;
-    text-align: center;
+.top-banner-desktop .banner-static-wrapper,
+.top-banner-desktop .top-banner-popup {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.top-banner__warning strong {
-    color: #dc3545;
+.top-banner-desktop .banner-static-wrapper img,
+.top-banner-desktop .top-banner-popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
-.top-banner__login p {
-    color: #007bff;
+/* Banner Mobile - Background */
+.top-banner-mobile {
+    width: 100%;
+    display: block;
 }
 
-.top-banner__login a {
-    color: #dc3545;
-    text-decoration: underline;
+.top-banner-mobile .banner-static-wrapper,
+.top-banner-mobile .top-banner-background {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.top-banner__login a:hover {
-    color: #9d0208;
-}
-
-.top-banner__login a:focus {
-    outline: none;
+.top-banner-mobile .banner-static-wrapper img,
+.top-banner-mobile .top-banner-background img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header Area */
@@ -221,6 +232,49 @@ body:has(.modal.show) .main-header {
     animation: slideDown 0.2s ease !important;
 }
 
+/* Autocomplete no mobile - maior z-index para sobrepor todos os elementos */
+@media (max-width: 768px) {
+    .main-header {
+        z-index: 10003 !important;
+        position: relative !important;
+    }
+    
+    .header-area {
+        z-index: 10003 !important;
+        position: relative !important;
+    }
+    
+    .search-bar,
+    .search-form {
+        position: relative !important;
+        z-index: 10004 !important;
+    }
+
+    .search-form__wrapper {
+        position: relative !important;
+        z-index: 10004 !important;
+    }
+    
+    /* Autocomplete com o maior z-index - acima de todos os elementos */
+    .search-autocomplete,
+    #autocomplete-list {
+        z-index: 10005 !important; 
+        position: absolute !important;
+    }
+
+    [product-view-div] .flex.mr-5 > div.relative,
+    [product-view-div] div.relative.w-full,
+    [product-view-div] img.img-fluid.w-full {
+        z-index: auto !important;
+        position: relative !important;
+    }
+    
+    /* Garantir que o wishlist wrapper não interfira */
+    [product-view-div] .product-wishlist-wrapper {
+        z-index: 10 !important; /* Mantém z-index baixo dentro do contexto da página */
+    }
+}
+
 /* Garantir que apareça quando tiver conteúdo */
 #autocomplete-list:not(:empty) {
     display: block !important;
@@ -297,11 +351,13 @@ body:has(.modal.show) .main-header {
     align-items: center !important;
 }
 
-.product-item:hover {
-    background-color: #f8f9fa !important;
-    padding-left: 24px !important;
-    border-left: 3px solid #0e167a;
-}
+/* Hover de product-item - apenas desktop */
+    .product-item:hover {
+        background-color: #f8f9fa !important;
+        padding-left: 24px !important;
+        border-left: 3px solid #0e167a;
+    }
+
 
 /* Wrapper da imagem do produto */
 .product-image-wrapper {
@@ -636,12 +692,6 @@ body:has(.modal.show) .main-header {
 
 /* Tablet */
 @media (max-width: 992px) {
-    .top-banner__content {
-        flex-direction: column !important;
-        gap: 5px !important;
-        text-align: center !important;
-    }
-
     .header-area__content {
         flex-wrap: wrap !important;
         gap: 15px !important;
@@ -667,19 +717,57 @@ body:has(.modal.show) .main-header {
 /* Mobile */
 @media (max-width: 768px) {
     .header-area__content {
-        gap: 15px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+        position: relative !important;
+    }
+    
+    /* Logo ao lado da search-bar */
+    .header-logo {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: auto !important;
+        flex-shrink: 0 !important;
+        order: 1 !important;
+    }
+    
+    .header-logo .logo-image {
+        max-height: 50px !important;
+        height: 50px !important;
+        max-width: 140px !important;
     }
 
+    /* Barra de busca mobile - ao lado da logo */
     .search-bar {
+        order: 2 !important;
+        max-width: none !important;
+        width: auto !important;
+        margin: 0 !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        position: relative !important;
+    }
+    
+    /* Ajustar largura do form e wrapper para corresponder ao tamanho real da search-bar */
+    .search-bar .search-form {
+        width: 100% !important;
         max-width: 100% !important;
-        margin: 0 10px !important;
     }
     
     .search-form__wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
         height: 42px !important;
+        min-width: 0 !important;
     }
     
     .search-form__input {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
         font-size: 0.875rem !important;
         padding-right: 55px !important;
     }
@@ -693,8 +781,27 @@ body:has(.modal.show) .main-header {
         font-size: 14px;
     }
     
+    /* Ocultar header-actions (wishlist, my-account, shopping-cart) */
+    .header-actions {
+        display: none !important;
+    }
+    
+    /* Ocultar mobile-menu-toggle */
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
     /* ===== AUTOCOMPLETE MOBILE ===== */
-    .search-autocomplete {
+    .search-autocomplete,
+    #autocomplete-list {
+        position: absolute !important;
+        top: calc(100% + 5px) !important;
+        left: calc(-1 * (140px + 10px + 16px) + 8px) !important; /* Compensar logo + gap + padding do container (1rem = 16px) + ajuste para direita */
+        right: auto !important;
+        width: calc(100vw - 2rem) !important; /* Largura total da viewport menos padding do container (1rem de cada lado) */
+        max-width: calc(100vw - 2rem) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         border-radius: 14px !important;
         max-height: 350px !important;
         margin-top: 10px !important;
@@ -773,11 +880,6 @@ body:has(.modal.show) .main-header {
     .search-suggestion .product-category,
     .search-suggestion .product-sku {
         display: none !important;
-    }
-
-    .header-actions {
-        flex-wrap: wrap !important;
-        gap: 10px !important;
     }
 
     .contact-info__number {

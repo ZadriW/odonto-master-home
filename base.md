@@ -4,7 +4,7 @@
 /* Banner Mobile Topo e Banner Topo - Controle de tamanho */
 section.fbits-section-home.fbits-banner-mobiletopo-home,
 section.fbits-section-home.fbits-banner-topo-home {
-    margin: 0 auto;
+    margin: 0 auto;f
     padding: 0;
     overflow: hidden;
     max-width: 100%;
@@ -613,23 +613,23 @@ section.fbits-banner-rodape .fbits-banner-item img {
 }
 /* ===== FIM BANNER RODAPÉ - REFINADO ===== */
 
-/* Títulos brancos na home */
+/* Títulos pretos na home */
 h3.title.big {
-    color: #ffffff !important;
+    color: #000000 !important;
     margin-top: 3em;
     margin-bottom: 1.3em;
     text-transform: uppercase;
     border-bottom: 3px solid #0030DB !important;
 }
 
-/* Footer com fundo preto */
+
 footer,
 .footer,
 .footer-container,
 .footer-top,
 .footer-middle {
-    background: #030215 !important;
-    background-color: #030215 !important;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
 }
 
 ul,li {
@@ -917,33 +917,33 @@ section.fbits-vitrine-com-banner.bdesk .col-banner-ofertas .fbits-banner-item im
         }
     }
     
-/* ===== FUNDO PRETO APENAS NO MAIN-CONTAINER ===== */
-/* Main container com fundo preto */
+/* ===== FUNDO BRANCO NO MAIN-CONTAINER ===== */
+/* Main container com fundo branco */
 .main-container,
 .main-container.col1-layout,
 .main-container.col2-left-layout,
 .main-container.col2-right-layout {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
-/* Containers internos do main-container com fundo preto */
+/* Containers internos do main-container com fundo branco */
 .main-container .main,
 .main-container .main.container,
 .main-container .col-main {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
-/* Seções dentro do main-container com fundo preto */
+/* Seções dentro do main-container com fundo branco */
 .main-container section.fbits-section-home,
 .main-container .fbits-section-home,
 .main-container section[class*="fbits-"],
 .main-container .row,
 .main-container .row[class*="row-fbits-"],
 .main-container .container {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
 /* Banner topo - Seção com fundo transparente (exceção) */
@@ -1011,14 +1011,14 @@ section.fbits-section-home.fbits-banner-meio-home .fbits-banner-item.banner-meio
     margin: 0 -8px !important;
 }
 
-/* Espaçamento dos carrosséis em preto */
+/* Espaçamento dos carrosséis em branco */
 .main-container .slick-track,
 .main-container .slick-list,
 .main-container .slick-list.draggable,
 .main-container .slick-slide,
 .main-container .slick-slider {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
 /* Ajusta altura do slick-track para igualar cards de produtos disponíveis e indisponíveis */
@@ -1103,13 +1103,13 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .slick-list {
     margin: 0 !important;
 }
 
-/* Container dos produtos em preto */
+/* Container dos produtos em branco */
 .main-container .componente-vitrine,
 .main-container .componente-ofertas-departamento,
 .main-container .fbits-vitrine-home,
 .main-container .fbits-ofertas-departamento {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
 /* Details area dos produtos em branco */
@@ -1264,12 +1264,12 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .slick-list {
     padding: 0 !important;
 }
 
-/* Rows das vitrines em preto */
+/* Rows das vitrines em branco */
 .main-container .row-vitrine-home,
 .main-container .row-ofertas-departamento,
 .main-container div[class*="row-fbits-"] {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
 /* Banner topo - Row com fundo transparente (exceção) */
@@ -1285,36 +1285,36 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
     background: transparent !important;
 }
 
-/* Colunas das vitrines em preto */
+/* Colunas das vitrines em branco */
 .main-container .col-carrossel-ofertas,
 .main-container .col-banner-ofertas,
 .main-container div[class*="col-"] {
-    background-color: #030215 !important;
-    background: #030215 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
 /* Remove espaços cinzas em mobile e corrige faixa branca lateral */
 @@media (max-width: 990px) {
-    /* Main container mobile com fundo preto */
+    /* Main container mobile com fundo branco */
     .main-container,
     .main-container.col1-layout,
     .main-container .main.container,
     .main-container .col-main {
-        background-color: #030215 !important;
-        background: #030215 !important;
+        background-color: #ffffff !important;
+        background: #ffffff !important;
         margin: 0 !important;
         padding: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
     }
     
-    /* Garante fundo preto nas seções mobile dentro do main-container */
+    /* Garante fundo branco nas seções mobile dentro do main-container */
     .main-container section.fbits-section-home,
     .main-container section[class*="fbits-"],
     .main-container .row,
     .main-container .container {
-        background-color: #030215 !important;
-        background: #030215 !important;
+        background-color: #ffffff !important;
+        background: #ffffff !important;
     }
     
     /* Banner topo - Fundo transparente e sempre visível (exceção) */
@@ -1374,12 +1374,12 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
         padding: 0 !important;
     }
     
-    /* Carrosséis com fundo preto em mobile */
+    /* Carrosséis com fundo branco em mobile */
     .main-container .slick-list,
     .main-container .slick-list.draggable,
     .main-container .slick-track {
-        background-color: #030215 !important;
-        background: #030215 !important;
+        background-color: #ffffff !important;
+        background: #ffffff !important;
     }
     
     /* Espaçamento entre os cards no carrossel mobile */
@@ -1688,7 +1688,7 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
         <div class="row row-vitrine-home">
             <div class="col-md-12">
                 <div class="line">
-                    <h3 class="title big">Blue Friday - Ofertas em Clareadores com até 30%OFF</h3>
+                    <h3 class="title big">Verão de ofertas FGM</h3>
                     <span></span>
                           </div> 
                         </div>
@@ -1701,7 +1701,7 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
             
             <!-- Carrossel de Produtos -->
             <div class="col-md-9 col-sm-12 col-carrossel-ofertas">
-                <FBITS:ListaSpots idsHotsites="117372" tipo="carrossel" configuracaoCarrossel="{
+                <FBITS:ListaSpots idsHotsites="117379" tipo="carrossel" configuracaoCarrossel="{
                     dots: false,
                     infinite: true,
                     speed: '300',
@@ -1741,7 +1741,7 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
         <div class="row row-vitrine-home">
             <div class="col-md-12">
                 <div class="line">
-                    <h3 class="title big">Blue Friday - Ofertas em Clareadores com até 30%OFF</h3>
+                    <h3 class="title big">Verão de ofertas FGM</h3>
                     <span></span>
     </div>
                         </div>
@@ -1771,7 +1771,7 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
 
             <!-- Carrossel de Produtos -->
             <div class="col-md-9 col-sm-12 col-carrossel-ofertas">
-                <FBITS:ListaSpots idsHotsites="117372" tipo="carrossel" configuracaoCarrossel="{
+                <FBITS:ListaSpots idsHotsites="117379" tipo="carrossel" configuracaoCarrossel="{
                   dots: false,
                   infinite: true,
                   speed: 300,
@@ -1805,57 +1805,55 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
         </div>
     </section>
 
-    
-   <!--VITRINE DOIS-->
+   <!--CARROSSEL ORTHOMETRIC DESKTOP-->
     <section class="fbits-section-home fbits-vitrine-home">
         <div class="row row-vitrine-home">
             <div class="col-md-12">
                 <div class="line">
-                    <h3 class="title big">Melhores ofertas em resinas Solventum 3M é aqui!</h3>
+                    <h3 class="title big">Os melhores preços em Orthometric</h3>
                     <span></span>
-</div>
-                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117374" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
-                  dots: false,
-                  infinite: true,
-                  speed: 300,
-                  adaptiveHeight: true,
-                  slidesToShow: 4,
-                  slidesToScroll: 1,
-                  responsive: [
-                    {
-                      breakpoint: 1920,
-                      settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 1
-                      }
-                    },
-                    {
-                      breakpoint: 1280,
-                      settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                      }
-                    },
-                    {
-                      breakpoint: 767,
-                      settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                      }
-                    }
-                  ]
+                          </div>
+                <FBITS:ListaSpots idsHotsites="117371" tipo="carrossel" configuracaoCarrossel="{
+                    dots: false,
+                    infinite: true,
+                    speed: '300',
+                    autoplay: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1920,
+                            settings: {
+                                slidesToShow: 4,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 1280,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
                 }" classeItens="componente-vitrine" />
-                          </div> 
                         </div>
+                </div>
     </section>
-
-
-   <!--CARROSSEL COM BANNER FILTROS TOPO DESKTOP-->
+    
+    <!--CARROSSEL COM BANNER FILTROS TOPO DESKTOP - RESINAS SOLVENTUM-->
     <section class="fbits-section-home fbits-vitrine-home fbits-vitrine-com-banner bdesk">
         <div class="row row-vitrine-home">
             <div class="col-md-12">
                 <div class="line">
-                    <h3 class="title big">Economize até 40%OFF com Orthometric</h3>
+                    <h3 class="title big">Melhores ofertas em resinas Solventum 3M é aqui!</h3>
                     <span></span>
                           </div>
                         </div>
@@ -1868,11 +1866,12 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
 
             <!-- Carrossel de Produtos -->
             <div class="col-md-9 col-sm-12 col-carrossel-ofertas">
-                <FBITS:ListaSpots idsHotsites="117371" tipo="carrossel" configuracaoCarrossel="{
+                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117374" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
                     dots: false,
                     infinite: true,
                     speed: '300',
                     autoplay: true,
+                    adaptiveHeight: true,
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     responsive: [
@@ -1903,12 +1902,12 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
         </div>
     </section>
 
-    <!--CARROSSEL COM BANNER FILTROS TOPO MOBILE-->
+    <!--CARROSSEL COM BANNER FILTROS TOPO MOBILE - RESINAS SOLVENTUM-->
     <section class="fbits-section-home fbits-vitrine-home fbits-vitrine-com-banner bmob">
         <div class="row row-vitrine-home">
             <div class="col-md-12">
                 <div class="line">
-                    <h3 class="title big">Economize até 40%OFF com Orthometric</h3>
+                    <h3 class="title big">Melhores ofertas em resinas Solventum 3M é aqui!</h3>
                     <span></span>
                           </div>
                         </div>
@@ -1921,10 +1920,11 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
 
             <!-- Carrossel de Produtos -->
             <div class="col-md-9 col-sm-12 col-carrossel-ofertas">
-                <FBITS:ListaSpots idsHotsites="117371" tipo="carrossel" configuracaoCarrossel="{
+                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117374" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
                   dots: false,
                   infinite: true,
                   speed: 300,
+                  adaptiveHeight: true,
                   slidesToShow: 4,
                   slidesToScroll: 1,
                   responsive: [
@@ -2057,7 +2057,7 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
             </div>   
     </section>
     
-    <!--BANNER MEIO MOBILE - Entre Equipamentos e Clareador-->
+    <!--BANNER MEIO MOBILE - Entre Equipamentos e aulas-->
     <section class="fbits-section-home fbits-banner-meio-home bmob">
         <div class="row row-fbits-banner-meio">
             <div class="col-md-12">
@@ -2066,15 +2066,14 @@ section.fbits-section-home.fbits-banner-mobiletopo-home .row {
             </div>   
     </section>
     
-        <!--LUVAS-->
     <section class="fbits-section-home fbits-vitrine-home">
         <div class="row row-vitrine-home">
             <div class="col-md-12">
                 <div class="line">
-                    <h3 class="title big">os melhores preços em clareador</h3>
+                    <h3 class="title big">Volta ás aulas Master | Ofertas para acadêmicos</h3>
                     <span></span>
                 </div>               
-                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117272" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
+                <FBITS:ListaCustomizada idsBanners="" idsHotsites="117380" idsConteudos="" tipo="carrossel" configuracaoCarrossel="{
                   dots: false,
                   infinite: true,
                   speed: 300,

@@ -5,7 +5,7 @@
         {{ head title: data.product.product_name store: store }}
         {{ data_layer_config }}
         {{ product_structured_data product: data.product current_url: store.urls.current }}
-        {{ asset type: "css" paths: ["custom_theme", "header", "navbar", "footer", "mini_cart", "product", "product_cards", "user_login", "spot", "output_base", "swiffy-slider"]}}
+        {{ asset type: "css" paths: ["custom_theme", "header", "navbar", "footer", "mini_cart", "product", "product_cards", "user_login", "spot", "output_base", "swiffy-slider", "mobile_bottom_menu"]}}
         {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
         {{ meta_tags seo: data.product.seo }} 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +24,9 @@
         {{~ product = data.product ~}}
         <input type="hidden" id="product-id" name="product-id" value="{{ data.product.product_id }}">
         <input type="hidden" id="product-variant-id" name="product-variant-id" value="{{ data.product.product_variant_id }}">
+        {{~ if data.product.sku ~}}
+        <input type="hidden" id="product-sku" name="product-sku" value="{{ data.product.sku }}">
+        {{~ end ~}}
         <div class="flex flex-col w-full lg:flex-row lg:justify-center">
             <div class="flex flex-col w-full lg:w-[1200px] lg:max-w-[1200px] lg:min-w-[1200px] relative p-2 lg:p-0">
                 <div class="my-4">{{~ breadcrumb breadcrumbs: product.breadcrumbs ~}}</div>
@@ -41,11 +44,10 @@
                 {{~ if data.product_recommendations.size > 0 ~}}
                     {{ spot_carousel products: data.product_recommendations class:"recommendations" title:"Produtos relacionados" }}
                 {{~ end ~}}
-                <div class="flex flex-col w-full relative my-4">
-                    {{ product_reviews reviews: product.reviews product_name: product.product_name }}
-                </div>
             </div>
         </div>
+        {{ mobile_bottom_menu }}
+        
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
         {{ footer is_preview: is_preview store: store }}
         {{ data_layer_product_view product: data.product  }}
@@ -53,7 +55,7 @@
         {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
         {{ wake_scripts scripts: ["wake_utils"] }}        
         {{ asset type: "js" paths: ["checkout_pages"]}}
-        {{ asset type: "js" paths: ["header", "product", "mini_cart", "navbar", "cart_from_spot", "user_login", "product_review", "wishlist", "buy_together", "shipping_quotes", "event_manager"] options:"async"}}        
+        {{ asset type: "js" paths: ["header", "product", "mini_cart", "navbar", "cart_from_spot", "user_login", "product_review", "wishlist", "buy_together", "shipping_quotes", "event_manager", "mobile_bottom_menu"] options:"async"}}        
         {{ asset type: "js" paths: ["swiffy-slider"] options:"defer"}}
         {{ page_scripts position: "BODY_END" scripts: common.scripts }}
     </body>

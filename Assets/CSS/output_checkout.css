@@ -1032,23 +1032,36 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .wake-checkout-data-address .address div label {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0 !important;
   display: flex;
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+  font-size: 0.925rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
 }
 
 .wake-checkout-data-address .address div input {
-  border-radius: 4px;
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity));
+  height: 46px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(14, 22, 122, 0.18) !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  padding: 0.625rem 0.85rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.wake-checkout-data-address .address div input:focus {
+  border-color: #0e167a !important;
+  box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.18) !important;
+  outline: none !important;
+}
+
+.wake-checkout-data-address .address div input:disabled {
+  background: rgba(15, 17, 42, 0.05) !important;
+  color: rgba(15, 23, 42, 0.6) !important;
 }
 
 .wake-checkout-data-address .address-autocomplete {
@@ -2722,7 +2735,8 @@
 @media (min-width: 768px) {
   .wake-cart-wrapper-product-snippet {
     margin-bottom: 0px;
-    width: 75%;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 

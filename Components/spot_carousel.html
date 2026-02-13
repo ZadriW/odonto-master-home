@@ -1,40 +1,75 @@
 {{ ##
-    Description: Renders a spot carousel from a list of products
-    Params:
-      - products: list of products
-      - class: the html class for styling
-      - title: text to show on top
-      - autoplay: enable swiffy autoplay (default: false)
-    Usage:
-      spot_carousel products: data...products class:"best-sellers" title:"Mais Vendidos"
+  Description: Renders a spot carousel from a list of products
+  Params:
+    - products: list of products
+    - class: the html class for styling
+    - title: text to show on top
+    - autoplay: enable swiffy autoplay (default: false)
+  Usage:
+    spot_carousel products: data...products class:"best-sellers" title:"Mais Vendidos"
 ## }}
 {{~ if products && products.size > 0 ~}}
-    {{ autoplay_enabled = autoplay ?? false }}
-    <div class="my-4 w-full {{class}} bg-mainBg">
-        <div class="flex justify-center w-full">
-            <div class="items-start w-full max-w-[1330px] px-2 relative">
-                <h2 class="w-full text-xl lg:text-3xl carousel-title">
-                    <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
-                    <span>{{ title | string.downcase | lang }}</span>
-                </h2>
-            <div class="swiffy-slider slider-nav-dark slider-nav-visible{{ if autoplay_enabled }} slider-nav-autoplay slider-nav-autopause{{ end }} slider-indicators-round 
-            slider-indicators-dark slider-indicators-highlight slider-indicators-sm slider-item-show4 slider-item-show2-sm slider-item-snapstart" {{ if autoplay_enabled }}data-slider-nav-autoplay-interval="5000"{{ end }}>
-                <div class="slider-container">
-                    {{~ for product in products ~}}
-                        {{ img_priority = for.index >= 4 ? false : true }}
-                        {{ spot product: product img_priority: img_priority img_lazy_load: !img_priority}}
-                    {{~ end ~}}
-                </div>
-                <div class="{{if products.size < 4}} lg:hidden {{end}} {{if products.size <= 2}} hidden {{end}}">
-                    <button type="button" class="slider-nav" aria-label="Anterior">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button type="button" class="slider-nav slider-nav-next" aria-label="Próximo">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+  {{ autoplay_enabled = autoplay ?? false }}
+  {{~ 
+    # Mapear class para URL do hotsite
+    hotsite_url = ""
+    if class == "carrossel1"
+      hotsite_url = "/orthometric"
+    else if class == "carrossel2"
+      hotsite_url = "/ofertasquentes"
+    else if class == "carrossel3"
+      hotsite_url = "/veraofgm"
+    else if class == "carrossel4"
+      hotsite_url = "/equipamentos"
+    else if class == "carrossel5"
+      hotsite_url = "/voltaaulasmaster"
+    else
+      hotsite_url = "#"
+    end
+  ~}}
+  <div class="my-4 w-full {{class}} bg-mainBg">
+      <div class="flex justify-center w-full">
+          <div class="items-start w-full max-w-[1330px] px-2 relative">
+              <div class="w-full flex items-center justify-start carousel-header-container">
+                  <h2 class="text-xl lg:text-3xl carousel-title">
+                      <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
+                      <span>{{ title | string.downcase | lang }}</span>
+                  </h2>
+                  
+                  {{~ # Link "Ver mais produtos" - visível apenas no desktop ~}}
+                  <p class="carousel-view-more carousel-view-more-desktop hidden lg:block">
+                      <a href="{{ hotsite_url }}" class="carousel-view-more-link">
+                          Ver mais produtos
+                          <i class="fas fa-arrow-right"></i>
+                      </a>
+                  </p>
+              </div>
+          <div class="swiffy-slider slider-nav-dark slider-nav-visible{{ if autoplay_enabled }} slider-nav-autoplay slider-nav-autopause{{ end }} slider-indicators-round 
+          slider-indicators-dark slider-indicators-highlight slider-indicators-sm slider-item-show4 slider-item-show2-sm slider-item-snapstart" {{ if autoplay_enabled }}data-slider-nav-autoplay-interval="5000"{{ end }}>
+              <div class="slider-container">
+                  {{~ for product in products ~}}
+                      {{ img_priority = for.index >= 4 ? false : true }}
+                      {{ spot product: product img_priority: img_priority img_lazy_load: !img_priority}}
+                  {{~ end ~}}
+              </div>
+              <div class="{{if products.size < 4}} lg:hidden {{end}} {{if products.size <= 2}} hidden {{end}}">
+                  <button type="button" class="slider-nav" aria-label="Anterior">
+                      <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <button type="button" class="slider-nav slider-nav-next" aria-label="Próximo">
+                      <i class="fas fa-chevron-right"></i>
+                  </button>
+              </div>
+          </div>
+          
+          {{~ # Link "Ver mais produtos" - abaixo do carrossel no mobile ~}}
+          <p class="carousel-view-more carousel-view-more-mobile">
+              <a href="{{ hotsite_url }}" class="carousel-view-more-link">
+                  Ver mais produtos
+                  <i class="fas fa-arrow-right"></i>
+              </a>
+          </p>
+          </div>
+      </div>
+  </div>
 {{~ end ~}}

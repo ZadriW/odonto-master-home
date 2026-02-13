@@ -1,0 +1,36 @@
+<!-- Mobile Bottom Menu -->
+<nav class="mobile-bottom-menu" id="mobileBottomMenu">
+    <div class="mobile-bottom-menu__container">
+        <!-- Home Button -->
+        <a href="/" class="mobile-bottom-menu__item" aria-label="Home">
+            <i class="fa-solid fa-house"></i>
+            <span class="mobile-bottom-menu__label">Home</span>
+        </a>
+
+        <!-- Hamburger Menu Button -->
+        <button type="button" class="mobile-bottom-menu__item" aria-label="Abrir/fechar menu" onclick="toggleNavBar()">
+            <i class="fa-solid fa-bars"></i>
+            <span class="mobile-bottom-menu__label">Menu</span>
+        </button>
+
+        <!-- Shopping Cart Button -->
+        <button type="button" class="mobile-bottom-menu__item mobile-bottom-menu__item--cart" aria-label="Carrinho de compras" onclick="setCartDivVisibility()">
+            <i class="fa-solid fa-shopping-cart"></i>
+            <span class="mobile-bottom-menu__label">Carrinho</span>
+            <span class="mobile-bottom-menu__badge" id="mobile-cart-qty-label">0</span>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="/listadedesejos" class="mobile-bottom-menu__item" aria-label="Lista de desejos">
+            <i class="fa-solid fa-heart"></i>
+            <span class="mobile-bottom-menu__label">Favoritos</span>
+        </a>
+
+        <!-- User Account Button -->
+        <a href="{{store.urls.checkout_pages.login.authenticate}}" class="mobile-bottom-menu__item" aria-label="Minha conta" id="mobile-user-account-link" data-account-url="{{store.urls.checkout_pages.account.data}}">
+            <i class="fa-solid fa-circle-user"></i>
+            <span class="mobile-bottom-menu__label">Conta</span>
+        </a>
+    </div>
+</nav>
+

@@ -21,6 +21,12 @@
     {{~ end ~}}
     
     <div class="product-card__content">
+        {{~
+            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
+            promotionsSpot = promotionsTypes | group.get "Spot"
+            stamps promotions: promotionsSpot
+        }}
+        
         <a href="/{{product.alias}}" class="product-title-link">
             <h3 class="product-title">{{ product.product_name }}</h3>
         </a>
@@ -28,9 +34,6 @@
         {{~ product_spot_info informations: product.informations ~}}
         
         {{~
-            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
-            promotionsSpot = promotionsTypes | group.get "Spot"
-            stamps promotions: promotionsSpot
             if product.prices
                 product_price prices: product.prices
             end

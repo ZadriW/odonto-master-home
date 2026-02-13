@@ -7,12 +7,12 @@ query ProductPage($productId: Long!, $selections: [AttributeFilterInput], $partn
     id
     sku
     ean
-    alias: aliasComplete
     averageRating
     productBrand {
       name
       logoUrl
       fullUrlLogo
+      alias
     }  
     informations{
       id

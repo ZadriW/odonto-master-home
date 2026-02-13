@@ -2,20 +2,20 @@ query Wishlist($customerAccessToken: String!, $productsIds: [Long]){
   customer(customerAccessToken: $customerAccessToken){
     wishlist(productsIds: $productsIds){
       products{
-        id
+       	id
         productId
         productName
         productVariantId
         alias: aliasComplete
-        images(width: 275, height: 275) {
+        images {
           url
           print
+          fileName
         }
         available
         prices {
           listPrice
           price
-          discountPercentage
           installmentPlans{
               displayName
               name
@@ -42,12 +42,6 @@ query Wishlist($customerAccessToken: String!, $productsIds: [Long]){
           fullStampUrl
           title
           disclosureType
-        }
-        informations{
-          id
-          title
-          type
-          value
         }
         addToCartFromSpot
       }

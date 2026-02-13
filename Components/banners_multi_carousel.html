@@ -1,0 +1,55 @@
+{{ ##
+    Description: Renders a banner carousel showing multiple banners at once (like category/brand banners)
+    Params:
+      - banners: list of banners
+      - position: banner position to use
+      - id: optional id for the carousel wrapper
+      - show_desktop: number of banners to show on desktop (default: 5)
+      - show_tablet: number of banners to show on tablet (default: 4)
+      - show_mobile: number of banners to show on mobile (default: 2)
+    Usage:
+      banners_multi_carousel banners: data.hotsite.banners position: "mobiletopo" show_desktop: 5
+## }}
+{{~ 
+  if banners && position
+    all_banners = banners | array.sort "order"
+    grouped_banners = all_banners | group.by @(do; ret $0.position;end)
+    filtered_banners = grouped_banners | group.get position
+  end
+  
+  show_desktop = show_desktop ?? 5
+  show_tablet = show_tablet ?? 4
+  show_mobile = show_mobile ?? 2
+~}}
+{{~ if filtered_banners && filtered_banners.size > 0 ~}}
+  <div {{if id}}id="{{id}}"{{end}} class="banners-multi-carousel-wrapper w-full py-2">
+    <div class="swiffy-slider slider-nav-dark slider-nav-visible slider-nav-autoplay slider-nav-autopause 
+                slider-item-show{{show_desktop}} slider-item-show{{show_tablet}}-md slider-item-show{{show_mobile}}-sm 
+                slider-item-snapstart" data-slider-nav-autoplay-interval="4000">
+      <ul class="slider-container">
+        {{~ for banner in filtered_banners ~}}
+          <li class="px-1 md:px-2">
+            <div class="banner-item-wrapper transform transition-all duration-300 hover:-translate-y-2 hover:scale-103 cursor-pointer">
+              {{ if banner.url_on_click }} 
+                <a href="{{ banner.url_on_click }}" {{ if banner.open_new_tab }} target="_blank" {{ end }}>
+              {{ end }}
+              <img src="{{banner.banner_url}}" alt="{{banner.title ?? 'banner'}}" 
+                   class="w-full h-auto object-contain rounded-lg max-w-[250px] mx-auto" loading="lazy">
+              {{ if banner.url_on_click }}</a>{{ end }}
+            </div>
+          </li>
+        {{~ end ~}}
+      </ul>
+      {{ if filtered_banners.size > show_desktop }}
+        <button type="button" class="slider-nav" name="prev">
+          <img src="{{- store.urls.static_img}}icons/arrow-left.svg?theme={{store.theme}}&v={{store.last_modified}}" 
+              alt="arrow-left" class="w-6 h-6 m-2"/>
+        </button>
+        <button type="button" class="slider-nav slider-nav-next" name="next">
+          <img src="{{- store.urls.static_img}}icons/arrow-right.svg?theme={{store.theme}}&v={{store.last_modified}}" 
+              alt="arrow-right" class="w-6 h-6 m-2"/>
+        </button>
+      {{ end }}
+    </div>
+  </div>
+{{~ end ~}}

@@ -55,4 +55,29 @@
 
   .product-card .zoom:hover > .spot-similar-products {
     display: none; /* Garantir que não apareça no contexto dos cards */
+  }
+
+  /* Aplicar zoom na imagem principal do produto na página do produto */
+  .product-image-zoom {
+    transition: transform .2s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Container zoom na página do produto - aplicar scale no hover na imagem */
+  .zoom:has(.product-image-zoom):hover {
+    transform: none; /* Não aplicar transform no container */
+  }
+
+  .zoom:has(.product-image-zoom):hover .product-image-zoom {
+    transform: scale(1.05);
+  }
+
+  /* Garantir que o container zoom ocupe todo o espaço disponível */
+  .zoom:has(.product-image-zoom) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   } 

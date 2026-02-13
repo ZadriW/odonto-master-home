@@ -12,7 +12,7 @@ function paginationSetup() {
     const button = document.getElementById("show-more-button");
 
     if (element)
-        element.className += " bg-gray-700 text-white";
+        element.className += " active";
 
     if (button)
         button.addEventListener("click", showMore);

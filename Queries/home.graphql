@@ -28,30 +28,43 @@ query Home($partnerAccessToken: String){
     }
   }
   
-  carrossel1: hotsite(url: "bluefriday", partnerAccessToken: $partnerAccessToken) {
+  carrossel1: hotsite(url: "orthometric", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
   }
-  carrossel2: hotsite(url: "orthometric", partnerAccessToken: $partnerAccessToken) {
+  carrossel2: hotsite(url: "veraofgm", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
   }
-  carrossel3: hotsite(url: "fgm", partnerAccessToken: $partnerAccessToken) {
+  carrossel3: hotsite(url: "ofertasquentes", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
   }
-  carrossel4: hotsite(url: "resinassolventum", partnerAccessToken: $partnerAccessToken) {
+  carrossel4: hotsite(url: "equipamentos", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
   }
-  carrossel5: hotsite(url: "clareadores", partnerAccessToken: $partnerAccessToken) {
+  carrossel5: hotsite(url: "voltaaulasmaster", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
+  }
+  brands(first: 22) {
+    ...brands
+  }
+}
+
+fragment brands on BrandsConnection {
+  nodes {
+    active
+    urlLogo
+    alias
+    fullUrlLogo(width:270)
+    name
   }
 }
 

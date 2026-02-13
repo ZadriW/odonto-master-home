@@ -2,7 +2,9 @@
     <div class="relative">
         {{~ firstImage = images | array.first ~}}    
         {{ if firstImage }}
-            <img src="{{ firstImage.url }}" alt="Product main image - {{math.uuid}}" class="img-fluid w-full" id="firstImage">
+            <div class="zoom" style="width: 100%; height: 100%;">
+                <img src="{{ firstImage.url }}" alt="{{product.product_name}}" class="img-fluid w-full" id="firstImage">
+            </div>
         {{ end }}
     </div>    
     <div class="product-thumbnails-container relative my-2">

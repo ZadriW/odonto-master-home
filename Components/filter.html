@@ -8,8 +8,10 @@
 
 <div class="flex flex-col overflow-auto px-2">
     {{ if aggregations?.filters }}
-        <div class="flex lg:hidden justify-end mb-4" onclick="openFilter()">
-            <img src="{{- store.urls.static_img}}icons/close.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="close" class="w-5 h-5">
+        <div class="flex lg:hidden justify-end mb-4">
+            <button type="button" onclick="openFilter()" class="filter-close-button" aria-label="Fechar filtros">
+                <img src="{{- store.urls.static_img}}icons/close.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="close" class="w-6 h-6">
+            </button>
         </div>
         <div class="flex mb-4">
             <a href="#" onclick="clearFilters();" 

@@ -290,108 +290,6 @@
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-/* login-social */
-
-.wake-login-social {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.wake-login-social span {
-  margin-bottom: 1rem;
-  display: flex;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
-}
-
-.wake-login-social > div {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.wake-login-social .wake-apple-login-note {
-  margin-top: 0.75rem;
-  display: flex;
-  min-width: 350px;
-  border-radius: 0.375rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-  padding: 1rem;
-}
-
-.wake-login-social .wake-apple-login-note-text {
-  margin: 0px;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  line-height: 1.625;
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
-}
-
-.wake-login-social button {
-  position: relative;
-  display: flex;
-  height: 3rem;
-  width: 3rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.wake-login-social button:nth-of-type(1) {
-  margin-right: 1rem;
-}
-
-.wake-login-social button img {
-  display: none;
-}
-
-.wake-login-social button::before {
-  font-family: "Font Awesome 6 Brands";
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: #0e167a;
-  transition: color 0.2s ease, transform 0.2s ease;
-  content: "";
-}
-
-.wake-login-social button:nth-of-type(1)::before {
-  content: "\f09a";
-}
-
-.wake-login-social button:nth-of-type(2)::before {
-  content: "\f1a0";
-}
-
-.wake-login-social button:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(26 44 176 / var(--tw-border-opacity));
-}
-
-.wake-login-social button:hover::before {
-  color: #1a2cb0;
-  transform: scale(1.05);
-}
-
 .wake-autenticate-wrapper .register {
   margin-top: 3rem;
   display: flex;
@@ -850,9 +748,10 @@
 }
 
 .wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .wake-signup-wrapper > form > div .registration .phones {
@@ -1112,13 +1011,102 @@
 
 /* Rótulos em grupos específicos sem depender da ordem */
 
+.wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree input[type="checkbox"] {
+  width: 1rem;
+  margin-left: 15px !important;
+  height: 1rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree input[type="checkbox"]:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  --tw-ring-color: rgb(14 22 122);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree input[type="checkbox"]:checked {
+  background-color: rgb(14 22 122);
+  border-color: rgb(14 22 122);
+}
+
 .wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree label {
-  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+  transition: color 0.2s ease;
+}
+
+.wake-signup-wrapper > form > div .registration .exemptStateRegistrationFree label:hover {
+  color: rgb(14 22 122);
+}
+
+/* Estilo para reseller dentro de cnpj flex - mesmo visual do exemptStateRegistrationFree */
+.wake-signup-wrapper > form > div .registration .cnpj.flex,
+.wake-signup-wrapper > form > div .registration .flex.cnpj,
+.wake-signup-wrapper > form > div .registration [class*="cnpj"][class*="flex"] {
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.wake-signup-wrapper > form > div .registration .cnpj.flex input[type="checkbox"],
+.wake-signup-wrapper > form > div .registration .flex.cnpj input[type="checkbox"],
+.wake-signup-wrapper > form > div .registration [class*="cnpj"][class*="flex"] input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wake-signup-wrapper > form > div .registration .cnpj.flex input[type="checkbox"]:focus,
+.wake-signup-wrapper > form > div .registration .flex.cnpj input[type="checkbox"]:focus,
+.wake-signup-wrapper > form > div .registration [class*="cnpj"][class*="flex"] input[type="checkbox"]:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  --tw-ring-color: rgb(14 22 122);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.wake-signup-wrapper > form > div .registration .cnpj.flex input[type="checkbox"]:checked,
+.wake-signup-wrapper > form > div .registration .flex.cnpj input[type="checkbox"]:checked,
+.wake-signup-wrapper > form > div .registration [class*="cnpj"][class*="flex"] input[type="checkbox"]:checked {
+  background-color: rgb(14 22 122);
+  border-color: rgb(14 22 122);
+}
+
+.wake-signup-wrapper > form > div .registration .cnpj.flex label,
+.wake-signup-wrapper > form > div .registration .flex.cnpj label,
+.wake-signup-wrapper > form > div .registration [class*="cnpj"][class*="flex"] label {
   cursor: pointer;
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+  transition: color 0.2s ease;
+}
+
+.wake-signup-wrapper > form > div .registration .cnpj.flex label:hover,
+.wake-signup-wrapper > form > div .registration .flex.cnpj label:hover,
+.wake-signup-wrapper > form > div .registration [class*="cnpj"][class*="flex"] label:hover {
+  color: rgb(14 22 122);
 }
 
 /* Botões Pessoa Física/Jurídica lado a lado */

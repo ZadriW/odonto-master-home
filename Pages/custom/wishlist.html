@@ -17,7 +17,7 @@
         {{ head title: formatted_title store: store }}
         {{ data_layer_config }}
         {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
-        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards"]}}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "mobile_bottom_menu"]}}
         {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
         {{ meta_tags seo: data.hotsite.seo }}
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,12 +57,13 @@
                 </div>
             </div>
         </div>
+        {{ mobile_bottom_menu }}
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
         {{ footer is_preview: is_preview store: store }}
         {{ sdk_client }}
         {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
         {{ wake_scripts scripts: ["wake_utils"] }}
-       {{ asset type: "js" paths: ["header", "navbar", "product", "mini_cart", "cart_from_spot", "user_login", "wishlist", "event_manager"]}}
+       {{ asset type: "js" paths: ["header", "navbar", "product", "mini_cart", "cart_from_spot", "user_login", "wishlist", "event_manager", "mobile_bottom_menu"] options:"async"}}
         {{ page_scripts position: "BODY_END" scripts: common.scripts }}
     </body>
 </html>

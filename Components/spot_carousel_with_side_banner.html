@@ -1,0 +1,126 @@
+{{ ##
+    Description: Renders a spot carousel with a side banner from a list of products
+    Params:
+      - products: list of products
+      - banners: list of banners (from data.hotsite.banners)
+      - banner_position: position of the banner (e.g., "Lateral Direita", "Filtros Topo")
+      - mobile_banner_position: optional position for mobile banner (e.g., "Filtros Bottom", "Lateral Esquerda")
+      - class: the html class for styling
+      - title: text to show on top
+      - autoplay: enable swiffy autoplay (default: false)
+    Usage:
+      spot_carousel_with_side_banner products: data...products banners: data.hotsite.banners banner_position: "Lateral Direita" class:"carrossel1" title:"Ofertas"
+      spot_carousel_with_side_banner products: data...products banners: data.hotsite.banners banner_position: "Filtros Topo" mobile_banner_position: "Filtros Bottom" class:"carrossel3" title:"FGM"
+## }}
+{{~ if products && products.size > 0 ~}}
+    {{ autoplay_enabled = autoplay ?? false }}
+    {{~ 
+      # Mapear class para URL do hotsite
+      hotsite_url = ""
+      if class == "carrossel1"
+        hotsite_url = "/orthometric"
+      else if class == "carrossel2"
+        hotsite_url = "/ofertasquentes"
+      else if class == "carrossel3"
+        hotsite_url = "/veraofgm"
+      else if class == "carrossel4"
+        hotsite_url = "/equipamentos"
+      else if class == "carrossel5"
+        hotsite_url = "/voltaaulasmaster"
+      else
+        hotsite_url = "#"
+      end
+      
+      # Filtrar banners pela posição
+      if banners && banner_position
+        banners_sorted = banners | array.sort "order"
+        grouped_banners = banners_sorted | group.by @(do; ret $0.position;end)
+        side_banners = grouped_banners | group.get banner_position
+      end 
+    ~}}
+    <div class="my-4 w-full {{class}} bg-mainBg carousel-with-side-banner">
+        <div class="flex justify-center w-full">
+            <div class="items-start w-full max-w-[1330px] px-2 relative">
+                <div class="w-full flex items-center justify-start carousel-header-container">
+                    <h2 class="text-xl lg:text-3xl carousel-title">
+                        <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
+                        <span>{{ title | string.downcase | lang }}</span>
+                    </h2>
+                    
+                    {{~ # Link "Ver mais produtos" - visível apenas no desktop ~}}
+                    <p class="carousel-view-more carousel-view-more-desktop hidden lg:block">
+                        <a href="{{ hotsite_url }}" class="carousel-view-more-link">
+                            Ver mais produtos
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </p>
+                    
+                    {{~ # Banner horizontal mobile - visível apenas em mobile ~}}
+                    {{~ if banners && banner_position ~}}
+                        {{~ 
+                            # Se mobile_banner_position não foi fornecido, usar lógica padrão
+                            if !mobile_banner_position
+                                # Para carrossel1 (Lateral Direita), usar "Lateral Esquerda" no mobile
+                                if banner_position == "Lateral Direita"
+                                    mobile_banner_position = "Lateral Esquerda"
+                                end
+                            end
+                            if banners && mobile_banner_position
+                                banners_sorted_mobile = banners | array.sort "order"
+                                grouped_banners_mobile = banners_sorted_mobile | group.by @(do; ret $0.position;end)
+                                mobile_side_banners = grouped_banners_mobile | group.get mobile_banner_position
+                            end
+                        ~}}
+                        {{~ if mobile_side_banners && mobile_side_banners.size > 0 ~}}
+                        <div class="block lg:hidden w-full">
+                            {{ banner_static id: "banners_mobile_{{class}}" banners: banners position: mobile_banner_position }}
+                        </div>
+                        {{~ end ~}}
+                    {{~ end ~}}
+                </div>
+                
+                {{~ # Carrossel de produtos com banner lateral estático ~}}
+                <div class="swiffy-slider slider-nav-dark slider-nav-visible{{ if autoplay_enabled }} slider-nav-autoplay slider-nav-autopause{{ end }} slider-indicators-round 
+                slider-indicators-dark slider-indicators-highlight slider-indicators-sm slider-item-show3 slider-item-show2-sm slider-item-snapstart carousel-products-slider" {{ if autoplay_enabled }}data-slider-nav-autoplay-interval="5000"{{ end }}>
+                    {{~ # Banner lateral estático - fora do slider-container para não participar do scroll ~}}
+                    {{~ if side_banners && side_banners.size > 0 ~}}
+                    <div class="side-banner-container hidden lg:flex">
+                        {{~ banner = side_banners[0] ~}}
+                        {{ if banner.url_on_click }}
+                        <a href="{{ banner.url_on_click }}" {{ if banner.open_new_tab }} target="_blank" {{ end }} class="side-banner-link">
+                        {{ end }}
+                            <img src="{{ banner.banner_url }}" alt="{{ banner.title ?? 'Banner' }}" class="side-banner-img">
+                        {{ if banner.url_on_click }}
+                        </a>
+                        {{ end }}
+                    </div>
+                    {{~ end ~}}
+                    <div class="slider-container">
+                        {{~ for product in products ~}}
+                            {{ img_priority = for.index >= 4 ? false : true }}
+                            {{ spot product: product img_priority: img_priority img_lazy_load: !img_priority}}
+                        {{~ end ~}}
+                    </div>
+                    <div class="{{if products.size < 3}} lg:hidden {{end}} {{if products.size <= 2}} hidden {{end}}">
+                        <button type="button" class="slider-nav" aria-label="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Próximo">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                {{~ # Link "Ver mais produtos" - abaixo do carrossel no mobile ~}}
+                <p class="carousel-view-more carousel-view-more-mobile">
+                    <a href="{{ hotsite_url }}" class="carousel-view-more-link">
+                        Ver mais produtos
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{{~ end ~}}
+
+

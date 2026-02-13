@@ -2,6 +2,9 @@
 html {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevenir scroll horizontal no html */
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -9,6 +12,97 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 100vw;
+  overflow-x: hidden; /* Apenas o body controla overflow-x para evitar scroll duplo */
+  width: 100%;
+  position: relative; /* Garantir contexto de posicionamento correto */
+}
+
+/* ===== TOP BANNER - Ocultar conteúdo antigo ===== */
+.top-banner__content,
+.top-banner__warning,
+.top-banner__login,
+.top-banner > div:not(.top-banner-desktop):not(.top-banner-mobile),
+.top-banner > *:not(.top-banner-desktop):not(.top-banner-mobile) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  pointer-events: none !important;
+}
+
+/* Banner Desktop - Pop-up: visível apenas no desktop */
+.top-banner-desktop.hidden.lg\:block {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .top-banner-desktop.hidden.lg\:block {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    max-height: 80px !important;
+    overflow: hidden !important;
+  }
+  
+  .top-banner-desktop .banner-static-wrapper,
+  .top-banner-desktop .top-banner-popup {
+    max-height: 80px !important;
+    overflow: hidden !important;
+  }
+  
+  .top-banner-desktop .banner-static-wrapper img,
+  .top-banner-desktop .top-banner-popup img {
+    max-height: 80px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 0 !important;
+  }
+  
+  .top-banner-desktop .banner-static-wrapper,
+  .top-banner-desktop .top-banner-popup {
+    border-radius: 0 !important;
+  }
+  
+  /* Ocultar banner mobile no desktop */
+  .top-banner-mobile.block.lg\:hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Banner Mobile - Background: visível apenas no mobile */
+.top-banner-mobile.block.lg\:hidden {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+}
+
+@media (max-width: 1023px) {
+  /* Ocultar banner desktop no mobile */
+  .top-banner-desktop.hidden.lg\:block {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  .top-banner-mobile.block.lg\:hidden {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 }
 
 /* ===== BREADCRUMB ===== */
@@ -215,7 +309,7 @@ body div[class*="flex-col"][class*="lg:flex-row"][class*="lg:items-center"]:not(
   .bg-mainBg #sort_options {
     flex: 1 !important;
     min-width: 0 !important;
-    width: 100% !important;
+    width: auto !important;
   }
   
   body label[for="page_size"],
@@ -224,6 +318,90 @@ body div[class*="flex-col"][class*="lg:flex-row"][class*="lg:items-center"]:not(
   .bg-mainBg label[for="sort_options"] {
     width: 100% !important;
     margin-bottom: 0.25rem !important;
+  }
+}
+
+/* ===== BOTÃO MOSTRAR FILTROS MOBILE ===== */
+.filter-toggle-btn {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  padding: 0.625rem 0.75rem !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 12px !important;
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  white-space: nowrap !important;
+  text-transform: none !important;
+}
+
+.filter-toggle-btn:hover {
+  border-color: #0e167a !important;
+  box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1) !important;
+}
+
+.filter-toggle-btn:active {
+  background-color: #f9fafb !important;
+}
+
+.filter-toggle-btn img,
+.filter-toggle-btn svg {
+  width: 1rem !important;
+  height: 1rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===== CONTAINER DE CONTROLES MOBILE (FILTROS + ORDENAÇÃO) ===== */
+.mobile-controls-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  .mobile-controls-container {
+    justify-content: flex-end !important;
+  }
+  
+  .filter-toggle-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .mobile-controls-container {
+    flex-wrap: nowrap !important;
+  }
+  
+  .mobile-controls-container > * {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  
+  .mobile-controls-container .filter-toggle-btn {
+    flex: 0 0 auto !important;
+  }
+  
+  /* Esconder labels no mobile */
+  .mobile-controls-container label[for="page_size"],
+  .mobile-controls-container label[for="sort_options"] {
+    display: none !important;
+  }
+  
+  /* Ajustar selects dentro do container */
+  .mobile-controls-container select#page_size,
+  .mobile-controls-container select#sort_options {
+    flex: 1 !important;
+    width: auto !important;
+    min-width: 0 !important;
   }
 }
 
@@ -253,6 +431,25 @@ body div[class*="flex-col"][class*="lg:flex-row"][class*="lg:items-center"]:not(
   background-color: transparent !important;
 }
 
+/* Melhorar animação das labels - transições suaves */
+.wake-autenticate-wrapper > div form div div label {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform, top, bottom, opacity, color;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Ajustar posicionamento das labels quando o input está focado - adicionar bottom para posicionar mais acima */
+.wake-autenticate-wrapper > div form div div input:focus ~ label,
+.wake-autenticate-wrapper > div form div div .peer:focus ~ label,
+.wake-autenticate-wrapper > div form div div input:not(:placeholder-shown) ~ label,
+.wake-autenticate-wrapper > div form div div .peer:not(:placeholder-shown) ~ label {
+  bottom: calc(100% - 0.25rem) !important;
+  top: auto !important;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  transform: translateY(0) scale(0.75) !important;
+}
+
 /* ===== SIGNUP: ===== */
 .wake-signup-wrapper label {
   background-color: transparent !important;
@@ -263,6 +460,38 @@ body div[class*="flex-col"][class*="lg:flex-row"][class*="lg:items-center"]:not(
 .wake-signup-wrapper label span {
   background-color: transparent !important;
   color: #111827 !important;
+}
+
+/* ===== LOGIN SIMPLIFICADO: labels ===== */
+.wake-simple-login-wrapper label {
+  background-color: transparent !important;
+  color: #111827 !important;
+}
+
+/* Garantir que elementos internos do label também herdem a cor */
+.wake-simple-login-wrapper label *,
+.wake-simple-login-wrapper label span {
+  color: #111827 !important;
+  background-color: transparent !important;
+}
+
+/* ===== LOGIN SIMPLIFICADO: botão ===== */
+.wake-simple-login-wrapper > div .mainSimpleLogin form > button,
+.wake-simple-login-wrapper form:not(.mainSimpleLogin form) button {
+  background: #0e167a !important;
+  color: #ffffff !important;
+  border: none !important;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease !important;
+}
+
+.wake-simple-login-wrapper > div .mainSimpleLogin form > button:hover,
+.wake-simple-login-wrapper form:not(.mainSimpleLogin form) button:hover {
+  background: #0c1369 !important;
+}
+
+.wake-simple-login-wrapper > div .mainSimpleLogin form > button:active,
+.wake-simple-login-wrapper form:not(.mainSimpleLogin form) button:active {
+  transform: translateY(1px) !important;
 }
 
 
@@ -297,6 +526,21 @@ body div[class*="flex-col"][class*="lg:flex-row"][class*="lg:items-center"]:not(
 
 .wake-signup-wrapper .custom-cpf-cnpj > label:has(input:checked):hover {
   background-color: #0c1369 !important;
+}
+
+/* Forçar span do labelCnpj a ser branco por padrão - sobrescrever classes Tailwind */
+#labelCnpj span,
+#labelCnpj .wake-checkout-registration-radio-label,
+.wake-checkout-registration-doc-label#labelCnpj span,
+.wake-checkout-registration-doc-label#labelCnpj .wake-checkout-registration-radio-label,
+#labelCnpj span.text-black,
+#labelCnpj span.bg-black,
+#labelCnpj span.text-white,
+.wake-checkout-registration-doc-label#labelCnpj span.text-black,
+.wake-checkout-registration-doc-label#labelCnpj span.bg-black,
+.wake-checkout-registration-doc-label#labelCnpj span.text-white {
+  color: #ffffff !important;
+  background-color: transparent !important;
 }
 
 /* Botão "Cadastrar" no SIGNUP (forçar estilo azul) */
@@ -429,6 +673,7 @@ i.fa, i.fas, i.far, i.fal, i.fab,
   transform: translateY(-1px);
 }
 
+
 .dropdown-submenu {
   position: relative;
 }
@@ -540,6 +785,317 @@ i.fa, i.fas, i.far, i.fal, i.fab,
   font-size: 0.75rem !important;
 }
 
+/* ===== SIGNUP: Aplicar padrão CPF a todas as labels (acima do input, sem animação) ===== */
+
+/* Telefones - labels acima do input, sem animação */
+.wake-signup-wrapper .registration .phones label,
+.wake-signup-wrapper .registration .phones > div > div > label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+}
+
+.wake-signup-wrapper .registration .phones > div > div {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Data de nascimento - labels acima do input, sem animação */
+.wake-signup-wrapper .registration .birthdate label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+}
+
+.wake-signup-wrapper .registration .birthdate > div {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Senhas - labels acima do input, sem animação */
+.wake-signup-wrapper .registration .passwords label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+}
+
+.wake-signup-wrapper .registration .passwords > div {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Inscrição Estadual - label acima do input, sem animação */
+.wake-signup-wrapper .registration label[for="stateRegistration"] {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+.wake-signup-wrapper .registration .CustomAttr {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* CNPJ - labels acima do input, sem animação */
+.wake-signup-wrapper .registration #cnpj + label,
+.wake-signup-wrapper .registration #cnpj ~ label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  order: -1 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+/* Ocultar CNPJ quando tiver classe hidden (Pessoa Física) */
+.wake-signup-wrapper .registration > div > div:has(> #cnpj).hidden,
+.wake-signup-wrapper .registration > div > div.hidden:has(> #cnpj),
+.wake-signup-wrapper .registration .cnpj.hidden,
+.wake-signup-wrapper .registration .hidden.cnpj {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wake-signup-wrapper .registration > div > div:has(> #cnpj):not(.hidden) {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.wake-signup-wrapper .registration > div > div:has(> #cnpj):not(.hidden) > label {
+  order: -1 !important;
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+/* Razão Social - label acima do input, sem animação */
+.wake-signup-wrapper .registration #corporatename + label,
+.wake-signup-wrapper .registration #corporatename ~ label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  order: -1 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+/* Ocultar Razão Social quando tiver classe hidden (Pessoa Física) */
+.wake-signup-wrapper .registration > div > div:has(> #corporatename).hidden,
+.wake-signup-wrapper .registration > div > div.hidden:has(> #corporatename),
+.wake-signup-wrapper .registration .wake-checkout-registration-info-container.cnpj.hidden,
+.wake-signup-wrapper .registration .wake-checkout-registration-info-container.hidden.cnpj {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wake-signup-wrapper .registration > div > div:has(> #corporatename):not(.hidden) {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.wake-signup-wrapper .registration > div > div:has(> #corporatename):not(.hidden) > label {
+  order: -1 !important;
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+/* Ocultar Inscrição Estadual quando tiver classe hidden (Pessoa Física) */
+.wake-signup-wrapper .registration .wake-checkout-registration-row-cnpj.hidden,
+.wake-signup-wrapper .registration .hidden.wake-checkout-registration-row-cnpj,
+.wake-signup-wrapper .registration .cnpj.hidden.wake-checkout-registration-row-cnpj {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Labels genéricas de inputs e selects (exceto checkbox e radio) - acima do input, sem animação */
+.wake-signup-wrapper .registration input:not([type="checkbox"]):not([type="radio"]) + label,
+.wake-signup-wrapper .registration select + label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+  scale: 1 !important;
+  translate: none !important;
+}
+
+/* Garantir que containers de inputs genéricos sejam flex column */
+.wake-signup-wrapper .registration > div > div:has(> input:not([type="checkbox"]):not([type="radio"])):not(:has(> #email)):not(:has(> #cpf)):not(:has(> #fullName)):not(:has(> #cnpj)):not(:has(> #corporatename)),
+.wake-signup-wrapper .registration > div > div:has(> select) {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Endereço - labels acima do input, sem animação */
+.wake-signup-wrapper .registration_address label,
+.wake-signup-wrapper .address label,
+.wake-signup-wrapper .address-autocomplete label,
+.wake-signup-wrapper .address-complement label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+.wake-signup-wrapper .registration_address > div > div:first-child > div,
+.wake-signup-wrapper .address > div,
+.wake-signup-wrapper .address-autocomplete > div,
+.wake-signup-wrapper .address-complement > div {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Campos dinâmicos (informationGroups) - labels acima do input, sem animação */
+.wake-signup-wrapper #informationGroups label:not(.radio-group label):not([for^="information-radio-"]) {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+}
+
+.wake-signup-wrapper #informationGroups .group-form {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Ajustar padding dos inputs para remover espaço extra no topo */
+.wake-signup-wrapper .registration input:not([type="checkbox"]):not([type="radio"]),
+.wake-signup-wrapper .registration select,
+.wake-signup-wrapper .registration_address input,
+.wake-signup-wrapper .address input,
+.wake-signup-wrapper .address-autocomplete input,
+.wake-signup-wrapper .address-complement input,
+.wake-signup-wrapper #informationGroups input[type="text"],
+.wake-signup-wrapper #informationGroups textarea,
+.wake-signup-wrapper #informationGroups select {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* Remover todas as animações e estados de hover/focus das labels */
+.wake-signup-wrapper .registration label,
+.wake-signup-wrapper .registration_address label,
+.wake-signup-wrapper .address label,
+.wake-signup-wrapper .address-autocomplete label,
+.wake-signup-wrapper .address-complement label,
+.wake-signup-wrapper #informationGroups label {
+  transition: none !important;
+}
+
+.peer:focus ~ .wake-signup-wrapper .registration label,
+.peer:placeholder-shown ~ .wake-signup-wrapper .registration label,
+.peer:-moz-placeholder-shown ~ .wake-signup-wrapper .registration label {
+  position: static !important;
+  transform: none !important;
+  top: auto !important;
+  left: auto !important;
+  scale: 1 !important;
+  translate: none !important;
+}
+
 /* ===== CEP: input e link Alterar CEP ===== */
 
 input#cepElement,
@@ -558,6 +1114,43 @@ a[onclick*="returnInput"]:hover,
 button[onclick*="returnInput"]:hover {
   color: #0c1369 !important;
   text-decoration: underline;
+}
+
+/* ===== CEP: label acima do input, sem animação (padrão CPF) ===== */
+/* CEP no registration_address - label acima do input, sem animação */
+.wake-signup-wrapper .registration_address input[name="cep"] ~ label,
+.wake-signup-wrapper .registration_address input[id*="cep" i] ~ label,
+.wake-signup-wrapper .registration_address input#cepElement ~ label,
+.wake-signup-wrapper .registration_address label.cep-input,
+.wake-signup-wrapper .registration_address > div > div:first-child > div:has(input[name="cep"]) label,
+.wake-signup-wrapper .registration_address > div > div:first-child > div:has(input[id*="cep" i]) label,
+.wake-signup-wrapper .registration_address > div > div:first-child > div:has(input#cepElement) label {
+  position: static !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 0 4px 0 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.75rem !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: auto !important;
+  order: -1 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+  transition: none !important;
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+
+.wake-signup-wrapper .registration_address > div > div:first-child > div:has(input[name="cep"]),
+.wake-signup-wrapper .registration_address > div > div:first-child > div:has(input[id*="cep" i]),
+.wake-signup-wrapper .registration_address > div > div:first-child > div:has(input#cepElement) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
 }
 
 /* ===== Remover checkbox/label de newsletter ===== */
@@ -810,46 +1403,1488 @@ button[onclick*="returnInput"]:hover {
   border-radius: 12px;
 }
 
+/* ===== CARROSSEL COM BANNER LATERAL ===== */
+/* Container principal - overflow visível para animações de hover */
+.carrossel1.carousel-with-side-banner,
+div.carrossel1.carousel-with-side-banner,
+.carrossel2.carousel-with-side-banner,
+div.carrossel2.carousel-with-side-banner {
+  overflow: visible !important;
+}
+
+/* Banner lateral estático - fora do slider-container, posicionamento absoluto */
+.carousel-with-side-banner .swiffy-slider .side-banner-container {
+  position: absolute;
+  left: 70px; /* Alinhado com o padding-left do swiffy-slider */
+  top: 1rem; /* Alinhado com o padding-top do swiffy-slider */
+  z-index: 5;
+  flex-shrink: 0;
+  width: 245px;
+  min-width: 245px;
+  max-width: 245px;
+  height: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  display: none; /* Escondido por padrão, exibido apenas em desktop via lg:flex */
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-with-side-banner .swiffy-slider .side-banner-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-with-side-banner .swiffy-slider .side-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Swiffy-slider - overflow visível para animações */
+.carousel-with-side-banner .swiffy-slider {
+  overflow: visible !important;
+}
+
+/* Desktop: banner lateral estático + 3 produtos no carrossel */
+@media (min-width: 1024px) {
+  /* Resetar variáveis do swiffy-slider para 3 produtos */
+  .carousel-with-side-banner .swiffy-slider.slider-item-show3,
+  .carrossel1.carousel-with-side-banner .swiffy-slider.slider-item-show3,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider.slider-item-show3,
+  .carrossel2.carousel-with-side-banner .swiffy-slider.slider-item-show3,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider.slider-item-show3 {
+    --swiffy-slider-item-count: 3 !important;
+    --swiffy-slider-item-gap: 12px !important;
+  }
+  
+  /* Container do slider - mesmo padding dos carrosséis normais, position relative para banner absoluto */
+  .carousel-with-side-banner .swiffy-slider,
+  .carrossel1.carousel-with-side-banner .swiffy-slider,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider,
+  .carrossel2.carousel-with-side-banner .swiffy-slider,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem 70px 2rem 70px !important; /* padding-top: 1rem, padding-bottom: 2rem, igual aos outros carrosséis */
+    position: relative !important;
+  }
+  
+  /* Exibir banner lateral em desktop */
+  .carousel-with-side-banner .swiffy-slider .side-banner-container {
+    display: flex !important;
+    margin-top: 10px !important; 
+  }
+  
+  /* Slider-container com margin-left para compensar espaço do banner */
+  .carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+    margin-left: 257px !important; /* 245px banner + 12px gap */
+  }
+  
+  /* Slider-nav posicionados no canto inferior direito, lado a lado */
+  .carousel-with-side-banner .swiffy-slider .slider-nav,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav {
+    top: auto !important;
+    transform: none !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next) {
+    right: 140px !important;
+    left: auto !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next {
+    right: 80px !important;
+    left: auto !important;
+  }
+  
+  /* Slider container - grid de 3 colunas (apenas produtos, banner está fora) */
+  .carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 24px) / 3) !important; /* 3 produtos com 2 gaps de 12px */
+    grid-gap: 12px !important;
+    overflow-x: auto !important; /* Permitir scroll para navegação e loop funcionar */
+    overflow-y: visible !important; /* Permite animação de hover vertical */
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    padding: 8px 0 25px 0 !important; /* Somente padding vertical para animações */
+    scrollbar-width: none !important; /* Firefox - esconder scrollbar */
+    -ms-overflow-style: none !important; /* IE/Edge - esconder scrollbar */
+    overscroll-behavior-x: contain !important; /* Prevenir que scroll horizontal interfira no scroll vertical da página */
+    overscroll-behavior-y: auto !important; /* Permitir scroll vertical normal */
+  }
+  
+  /* Esconder scrollbar no Chrome/Safari */
+  .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+  }
+  
+  /* Cards de produtos - largura responsiva dentro do grid */
+  .carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel1.carousel-with-side-banner .product-card,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  div.carrossel1.carousel-with-side-banner .product-card,
+  .carousel-with-side-banner.carrossel1 .swiffy-slider .slider-container > *,
+  .carousel-with-side-banner.carrossel1 .swiffy-slider .slider-container .product-card,
+  .carousel-with-side-banner.carrossel1 .product-card,
+  div.carousel-with-side-banner.carrossel1 .swiffy-slider .slider-container > *,
+  div.carousel-with-side-banner.carrossel1 .swiffy-slider .slider-container .product-card,
+  div.carousel-with-side-banner.carrossel1 .product-card,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel2.carousel-with-side-banner .product-card,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  div.carrossel2.carousel-with-side-banner .product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+    height: 480px !important;
+    min-height: 480px !important;
+    max-height: 480px !important;
+    scroll-snap-align: start !important;
+    margin: 0 !important;
+  }
+}
+
+/* Tablet - mesmo padding dos carrosséis comuns */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .carousel-with-side-banner .swiffy-slider,
+  .carrossel1.carousel-with-side-banner .swiffy-slider,
+  .carrossel2.carousel-with-side-banner .swiffy-slider {
+    padding: 1rem 55px 2rem 55px !important; /* padding-top: 1rem, padding-bottom: 2rem, igual aos outros carrosséis */
+    overflow: visible !important;
+    position: relative !important;
+  }
+  
+  /* Banner lateral em tablet */
+  .carousel-with-side-banner .swiffy-slider .side-banner-container {
+    left: 55px !important; /* Alinhado com o padding-left do swiffy-slider */
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+    margin-left: 257px !important; /* 245px banner + 12px gap */
+    overflow-x: auto !important; /* Permitir scroll para autoplay funcionar */
+    overflow-y: visible !important;
+    padding: 8px 0 25px 0 !important; /* Somente padding vertical */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  /* Exibir banner lateral em tablet */
+  .carousel-with-side-banner .swiffy-slider .side-banner-container {
+    display: flex !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-nav,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav {
+    top: auto !important;
+    transform: none !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next) {
+    right: 160px !important;
+    left: auto !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next {
+    right: 100px !important;
+    left: auto !important;
+  }
+}
+
+/* Mobile: ocultar banner lateral, carrossel ocupa 100% */
+@media (max-width: 1023px) {
+  /* Ocultar banner lateral no mobile */
+  .carousel-with-side-banner .swiffy-slider .side-banner-container {
+    display: none !important;
+  }
+  
+  /* Fazer o carrossel com banner lateral funcionar EXATAMENTE como os outros carrosséis no mobile */
+  .carousel-with-side-banner .swiffy-slider,
+  .carrossel1.carousel-with-side-banner .swiffy-slider,
+  .carrossel2.carousel-with-side-banner .swiffy-slider {
+    --swiffy-slider-item-count: 2 !important;
+    --swiffy-slider-item-gap: 0.5rem !important;
+    padding: 0.5rem 0 1rem 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 400px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+    margin-left: 0 !important; /* Remover margin-left no mobile */
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 0.5rem) / 2) !important;
+    grid-gap: 0.5rem !important;
+    gap: 0.5rem !important;
+    padding: 0 !important;
+    scroll-padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel1.carousel-with-side-banner .product-card,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel2.carousel-with-side-banner .product-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    max-height: 430px !important;
+    margin: 0 !important;
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Mobile 480px - ajustar gap e altura dos cards para carrossel com banner lateral */
+@media (max-width: 480px) {
+  .carousel-with-side-banner .swiffy-slider,
+  .carrossel1.carousel-with-side-banner .swiffy-slider,
+  .carrossel2.carousel-with-side-banner .swiffy-slider {
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 0.375rem) / 2) !important;
+    grid-gap: 0.375rem !important;
+    gap: 0.375rem !important;
+    padding: 0 !important;
+    scroll-padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel1.carousel-with-side-banner .product-card,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossel2.carousel-with-side-banner .product-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+    margin: 0 !important;
+    flex: 0 0 calc((100% - 0.375rem) / 2) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+  }
+}
+
 /* ===== BANNERS CAROUSEL ===== */
 .banners-carousel-wrapper {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+  overflow: visible;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Mobile: garantir que banners não ultrapassem viewport */
+@media (max-width: 1023px) {
+  .banners-carousel-wrapper {
+    max-width: 100vw !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* Slider indicators - posicionar abaixo dos banners */
+.banners-carousel-wrapper .swiffy-slider {
+  overflow: visible !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Apenas o slider-container tem overflow hidden para esconder slides não visíveis */
+.banners-carousel-wrapper .slider-container {
+  overflow: hidden !important;
+}
+
+.banners-carousel-wrapper .slider-indicators {
+  position: relative !important;
+  bottom: auto !important;
+  margin-bottom: 0 !important;
+  margin-top: 0.75rem !important;
+  justify-content: center !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+}
+
+/* Estilo dos indicadores */
+.banners-carousel-wrapper .slider-indicators > * {
+  width: 0.5rem !important;
+  height: 0.5rem !important;
+  border-radius: 50% !important;
+  background-color: #0e167a !important;
+  opacity: 0.6 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 0.25rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.3s ease !important;
+}
+
+.banners-carousel-wrapper .slider-indicators > *.active {
+  background-color: #ffc107 !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+}
+
+.banners-carousel-wrapper .slider-indicators > *:hover {
+  opacity: 0.9 !important;
+}
+
+/* Banner Central Desktop - exibe um banner grande por vez com autoplay */
+/* Oculto em mobile, visível apenas em desktop */
+#banners_centro_desktop {
+  overflow: visible !important;
+  position: relative;
+}
+
+#banners_centro_desktop .swiffy-slider {
+  padding: 0;
+  position: relative;
+  overflow: visible !important;
+}
+
+#banners_centro_desktop .slider-container {
+  overflow: hidden !important;
+  border-radius: 12px;
+  scroll-behavior: smooth !important; /* Transição suave para autoplay */
+  -webkit-overflow-scrolling: touch !important; /* Suavidade no iOS */
+  will-change: scroll-position !important; /* Otimização de performance */
+}
+
+#banners_centro_desktop .slider-container > li {
+  flex: 0 0 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  scroll-snap-align: start !important; /* Alinhamento preciso */
+  scroll-snap-stop: always !important; /* Parar em cada banner */
+  transition: opacity 0.3s ease !important; /* Transição suave entre banners */
+}
+
+/* ===== SLIDER-NAV DOS BANNERS - POSICIONADOS DENTRO DO CONTAINER ===== */
+/* Sobrescrever posicionamento padrão para banners (dentro ao invés de fora) */
+.banners-carousel-wrapper .swiffy-slider {
+  padding: 0 !important;
+  position: relative !important;
+}
+
+.banners-carousel-wrapper .swiffy-slider .slider-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  width: 40px !important;
+  height: 40px !important;
+  background-color: rgba(0, 0, 0, 0.4) !important; /* Fundo escurecido como overlay */
+  border: 2px solid #F5F5F5 !important; /* Bordas branco gelo */
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important; /* Ícones chevron brancos */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Botão anterior - dentro do banner, à esquerda */
+.banners-carousel-wrapper .swiffy-slider .slider-nav:not(.slider-nav-next) {
+  left: 15px !important;
+  right: auto !important;
+}
+
+/* Botão próximo - dentro do banner, à direita */
+.banners-carousel-wrapper .swiffy-slider .slider-nav.slider-nav-next {
+  right: 15px !important;
+  left: auto !important;
+}
+
+/* Ajustar posição dos slider-nav do banners_centro_desktop para extremidades (parte dentro, parte fora) */
+@media (min-width: 1024px) {
+  #banners_centro_desktop .swiffy-slider .slider-nav:not(.slider-nav-next) {
+    left: -20px !important; /* Metade do botão (40px) fica fora, metade dentro */
+    right: auto !important;
+  }
+  
+  #banners_centro_desktop .swiffy-slider .slider-nav.slider-nav-next {
+    right: -20px !important; /* Metade do botão (40px) fica fora, metade dentro */
+    left: auto !important;
+  }
+}
+
+.banners-carousel-wrapper .swiffy-slider .slider-nav:hover {
+  background-color: #0e167a !important; /* Fundo azul no hover */
+  border-color: #F5F5F5 !important; /* Mantém bordas branco gelo */
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.banners-carousel-wrapper .swiffy-slider .slider-nav i {
+  color: white !important;
+  font-size: 16px !important;
+}
+
+#banners_centro_desktop .slider-container li img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block !important; /* Evitar espaços em branco */
+}
+
+/* Otimizações para autoplay suave no banner central desktop */
+#banners_centro_desktop .swiffy-slider[data-slider-nav-autoplay-interval] {
+  position: relative !important;
+}
+
+#banners_centro_desktop .slider-container {
+  /* Garantir que o scroll seja programático e suave */
+  scroll-padding: 0 !important;
+  scroll-margin: 0 !important;
+}
+
+/* Prevenir interrupções no autoplay */
+#banners_centro_desktop .slider-container:active,
+#banners_centro_desktop .slider-container:focus {
+  scroll-behavior: smooth !important;
+}
+
+/* Garantir continuidade e velocidade constante do autoplay */
+#banners_centro_desktop .swiffy-slider {
+  /* Forçar renderização otimizada */
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  perspective: 1000px !important;
+  -webkit-perspective: 1000px !important;
+}
+
+#banners_centro_desktop .slider-container {
+  /* Otimizar performance do scroll */
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  contain: layout style paint !important; /* Isolar renderização */
+}
+
+
+/* Banner Mobile Top - exibir 2 banners lado a lado em mobile com swipe habilitado */
+@media (max-width: 1023px) {
+  #banners_mobile_top {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+  
+  #banners_mobile_top .swiffy-slider {
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+  
+  #banners_mobile_top .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    margin-top: 15px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+    touch-action: pan-x !important;
+  }
+  
+  /* Esconder scrollbar no WebKit */
+  #banners_mobile_top .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  #banners_mobile_top .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+  
+  #banners_mobile_top .slider-container li img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    display: block !important;
+  }
+  
+  #banners_mobile_top .slider-container li a {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+    touch-action: pan-x !important;
+  }
+}
+
+/* Ocultar slider-nav e slider-indicators do banner mobile top */
+#banners_mobile_top .slider-nav,
+#banners_mobile_top .slider-nav-next,
+#banners_mobile_top .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* ===== BANNER RODAPÉ (entre carrossel4 e carrossel5) ===== */
+/* Desktop - exibir 4 banners lado a lado */
+@media (min-width: 1024px) {
+  #banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 1rem 0 !important;
+  }
+  
+  #banners_rodape .swiffy-slider {
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  #banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0.75rem !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  #banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  #banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 2.25rem) / 4) !important; /* 4 banners com 3 gaps de 0.75rem */
+    min-width: 0 !important;
+    max-width: calc((100% - 2.25rem) / 4) !important;
+    width: calc((100% - 2.25rem) / 4) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+  
+  #banners_rodape .slider-container li img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    display: block !important;
+    transition: transform 0.3s ease !important;
+  }
+  
+  #banners_rodape .slider-container li a {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    overflow: visible !important; /* Permitir que a animação de elevação seja visível */
+    transition: transform 0.3s ease!important;
+  }
+  
+  /* Animação hover de elevação similar aos product-card */
+  #banners_rodape .slider-container li a:hover {
+    transform: translateY(-8px) !important;
+  }
+  
+  /* Garantir que o container tenha espaço para a animação */
+  #banners_rodape .slider-container {
+    padding-top: 10px !important; /* Espaço para translateY(-8px) do hover */
+    overflow-y: visible !important;
+  }
+}
+
+/* Mobile - exibir 2 banners lado a lado (mesmas configurações do banners_mobile_top) */
+@media (max-width: 1023px) {
+  #banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+  
+  #banners_rodape .swiffy-slider {
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+  
+  #banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+    touch-action: pan-x !important;
+  }
+  
+  /* Esconder scrollbar no WebKit */
+  #banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  #banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+  
+  #banners_rodape .slider-container li img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    display: block !important;
+  }
+  
+  #banners_rodape .slider-container li a {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+    touch-action: pan-x !important;
+  }
+}
+
+/* Ocultar slider-nav e slider-indicators do banner rodapé */
+#banners_rodape .slider-nav,
+#banners_rodape .slider-nav-next,
+#banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Banner Central Mobile - exibe um banner grande por vez com swipe e autoplay habilitados */
+@media (max-width: 1023px) {
+  #banners_centro_mobile {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+  
+  #banners_centro_mobile .swiffy-slider {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    width: 100% !important;
+    touch-action: pan-x !important;
+  }
+  
+  #banners_centro_mobile .slider-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important; /* Permitir scroll para autoplay e swipe */
+    overflow-y: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    scroll-behavior: smooth !important; /* Transição suave para autoplay */
+    -webkit-overflow-scrolling: touch !important; /* Suavidade no iOS */
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+    touch-action: pan-x !important;
+    will-change: scroll-position !important; /* Otimização de performance */
+  }
+  
+  /* Esconder scrollbar no WebKit */
+  #banners_centro_mobile .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  #banners_centro_mobile .slider-container > li {
+    flex: 0 0 100% !important;
+    min-width: 100% !important; /* Garantir largura completa para autoplay preciso */
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+    transition: opacity 0.3s ease !important; /* Transição suave entre banners */
+  }
+  
+  #banners_centro_mobile .slider-container li img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    display: block !important;
+  }
+  
+  #banners_centro_mobile .slider-container li a {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+    touch-action: pan-x !important;
+  }
+  
+  /* Otimizações para autoplay suave no banner central mobile */
+  #banners_centro_mobile .swiffy-slider[data-slider-nav-autoplay-interval] {
+    position: relative !important;
+  }
+  
+  #banners_centro_mobile .slider-container {
+    /* Garantir que o scroll seja programático e suave */
+    scroll-padding: 0 !important;
+    scroll-margin: 0 !important;
+  }
+  
+  /* Prevenir interrupções no autoplay durante swipe */
+  #banners_centro_mobile .slider-container:active,
+  #banners_centro_mobile .slider-container:focus {
+    scroll-behavior: smooth !important;
+  }
+  
+  /* Garantir continuidade após interação do usuário */
+  #banners_centro_mobile .slider-container {
+    overscroll-behavior-x: contain !important; /* Prevenir scroll indesejado */
+  }
+  
+  /* Garantir continuidade e velocidade constante do autoplay no mobile */
+  #banners_centro_mobile .swiffy-slider {
+    /* Forçar renderização otimizada */
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    perspective: 1000px !important;
+    -webkit-perspective: 1000px !important;
+  }
+  
+  #banners_centro_mobile .slider-container {
+    /* Otimizar performance do scroll */
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    contain: layout style paint !important; /* Isolar renderização */
+  }
+}
+
+/* Ocultar slider-nav e slider-indicators do banner central mobile */
+#banners_centro_mobile .slider-nav,
+#banners_centro_mobile .slider-nav-next {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Espaçamento entre banner topo e banner centro no desktop */
+@media (min-width: 1024px) {
+  /* Reduzir tamanho do banner mobile top no desktop */
+  .banner-mobile-top-wrapper {
+    max-width: 90% !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+    margin-top: 1rem !important;
+  }
+  
+  .banner-mobile-top-wrapper #banners_mobile_top {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .banner-mobile-top-wrapper #banners_mobile_top .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .banner-mobile-top-wrapper #banners_mobile_top .slider-container {
+    max-height: 280px !important;
+  }
+  
+  .banner-mobile-top-wrapper #banners_mobile_top .slider-container li img {
+    max-height: 280px !important;
+    object-fit: cover !important;
+  }
+  
+  #banners_mobile_top {
+    margin-bottom: 1rem;
+  }
+  
+  /* Reduzir tamanho do banner centro lower desktop */
+  .banner-centro-lower-desktop-wrapper {
+    max-width: 85% !important;
+    width: 85% !important;
+    margin: 0 auto !important;
+  }
+  
+  .banner-centro-lower-desktop-wrapper #banners_centro_lower_desktop {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .banner-centro-lower-desktop-wrapper #banners_centro_lower_desktop .banner-static-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .banner-centro-lower-desktop-wrapper #banners_centro_lower_desktop img {
+    max-height: 280px !important;
+    object-fit: cover !important;
+  }
+  
+  /* Reduzir tamanho do banner rodapé no desktop */
+  .banner-rodape-wrapper {
+    max-width: 85% !important;
+    width: 85% !important;
+    margin: 0 auto !important;
+  }
+  
+  .banner-rodape-wrapper #banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .banner-rodape-wrapper #banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Aumentar espaço entre banner-rodape-wrapper e brands-carousel-wrapper */
+  .banner-rodape-wrapper + .brands-carousel-wrapper,
+  .banner-rodape-wrapper ~ .brands-carousel-wrapper {
+    margin-top: 5rem !important; /* Aumentado de my-4 (1rem) para 3.5rem */
+  }
+  
+  /* Aumentar espaço entre carrossel5 e banner-rodape-wrapper */
+  .carrossel5 + .banner-rodape-wrapper,
+  .carrossel5 ~ .banner-rodape-wrapper {
+    margin-top: 3.5rem !important; /* Aumentado de my-4 (1rem) para 3.5rem */
+  }
+}
+
+/* Mobile: aumentar espaço entre banner-rodape-wrapper e brands-carousel-wrapper */
+@media (max-width: 1023px) {
+  .banner-rodape-wrapper + .brands-carousel-wrapper,
+  .banner-rodape-wrapper ~ .brands-carousel-wrapper {
+    margin-top: 2.5rem !important; /* Espaçamento maior no mobile também */
+  }
+  
+  /* Aumentar espaço entre carrossel5 e banner-rodape-wrapper no mobile */
+  .carrossel5 + .banner-rodape-wrapper,
+  .carrossel5 ~ .banner-rodape-wrapper {
+    margin-top: 2.5rem !important; /* Espaçamento maior no mobile também */
+  }
+  
+  #banners_centro_desktop {
+    display: block !important;
+    margin-top: 0;
+  }
+  
+  /* Permitir overflow visible para os slider-nav dos banners no desktop */
+  .banners-carousel-wrapper {
+    overflow: visible !important;
+  }
+  
+  .banners-carousel-wrapper .swiffy-slider {
+    overflow: visible !important;
+  }
+  
+  /* Apenas o slider-container mantém overflow hidden */
+  .banners-carousel-wrapper .slider-container {
+    overflow: hidden !important;
+    border-radius: 12px;
+  }
+  
+  /* Container pai do banner central desktop */
+  .hidden.lg\\:block.w-full.lg\\:mt-4,
+  .hidden.lg\\:block.w-full {
+    overflow: visible !important;
+  }
+  
+  /* Container principal da home - permitir overflow para slider-nav */
+  .flex.flex-col.items-start.w-full {
+    overflow: visible !important;
+  }
+  
+  .flex.flex-col.my-4.w-full {
+    overflow: visible !important;
+  }
+}
+
+/* Garantir que o banner central desktop esteja oculto em mobile */
+@media (max-width: 1023px) {
+  #banners_centro_desktop,
+  #banners_centro_lower_desktop {
+    display: none !important;
+  }
+  
+  /* Garantir que os containers dos banners não quebrem dimensões - REMOVIDO overflow-x para evitar scroll duplo */
+  .flex.flex-col.my-4.w-full {
+    max-width: 100vw !important;
+    width: 100% !important;
+    overflow-x: visible !important; /* Permitir scroll natural, o body já controla overflow-x */
+  }
+  
+  .flex.flex-col.items-start.w-full {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: visible !important; /* Permitir scroll natural, o body já controla overflow-x */
+  }
+  
+  /* Container do banner central mobile */
+  .block.lg\\:hidden.w-full {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Garantir que todos os wrappers de banners respeitem o container */
+  .banners-carousel-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* ===== BANNER CENTRO LOWER (entre carrossel1 e carrossel2) ===== */
+/* Desktop - oculta versão mobile */
+@media (min-width: 1024px) {
+  #banners_centro_lower_mobile,
+  .banner-centro-lower-mobile-wrapper {
+    display: none !important;
+  }
+  
+  /* Reduzir tamanho do banner centro lower desktop - já aplicado acima */
+  /* Estilos específicos para o banner static dentro do wrapper */
+  #banners_centro_lower_desktop .banner-static-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #banners_centro_lower_desktop img {
+    border-radius: 12px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    max-height: 280px !important;
+  }
+}
+
+/* Mobile - oculta versão desktop */
+@media (max-width: 1023px) {
+  #banners_centro_lower_desktop,
+  .banner-centro-lower-desktop-wrapper {
+    display: none !important;
+  }
+  
+  .flex.flex-col.items-start.w-full > div.block.lg\\:hidden.w-full:has(#banners_centro_lower_mobile),
+  div.block.lg\\:hidden.w-full:has(#banners_centro_lower_mobile) {
+    margin-top: -1rem !important; /* Reduz o espaçamento entre carrossel1 e banner */
+  }
+  
+  .banner-centro-lower-mobile-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  #banners_centro_lower_mobile {
+    width: 97% !important;
+    max-width: 97% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    margin-top: -1rem !important; /* Aproxima do carrossel1 */
+  }
+  
+  /* Banner static wrapper - garantir que o próprio elemento tenha largura reduzida */
+  #banners_centro_lower_mobile.banner-static-wrapper {
+    width: 97% !important;
+    max-width: 97% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #banners_centro_lower_mobile img,
+  #banners_centro_lower_mobile picture img,
+  #banners_centro_lower_mobile .banner-static-wrapper img,
+  #banners_centro_lower_mobile .banner-static-wrapper picture img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+  
+  #banners_centro_lower_mobile a {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  #banners_centro_lower_mobile .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #banners_centro_lower_mobile .slider-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #banners_centro_lower_mobile .slider-container li {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+  
+  #banners_centro_lower_mobile .slider-container li img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Estilos gerais para ambos os banners Centro Lower */
+#banners_centro_lower_desktop,
+#banners_centro_lower_mobile {
+  margin-bottom: 0 !important;
+}
+
+#banners_centro_lower_desktop .slider-container li a,
+#banners_centro_lower_mobile .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+}
+
+
+/* ===== BANNER LATERAL ESQUERDA MOBILE (entre título e carrossel1) ===== */
+/* Desktop - oculta versão mobile */
+@media (min-width: 1024px) {
+  #banners_lateral_esquerda_mobile {
+    display: none !important;
+  }
+}
+
+/* Mobile - banner estático (mesma exibição do banners_centro_lower_mobile) */
+@media (max-width: 1023px) {
+  #banners_lateral_esquerda_mobile {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #banners_lateral_esquerda_mobile.banner-static-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #banners_lateral_esquerda_mobile img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+  
+  #banners_lateral_esquerda_mobile a {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  #banners_lateral_esquerda_mobile a:hover img {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(14, 22, 122, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #banners_lateral_esquerda_mobile picture {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  #banners_lateral_esquerda_mobile picture img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Banner mobile do carrossel3 (Filtros Bottom) */
+  #banners_mobile_carrossel3 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #banners_mobile_carrossel3.banner-static-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #banners_mobile_carrossel3 img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+  
+  #banners_mobile_carrossel3 a {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  #banners_mobile_carrossel3 a:hover img {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(14, 22, 122, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #banners_mobile_carrossel3 picture {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  #banners_mobile_carrossel3 picture img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ===== BANNER STATIC (banner único sem carrossel) ===== */
+.banner-static-wrapper {
   margin: 0 auto;
   padding: 0;
   max-width: 100%;
   overflow: hidden;
 }
 
+.banner-static-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Remover border-radius do top-banner-desktop */
+.top-banner-desktop .banner-static-wrapper,
+.top-banner-desktop .top-banner-popup,
+.top-banner-desktop .banner-static-wrapper img,
+.top-banner-desktop .top-banner-popup img {
+  border-radius: 0 !important;
+}
+
+.banner-static-wrapper a {
+  display: block;
+  width: 100%;
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .banner-static-wrapper img {
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-static-wrapper img {
+    border-radius: 0;
+  }
+  
+  /* Banner central mobile ocupar largura total */
+  #banner_centro_mobile,
+  .banner-static-wrapper {
+    margin: 0 -0.5rem !important;
+    width: calc(100% + 1rem) !important;
+    max-width: none !important;
+  }
+  
+  /* Garantir que banners_centro_lower_mobile mantenha largura reduzida (sobrescreve regra acima) */
+  #banners_centro_lower_mobile,
+  #banners_centro_lower_mobile.banner-static-wrapper {
+    width: 97% !important;
+    max-width: 97% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #banner_centro_mobile img,
+  .banner-static-wrapper img {
+    border-radius: 0 !important;
+  }
+}
+
 .banners-carousel-wrapper .swiffy-slider {
   margin: 0;
   padding: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .banners-carousel-wrapper .slider-container {
   display: flex !important;
   margin: 0;
   padding: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .banners-carousel-wrapper .slider-container li {
   width: 100%;
+  max-width: 100%;
   display: flex !important;
   align-items: center;
   justify-content: center;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .banners-carousel-wrapper .slider-container li img,
 .banners-carousel-wrapper .slider-container li picture {
   width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .banners-carousel-wrapper .slider-container li a {
   width: 100%;
+  max-width: 100%;
   display: block;
+  box-sizing: border-box;
+}
+
+/* Mobile: garantir que imagens não ultrapassem */
+@media (max-width: 1023px) {
+  /* Remover padding do swiffy-slider nos banners */
+  .banners-carousel-wrapper .swiffy-slider {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .banners-carousel-wrapper .slider-container li img,
+  .banners-carousel-wrapper .slider-container li picture,
+  .banners-carousel-wrapper .slider-container li picture img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    box-sizing: border-box !important;
+  }
+  
+  .banners-carousel-wrapper .slider-container li a {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
 
 /* Responsive adjustments */
@@ -879,23 +2914,44 @@ button[onclick*="returnInput"]:hover {
   padding: 0;
 }
 
-/* Botão de navegação esquerdo (prev) - fora do carrossel */
-.swiffy-slider .slider-nav:not(.slider-nav-next) {
-  left: -60px;
-  right: auto;
+/* Botão de navegação - posicionado no canto inferior direito, lado a lado */
+.swiffy-slider .slider-nav {
+  position: absolute;
+  top: auto;
+  transform: none;
+  background-color: rgba(0, 0, 0, 0.4) !important; /* Fundo escurecido como overlay */
+  border: 2px solid #F5F5F5 !important; /* Bordas branco gelo */
+  border-radius: 50% !important;
+  color: white !important; /* Ícones chevron brancos */
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
 }
 
-/* Botão de navegação direito (next) - fora do carrossel */
+/* Botão anterior (prev) - ao lado esquerdo do botão next */
+.swiffy-slider .slider-nav:not(.slider-nav-next) {
+  right: 70px; /* Posicionado à esquerda do botão next (40px botão + 5px gap + 30px botão) */
+  left: auto;
+}
+
+/* Botão próximo (next) - mais à direita */
 .swiffy-slider .slider-nav.slider-nav-next {
-  right: -60px;
+  right: 10px;
   left: auto;
 }
 
 /* Efeito hover nos botões */
 .swiffy-slider .slider-nav:hover {
-  background-color: #1e2db8;
-  transform: translateY(-50%) scale(1.1);
+  background-color: #0e167a !important; /* Fundo azul no hover */
+  border-color: #F5F5F5 !important; /* Mantém bordas branco gelo */
+  transform: scale(1.1);
   box-shadow: 0 4px 16px rgba(14, 22, 122, 0.4);
+}
+
+/* Efeito hover nos botões do recommendations - mesma animação dos carrosséis */
+.recommendations .swiffy-slider .slider-nav:hover {
+  background-color: #0e167a !important; /* Fundo azul no hover */
+  border-color: #F5F5F5 !important; /* Mantém bordas branco gelo */
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 16px rgba(14, 22, 122, 0.4) !important;
 }
 
 /* Responsivo - Tablet */
@@ -969,8 +3025,9 @@ button[onclick*="returnInput"]:hover {
   /* Ajustar container principal */
   body > .flex.flex-col.my-4,
   .bg-mainBg > .flex.flex-col.my-4 {
-    margin: 0.5rem 0 !important;
+    margin: 0 0 5px 0 !important;
     padding: 0 !important;
+    overflow-x: visible !important; /* Permitir scroll natural, o body já controla overflow-x */
   }
   
   /* Container interno - ocupar toda a largura */
@@ -978,19 +3035,52 @@ button[onclick*="returnInput"]:hover {
   body .flex.flex-col.items-start.w-full {
     padding: 0 0.5rem !important;
     gap: 1.25rem !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: visible !important; /* Permitir scroll natural, o body já controla overflow-x */
   }
   
-  /* Banners ocupando toda a largura */
-  .banners-carousel-wrapper {
-    margin: 0 -0.5rem !important;
-    width: calc(100% + 1rem) !important;
-    max-width: none !important;
+  /* Banners ocupando toda a largura - AJUSTADO para não quebrar dimensões */
+  .flex.flex-col.items-start.w-full .banners-carousel-wrapper,
+  body .flex.flex-col.items-start.w-full .banners-carousel-wrapper {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     border-radius: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+  }
+  
+  .banners-carousel-wrapper .swiffy-slider {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  .banners-carousel-wrapper .slider-container {
+    max-width: 100% !important;
+    overflow: hidden !important;
   }
   
   .banners-carousel-wrapper .slider-container li img,
   .banners-carousel-wrapper .slider-container li picture {
     border-radius: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  /* Garantir que os indicadores sejam visíveis no mobile */
+  .banners-carousel-wrapper .slider-indicators {
+    display: flex !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+    padding: 0 0.5rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  .banners-carousel-wrapper .slider-indicators > * {
+    width: 0.4rem !important;
+    height: 0.4rem !important;
   }
   
   /* Carrosséis de produtos - ocupar largura total */
@@ -1004,10 +3094,170 @@ button[onclick*="returnInput"]:hover {
     padding: 0 !important;
     margin: 0 !important;
   }
+  
+  /* Reduzir margin-bottom dos carrosséis com side banner no mobile para aproximar dos elementos abaixo */
+  .carrossel1.carousel-with-side-banner,
+  div.carrossel1.carousel-with-side-banner,
+  .carrossel2.carousel-with-side-banner,
+  div.carrossel2.carousel-with-side-banner {
+    margin-bottom: 0.5rem !important; /* Reduzido de 1rem (my-4) para 0.5rem */
+  }
+}
+
+/* ===== CONTAINER DO HEADER DO CARROSSEL ===== */
+.carousel-header-container {
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  display: flex !important;
+  width: 100% !important;
+  overflow: visible !important;
+  gap: 0.75rem !important; /* Pequeno espaçamento entre título e link "Ver mais produtos" (12px) */
+}
+
+/* Garantir que o título não force quebra mas possa encolher se necessário */
+.carousel-header-container .carousel-title {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* No mobile, permitir quebra de linha no título */
+@media (max-width: 768px) {
+  .carousel-header-container .carousel-title {
+    white-space: normal !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Garantir que o link não quebre e sempre fique visível */
+.carousel-header-container .carousel-view-more {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+}
+
+/* ===== LINK "VER MAIS PRODUTOS" DOS CARROSSÉIS ===== */
+.carousel-view-more {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Desktop: mostrar carousel-view-more-desktop no header-container, ocultar mobile */
+@media (min-width: 1024px) {
+  .carousel-view-more-desktop {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+  
+  .carousel-view-more-mobile {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+.carousel-view-more-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  color: #0e167a !important;
+  text-decoration: underline !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.carousel-view-more-link:hover {
+  color: #3b4fd4 !important;
+}
+
+.carousel-view-more-link i {
+  font-size: 0.75rem !important;
+  transition: transform 0.2s ease !important;
+}
+
+.carousel-view-more-link:hover i {
+  transform: translateX(2px) !important;
+}
+
+/* Ocultar carousel-view-more nos carrosséis de produtos recomendados */
+.recommendations .carousel-view-more,
+.recommendations .carousel-view-more-link {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ===== TÍTULOS DOS CARROSSÉIS DESKTOP ===== */
+@media (min-width: 1024px) {
+  /* Alinhar o container do header com o início do conteúdo do swiffy-slider */
+  .carousel-header-container {
+    padding-left: 70px !important; /* Alinhado com o padding-left do swiffy-slider */
+  }
+  
+  /* Container pai - alinhar título à esquerda no desktop */
+  .my-4.w-full > .flex.justify-center > .items-start .carousel-title,
+  .my-4.w-full[class*="carrossel"] > .flex.justify-center > .items-start .carousel-title,
+  .carrossel1 .carousel-title,
+  .carrossel2 .carousel-title,
+  .carrossel3 .carousel-title,
+  .carrossel4 .carousel-title,
+  .carrossel5 .carousel-title {
+    text-align: left !important;
+    padding-left: 0 !important; /* Remover padding do título, agora está no container */
+    margin-left: 0 !important;
+    justify-content: flex-start !important;
+    align-self: flex-start !important;
+    width: auto !important;
+    max-width: none !important;
+    flex: 0 0 auto !important;
+  }
+  
+  .carousel-view-more-link {
+    font-size: 1rem !important;
+  }
+  
+  .carousel-view-more-link i {
+    font-size: 0.875rem !important;
+  }
 }
 
 /* ===== TÍTULOS DOS CARROSSÉIS MOBILE ===== */
 @media (max-width: 768px) {
+  /* Container pai - alinhar à esquerda no mobile */
+  .my-4.w-full > .flex.justify-center,
+  .my-4.w-full[class*="carrossel"] > .flex.justify-center {
+    justify-content: flex-start !important;
+  }
+  
+  .my-4.w-full > .flex.justify-center > .items-start,
+  .my-4.w-full[class*="carrossel"] > .flex.justify-center > .items-start {
+    align-items: flex-start !important;
+  }
+  
+  /* Container do header - coluna no mobile para link ficar abaixo */
+  .carousel-header-container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
   .carousel-title,
   h2.carousel-title,
   h2.text-xl.carousel-title,
@@ -1020,22 +3270,92 @@ button[onclick*="returnInput"]:hover {
   .carrossel3 h2,
   .carrossel4 h2,
   .carrossel5 h2,
-  .recommendations h2 {
+  .recommendations h2,
+  .brands-carousel-wrapper h2.carousel-title,
+  .brands-carousel-wrapper .carousel-title {
     color: #0e167a !important;
     font-weight: 700 !important;
     text-align: left !important; /* alinhado à esquerda */
     text-transform: capitalize !important; /* primeira letra de cada palavra em maiúsculo */
     margin-bottom: 0 !important;
-    padding-left: 50px !important; /* alinhado com o conteúdo do swiffy-slider */
+    padding-left: 0 !important; /* Remover padding para alinhar com outros elementos (banner, carrossel) */
+    padding-right: 0.5rem !important;
     position: relative !important;
-    font-size: 1rem !important;
+    font-size: 17px !important; 
     line-height: 1.3 !important;
+    justify-content: flex-start !important; /* alinhar conteúdo flex à esquerda */
+    align-self: flex-start !important;
+    width: 100% !important; /* Ocupar toda a largura no mobile */
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+    white-space: normal !important; /* Permitir quebra de linha para não cortar */
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Garantir que o título dentro do container não seja cortado */
+  .carousel-header-container .carousel-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  
+  /* Ocultar carousel-view-more dentro do header-container no mobile (foi movido para abaixo do slider) */
+  .carousel-header-container .carousel-view-more {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Mostrar carousel-view-more abaixo do slider-container no mobile */
+  .carousel-view-more-mobile {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  
+  .carousel-view-more-link {
+    font-size: 0.75rem !important;
+  }
+  
+  .carousel-view-more-link i {
+    font-size: 0.625rem !important;
   }
   
   /* Removido ::after do carousel-title - agora está no container do carrossel */
 }
 
 @media (max-width: 480px) {
+  /* Container pai - alinhar à esquerda no mobile pequeno */
+  .my-4.w-full > .flex.justify-center,
+  .my-4.w-full[class*="carrossel"] > .flex.justify-center {
+    justify-content: flex-start !important;
+  }
+  
+  .my-4.w-full > .flex.justify-center > .items-start,
+  .my-4.w-full[class*="carrossel"] > .flex.justify-center > .items-start {
+    align-items: flex-start !important;
+  }
+  
+  /* Container do header - coluna no mobile pequeno também */
+  .carousel-header-container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
   .carousel-title,
   h2.carousel-title,
   h2[class*="carousel-title"],
@@ -1046,17 +3366,70 @@ button[onclick*="returnInput"]:hover {
   .carrossel3 h2,
   .carrossel4 h2,
   .carrossel5 h2,
-  .recommendations h2 {
+  .recommendations h2,
+  .brands-carousel-wrapper h2.carousel-title,
+  .brands-carousel-wrapper .carousel-title,
+  .brands-carousel-wrapper h2[class*="w-full"][class*="text-xl"][class*="carousel-title"] {
     color: #0e167a !important;
     font-weight: 700 !important;
     text-align: left !important; /* alinhado à esquerda */
     text-transform: capitalize !important; /* primeira letra de cada palavra em maiúsculo */
     margin-bottom: 0 !important;
     padding-bottom: 0.25rem !important; /* reduzido para aproximar o título do carrossel */
-    padding-left: 40px !important; /* alinhado com o conteúdo do swiffy-slider */
+    padding-left: 0 !important; /* Remover padding para alinhar com outros elementos (banner, carrossel) */
+    padding-right: 0.5rem !important;
     position: relative !important;
-    font-size: 0.9rem !important;
+    font-size: 17px !important;
     line-height: 1.3 !important;
+    justify-content: flex-start !important; /* alinhar conteúdo flex à esquerda */
+    align-self: flex-start !important;
+    width: 100% !important; /* Ocupar toda a largura no mobile pequeno */
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+    white-space: normal !important; /* Permitir quebra de linha para não cortar */
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Garantir que o título dentro do container não seja cortado */
+  .carousel-header-container .carousel-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  
+  /* Ocultar carousel-view-more dentro do header-container no mobile pequeno (foi movido para abaixo do slider) */
+  .carousel-header-container .carousel-view-more {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Mostrar carousel-view-more abaixo do slider-container no mobile pequeno */
+  .carousel-view-more-mobile {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  
+  .carousel-view-more-link {
+    font-size: 0.7rem !important;
+  }
+  
+  .carousel-view-more-link i {
+    font-size: 0.6rem !important;
   }
   
   /* Removido ::after do carousel-title - agora está no container do carrossel */
@@ -1097,9 +3470,11 @@ button[onclick*="returnInput"]:hover {
   .recommendations .swiffy-slider {
     overflow: hidden !important;
     position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
-  /* Slider container com scroll horizontal suave */
+  /* Slider container com scroll horizontal suave - mostrar apenas 2 cards */
   .carrossel1 .swiffy-slider .slider-container,
   .carrossel2 .swiffy-slider .slider-container,
   .carrossel3 .swiffy-slider .slider-container,
@@ -1118,6 +3493,8 @@ button[onclick*="returnInput"]:hover {
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important; /* Firefox */
     -ms-overflow-style: none !important; /* IE and Edge */
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .carrossel1 .swiffy-slider .slider-container::-webkit-scrollbar,
@@ -1139,19 +3516,15 @@ button[onclick*="returnInput"]:hover {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
-    height: 372.5px !important;
-    min-height: 372.5px !important;
-    max-height: 372.5px !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    max-height: 430px !important;
     margin: 0 !important;
     flex: 0 0 calc((100% - 0.5rem) / 2) !important;
     scroll-snap-align: start !important;
     scroll-snap-stop: always !important;
   }
   
-  /* Esconder botões de navegação em mobile pequeno */
-  .swiffy-slider .slider-nav {
-    display: none !important;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1162,6 +3535,8 @@ button[onclick*="returnInput"]:hover {
   .carrossel5 .swiffy-slider,
   .recommendations .swiffy-slider {
     overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .carrossel1 .swiffy-slider .slider-container,
@@ -1181,6 +3556,9 @@ button[onclick*="returnInput"]:hover {
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important; /* Firefox */
     -ms-overflow-style: none !important; /* IE and Edge */
+    width: 100% !important;
+    max-width: 100% !important;
+    /* Não aplicar overscroll-behavior no mobile - permite navegação normal */
   }
   
   .carrossel1 .swiffy-slider .slider-container::-webkit-scrollbar,
@@ -1202,9 +3580,9 @@ button[onclick*="returnInput"]:hover {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
-    height: 340px !important;
-    min-height: 340px !important;
-    max-height: 340px !important;
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
     margin: 0 !important;
     flex: 0 0 calc((100% - 0.375rem) / 2) !important;
     scroll-snap-align: start !important;
@@ -1215,9 +3593,9 @@ button[onclick*="returnInput"]:hover {
 /* ===== CARDS DE PRODUTOS MOBILE - TAMANHO FIXO ===== */
 @media (max-width: 768px) {
   .product-card {
-    height: 372.5px !important;
-    min-height: 372.5px !important;
-    max-height: 372.5px !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    max-height: 430px !important;
     width: 167px !important;
     min-width: 167px !important;
     max-width: 167px !important;
@@ -1226,19 +3604,43 @@ button[onclick*="returnInput"]:hover {
     display: flex !important;
     flex-direction: column !important;
     overflow: hidden !important;
+    transition: none !important;
   }
   
   .product-card:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border-color: #e5e7eb !important;
   }
   
   /* Imagem com altura fixa */
-  .product-card__image {
-    height: 140px !important;
-    min-height: 140px !important;
-    max-height: 140px !important;
+  .product-card__image,
+  .product-card .product-card__image,
+  .carrossel1 .product-card__image,
+  .carrossel2 .product-card__image,
+  .carrossel3 .product-card__image,
+  .carrossel4 .product-card__image,
+  .carrossel5 .product-card__image,
+  .recommendations .product-card__image {
+    height: 220px !important; /* Aumentado de 200px para 220px */
+    min-height: 220px !important;
+    max-height: 220px !important;
     flex-shrink: 0 !important;
+  }
+  
+  /* Container interno da imagem - sobrescreve h-full do Tailwind */
+  .product-card__image [spot-container],
+  .product-card__image .flex.justify-center.w-full.h-full.group,
+  .product-card__image .h-full {
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+  }
+  
+  /* Garantir que as imagens dentro respeitem a altura */
+  .product-card__image img {
+    height: 100% !important;
+    max-height: 100% !important;
   }
   
   .product-card__content {
@@ -1250,12 +3652,15 @@ button[onclick*="returnInput"]:hover {
     gap: 2px !important;
   }
   
-  .product-title {
-    font-size: 12px !important;
+  .product-title,
+  .product-title-link .product-title,
+  .product-card__content .product-title,
+  .product-card__content .product-title-link .product-title {
+    font-size: 15px !important; /* Aumentado de 14px para 15px */
     line-height: 1.3 !important;
-    height: 30px !important;
-    min-height: 30px !important;
-    max-height: 30px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
     margin-bottom: 2px !important;
     overflow: hidden !important;
     display: -webkit-box !important;
@@ -1265,6 +3670,15 @@ button[onclick*="returnInput"]:hover {
     flex-shrink: 0 !important;
   }
   
+  /* Garantir que o link não interfira na altura */
+  .product-title-link {
+    display: block !important;
+    height: auto !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    overflow: hidden !important;
+  }
+  
   /* Ajuste para text-gray-900 font-semibold - uniformizar cards */
   .product-card .text-gray-900.font-semibold,
   .product-card .font-semibold.text-gray-900,
@@ -1272,6 +3686,31 @@ button[onclick*="returnInput"]:hover {
   .product-card b.font-semibold {
     font-size: 8px !important;
     line-height: 1.2 !important;
+  }
+  
+  /* ===== PRODUCT SPOT INFO - POSICIONAR MAIS PARA BAIXO NO MOBILE ===== */
+  .product-spot-info,
+  .product-card .product-spot-info {
+    margin: 0 !important;
+    margin-top: 7px !important;
+    padding: 4px !important;
+  }
+  
+  .product-spot-info-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  .product-spot-info-content p {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
   }
   
   .product-description {
@@ -1319,16 +3758,33 @@ button[onclick*="returnInput"]:hover {
   .product-card .text-base.text-gray-500,
   .product-card p.text-base.text-gray-500,
   .product-card [class*="text-base"][class*="text-gray-500"] {
-    font-size: 10px !important;
+    font-size: 11px !important;
     line-height: 1.2 !important;
     margin-bottom: 0.125rem !important;
   }
   
   .product-card .text-2xl.font-bold,
   .product-card p.text-2xl.font-bold,
-  .product-card [class*="text-2xl"][class*="font-bold"] {
-    font-size: 16px !important;
+  .product-card [class*="text-2xl"][class*="font-bold"],
+  .product-card .product-price-with-discount .text-2xl.font-bold,
+  .product-card .product-price-with-discount p.text-2xl.font-bold,
+  .product-card .product-price-with-discount [class*="text-2xl"][class*="font-bold"] {
+    font-size: 21px !important;
     line-height: 1.2 !important;
+  }
+  
+  /* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES (768px) ===== */
+  .product-card__content .text-xl.mb-2,
+  .product-card__content div.text-xl[class*="mb-2"],
+  .product-card__content [class*="text-xl"][class*="mb-2"],
+  .product-card .product-price-with-discount .text-xl.mb-2,
+  .product-card .product-price-with-discount div.text-xl[class*="mb-2"],
+  .product-card .product-price-with-discount [class*="text-xl"][class*="mb-2"] {
+    font-size: 1.125rem !important; /* 18px - aumentado de 1rem (16px) */
+    margin-top: 8px !important; /* Margin-top fixo */
+    margin-bottom: 12px !important; /* Aumentado para ficar mais acima do product-actions-wrapper */
+    order: 999 !important;
+    flex-shrink: 0 !important;
   }
   
   /* ===== REDUZIR ESPAÇO ENTRE PREÇO E PARCELAMENTO ===== */
@@ -1359,7 +3815,7 @@ button[onclick*="returnInput"]:hover {
     color: #fff !important;
     border: none !important;
     padding: 7px 6px !important;
-    border-radius: 5px !important;
+    border-radius: 20px !important;
     font-weight: 600 !important;
     font-size: 9px !important;
     text-transform: uppercase !important;
@@ -1368,6 +3824,37 @@ button[onclick*="returnInput"]:hover {
     transition: all 0.3s ease !important;
     margin-top: auto !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Ocultar texto e mostrar ícone no mobile */
+  .product-button .product-button-text,
+  .product-card .product-button .product-button-text,
+  .product-list-item .product-button .product-button-text {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .product-button .product-button-icon,
+  .product-card .product-button .product-button-icon,
+  .product-list-item .product-button .product-button-icon {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    width: auto !important;
+    height: auto !important;
   }
   
   .product-button:hover {
@@ -1376,13 +3863,21 @@ button[onclick*="returnInput"]:hover {
     box-shadow: 0 5px 14px rgba(14, 22, 122, 0.4) !important;
   }
   
+  /* Remover animação added no mobile */
+  .product-button.added {
+    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 3px 10px rgba(14, 22, 122, 0.3) !important;
+    animation: none !important;
+  }
+  
   .product-button-buy {
     width: 100% !important;
     background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
     color: #fff !important;
     border: none !important;
     padding: 7px 6px !important;
-    border-radius: 5px !important;
+    border-radius: 6px !important;
     font-weight: 600 !important;
     font-size: 9px !important;
     text-transform: uppercase !important;
@@ -1399,6 +3894,52 @@ button[onclick*="returnInput"]:hover {
     box-shadow: 0 5px 14px rgba(59, 130, 246, 0.4) !important;
   }
   
+  .product-button-variant {
+    border-radius: 20px !important;
+    font-size: 10px !important;
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .product-actions-wrapper {
+    margin-bottom: 4px !important;
+  }
+  
+  .product-card .product-card-unavailable-button-mobile,
+  .product-list-item .product-card-unavailable-button-mobile,
+  .product-card-unavailable-button-mobile {
+    width: 100% !important;
+    height: 36px !important;
+    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 7px 6px !important;
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2px !important;
+    box-shadow: 0 3px 10px rgba(14, 22, 122, 0.3) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .product-card .product-card-unavailable-button-mobile:hover,
+  .product-list-item .product-card-unavailable-button-mobile:hover,
+  .product-card-unavailable-button-mobile:hover {
+    background: linear-gradient(135deg, #1a2cb0, #2538d4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 14px rgba(14, 22, 122, 0.4) !important;
+  }
+  
+  .product-card .product-card-unavailable-button-mobile:active,
+  .product-list-item .product-card-unavailable-button-mobile:active,
+  .product-card-unavailable-button-mobile:active {
+    transform: translateY(0) !important;
+  }
+  
   /* Badges - visual consistente com desktop */
   .product-badge {
     top: 6px !important;
@@ -1411,14 +3952,15 @@ button[onclick*="returnInput"]:hover {
   }
   
   .product-badge--discount {
-    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
-    color: #fff !important;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4) !important;
+    background: #ffc107 !important;
+    color: #0e167a !important;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4) !important;
   }
   
   .product-badge--promotion {
-    background: linear-gradient(135deg, #10b981, #059669) !important;
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4) !important;
+    background: #f3f4f6 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1) !important;
+    color: #0e167a !important
   }
   
   .product-badge--promotion:not(:first-child) {
@@ -1437,11 +3979,11 @@ button[onclick*="returnInput"]:hover {
 }
 
 @media (max-width: 480px) {
-  /* CARDS - TAMANHO FIXO PARA TELAS MENORES (150px x 340px) */
+  /* CARDS - TAMANHO FIXO PARA TELAS MENORES (150px x 380px - aumentado de 340px) */
   .product-card {
-    height: 340px !important;
-    min-height: 340px !important;
-    max-height: 340px !important;
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
     width: 150px !important;
     min-width: 150px !important;
     max-width: 150px !important;
@@ -1449,13 +3991,42 @@ button[onclick*="returnInput"]:hover {
     display: flex !important;
     flex-direction: column !important;
     overflow: hidden !important;
+    transition: none !important;
   }
   
-  .product-card__image {
-    height: 120px !important;
-    min-height: 120px !important;
-    max-height: 120px !important;
+  .product-card:hover {
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border-color: #e5e7eb !important;
+  }
+  
+  .product-card__image,
+  .product-card .product-card__image,
+  .carrossel1 .product-card__image,
+  .carrossel2 .product-card__image,
+  .carrossel3 .product-card__image,
+  .carrossel4 .product-card__image,
+  .carrossel5 .product-card__image,
+  .recommendations .product-card__image {
+    height: 170px !important; /* Aumentado de 140px para 170px */
+    min-height: 170px !important;
+    max-height: 170px !important;
     flex-shrink: 0 !important;
+  }
+  
+  /* Container interno da imagem - sobrescreve h-full do Tailwind */
+  .product-card__image [spot-container],
+  .product-card__image .flex.justify-center.w-full.h-full.group,
+  .product-card__image .h-full {
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+  }
+  
+  /* Garantir que as imagens dentro respeitem a altura */
+  .product-card__image img {
+    height: 100% !important;
+    max-height: 100% !important;
   }
   
   .product-card__content {
@@ -1467,11 +4038,14 @@ button[onclick*="returnInput"]:hover {
     gap: 2px !important;
   }
   
-  .product-title {
-    font-size: 11px !important;
-    height: 28px !important;
-    min-height: 28px !important;
-    max-height: 28px !important;
+  .product-title,
+  .product-title-link .product-title,
+  .product-card__content .product-title,
+  .product-card__content .product-title-link .product-title {
+    font-size: 14px !important; /* Aumentado de 13px para 14px */
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
     line-height: 1.3 !important;
     margin-bottom: 2px !important;
     overflow: hidden !important;
@@ -1482,6 +4056,15 @@ button[onclick*="returnInput"]:hover {
     flex-shrink: 0 !important;
   }
   
+  /* Garantir que o link não interfira na altura */
+  .product-title-link {
+    display: block !important;
+    height: auto !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    overflow: hidden !important;
+  }
+  
   /* Ajuste para text-gray-900 font-semibold */
   .product-card .text-gray-900.font-semibold,
   .product-card .font-semibold.text-gray-900,
@@ -1489,6 +4072,31 @@ button[onclick*="returnInput"]:hover {
   .product-card b.font-semibold {
     font-size: 7px !important;
     line-height: 1.2 !important;
+  }
+  
+  /* ===== PRODUCT SPOT INFO - POSICIONAR MAIS PARA BAIXO NO MOBILE ===== */
+  .product-spot-info,
+  .product-card .product-spot-info {
+    margin: 0 !important;
+    margin-top: 7px !important;
+    padding: 4px !important;
+  }
+  
+  .product-spot-info-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  .product-spot-info-content p {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
   }
   
   .product-description {
@@ -1533,16 +4141,33 @@ button[onclick*="returnInput"]:hover {
   .product-card .text-base.text-gray-500,
   .product-card p.text-base.text-gray-500,
   .product-card [class*="text-base"][class*="text-gray-500"] {
-    font-size: 9px !important;
+    font-size: 10px !important;
     line-height: 1.2 !important;
     margin-bottom: 0.125rem !important;
   }
   
   .product-card .text-2xl.font-bold,
   .product-card p.text-2xl.font-bold,
-  .product-card [class*="text-2xl"][class*="font-bold"] {
-    font-size: 14px !important;
+  .product-card [class*="text-2xl"][class*="font-bold"],
+  .product-card .product-price-with-discount .text-2xl.font-bold,
+  .product-card .product-price-with-discount p.text-2xl.font-bold,
+  .product-card .product-price-with-discount [class*="text-2xl"][class*="font-bold"] {
+    font-size: 19px !important;
     line-height: 1.2 !important;
+  }
+  
+  /* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES (480px) ===== */
+  .product-card__content .text-xl.mb-2,
+  .product-card__content div.text-xl[class*="mb-2"],
+  .product-card__content [class*="text-xl"][class*="mb-2"],
+  .product-card .product-price-with-discount .text-xl.mb-2,
+  .product-card .product-price-with-discount div.text-xl[class*="mb-2"],
+  .product-card .product-price-with-discount [class*="text-xl"][class*="mb-2"] {
+    font-size: 1rem !important; /* 16px - aumentado de 0.875rem (14px) */
+    margin-top: 6px !important; /* Margin-top fixo */
+    margin-bottom: 10px !important; /* Aumentado para ficar mais acima do product-actions-wrapper */
+    order: 999 !important;
+    flex-shrink: 0 !important;
   }
   
   /* ===== REDUZIR ESPAÇO ENTRE PREÇO E PARCELAMENTO (480px) ===== */
@@ -1569,19 +4194,105 @@ button[onclick*="returnInput"]:hover {
   .product-button {
     padding: 6px 5px !important;
     font-size: 8px !important;
-    border-radius: 4px !important;
+    border-radius: 20px !important;
     box-shadow: 0 2px 8px rgba(14, 22, 122, 0.25) !important;
     margin-top: auto !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Ocultar texto e mostrar ícone no mobile 480px */
+  .product-button .product-button-text,
+  .product-card .product-button .product-button-text,
+  .product-list-item .product-button .product-button-text {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .product-button .product-button-icon,
+  .product-card .product-button .product-button-icon,
+  .product-list-item .product-button .product-button-icon {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    width: auto !important;
+    height: auto !important;
   }
   
   .product-button-buy {
     padding: 6px 5px !important;
     font-size: 8px !important;
-    border-radius: 4px !important;
+    border-radius: 6px !important;
     margin-top: 3px !important;
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25) !important;
     flex-shrink: 0 !important;
+  }
+  
+  .product-button-variant {
+    border-radius: 20px !important;
+    font-size: 9px !important;
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .product-actions-wrapper {
+    margin-bottom: 4px !important;
+  }
+  
+  /* Remover animação added no mobile 480px */
+  .product-button.added {
+    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.25) !important;
+    animation: none !important;
+  }
+  
+  .product-card .product-card-unavailable-button-mobile,
+  .product-list-item .product-card-unavailable-button-mobile,
+  .product-card-unavailable-button-mobile {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 36px !important;
+    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 6px 5px !important;
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+    font-size: 9px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2px !important;
+    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.25) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .product-card .product-card-unavailable-button-mobile:hover,
+  .product-list-item .product-card-unavailable-button-mobile:hover,
+  .product-card-unavailable-button-mobile:hover {
+    background: linear-gradient(135deg, #1a2cb0, #2538d4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 14px rgba(14, 22, 122, 0.4) !important;
+  }
+  
+  .product-card .product-card-unavailable-button-mobile:active,
+  .product-list-item .product-card-unavailable-button-mobile:active,
+  .product-card-unavailable-button-mobile:active {
+    transform: translateY(0) !important;
   }
   
   /* Badges menores */
@@ -1629,7 +4340,7 @@ button[onclick*="returnInput"]:hover {
     margin-bottom: 15px !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     gap: 0.5rem !important;
   }
   
@@ -1666,6 +4377,7 @@ button[onclick*="returnInput"]:hover {
   
   .footer-column__list li {
     margin-bottom: 8px !important;
+    text-align: left !important;
   }
   
   .footer-link {
@@ -1731,7 +4443,7 @@ button[onclick*="returnInput"]:hover {
     font-size: 15px !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     gap: 0.5rem !important;
   }
   
@@ -1789,8 +4501,23 @@ button[onclick*="returnInput"]:hover {
     padding: 10px 0 !important;
   }
   
+  /* Layout do header-area__content: flex-row - logo e search-bar lado a lado */
   .header-area__content {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
     padding: 0 0.75rem !important;
+  }
+  
+  /* Logo ao lado da search-bar */
+  .header-logo {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+    flex-shrink: 0 !important;
+    order: 1 !important;
   }
   
   .logo-image {
@@ -1799,12 +4526,14 @@ button[onclick*="returnInput"]:hover {
     max-width: 140px !important;
   }
   
-  /* Barra de busca mobile */
+  /* Barra de busca mobile - ao lado da logo */
   .search-bar {
-    order: 3 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 8px 0 0 0 !important;
+    order: 2 !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    flex: 1 !important;
+    min-width: 0 !important;
   }
   
   .search-form__wrapper {
@@ -1823,15 +4552,14 @@ button[onclick*="returnInput"]:hover {
     right: 4px !important;
   }
   
-  /* Top banner mobile */
-  .top-banner {
-    padding: 6px 0 !important;
+  /* Ocultar header-actions (wishlist, my-account, shopping-cart) */
+  .header-actions {
+    display: none !important;
   }
   
-  .top-banner__content {
-    font-size: 11px !important;
-    gap: 4px !important;
-    padding: 0 0.5rem !important;
+  /* Ocultar mobile-menu-toggle */
+  .mobile-menu-toggle {
+    display: none !important;
   }
 }
 
@@ -1863,8 +4591,8 @@ button[onclick*="returnInput"]:hover {
   }
   
   .navbar-main a {
-    font-size: 12px !important;
-    padding: 6px 10px !important;
+    font-size: 13px !important;
+    padding: 12px 10px !important;
   }
 }
 
@@ -1884,9 +4612,9 @@ button[onclick*="returnInput"]:hover {
   }
   
   .product-list-item .product-card {
-    height: 372.5px !important;
-    min-height: 372.5px !important;
-    max-height: 372.5px !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    max-height: 430px !important;
     width: 100% !important;
   }
 }
@@ -1905,9 +4633,9 @@ button[onclick*="returnInput"]:hover {
   }
   
   .product-list-item .product-card {
-    height: 340px !important;
-    min-height: 340px !important;
-    max-height: 340px !important;
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
     width: 100% !important;
   }
 }
@@ -1937,3 +4665,758 @@ button[onclick*="returnInput"]:hover {
   }
 }
 
+/* ===== CONTENT COMPONENT STYLES ===== */
+.wake-content-wrapper {
+  background: transparent !important;
+}
+
+.wake-content-container {
+  border: none !important;
+  box-shadow: none !important;
+  background: #F5F5F5 !important;
+}
+
+.wake-content-title {
+  position: relative !important;
+  color: #0e167a !important;
+  border-bottom: none !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.75rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.wake-content-title span {
+  color: #0e167a !important;
+}
+
+.wake-content-body {
+  color: #374151 !important;
+  line-height: 1.75 !important;
+  font-size: 1rem !important;
+}
+
+@media (min-width: 1024px) {
+  .wake-content-body {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* Garantir que classes Tailwind não sobrescrevam elementos de texto */
+.wake-content-body p.text-gray-700,
+.wake-content-body div.text-gray-700,
+.wake-content-body span.text-gray-700 {
+  color: #374151 !important;
+}
+
+.wake-content-body p.text-base,
+.wake-content-body div.text-base,
+.wake-content-body span.text-base {
+  font-size: 1rem !important;
+}
+
+.wake-content-body p.text-lg,
+.wake-content-body div.text-lg,
+.wake-content-body span.text-lg {
+  font-size: 1.125rem !important;
+}
+
+.wake-content-body p {
+  margin-bottom: 1rem !important;
+  color: #374151 !important;
+}
+
+.wake-content-body p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.wake-content-body h1,
+.wake-content-body h2,
+.wake-content-body h3,
+.wake-content-body h4,
+.wake-content-body h5,
+.wake-content-body h6 {
+  color: #0e167a !important;
+  font-weight: 700 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Garantir que classes Tailwind de texto não sobrescrevam */
+.wake-content-body h1.text-gray-700,
+.wake-content-body h2.text-gray-700,
+.wake-content-body h3.text-gray-700,
+.wake-content-body h4.text-gray-700,
+.wake-content-body h5.text-gray-700,
+.wake-content-body h6.text-gray-700 {
+  color: #0e167a !important;
+}
+
+.wake-content-body h1 {
+  font-size: 1.5rem !important;
+}
+
+.wake-content-body h2 {
+  font-size: 1.25rem !important;
+}
+
+.wake-content-body h3 {
+  font-size: 1.125rem !important;
+}
+
+.wake-content-body ul,
+.wake-content-body ol {
+  margin-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+  color: #374151 !important;
+}
+
+/* Garantir que classes Tailwind não sobrescrevam listas */
+.wake-content-body ul.text-gray-700,
+.wake-content-body ol.text-gray-700 {
+  color: #374151 !important;
+}
+
+.wake-content-body li {
+  margin-bottom: 0.5rem !important;
+  color: #374151 !important;
+}
+
+.wake-content-body strong,
+.wake-content-body b {
+  color: #1e1e1e !important;
+  font-weight: 600 !important;
+}
+
+.wake-content-body a {
+  color: #0e167a !important;
+  text-decoration: underline !important;
+  transition: color 0.2s ease !important;
+}
+
+.wake-content-body a:hover {
+  color: #3b4fd4 !important;
+}
+
+.wake-content-body img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 8px !important;
+  margin: 1rem 0 !important;
+}
+
+.wake-content-body table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1rem 0 !important;
+}
+
+.wake-content-body table th,
+.wake-content-body table td {
+  padding: 0.75rem !important;
+  border: 1px solid #e5e7eb !important;
+  text-align: left !important;
+}
+
+.wake-content-body table th {
+  background-color: #f9fafb !important;
+  font-weight: 600 !important;
+  color: #1e1e1e !important;
+}
+
+@media (max-width: 1024px) {
+  .wake-content-container {
+    padding: 1.5rem !important;
+  }
+  
+  .wake-content-title {
+    font-size: 1.25rem !important;
+  }
+  
+  .wake-content-body {
+    font-size: 0.9375rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .wake-content-container {
+    padding: 1.25rem !important;
+    border-radius: 1rem !important;
+  }
+  
+  .wake-content-title {
+    font-size: 1.125rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .wake-content-body {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* ===== PAGINATION NAVIGATION STYLES ===== */
+nav[aria-label="Page navigation"] {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+nav[aria-label="Page navigation"] ul {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+/* Estilos dos itens de página */
+.page-item {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 12px !important;
+  background-color: #ffffff !important;
+  transition: all 0.2s ease !important;
+  overflow: hidden !important;
+}
+
+.page-item a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.625rem 1rem !important;
+  color: #333333 !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  min-width: 40px !important;
+  height: 40px !important;
+}
+
+.page-item:hover:not(.disabled) {
+  border-color: #0e167a !important;
+  box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.1) !important;
+}
+
+.page-item:hover:not(.disabled) a {
+  color: #0e167a !important;
+}
+
+.page-item a img {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  transition: filter 0.2s ease !important;
+}
+
+/* Página ativa - precisa ser detectada via JavaScript ou adicionar classe */
+.page-item.active,
+.page-item[id*="pagination_"][class*="active"] {
+  background-color: #0e167a !important;
+  border-color: #0e167a !important;
+}
+
+.page-item.active a,
+.page-item[id*="pagination_"][class*="active"] a {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Item desabilitado (espaços com "...") */
+.page-item.disabled {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+.page-item.disabled a {
+  color: #9ca3af !important;
+  cursor: default !important;
+}
+
+.page-item.disabled:hover {
+  border-color: #e5e7eb !important;
+  box-shadow: none !important;
+}
+
+/* Botões "Anterior" e "Próxima" */
+.page-item[id*="pagination_prev"] a,
+.page-item[id*="pagination_next"] a {
+  min-width: auto !important;
+  padding: 0.625rem 1rem !important;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  nav[aria-label="Page navigation"] ul {
+    gap: 0.375rem !important;
+  }
+  
+  .page-item a {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.813rem !important;
+    min-width: 36px !important;
+    height: 36px !important;
+  }
+  
+  .page-item[id*="pagination_prev"] a,
+  .page-item[id*="pagination_next"] a {
+    padding: 0.5rem 0.875rem !important;
+    font-size: 0.813rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  nav[aria-label="Page navigation"] ul {
+    gap: 0.25rem !important;
+  }
+  
+  .page-item a {
+    padding: 0.5rem 0.625rem !important;
+    font-size: 0.75rem !important;
+    min-width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .page-item[id*="pagination_prev"] a,
+  .page-item[id*="pagination_next"] a {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ===== CARROSSEL DE MARCAS ===== */
+
+/* Desktop: 5 marcas visíveis */
+@media (min-width: 1024px) {
+  /* Ajustar padding do swiffy-slider para brands-carousel - mesmo dos outros carrosséis */
+  .brands-carousel.swiffy-slider {
+    padding: 1rem 70px 2rem 70px !important; /* Mesmo padding dos carrosséis de produtos */
+  }
+  
+  /* Sobrescrever variáveis do swiffy-slider para 5 itens */
+  .brands-carousel.swiffy-slider.slider-item-show5,
+  div.brands-carousel.swiffy-slider.slider-item-show5 {
+    --swiffy-slider-item-count: 5 !important;
+    --swiffy-slider-item-gap: 12px !important;
+  }
+  
+  /* Sobrescrever completamente as regras do swiffy-slider base */
+  .brands-carousel.swiffy-slider.slider-item-show5 .slider-container,
+  div.brands-carousel.swiffy-slider.slider-item-show5 .slider-container {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 48px) / 5) !important; /* 5 logos com 4 gaps de 12px */
+    grid-gap: 12px !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-snap-type: x mandatory !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 8px 0 !important;
+  }
+  
+  /* Esconder scrollbar */
+  .brands-carousel.swiffy-slider .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  /* Sobrescrever regras do swiffy-slider base para os itens */
+  .brands-carousel.swiffy-slider.slider-item-show5 .slider-container > *,
+  div.brands-carousel.swiffy-slider.slider-item-show5 .slider-container > *,
+  .brands-carousel.slider-item-show5 .slider-container > .brand-item,
+  .brands-carousel.swiffy-slider.slider-item-show5 .slider-container > .brand-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+    --swiffy-slider-item-count: 5 !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+  
+  .brands-carousel .brand-item,
+  .brands-carousel.swiffy-slider .slider-container > .brand-item,
+  .brands-carousel.slider-item-show5 .slider-container > .brand-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 140px !important;
+    min-height: 140px !important;
+    padding: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .brands-carousel .brand-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px) !important;
+  }
+  
+  .brands-carousel .brand-logo {
+    width: 100% !important;
+    max-width: 180px !important;
+    height: auto !important;
+    max-height: 100px !important;
+    object-fit: contain !important;
+  }
+}
+
+/* Tablet: ajustar para 4 marcas */
+@media (min-width: 769px) and (max-width: 1023px) {
+  /* Ajustar padding do swiffy-slider para brands-carousel */
+  .brands-carousel.swiffy-slider {
+    padding: 1rem 55px 2rem 55px !important;
+  }
+  
+  /* Sobrescrever completamente as regras do swiffy-slider base */
+  .brands-carousel.swiffy-slider.slider-item-show5 .slider-container,
+  div.brands-carousel.swiffy-slider.slider-item-show5 .slider-container {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 36px) / 4) !important; /* 4 logos com 3 gaps de 12px */
+    grid-gap: 12px !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    scroll-snap-type: x mandatory !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 8px 0 !important;
+  }
+  
+  .brands-carousel.swiffy-slider.slider-item-show5 .slider-container > *,
+  div.brands-carousel.swiffy-slider.slider-item-show5 .slider-container > *,
+  .brands-carousel.slider-item-show5 .slider-container > .brand-item,
+  .brands-carousel.swiffy-slider.slider-item-show5 .slider-container > .brand-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+    box-sizing: border-box !important;
+    scroll-snap-align: start !important;
+  }
+  
+  .brands-carousel .brand-item {
+    height: 120px !important;
+    min-height: 120px !important;
+    padding: 0.875rem !important;
+    background: #fff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+  }
+  
+  .brands-carousel .brand-logo {
+    width: 100% !important;
+    max-width: 160px !important;
+    max-height: 80px !important;
+  }
+}
+
+/* Mobile: 2 marcas visíveis */
+@media (max-width: 768px) {
+  .brands-carousel.swiffy-slider {
+    padding: 0.5rem 0 1rem 0 !important; /* Mesmo padding dos carrosséis de produtos no mobile */
+  }
+  
+  .brands-carousel.slider-item-show2-sm .slider-container,
+  .brands-carousel.swiffy-slider .slider-container {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 12px) / 2) !important; /* 2 logos com 1 gap de 12px */
+    grid-gap: 12px !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 8px 0 !important;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  /* Sobrescrever regras do swiffy-slider base para mobile */
+  .brands-carousel.slider-item-show2-sm .slider-container > *,
+  .brands-carousel.swiffy-slider .slider-container > .brand-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+    scroll-snap-align: start !important;
+  }
+  
+  .brands-carousel .brand-item {
+    height: 120px !important;
+    min-height: 120px !important;
+    padding: 1rem !important;
+    background: #fff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+  }
+  
+  .brands-carousel .brand-logo {
+    width: 100% !important;
+    max-width: 140px !important;
+    height: auto !important;
+    max-height: 80px !important;
+    object-fit: contain !important;
+  }
+}
+
+/* Mobile pequeno: ajustar ainda mais */
+@media (max-width: 480px) {
+  .brands-carousel .brand-item {
+    height: 100px !important;
+    min-height: 100px !important;
+    padding: 0.75rem !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+  }
+  
+  .brands-carousel .brand-logo {
+    width: 100% !important;
+    max-width: 120px !important;
+    max-height: 70px !important;
+  }
+}
+
+/* Slider-nav do carrossel de marcas - posicionados igual ao banners_centro_desktop (extremidades) */
+@media (min-width: 1024px) {
+  .brands-carousel.swiffy-slider {
+    position: relative !important;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: rgba(0, 0, 0, 0.4) !important; /* Fundo escurecido como overlay */
+    border: 2px solid white !important; /* Bordas brancas */
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important; /* Ícones chevron brancos */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
+  }
+  
+  /* Botão anterior - dentro do carrossel, à esquerda */
+  .brands-carousel.swiffy-slider .slider-nav:not(.slider-nav-next) {
+    left: 15px !important;
+    right: auto !important;
+  }
+  
+  /* Botão próximo - dentro do carrossel, à direita */
+  .brands-carousel.swiffy-slider .slider-nav.slider-nav-next {
+    right: 15px !important;
+    left: auto !important;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav:hover {
+    background-color: #0e167a !important; /* Fundo azul no hover */
+    border-color: white !important; /* Mantém bordas brancas */
+    transform: translateY(-50%) scale(1.1) !important;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav i {
+    color: white !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Tablet e Mobile: usar as mesmas regras gerais dos carrosséis com banner lateral */
+@media (max-width: 1024px) {
+  .brands-carousel.swiffy-slider {
+    padding: 0 55px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav:not(.slider-nav-next) {
+    left: -50px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav.slider-nav-next {
+    right: -50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brands-carousel.swiffy-slider {
+    padding: 0 50px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav {
+    bottom: -15px !important; /* Afastar os botões do slider-container */
+    width: 35px;
+    height: 35px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav:not(.slider-nav-next) {
+    left: -50px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav.slider-nav-next {
+    right: -50px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav i {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brands-carousel.swiffy-slider {
+    padding: 0 40px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav:not(.slider-nav-next) {
+    left: -55px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav.slider-nav-next {
+    right: -55px;
+  }
+  
+  .brands-carousel.swiffy-slider .slider-nav i {
+    font-size: 12px;
+  }
+}
+
+/* ===== BOTÃO FLUTUANTE DO WHATSAPP - GARANTIR VISIBILIDADE ===== */
+a.whatsapp-float-button,
+.whatsapp-float-button,
+a[class*="whatsapp-float-button"] {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  background-color: #25D366 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4) !important;
+  z-index: 99999 !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  font-size: 32px !important;
+  animation: pulse-whatsapp 2s infinite !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+a.whatsapp-float-button:hover,
+.whatsapp-float-button:hover,
+a[class*="whatsapp-float-button"]:hover {
+  background-color: #20BA5A !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6) !important;
+}
+
+a.whatsapp-float-button:active,
+.whatsapp-float-button:active,
+a[class*="whatsapp-float-button"]:active {
+  transform: scale(0.95) !important;
+}
+
+a.whatsapp-float-button i,
+.whatsapp-float-button i,
+a[class*="whatsapp-float-button"] i {
+  color: #ffffff !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@keyframes pulse-whatsapp {
+  0% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  a.whatsapp-float-button,
+  .whatsapp-float-button,
+  a[class*="whatsapp-float-button"] {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+    bottom: 80px !important;
+    right: 16px !important;
+    font-size: 28px !important;
+  }
+  
+  a.whatsapp-float-button i,
+  .whatsapp-float-button i,
+  a[class*="whatsapp-float-button"] i {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  a.whatsapp-float-button,
+  .whatsapp-float-button,
+  a[class*="whatsapp-float-button"] {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    max-width: 52px !important;
+    max-height: 52px !important;
+    bottom: 75px !important;
+    right: 14px !important;
+    font-size: 26px !important;
+  }
+  
+  a.whatsapp-float-button i,
+  .whatsapp-float-button i,
+  a[class*="whatsapp-float-button"] i {
+    font-size: 26px !important;
+  }
+}

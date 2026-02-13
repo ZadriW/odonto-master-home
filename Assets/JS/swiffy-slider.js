@@ -8,16 +8,38 @@ const swiffyslider = function() {
       },
 
       initSlider(sliderElement) {
+          // Limpar autoplay anterior se existir (para evitar múltiplos timers)
+          if (sliderElement._swiffyAutoplayClear) {
+              sliderElement._swiffyAutoplayClear();
+              sliderElement._swiffyAutoplayTimer = null;
+              sliderElement._swiffyAutoplayClear = null;
+              sliderElement._swiffyAutoplayPause = null;
+          }
+          
+          // Função para pausar autoplay temporariamente quando usuário interage manualmente
+          const pauseAutoplayTemporarily = () => {
+            if (sliderElement._swiffyAutoplayPause) {
+              sliderElement._swiffyAutoplayPause();
+            }
+          };
+          
           for (let navElement of sliderElement.querySelectorAll(".slider-nav")) {
               let next = navElement.classList.contains("slider-nav-next");
-              navElement.addEventListener("click", () => this.slide(sliderElement, next), { passive: true });
+              navElement.addEventListener("click", () => {
+                pauseAutoplayTemporarily();
+                this.slide(sliderElement, next);
+              }, { passive: true });
           }
           for (let indicatorElement of sliderElement.querySelectorAll(".slider-indicators")) {
-              indicatorElement.addEventListener("click", () => this.slideToByIndicator(), { passive: true });
+              indicatorElement.addEventListener("click", () => {
+                pauseAutoplayTemporarily();
+                this.slideToByIndicator();
+              }, { passive: true });
               this.onSlideEnd(sliderElement, () => this.handleIndicators(sliderElement), 60);
           }
           if (sliderElement.classList.contains("slider-nav-autoplay")) {
-              const timeout = sliderElement.getAttribute("data-slider-nav-autoplay-interval") ? sliderElement.getAttribute("data-slider-nav-autoplay-interval") : 2500;
+              const timeoutAttr = sliderElement.getAttribute("data-slider-nav-autoplay-interval");
+              const timeout = timeoutAttr ? parseInt(timeoutAttr, 10) : 2500;
               this.autoPlay(sliderElement, timeout, sliderElement.classList.contains("slider-nav-autopause"));
           }
           if (["slider-nav-autohide", "slider-nav-animation"].some(className => sliderElement.classList.contains(className))) {
@@ -49,10 +71,15 @@ const swiffyslider = function() {
           const slides = container.children;
           const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
           const scrollStep = slides[0].offsetWidth + gapWidth;
+          
+          // Verificar se é o banners_centro_desktop (banners que ocupam 100% da largura)
+          const isBannersCentroDesktop = sliderElement.closest("#banners_centro_desktop") !== null;
+          
           let scrollLeftPosition = next ?
               container.scrollLeft + scrollStep :
               container.scrollLeft - scrollStep;
-          if (fullpage) {
+          if (fullpage || isBannersCentroDesktop) {
+              // Para banners que ocupam 100% da largura, usar container.offsetWidth para avançar exatamente 1 banner
               scrollLeftPosition = next ?
                   container.scrollLeft + container.offsetWidth :
                   container.scrollLeft - container.offsetWidth;
@@ -101,24 +128,129 @@ const swiffyslider = function() {
       autoPlay(sliderElement, timeout, autopause) {
         timeout = timeout < 1000 ? 1000 : timeout;
         const slider = this;
-        let autoplayTimer = setInterval(() => slider.slide(sliderElement), timeout);
+        const container = sliderElement.querySelector(".slider-container");
+        
+        // Armazenar o timer no elemento do slider para poder limpar corretamente
+        let autoplayTimer = null;
+        let isPaused = false;
+        let isScrolling = false;
+        
+        // Função para limpar o timer atual
+        const clearAutoplayTimer = () => {
+          if (autoplayTimer !== null) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        };
+        
+        // Função para pausar temporariamente o autoplay (quando usuário interage)
+        let manualInteractionTimer = null;
+        const pauseTemporarily = () => {
+          clearAutoplayTimer();
+          if (manualInteractionTimer) clearTimeout(manualInteractionTimer);
+          // Retomar após um tempo maior que o intervalo normal
+          manualInteractionTimer = setTimeout(() => {
+            startAutoplay();
+          }, timeout + 500);
+        };
+        
+        // Função para iniciar o autoplay
+        const startAutoplay = () => {
+          clearAutoplayTimer();
+          if (manualInteractionTimer) {
+            clearTimeout(manualInteractionTimer);
+            manualInteractionTimer = null;
+          }
+          if (!isPaused && !isScrolling) {
+            autoplayTimer = setInterval(() => {
+              // Verificar se não está em animação antes de avançar
+              if (!isScrolling && !isPaused) {
+                // Marcar como em animação antes de iniciar o slide
+                isScrolling = true;
+                slider.slide(sliderElement, true);
+                // O flag isScrolling será resetado pelo listener de scroll
+              }
+            }, timeout);
+          }
+        };
+        
+        // Detectar quando o scroll termina para resetar o flag de animação
+        // E também pausar autoplay quando usuário faz scroll manual
+        let lastScrollLeft = container.scrollLeft;
+        let scrollEndTimer = null;
+        let isManualScroll = false;
+        let manualScrollTimeout = null;
+        
+        // Detectar início de scroll manual (touch/mouse)
+        container.addEventListener("touchstart", () => {
+          isManualScroll = true;
+          pauseTemporarily();
+        }, { passive: true });
+        
+        container.addEventListener("mousedown", () => {
+          isManualScroll = true;
+          pauseTemporarily();
+        }, { passive: true });
+        
+        container.addEventListener("scroll", () => {
+          const currentScrollLeft = container.scrollLeft;
+          const isActuallyScrolling = Math.abs(currentScrollLeft - lastScrollLeft) > 1;
+          
+          if (isActuallyScrolling) {
+            isScrolling = true;
+            if (scrollEndTimer) clearTimeout(scrollEndTimer);
+            // Resetar flag quando o scroll parar (sem movimento por 200ms)
+            scrollEndTimer = setTimeout(() => {
+              isScrolling = false;
+              lastScrollLeft = container.scrollLeft;
+              // Se foi scroll manual, resetar flag após um tempo maior
+              if (isManualScroll) {
+                if (manualScrollTimeout) clearTimeout(manualScrollTimeout);
+                manualScrollTimeout = setTimeout(() => {
+                  isManualScroll = false;
+                }, 1000);
+              }
+            }, 200);
+          }
+          
+          lastScrollLeft = currentScrollLeft;
+        }, { passive: true });
+        
+        // Iniciar autoplay
+        startAutoplay();
+        
         if (autopause) {
-          sliderElement.addEventListener("mouseout", () => {
-              autoplayTimer = setInterval(() => slider.slide(sliderElement), timeout);
-          }, { passive: true });
-
-          sliderElement.addEventListener("mouseover", () => {
-              window.clearTimeout(autoplayTimer);
-          }, { passive: true });
-
-          sliderElement.addEventListener("touchend", () => {
-              autoplayTimer = setInterval(() => slider.slide(sliderElement), timeout);
+          // Pausar no hover/touch
+          sliderElement.addEventListener("mouseenter", () => {
+            isPaused = true;
+            clearAutoplayTimer();
           }, { passive: true });
 
           sliderElement.addEventListener("touchstart", () => {
-              window.clearTimeout(autoplayTimer);
+            isPaused = true;
+            clearAutoplayTimer();
+          }, { passive: true });
+
+          // Retomar quando sair do hover/touch
+          sliderElement.addEventListener("mouseleave", () => {
+            isPaused = false;
+            startAutoplay();
+          }, { passive: true });
+
+          sliderElement.addEventListener("touchend", () => {
+            // Pequeno delay antes de retomar para evitar conflitos
+            setTimeout(() => {
+              isPaused = false;
+              startAutoplay();
+            }, 300);
           }, { passive: true });
         }
+        
+        // Armazenar referências no elemento para limpeza e controle posterior
+        sliderElement._swiffyAutoplayTimer = autoplayTimer;
+        sliderElement._swiffyAutoplayClear = clearAutoplayTimer;
+        sliderElement._swiffyAutoplayPause = pauseTemporarily;
+        
         return autoplayTimer;
       },
 

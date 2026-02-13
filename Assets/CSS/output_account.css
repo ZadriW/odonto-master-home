@@ -158,6 +158,30 @@
   }
 }
 
+/* Mobile - garantir que regras antigas sejam sobrescritas */
+@media (max-width: 767px) {
+  .wake-account .card {
+    flex-direction: column !important;
+  }
+  
+  .wake-account .card > :not([hidden]) ~ :not([hidden]) {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* Ocultar card de newsletter (último card) */
+.wake-account form > .card:last-of-type {
+  display: none !important;
+}
+
+/* Desktop - garantir que o último card seja ocultado */
+@media (min-width: 768px) {
+  .wake-account form > .card:last-of-type {
+    display: none !important;
+  }
+}
+
 .wake-account form {
   box-sizing: content-box;
   display: flex;
@@ -172,6 +196,14 @@
 @media (min-width: 768px) {
   .wake-account form .group-form {
     width: 50%;
+  }
+}
+
+/* Mobile - garantir que regras antigas sejam sobrescritas */
+@media (max-width: 767px) {
+  .wake-account form .group-form {
+    width: 100% !important;
+    flex-direction: column !important;
   }
 }
 
@@ -195,22 +227,139 @@
 }
 
 .wake-account form .state-registration div.exemptStateRegistration {
-  margin-top: 2.5rem;
-  margin-left: 1rem;
-  display: flex;
-  height: -moz-min-content;
-  height: min-content;
-  width: -moz-max-content;
-  width: max-content;
-  align-items: center;
-  justify-content: center;
+  margin-top: 1.5rem !important;
+  margin-left: 1rem !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: auto !important;
+  gap: 0.5rem !important;
+}
+
+.wake-account form .state-registration div.exemptStateRegistration input[type="checkbox"] {
+  width: 1rem !important;
+  height: 1rem !important;
+  min-width: 1rem !important;
+  max-width: 1rem !important;
+  flex-shrink: 0 !important;
+  border-radius: 0.25rem !important;
+  border-width: 1px !important;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1)) !important;
+  background-color: #ffffff !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  padding: 0 !important;
+}
+
+.wake-account form .state-registration div.exemptStateRegistration input[type="checkbox"]:focus {
+  outline: 2px solid transparent !important;
+  outline-offset: 2px !important;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
+  --tw-ring-color: rgb(14 22 122) !important;
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+}
+
+.wake-account form .state-registration div.exemptStateRegistration input[type="checkbox"]:checked {
+  background-color: rgb(14 22 122) !important;
+  border-color: rgb(14 22 122) !important;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e") !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 .wake-account form .state-registration div.exemptStateRegistration label {
-  margin-left: 0.5rem;
-  cursor: pointer;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  cursor: pointer !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 500 !important;
   --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1)) !important;
+  transition: color 0.2s ease !important;
+}
+
+.wake-account form .state-registration div.exemptStateRegistration label:hover {
+  color: rgb(14 22 122) !important;
+}
+
+/* Mobile - exemptStateRegistration abaixo do input stateRegistration */
+@media (max-width: 767px) {
+  .wake-account form .state-registration {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  .wake-account form .state-registration div.exemptStateRegistration {
+    margin-top: 1rem !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+  }
+  
+  .wake-account form .state-registration div.exemptStateRegistration input[type="checkbox"] {
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem !important;
+    max-width: 1rem !important;
+    flex-shrink: 0 !important;
+    border-radius: 0.25rem !important;
+    border-width: 1px !important;
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity, 1)) !important;
+    background-color: #ffffff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    padding: 0 !important;
+  }
+  
+  .wake-account form .state-registration div.exemptStateRegistration input[type="checkbox"]:focus {
+    outline: 2px solid transparent !important;
+    outline-offset: 2px !important;
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
+    --tw-ring-color: rgb(14 22 122) !important;
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+  }
+  
+  .wake-account form .state-registration div.exemptStateRegistration input[type="checkbox"]:checked {
+    background-color: rgb(14 22 122) !important;
+    border-color: rgb(14 22 122) !important;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e") !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  .wake-account form .state-registration div.exemptStateRegistration label {
+    margin-left: 0 !important;
+    cursor: pointer !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    font-weight: 500 !important;
+    --tw-text-opacity: 1 !important;
+    color: rgb(55 65 81 / var(--tw-text-opacity, 1)) !important;
+    transition: color 0.2s ease !important;
+  }
+  
+  .wake-account form .state-registration div.exemptStateRegistration label:hover {
+    color: rgb(14 22 122) !important;
+  }
 }
 
 .wake-account form label {
@@ -356,9 +505,112 @@
 }
 
 @media (max-width: 767px) {
-  .wake-account .card {
+  /* Garantir que TODOS os cards tenham a mesma configuração do primeiro */
+  .wake-account .card,
+  .wake-account .card:first-child,
+  .wake-account .card:nth-child(1),
+  .wake-account .card:nth-child(2),
+  .wake-account .card:nth-child(3),
+  .wake-account .card:nth-child(n) { 
     padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #f9fafc !important;
+    border-radius: 18px !important;
+    border: 1px solid rgba(14, 22, 122, 0.08) !important;
+    gap: 1.5rem !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
+  
+  /* Garantir que TODOS os group-form tenham a mesma configuração do primeiro */
+  .wake-account form .group-form,
+  .wake-account form .group-form:first-child,
+  .wake-account form .group-form:nth-child(1),
+  .wake-account form .group-form:nth-child(2),
+  .wake-account form .group-form:nth-child(3),
+  .wake-account form .group-form:nth-child(n) {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem 1.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Garantir que todos os elementos dentro de group-form tenham a mesma configuração */
+  .wake-account form .group-form > div,
+  .wake-account form .group-form > div:first-child,
+  .wake-account form .group-form > div:nth-child(1),
+  .wake-account form .group-form > div:nth-child(2),
+  .wake-account form .group-form > div:nth-child(n) {
+    flex: 1 1 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Garantir que todos os labels tenham a mesma configuração */
+  .wake-account form .group-form label,
+  .wake-account form .group-form label:first-child,
+  .wake-account form .group-form > div label,
+  .wake-account form .group-form > div:first-child label {
+    font-size: 0.925rem !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+  }
+  
+  /* Garantir que todos os inputs tenham a mesma configuração */
+  .wake-account form .group-form input,
+  .wake-account form .group-form > div input {
+    height: 46px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(14, 22, 122, 0.18) !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    padding: 0.625rem 0.85rem !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 0.925rem !important;
+  }
+  
+  /* Garantir que todos os selects tenham a mesma configuração E a seta (arrow-down) */
+  .wake-account form .group-form select,
+  .wake-account form .group-form > div select,
+  .wake-account form select {
+    height: 46px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(14, 22, 122, 0.18) !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    padding: 0.625rem 0.85rem !important;
+    padding-right: 2.75rem !important; /* Espaço para a seta */
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 0.925rem !important;
+    /* Propriedades da seta (arrow-down) */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%230e167a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.75rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 1.25em 1.25em !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
 }
 
 .wake-account form {
@@ -373,75 +625,6 @@
   gap: 1rem 1.5rem !important;
 }
 
-/* Remover formulário newsletter */
-.wake-account form .group-form:has(input[id*="newsletter"]),
-.wake-account form .group-form:has(input[name*="newsletter"]),
-.wake-account form .group-form:has(input[id*="news"]),
-.wake-account form .group-form:has(input[name*="news"]),
-.wake-account form .group-form:has(select[id*="newsletter"]),
-.wake-account form .group-form:has(select[name*="newsletter"]),
-.wake-account form .group-form:has(label[for*="newsletter"]),
-.wake-account form .group-form:has(label[for*="news"]) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-/* Alternativa para navegadores que não suportam :has() */
-.wake-account form input[id*="newsletter"],
-.wake-account form input[name*="newsletter"],
-.wake-account form input[id*="news"],
-.wake-account form input[name*="news"],
-.wake-account form select[id*="newsletter"],
-.wake-account form select[name*="newsletter"],
-.wake-account form label[for*="newsletter"],
-.wake-account form label[for*="news"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-/* Esconder o container group-form que contém newsletter - regra mais específica */
-.wake-account form .group-form:has(input[id*="newsletter"]),
-.wake-account form .group-form:has(input[name*="newsletter"]),
-.wake-account form .group-form:has(select[id*="newsletter"]),
-.wake-account form .group-form:has(select[name*="newsletter"]),
-.wake-account form .group-form:has(label[for*="newsletter"]),
-.wake-account form .group-form:has(label[for*="news"]) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-/* Esconder também qualquer div ou elemento que contenha newsletter dentro do form */
-.wake-account form div:has(input[id*="newsletter"]),
-.wake-account form div:has(input[name*="newsletter"]),
-.wake-account form div:has(select[id*="newsletter"]),
-.wake-account form div:has(select[name*="newsletter"]) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
 
 .wake-account form .group-form > div {
   flex: 1 1 260px !important;
@@ -456,7 +639,7 @@
   color: #0f172a !important;
 }
 
-.wake-account form input,
+.wake-account form input:not([type="checkbox"]),
 .wake-account form select {
   height: 46px !important;
   border-radius: 12px !important;
@@ -481,17 +664,32 @@
   print-color-adjust: exact !important;
 }
 
-.wake-account form input:focus,
+.wake-account form input:not([type="checkbox"]):focus,
 .wake-account form select:focus {
   border-color: #0e167a !important;
   box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.18) !important;
   outline: none !important;
 }
 
-.wake-account form input:disabled,
+.wake-account form input:not([type="checkbox"]):disabled,
 .wake-account form select:disabled {
   background: rgba(15, 17, 42, 0.05) !important;
   color: rgba(15, 23, 42, 0.6) !important;
+}
+
+/* Desktop - border-radius e focus iguais ao mobile, exceto checkboxes */
+@media (min-width: 768px) {
+  .wake-account form input:not([type="checkbox"]),
+  .wake-account form select {
+    border-radius: 12px !important;
+  }
+  
+  .wake-account form input:not([type="checkbox"]):focus,
+  .wake-account form select:focus {
+    border-color: #0e167a !important;
+    box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.18) !important;
+    outline: none !important;
+  }
 }
 
 .wake-account .actions {
@@ -672,8 +870,8 @@
 /* Order details section */
 .page-account .wake-account-order-details .details {
   background: #ffffff !important;
-  border: none !important;
-  border-radius: 0 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 1rem !important;
   padding: 1.5rem !important;
   display: flex !important;
   flex-direction: column !important;
@@ -691,8 +889,8 @@
 .page-account .wake-account-order-details .details > div {
   flex: 1 1 220px !important;
   background: #ffffff !important;
-  border: none !important;
-  border-radius: 0 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 1rem !important;
   padding: 1rem 1.25rem !important;
   display: flex !important;
   flex-direction: column !important;
@@ -742,10 +940,9 @@
 .page-account .wake-account-order-details .payments .boleto,
 .page-account .wake-account-order-details .payments .pix {
   background: #ffffff !important;
-  border: 1px solid rgba(14, 22, 122, 0.08) !important;
-  border-radius: 14px !important;
+  border: none !important;
+  border-radius: none !important;
   padding: 1.25rem !important;
-  box-shadow: 0 18px 36px -28px rgba(14, 22, 122, 0.35) !important;
 }
 
 .page-account .wake-account-order-details .payments .boleto a {
@@ -795,6 +992,356 @@
   border-color: #0e167a !important;
   box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.15) !important;
   outline: none !important;
+}
+
+/* Mobile - Meus Pedidos: remover padding para controle total de posicionamento */
+@media (max-width: 767px) {
+  /* Remover padding do container pai para details ocupar todo o espaço */
+  .page-account .wake-account-order-details {
+    padding: 0 !important;
+  }
+  
+  /* Details ocupa 100% sem padding para controle total */
+  .page-account .wake-account-order-details .details {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Payments sem padding para controle total */
+  .page-account .wake-account-order-details .payments {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .page-account .wake-account-order-details .payments .pix {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Centralizar texto de small dentro da div pix */
+  .page-account .wake-account-order-details .payments .pix small {
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  /* Alinhar conteúdo da table dentro de details para a esquerda */
+  .page-account .wake-account-order-details .details table {
+    text-align: left !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  
+  .page-account .wake-account-order-details .details table tr {
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  
+  .page-account .wake-account-order-details .details table tr td {
+    text-align: left !important;
+  }
+  
+  .page-account .wake-account-order-details .details table tr td.align-right {
+    text-align: left !important;
+  }
+  
+  /* Ajustar diagramação do valor total para não quebrar linha */
+  .page-account .wake-account-order-details .details table tr:last-child td {
+    white-space: nowrap !important;
+  }
+  
+  .page-account .wake-account-order-details .details table tr:last-child td b {
+    white-space: nowrap !important;
+    display: inline !important;
+  }
+  
+  /* Adicionar leve padding no tbody para afastar elementos da borda */
+  .page-account .wake-account-order-details .details table tbody {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  /* Diminuir levemente a largura do botão e centralizar */
+  .page-account .wake-account-order-details-button {
+    width: 90% !important;
+    max-width: 90% !important;
+    margin: 0 auto !important;
+    margin-bottom: 0.5rem !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  .page-account .wake-account-order-details-button button {
+    width: 100% !important;
+  }
+  
+  .page-account .wake-account-order-details h4 {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  
+  /* Ajustar products e wake-account-product para respeitar limites do container */
+  .page-account .wake-account-order-details .products {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Reorganizar layout: imagem centralizada acima de attributes e summary */
+  .page-account .wake-account-order-details .wake-account-product {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+  
+  /* Centralizar imagem no topo */
+  .page-account .wake-account-order-details .wake-account-product img {
+    max-width: 5rem !important;
+    width: 5rem !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: block !important;
+  }
+  
+  /* Div abaixo da imagem ocupando 100% da largura */
+  .page-account .wake-account-order-details .wake-account-product > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  /* Ajustar h3 para não ter min-width e quebrar palavra se necessário */
+  .page-account .wake-account-order-details .wake-account-product h3 {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+  
+  /* Ajustar attributes para respeitar limites */
+  .page-account .wake-account-order-details .wake-account-product .attributes {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin-right: 0 !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Ajustar summary para respeitar limites e não causar overflow */
+  .page-account .wake-account-order-details .wake-account-product .summary {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    padding: 0 1rem !important;
+  }
+  
+  .page-account .wake-account-order-details .wake-account-product .summary span {
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    flex: 0 0 auto !important;
+  }
+  
+  .page-account .wake-account-order-details .wake-account-product .summary span b {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Detalhes do Pedido - Aplicar mesmo visual de Meus Pedidos */
+  /* Ajustar products e wake-account-product para respeitar limites do container */
+  .page-account .wake-account-full-order-details .products,
+  .page-account .wake-account-full-order-details details .products {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Reorganizar layout: imagem centralizada acima de attributes e summary */
+  .page-account .wake-account-full-order-details .wake-account-product {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+  
+  /* Centralizar imagem no topo */
+  .page-account .wake-account-full-order-details .wake-account-product img {
+    max-width: 5rem !important;
+    width: 5rem !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: block !important;
+  }
+  
+  /* Div abaixo da imagem ocupando 100% da largura */
+  .page-account .wake-account-full-order-details .wake-account-product > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  /* Ajustar h3 para não ter min-width e quebrar palavra se necessário */
+  .page-account .wake-account-full-order-details .wake-account-product h3 {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+  
+  /* Ajustar attributes para respeitar limites */
+  .page-account .wake-account-full-order-details .wake-account-product .attributes {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin-right: 0 !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Ajustar summary para respeitar limites e não causar overflow */
+  .page-account .wake-account-full-order-details .wake-account-product .summary {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    padding: 0 1rem !important;
+  }
+  
+  .page-account .wake-account-full-order-details .wake-account-product .summary span {
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    flex: 0 0 auto !important;
+  }
+  
+  .page-account .wake-account-full-order-details .wake-account-product .summary span b {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Modal de remoção de endereço - ícones brancos */
+  .modal-remove-address-content .actions button img,
+  .wake-address-modal .modal-content .wrapper .wrapper-content .content .actions button img {
+    filter: brightness(0) invert(1) !important;
+  }
+  
+  /* Modal de edição de endereço - input com flex items-center abaixo da label zipcode */
+  .modal-edit-address-content .zipcode,
+  .modal-edit-address-content .cep,
+  .wake-add-address-form .zipcode,
+  .wake-add-address-form .cep {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .modal-edit-address-content .zipcode label,
+  .modal-edit-address-content .cep label,
+  .wake-add-address-form .zipcode label,
+  .wake-add-address-form .cep label {
+    margin-bottom: 0.5rem !important;
+    width: 100% !important;
+    display: block !important;
+  }
+  
+  /* Input com flex items-center abaixo da label */
+  .modal-edit-address-content .zipcode > div.flex.items-center,
+  .modal-edit-address-content .zipcode div[class*="flex"][class*="items-center"],
+  .modal-edit-address-content .cep > div.flex.items-center,
+  .modal-edit-address-content .cep div[class*="flex"][class*="items-center"],
+  .wake-add-address-form .zipcode > div.flex.items-center,
+  .wake-add-address-form .zipcode div[class*="flex"][class*="items-center"],
+  .wake-add-address-form .cep > div.flex.items-center,
+  .wake-add-address-form .cep div[class*="flex"][class*="items-center"] {
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    order: 2 !important;
+  }
+  
+  /* Garantir que label fique acima */
+  .modal-edit-address-content .zipcode label,
+  .modal-edit-address-content .cep label,
+  .wake-add-address-form .zipcode label,
+  .wake-add-address-form .cep label {
+    order: 1 !important;
+  }
+  
+  /* Remover margin-left do input name para mesmo posicionamento dos outros */
+  .modal-edit-address-content input#name,
+  .modal-edit-address-content #name,
+  .modal-edit-address-content .name input#name,
+  .modal-edit-address-content .name #name,
+  .wake-add-address-form input#name,
+  .wake-add-address-form #name,
+  .wake-add-address-form .name input#name,
+  .wake-add-address-form .name #name,
+  .wake-address-modal input#name,
+  .wake-address-modal #name,
+  .wake-address-modal .name input#name,
+  .wake-address-modal .name #name {
+    margin-left: 0 !important;
+  }
+  
+  /* Garantir que o container .name não tenha margin-left nos inputs */
+  .modal-edit-address-content .name input,
+  .wake-add-address-form .name input,
+  .wake-address-modal .name input {
+    margin-left: 0 !important;
+  }
 }
 
 /* Payment section - Detalhes do Pedido - Refined Premium Styling */
@@ -1143,6 +1690,105 @@
   margin-right: 0.5rem !important;
 }
 
+/* Botão de alterar pagamento na página de detalhes do pedido */
+.page-account .wake-account-change-payment-button {
+  min-height: 48px !important;
+  border-radius: 12px !important;
+  padding: 0.85rem 1.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+  background: #0e167a !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 36px -24px rgba(14, 22, 122, 0.7) !important;
+  text-transform: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  margin: 1rem 0 !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.page-account .wake-account-change-payment-button:hover,
+.page-account .wake-account-change-payment-button:focus {
+  background: #0c1369 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 22px 40px -22px rgba(14, 22, 122, 0.78) !important;
+}
+
+.page-account .wake-account-change-payment-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 16px 32px -16px rgba(14, 22, 122, 0.6) !important;
+}
+
+@media (min-width: 768px) {
+  .page-account .wake-account-change-payment-button {
+    width: auto !important;
+    min-width: 200px !important;
+  }
+}
+
+/* Botão de confirmação de alteração de pagamento (orderChangePayment) */
+.page-account button[onclick*="orderChangePayment"],
+.page-account .wake-order-confirmation button[onclick*="orderChangePayment"],
+.page-account .wake-order-confirmation .pay-group button[onclick*="orderChangePayment"],
+.page-account .wake-order-confirmation .pay-group button:not([onclick*="cancel"]):not([onclick*="close"]) {
+  min-height: 48px !important;
+  border-radius: 12px !important;
+  padding: 0.85rem 1.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+  background: #0e167a !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 36px -24px rgba(14, 22, 122, 0.7) !important;
+  text-transform: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  margin: 1rem 0 !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.page-account button[onclick*="orderChangePayment"]:hover,
+.page-account button[onclick*="orderChangePayment"]:focus,
+.page-account .wake-order-confirmation button[onclick*="orderChangePayment"]:hover,
+.page-account .wake-order-confirmation button[onclick*="orderChangePayment"]:focus,
+.page-account .wake-order-confirmation .pay-group button[onclick*="orderChangePayment"]:hover,
+.page-account .wake-order-confirmation .pay-group button[onclick*="orderChangePayment"]:focus,
+.page-account button[onclick*="orderChangePayment(this)"]:hover,
+.page-account button[onclick*="orderChangePayment(this)"]:focus {
+  background: #0c1369 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 22px 40px -22px rgba(14, 22, 122, 0.78) !important;
+}
+
+.page-account button[onclick*="orderChangePayment"]:active,
+.page-account .wake-order-confirmation button[onclick*="orderChangePayment"]:active,
+.page-account .wake-order-confirmation .pay-group button[onclick*="orderChangePayment"]:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 16px 32px -16px rgba(14, 22, 122, 0.6) !important;
+}
+
+@media (min-width: 768px) {
+  .page-account button[onclick*="orderChangePayment"],
+  .page-account .wake-order-confirmation button[onclick*="orderChangePayment"],
+  .page-account .wake-order-confirmation .pay-group button[onclick*="orderChangePayment"] {
+    width: auto !important;
+    min-width: 200px !important;
+  }
+}
+
 
 .page-account .wake-account-full-order-details {
   width: 100% !important;
@@ -1213,6 +1859,29 @@
   letter-spacing: 0.05em !important;
 }
 
+/* Mobile - centralizar span de status em order-date */
+@media (max-width: 767px) {
+  .page-account .wake-account-full-order-details .order-date {
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  
+  .page-account .wake-account-full-order-details .order-date span:first-child {
+    text-align: center !important;
+    width: 100% !important;
+  }
+  
+  .page-account .wake-account-full-order-details .order-date span:last-child {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+}
+
 .page-account .wake-account-full-order-details .order-number {
   display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
@@ -1240,6 +1909,33 @@
 .page-account .wake-account-full-order-details .order-number div span b {
   font-weight: 700 !important;
   color: #0e167a !important;
+}
+
+/* Mobile - centralizar e diminuir fonte do texto em negrito do email em order-number */
+@media (max-width: 767px) {
+  .page-account .wake-account-full-order-details .order-number div:nth-child(2) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  
+  .page-account .wake-account-full-order-details .order-number div:nth-child(2) span {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .page-account .wake-account-full-order-details .order-number div:nth-child(2) span strong,
+  .page-account .wake-account-full-order-details .order-number div:nth-child(2) span b {
+    font-size: 0.85rem !important; /* Fonte menor */
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+  }
 }
 
 .page-account .wake-account-full-order-details .order-payment-details {
@@ -1560,6 +2256,101 @@
   border: none !important;
 }
 
+/* Mobile - ajustes para details.group na página de pedidos */
+@media (max-width: 767px) {
+  /* Posicionar o container group como relative para posicionar o ícone */
+  .page-account .wake-account-orders details.group {
+    position: relative !important;
+  }
+  
+  /* Ícone de rotação no canto superior direito - qualquer img ou svg dentro de summary */
+  .page-account .wake-account-orders details.group summary img,
+  .page-account .wake-account-orders details.group summary svg,
+  .page-account .wake-account-orders details.group summary > div img,
+  .page-account .wake-account-orders details.group summary > div svg,
+  .page-account .wake-account-orders details.group summary > div:last-child img,
+  .page-account .wake-account-orders details.group summary > div:last-child svg,
+  /* Suporte para classe transition-transform */
+  .page-account .wake-account-orders details.group summary .transition-transform,
+  .page-account .wake-account-orders details.group summary [class*="transition-transform"] {
+    position: absolute !important;
+    top: 0.75rem !important; 
+    right: 1rem !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    transition: transform 0.3s ease !important;
+    z-index: 10 !important;
+    margin: 0 !important;
+  }
+  
+  /* Rotação do ícone quando o group está aberto (group-open:rotate-180) */
+  .page-account .wake-account-orders details.group[open] summary img,
+  .page-account .wake-account-orders details.group[open] summary svg,
+  .page-account .wake-account-orders details.group[open] summary > div img,
+  .page-account .wake-account-orders details.group[open] summary > div svg,
+  .page-account .wake-account-orders details.group[open] summary > div:last-child img,
+  .page-account .wake-account-orders details.group[open] summary > div:last-child svg,
+  /* Suporte para classe Tailwind group-open:rotate-180 */
+  .page-account .wake-account-orders details.group[open] summary .group-open\:rotate-180,
+  .page-account .wake-account-orders details.group[open] summary [class*="group-open"] {
+    transform: rotate(180deg) !important;
+  }
+  
+  /* Centralizar todos os elementos de summary dentro do container group */
+  .page-account .wake-account-orders details.group summary {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+  }
+  
+  /* Centralizar todos os divs dentro de summary */
+  .page-account .wake-account-orders details.group summary > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 1 1 auto !important;
+  }
+  
+  /* Remover margin-left auto do último div para centralizar */
+  .page-account .wake-account-orders details.group summary > div:last-child {
+    margin-left: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* Remover min-width do primeiro div para centralizar */
+  .page-account .wake-account-orders details.group summary > div:first-child {
+    min-width: auto !important;
+  }
+  
+  /* Centralizar spans dentro dos divs */
+  .page-account .wake-account-orders details.group summary > div span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+  
+  /* Centralizar group-meta */
+  .page-account .wake-account-orders details.group summary .group-meta {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+}
+
 .page-account .wake-account-orders .order-actions {
   display: inline-flex !important;
   gap: 0.75rem !important;
@@ -1585,7 +2376,7 @@
 }
 
 .page-account .wake-account-product .summary span {
-  margin-right: 1.75rem !important;
+  margin-right: 2.5rem !important;
   color: #64748b !important;
   display: flex !important;
   flex-direction: column !important;
@@ -1618,11 +2409,11 @@
 
 @media (min-width: 768px) {
   .page-account .wake-account-product .attributes {
-    margin-right: 6rem !important;
+    margin-right: 3rem !important;
   }
   
   .page-account .wake-account-product .summary {
-    margin-left: 3.5rem !important;
+    margin-left: 0 !important;
   }
 }
 
@@ -5152,21 +5943,33 @@
 }
 
 .wake-add-address-form > button {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  padding: 0.75rem;
-  text-transform: uppercase;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  display: flex !important;
+  width: 100% !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+  border: none !important;
+  background-color: #0e167a !important;
+  color: #ffffff !important;
+  padding: 0.9rem 1.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.5px !important;
+  text-transform: none !important;
+  box-shadow: 0 18px 32px -24px rgba(14, 22, 122, 0.65), 
+              0 4px 12px -2px rgba(14, 22, 122, 0.25) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .wake-add-address-form > button:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  background-color: #1e2db8 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 22px 36px -22px rgba(14, 22, 122, 0.72), 
+              0 6px 16px -4px rgba(14, 22, 122, 0.35) !important;
+}
+
+.wake-add-address-form > button:active {
+  transform: translateY(0) !important;
 }
 
 .wake-add-address-form input {
@@ -5219,11 +6022,43 @@
 .wake-add-address-form .cep {
   margin-bottom: 1rem;
   display: flex;
+  flex-direction: column;
 }
 
 .wake-add-address-form .\!cep {
   margin-bottom: 1rem;
   display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .wake-add-address-form .cep {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .wake-add-address-form .\!cep {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  /* Garantir que o container div.flex.items-center dentro de .cep não centralize verticalmente */
+  .wake-add-address-form .cep > div.flex.items-center,
+  .wake-add-address-form .cep div[class*="flex"][class*="items-center"],
+  .wake-add-address-form .\!cep > div.flex.items-center,
+  .wake-add-address-form .\!cep div[class*="flex"][class*="items-center"] {
+    align-items: flex-start !important;
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+  
+  /* Garantir que a label fique acima do input no desktop */
+  .wake-add-address-form .cep label,
+  .wake-add-address-form .\!cep label {
+    margin-bottom: 0.5rem !important;
+    width: 100% !important;
+    display: block !important;
+  }
 }
 
 .wake-add-address-form .cep div {

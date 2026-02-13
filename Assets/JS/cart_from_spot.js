@@ -40,6 +40,22 @@ async function showModalSpot(id){
         removeTailwindFromModalThumbnails();
     }, 100);
     
+    // Inicializar zoom da imagem após o modal ser exibido
+    setTimeout(() => {
+        const modalContent = document.getElementById('modal-content');
+        if (modalContent) {
+            const zoomContainer = modalContent.querySelector('.zoom');
+            if (zoomContainer && typeof initProductImageZoom === 'function') {
+                initProductImageZoom(zoomContainer);
+            }
+            
+            // Inicializar navegação de thumbnails no modal
+            if (typeof initThumbnailNavigation === 'function') {
+                initThumbnailNavigation();
+            }
+        }
+    }, 200);
+    
     // Usa MutationObserver para garantir que funcione mesmo com conteúdo dinâmico
     const modalElement = document.querySelector('#modal-spot');
     if (modalElement) {
@@ -47,6 +63,26 @@ async function showModalSpot(id){
             mutations.forEach((mutation) => {
                 if (mutation.addedNodes.length > 0) {
                     removeTailwindFromModalThumbnails();
+                    
+                    // Verifica se um novo container .zoom foi adicionado
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) {
+                            const zoomContainer = node.querySelector ? node.querySelector('.zoom') : null;
+                            if (zoomContainer && typeof initProductImageZoom === 'function') {
+                                setTimeout(() => {
+                                    initProductImageZoom(zoomContainer);
+                                }, 100);
+                            }
+                            
+                            // Verifica se um novo container de thumbnails foi adicionado
+                            const thumbnailContainer = node.querySelector ? node.querySelector('.product-thumbnails-container') : null;
+                            if (thumbnailContainer && typeof initThumbnailNavigation === 'function') {
+                                setTimeout(() => {
+                                    initThumbnailNavigation();
+                                }, 100);
+                            }
+                        }
+                    });
                 }
             });
         });
@@ -143,14 +179,12 @@ async function spotAddToCartButtonClick(productVariantId){
         // Adicionar classe "added" ao botão do produto
         const productButton = document.querySelector(`button[onclick*="spotAddToCartButtonClick(${productVariantId})"]`);
         if (productButton && productButton.classList.contains('product-button')) {
+            // Adicionar classe added (visual verde)
             productButton.classList.add('added');
-            const originalText = productButton.textContent;
-            productButton.innerHTML = '<i class="fas fa-shopping-cart"></i>';
             
-            // Remover a classe após 2 segundos
+            // Remover a classe após 2 segundos (mantém o ícone original)
             setTimeout(() => {
                 productButton.classList.remove('added');
-                productButton.textContent = originalText;
             }, 2000);
         }
     } else {

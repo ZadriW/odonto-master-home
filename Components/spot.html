@@ -27,14 +27,6 @@
     {{~ end ~}}
     
     <div class="product-card__content">
-        <a href="/{{product.alias}}" class="product-title-link">
-            <h3 class="product-title">{{ product.product_name }}</h3>
-        </a>
-        
-        {{~ if product.informations && product.informations.size > 0 ~}}
-        {{~ product_spot_info informations: product.informations ~}}
-        {{~ end ~}}
-        
         {{~
             promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
             promotionsSpot = promotionsTypes | group.get "Spot"
@@ -42,6 +34,14 @@
             promotionsGrouped = promotionsSpot | array.add_range promotionsNull
             stamps promotions: promotionsGrouped
         }}
+        
+        <a href="/{{product.alias}}" class="product-title-link">
+            <h3 class="product-title">{{ product.product_name }}</h3>
+        </a>
+        
+        {{~ if product.informations && product.informations.size > 0 ~}}
+        {{~ product_spot_info informations: product.informations ~}}
+        {{~ end ~}}
         
         {{~ if product.available ~}}
             {{~ if product.prices ~}}
@@ -64,7 +64,8 @@
                         </button>
                     </div>
                     <button class="product-button" onclick="{{ spot_add_to_cart_click }}">
-                        Comprar
+                        <span class="product-button-text">Comprar</span>
+                        <i class="fas fa-shopping-cart product-button-icon"></i>
                     </button>
                 </div>
             {{~ else # Opens up a modal for choosing the variant to be added to the cart~}}

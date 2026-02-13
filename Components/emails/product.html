@@ -6,18 +6,34 @@
       spot product: product
 ## }}
 <tr>
-  <td style="padding: 8px;"><img src="{{product?.imagem}}" alt="{{product?.nome}}" height="70" width="70" /></td>
-  <td style="padding: 8px;">
-    <small>{{product?.nome}}</small>
-    <small>{{product?.atributos}}</small>
-    <small>{{product?.embalagens}}</small>
-    <small>{{product?.personalizacoes}}</small>
-    <small>{{product?.primeiro_prazo}}</small>
-    <small>{{product?.segundo_prazo}}</small>
+  <td style="padding: 12px 8px; vertical-align: top;">
+    <img src="{{product?.imagem}}" alt="{{product?.nome}}" style="display: block; width: 80px; height: auto; border-radius: 8px; border: 1px solid #e5e7eb;" />
   </td>
-  <td style="padding: 8px;"><small>Qtd: {{product?.quantidade}}</small></td>
-  <td style="padding: 8px;"><small>{{product?.preco_unitario}}</small></td>
+  <td style="padding: 12px 8px; vertical-align: top; width: 100%;">
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 15px; line-height: 1.4; color: #0e167a; font-weight: 600; margin: 0 0 6px 0;">{{product?.nome}}</p>
+    {{ if product?.atributos }}
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 13px; line-height: 1.4; color: #6c757d; margin: 0 0 4px 0;">{{product?.atributos}}</p>
+    {{ end }}
+    {{ if product?.embalagens }}
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 13px; line-height: 1.4; color: #6c757d; margin: 0 0 4px 0;">{{product?.embalagens}}</p>
+    {{ end }}
+    {{ if product?.personalizacoes }}
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 13px; line-height: 1.4; color: #6c757d; margin: 0 0 4px 0;">{{product?.personalizacoes}}</p>
+    {{ end }}
+    {{ if product?.primeiro_prazo }}
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 13px; line-height: 1.4; color: #6c757d; margin: 0 0 4px 0;">{{product?.primeiro_prazo}}</p>
+    {{ end }}
+    {{ if product?.segundo_prazo }}
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 13px; line-height: 1.4; color: #6c757d; margin: 0;">{{product?.segundo_prazo}}</p>
+    {{ end }}
+  </td>
+  <td style="padding: 12px 8px; vertical-align: top; text-align: center;">
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.4; color: #6c757d; margin: 0;">Qtd: <strong style="color: #0e167a;">{{product?.quantidade}}</strong></p>
+  </td>
+  <td style="padding: 12px 8px; vertical-align: top; text-align: right;">
+    <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 15px; line-height: 1.4; color: #0e167a; font-weight: 600; margin: 0;">{{product?.preco_unitario}}</p>
+  </td>
 </tr>
 <tr>
-  <td colspan="5" style="border-top: 1px solid #eaeaea;"></td>
+  <td colspan="4" style="border-top: 1px solid #e5e7eb; padding: 0;"></td>
 </tr>

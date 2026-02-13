@@ -3,18 +3,14 @@
                  returned on the query response (by cursor or by offset)
     Params:
       - products: the products list
-      - current_url: current page URL (optional, defaults to store.urls.current)
     Usage:
         spot_list products: data...products
-        spot_list products: data...products current_url: store.urls.current
 ## }}
-{{~ current_url = current_url ?? store.urls.current ?? "" ~}}
 {{~ if products?.items # offset pagination case ~}}
     <div class="product-list-container">
         {{ for item in products?.items }}
             <div class="product-list-item">{{ spot product: item }}</div>
         {{ end }}
-        {{ category_info current_url: current_url }}
     </div>
 {{~ else if products?.edges && !products.edges.empty? # cursor pagination case ~}}
     <div class="product-list-container">
@@ -23,7 +19,6 @@
                 {{ spot product: productEdge.node }}
             </div>
         {{ end }}
-        {{ category_info current_url: current_url }}
     </div>
 {{~ else ~}}
     <h1 class="my-2 text-secondary-800 font-bold text-2xl">Nenhum produto encontrado</h1>

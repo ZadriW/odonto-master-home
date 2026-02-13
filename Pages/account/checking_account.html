@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
-  {{ asset type: "css" paths: ["output_base","custom_theme","output_account","footer"]}}
+  {{ asset type: "css" paths: ["output_base","custom_theme","output_account","footer", "mobile_bottom_menu"]}}
   {{ head title: "Meus Créditos | Odonto Master" store: store }}
   {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
 </head>
@@ -15,11 +15,13 @@
     {{ wake_account_sidebar customer: data.customer }}
     {{ wake_account_checking_account account: data.customer }}  
   </div>
+  {{ mobile_bottom_menu }}
   {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
   {{ footer is_preview: is_preview store: store }}
   {{ sdk_client }}
   {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
   {{ wake_scripts scripts: ["wake_utils", "wake_account"] }}
+  {{ asset type: "js" paths: ["mobile_bottom_menu"] options: "async"}}
   {{ page_scripts position: "BODY_END" scripts: common.scripts }}
 </body>
 </html>

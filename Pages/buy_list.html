@@ -30,9 +30,6 @@
                 {{~ if  buy_list.product_recommendations ~}}
                     {{ spot_carousel products: buy_list.product_recommendations }}
                 {{~ end ~}}
-                {{~ if  buy_list.reviews ~}}
-                    {{ product_reviews products: buy_list.reviews }}
-                {{~ end ~}}
             </div>
         </div>
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}

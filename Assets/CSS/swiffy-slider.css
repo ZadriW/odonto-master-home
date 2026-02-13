@@ -268,7 +268,7 @@
   top: 50%;
   left: -60px;
   right: auto;
-  bottom: auto;
+  bottom: 0;
   border: 0;
   background-color: #0e167a; /* Azul principal do site */
   cursor: pointer;

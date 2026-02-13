@@ -4,7 +4,7 @@
         {{ data_layer_config }}
         {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
         {{ head title: "Home" store: store }}
-        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price"]}}  
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price", "mobile_bottom_menu"]}}  
         {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
         {{ meta_tags seo: data.hotsite.seo }}
         {{ wake_recaptcha_script }}
@@ -19,26 +19,65 @@
         {{ side_cart }}
         {{ wake_overlay }}
         <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center">
-            <div class="flex flex-col items-start w-full lg:max-w-[1330px] px-2 gap-6">
-                {{ banners_carousel id: "banners_top" banners: data.hotsite.banners position: "topo" }}
+            <div class="flex flex-col items-start w-full lg:max-w-[1330px] px-2 gap-6">  
+                <!-- Banner Topo (posicionamento Mobile Topo) -->
+                <div class="banner-mobile-top-wrapper">
+                    {{ banners_carousel id: "banners_mobile_top" banners: data.hotsite.banners position: "Mobile Topo" }}
+                </div>
+                
+                <!-- Banner Central Desktop (posicionamento Centro) - visível apenas em desktop -->
+                <div class="w-full lg:mt-4 banner-centro-desktop-wrapper">
+                    {{ banners_carousel id: "banners_centro_desktop" banners: data.hotsite.banners position: "Centro" }}
+                </div>
+                
+                <!-- Banner Central Mobile (posicionamento Mobile Centro) - visível apenas em mobile -->
+                <div class="block lg:hidden w-full">
+                    {{ banners_carousel id: "banners_centro_mobile" banners: data.hotsite.banners position: "Mobile Centro" }}
+                </div>
+                
                  {{~ if data.carrossel1 && data.carrossel1.products && data.carrossel1.products.nodes ~}}
-                     {{ spot_carousel products: data.carrossel1.products.nodes class:"carrossel1" title:"Blue Friday - Ofertas em Clareadores com até 30%OFF" autoplay: true }}
+                     {{ spot_carousel_with_side_banner products: data.carrossel1.products.nodes banners: data.hotsite.banners banner_position: "Lateral Direita" class:"carrossel1" title:"Os melhores preços em Orthometric!" autoplay: true }}
                 {{~ end ~}}
+
                 {{~ if data.carrossel2 && data.carrossel2.products && data.carrossel2.products.nodes ~}}
-                    {{ spot_carousel products: data.carrossel2.products.nodes class:"carrossel2" title:"Economize até 40%OFF com Orthometric" }}
+                    {{ spot_carousel_with_side_banner products: data.carrossel2.products.nodes banners: data.hotsite.banners banner_position: "Filtros Topo" mobile_banner_position: "Filtros Bottom" class:"carrossel2" title:"Preços de Congresso sem sair de casa" autoplay: true }}
                 {{~ end ~}}
+                
+                
                 {{~ if data.carrossel3 && data.carrossel3.products && data.carrossel3.products.nodes ~}}
-                    {{ spot_carousel products: data.carrossel3.products.nodes class:"carrossel3" title:"FGM" }}
+                    {{ spot_carousel products: data.carrossel3.products.nodes class:"carrossel3" title:"Os melhores preços em FGM é na master!" }}   
                 {{~ end ~}}
+
                 {{~ if data.carrossel4 && data.carrossel4.products && data.carrossel4.products.nodes ~}}
-                    {{ spot_carousel products: data.carrossel4.products.nodes class:"carrossel4" title:"Melhores ofertas em resinas Solventum 3M é aqui!" }}
+                    {{ spot_carousel products: data.carrossel4.products.nodes class:"carrossel4" title:"Equipamentos com tecnologia, preço e qualidade" }}
                 {{~ end ~}}
+
+                 <!-- Banner Centro Lower Desktop (posicionamento Centro Lower) - visível apenas em desktop -->
+                    <div class="w-full lg:mt-4 w-full banner-centro-lower-desktop-wrapper">
+                        {{ banner_static id: "banners_centro_lower_desktop" banners: data.hotsite.banners position: "Centro Lower" }}
+                    </div>
+                                
+                <!-- Banner Centro Lower Mobile (posicionamento Mobile Centro Lower) - visível apenas em mobile -->
+                    <div class="block lg:hidden w-full">
+                        {{ banner_static id: "banners_centro_lower_mobile" banners: data.hotsite.banners position: "Mobile Centro Lower" }}
+                    </div>
+
                 {{~ if data.carrossel5 && data.carrossel5.products && data.carrossel5.products.nodes ~}}
-                    {{ spot_carousel products: data.carrossel5.products.nodes class:"carrossel5" title:"Os melhores preços em Clareador" }}
+                    {{ spot_carousel products: data.carrossel5.products.nodes class:"carrossel5" title:"Volta ás aulas master | Ofertas para acadêmicos" }}
+                {{~ end ~}}
+                
+                <!-- Banner Rodapé (posicionamento Rodape) - 4 banners desktop, 2 banners mobile -->
+                <div class="banner-rodape-wrapper">
+                    {{ banners_carousel id: "banners_rodape" banners: data.hotsite.banners position: "Rodape" }}
+                </div>
+                
+                {{~ if data.brands && data.brands.nodes && data.brands.nodes.size > 0 ~}}
+                    {{ brands_carousel brands: data.brands.nodes title: "Encontre as melhores marcas aqui!" }}
                 {{~ end ~}}
             </div>
         </div>
         {{ wake_modal }}
+        {{ mobile_bottom_menu }}
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
         {{ footer is_preview: is_preview store: store }}        
         {{~ 
@@ -66,7 +105,7 @@
         {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}       
         {{ wake_scripts scripts: ["wake_utils"] }}
         {{ asset type: "js" paths: ["checkout_pages"]}}
-        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager"] options: "async"}}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager", "mobile_bottom_menu", "stamp_badge_toggle"] options: "async"}}
         {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
         {{ page_scripts position: "BODY_END" scripts: common.scripts }}
     </body>

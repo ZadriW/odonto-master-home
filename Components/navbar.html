@@ -25,7 +25,17 @@
             {{~ if top_level ~}}
                 {{~ top_level = top_level | array.sort "order" ~}}
                 {{~ for top_menu in top_level ~}}
-                    {{~ if top_menu.name != "Blog" && top_menu.name != "blog" && top_menu.name != "menu-imagem-dentistisca" && top_menu.name != "Menu Imagem Ortodontia" ~}}
+                    {{~ 
+                        menuNameLower = top_menu.name | string.downcase
+                        menuLink = top_menu.link
+                        if menuLink && !(menuLink | string.starts_with "/") && !(menuLink | string.starts_with "http")
+                            menuLink = menuLink | string.prepend "/"
+                        end
+                        isClareadores = menuNameLower == "clareadores" || (menuLink && (menuLink | string.contains "/dentistica-e-estetica/clareador" || menuLink | string.contains "dentistica-e-estetica/clareador"))
+                        isEquipamentos = menuNameLower == "equipamentos" || (menuLink && (menuLink | string.contains "equipamentos-e-perifericos" || menuLink | string.contains "/equipamentos-e-perifericos"))
+                        shouldHide = isClareadores || isEquipamentos
+                    ~}}
+                    {{~ if top_menu.name != "Blog" && top_menu.name != "blog" && top_menu.name != "menu-imagem-dentistisca" && top_menu.name != "Menu Imagem Ortodontia" && !shouldHide ~}}
                         {{ nav_item menus:menus current_menu: top_menu }}
                     {{~ end ~}}
                 {{~ end ~}}

@@ -1,37 +1,43 @@
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <table role="Newsletter" aria-label="Awake" lang="en" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: Arial, Helvetica, sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f6f6f6;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
                         <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 15px 0;padding: 10px;">
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
                             <tbody>
                                 <tr align="center">
-                                    <td>
-                                        <h1 style="font-size: 36px; line-height: 100%;">Boleto Expirado</h1>
+                                    <td style="padding-bottom: 30px;">
+                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Boleto Expirado</h1>
                                     </td>
                                 </tr>
-                                <tr align="center">
-                                    <td>
-                                        <p>Olá {{pedido.usuario.nome}},</p>
-                                        <p>Identificamos que o boleto referente ao seu pedido #{{pedido.pedido_id}} venceu e ainda não foi pago. Gostaríamos de lembrar que o prazo para pagamento era até {{pedido.data_pagamento}}.</p>
-                                        <p>Total do Pedido: R$ {{pedido.valor_total}}</p>
-                                        <p>Valor do Boleto: R$ {{pedido.formapagamento[0].valor_forma_pagamento}}</p>
-                                        <p>Para evitar cancelamentos e garantir o envio do seu pedido, pedimos que efetue o pagamento o mais breve possível. Você pode acessar o boleto através do link abaixo:</p>
-                                        <p><a href="{{pedido.formapagamento[0].boleto.url}}" target="_blank">{{pedido.formapagamento[0].boleto.url}}</a></p>
-                                        <p>Se preferir, também é possível realizar o pagamento por outras formas disponíveis em nosso site: <a href="{{configuracao.url_ecommerce}}" target="_blank">{{configuracao.url_ecommerce}}</a>.</p>
-                                        <p>Caso já tenha efetuado o pagamento, por favor, desconsidere esta mensagem.</p>
-                                        <p>Agradecemos pela preferência!</p>
-                                        <p>Equipe {{configuracao.nome_ecommerce}}</p>
+                                <tr>
+                                    <td style="padding: 0 20px 20px 20px;">
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá <strong style="color: #0e167a;">{{pedido.usuario.nome}}</strong>,</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Identificamos que o boleto referente ao seu pedido <strong style="color: #0e167a;">#{{pedido.pedido_id}}</strong> venceu e ainda não foi pago. Gostaríamos de lembrar que o prazo para pagamento era até <strong style="color: #0e167a;">{{pedido.data_pagamento}}</strong>.</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 8px 0;"><strong style="color: #0e167a;">Total do Pedido:</strong> R$ {{pedido.valor_total}}</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;"><strong style="color: #0e167a;">Valor do Boleto:</strong> R$ {{pedido.formapagamento[0].valor_forma_pagamento}}</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Para evitar cancelamentos e garantir o envio do seu pedido, pedimos que efetue o pagamento o mais breve possível. Você pode acessar o boleto através do link abaixo:</p>
+                                        <div align="center" style="margin: 20px 0;">
+                                            <a href="{{pedido.formapagamento[0].boleto.url}}" target="_blank" style="display: inline-block; border-radius: 8px; border: none; background: #0e167a; text-transform: uppercase; font-size: 14px; font-weight: 600; color: #ffffff; padding: 14px 32px; text-decoration: none; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">ACESSAR BOLETO</a>
+                                        </div>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Se preferir, também é possível realizar o pagamento por outras formas disponíveis em nosso site: <a href="{{configuracao.url_ecommerce}}" target="_blank" style="color: #0e167a; text-decoration: none; font-weight: 600;">{{configuracao.url_ecommerce}}</a>.</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Caso já tenha efetuado o pagamento, por favor, desconsidere esta mensagem.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 20px 0 20px; border-top: 1px solid #e5e7eb;">
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.6; color: #6c757d; margin: 0;">Agradecemos pela preferência!</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.6; color: #0e167a; font-weight: 600; margin: 8px 0 0 0;">Equipe {{configuracao.nome_ecommerce}}</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -46,5 +52,4 @@
             </tr>
         </tbody>
     </table>
-
 </body>

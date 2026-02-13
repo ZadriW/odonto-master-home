@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
   {{ head title: "Resumo | Odonto Master" store: store }}
-  {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme"]}}
+  {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme", "mobile_bottom_menu"]}}
   {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
   {{ data_layer_config }}
 </head>
@@ -56,12 +56,14 @@
     {{~ end ~}}
   </div>
   {{ wake_confirmation_modal }}
+  {{ mobile_bottom_menu }}
   {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
   {{ sdk_client }}
   {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
   {{ data_layer_checkout_view checkout: data.checkout}}
   {{ wake_scripts scripts: ["wake_utils", "wake_checkout"] }}
   {{ asset type: "js" paths: ["checkout_user_login", "event_manager"] options: "async"}}
+  {{ asset type: "js" paths: ["mobile_bottom_menu"] options: "async"}}
   {{ page_scripts position: "BODY_END" scripts: common.scripts }}
 </body>
 </html>

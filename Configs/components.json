@@ -477,6 +477,33 @@
         "availableInAllPages": true
     },
     {
+        "name": "spot_carousel_with_side_banner",
+        "path": "spot_carousel_with_side_banner.html",
+        "params": [
+            {
+                "name": "products",
+                "required": true
+            },
+            {
+                "name": "banners",
+                "required": true
+            },
+            {
+                "name": "banner_position",
+                "required": true
+            },
+            {
+                "name": "class",
+                "required": true
+            },
+            {
+                "name": "title",
+                "required": true
+            }
+        ],
+        "availableInAllPages": true
+    },
+    {
         "name": "wishlist_button",
         "path": "wishlist_button.html",
         "params": [
@@ -490,6 +517,16 @@
     {
         "name": "wishlist_menu",
         "path": "wishlist_menu.html",
+        "availableInAllPages": true
+    },
+    {
+        "name": "mobile_bottom_menu",
+        "path": "mobile_bottom_menu.html",
+        "availableInAllPages": true
+    },
+    {
+        "name": "whatsapp_button",
+        "path": "whatsapp_button.html",
         "availableInAllPages": true
     },
     {
@@ -538,6 +575,29 @@
             {
                 "name": "name",
                 "required": true
+            }
+        ],
+        "availableInAllPages": true
+    },
+    {
+        "name": "banner_static",
+        "path": "banner_static.html",
+        "params": [
+            {
+                "name": "banners",
+                "required": true
+            },
+            {
+                "name": "position",
+                "required": true
+            },
+            {
+                "name": "class",
+                "required": false
+            },
+            {
+                "name": "id",
+                "required": false
             }
         ],
         "availableInAllPages": true

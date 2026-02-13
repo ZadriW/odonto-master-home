@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
     {{ head title: "Fechamento | Odonto Master" store: store }}
-    {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme"]}}
+    {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme", "mobile_bottom_menu"]}}
     {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
     {{ wake_recaptcha_script }}
     {{ data_layer_config }}
@@ -102,26 +102,7 @@
                 {{~ if data.checkout != null && data.checkout.selected_shipping != null -}}
                     {{ wake_checkout_shipping_selected_close shipping: data.checkout.selected_shipping }}
                 {{~ else if data.checkout != null && data.checkout.selected_address != null && data.checkout.selected_shipping == null -}}
-                    <!-- Container para o sistema de seleção de frete por CD (Multi-Frete) -->
-                    <div id="shipping-quote-groups-container" 
-                         data-shipping-groups-container="true" 
-                         data-checkout-id="{{ data.checkout.checkout_id }}"
-                         data-selected-cep="{{ data.checkout.selected_address.cep }}">
-                        <!-- Loading inicial -->
-                        <div class="shipping-quote-groups-loading">
-                            <div class="shipping-quote-groups-spinner"></div>
-                            <span>Carregando opções de entrega...</span>
-                        </div>
-                    </div>
-                    <script>
-                        // Store checkout ID and CEP in window for the shipping groups script
-                        window.checkoutIdForShipping = "{{ data.checkout.checkout_id }}";
-                        window.selectedCepForShipping = "{{ data.checkout.selected_address.cep }}";
-                        console.log('=== CHECKOUT CLOSE DEBUG ===');
-                        console.log('checkoutIdForShipping:', window.checkoutIdForShipping);
-                        console.log('selectedCepForShipping:', window.selectedCepForShipping);
-                        console.log('===========================');
-                    </script>
+                    <div data-render-shipping></div>
                 {{~ else -}}
                     <span class="wake-checkout-finish-step-text">Finalize o passo anterior para prosseguir</span>
                 {{~ end ~}}
@@ -186,6 +167,7 @@
     {{ wake_checkout_payment_rejected_modal }}
     
     {{ wake_confirmation_modal }}
+    {{ mobile_bottom_menu }}
     {{ wake_checkout_scripts }}
     {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
     {{ sdk_client }}
@@ -193,7 +175,7 @@
     {{ data_layer_checkout_complete_view checkout: data.checkout }}
     {{ wake_scripts scripts: ["wake_utils", "wake_checkout_close"] }}
     {{ asset type: "js" paths: ["checkout_user_login", "event_manager"] options: "async"}}
-    {{ asset type: "js" paths: ["shipping_quote_groups"] }}
+    {{ asset type: "js" paths: ["mobile_bottom_menu"] options: "async"}}
     {{ page_scripts position: "BODY_END" scripts: common.scripts }}
   </body>
 

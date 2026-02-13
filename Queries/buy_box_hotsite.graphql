@@ -116,12 +116,6 @@ query Hotsite($url: String!,
           title
           disclosureType
         }
-        informations{
-          id
-          title
-          type
-          value
-        }
         addToCartFromSpot
       }
     }

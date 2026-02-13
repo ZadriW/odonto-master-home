@@ -1,10 +1,19 @@
 <div class="flex flex-col w-full">
     {{ for information in informations }}
-        <div class="flex flex-col w-full mb-6 p-5 bg-gray-50 rounded-lg shadow-sm">
-            <h2 class="product-information-title text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wide pb-3">{{ information.title }}</h2>
-            <div class="product-information-content text-gray-700 leading-relaxed">
-            {{ information.value }}
+        {{~ if information.title && information.title != "Spot" && information.title != "Valor Referente" ~}}
+            <div class="flex flex-col w-full mb-6 p-5 bg-gray-50 product-information-item">
+                <h2 class="product-information-title text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wide pb-3 cursor-pointer" onclick="toggleProductInformation(this)">
+                    <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
+                    <span>{{ information.title }}</span>
+                    <img src="{{- store.urls.static_img}}icons/arrow-down.svg?theme={{store.theme}}&v={{store.last_modified}}" 
+                         alt="arrow-down" 
+                         class="product-information-arrow h-5 w-5 transition-transform duration-300" 
+                         id="product-information-arrow-{{ for.index }}" />
+                </h2>
+                <div class="product-information-content text-gray-700 leading-relaxed product-information-content-collapsible">
+                {{ information.value }}
+                </div>
             </div>
-        </div>
+        {{~ end ~}}
     {{ end }}
 </div>

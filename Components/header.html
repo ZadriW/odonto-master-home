@@ -1,15 +1,31 @@
 <!-- Main Header baseado no projeto Base -->
 <header class="main-header">
     <!-- Top Banner -->
+    {{~ 
+      # Verificar se há banners antes de renderizar o container
+      has_banners = false
+      if data.hotsite && data.hotsite.banners
+        all_banners = data.hotsite.banners | array.sort "order"
+        grouped_banners = all_banners | group.by @(do; ret $0.position;end)
+        popup_banners = grouped_banners | group.get "Pop-up"
+        background_banners = grouped_banners | group.get "Background"
+        if (popup_banners && popup_banners.size > 0) || (background_banners && background_banners.size > 0)
+          has_banners = true
+        end
+      end
+    ~}}
+    {{~ if has_banners ~}}
     <div class="top-banner">
-        <div class="container">
-            <div class="top-banner__content">
-                <div class="top-banner__warning">
-                    <strong>ATENÇÃO!</strong> Os produtos desse site são restritos à Dentistas com CRO, Clínicas Odontológicas e Estudantes de Graduação em Odontologia.
-                </div>
-            </div>
+        <!-- Banner Desktop - Pop-up -->
+        <div class="top-banner-desktop hidden lg:block">
+            {{ banner_static banners: data.hotsite.banners position: "Pop-up" class: "top-banner-popup" }}
+        </div>
+        <!-- Banner Mobile - Background -->
+        <div class="top-banner-mobile block lg:hidden">
+            {{ banner_static banners: data.hotsite.banners position: "Background" class: "top-banner-background" }}
         </div>
     </div>
+    {{~ end ~}}
 
     <!-- Header Area -->
     <div class="header-area">

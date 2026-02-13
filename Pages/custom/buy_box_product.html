@@ -39,9 +39,6 @@
                 {{~ if data.product_recommendations.size > 0 ~}}
                     {{ spot_carousel products: data.product_recommendations class:"recommendations" title:"Produtos relacionados" }}
                 {{~ end ~}}
-                <div class="flex flex-col w-full relative my-4">
-                    {{ product_reviews reviews: product.reviews product_name: product.product_name }}
-                </div>
             </div>
         </div>
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}

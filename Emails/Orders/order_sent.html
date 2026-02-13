@@ -1,51 +1,75 @@
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Awake" lang="en" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: Arial, Helvetica, sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f6f6f6;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
                         <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 15px 0;padding: 10px;">
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
                             <tbody>
                                 <tr align="center">
-                                    <td>
-                                        <h1 style="font-size: 36px; line-height: 100%;">Pedido Enviado</h1>
+                                    <td style="padding-bottom: 30px;">
+                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Pedido Enviado</h1>
                                     </td>
                                 </tr>
-                                <tr align="center">
-                                    <td>
-                                        <p>Olá {{ pedido?.usuario?.primeiro_nome }},</p>
-                                        <p>Seu pedido <b>{{ pedido?.pedido_id }}</b> através da nossa loja em {{ pedido?.data }} : {{ pedido?.hora }}, foi enviado!</p><br>
-                                        <p>Enviamos seu pedido para o endereço: {{pedido?.frete?.endereco?.logradouro}}, {{pedido?.frete?.endereco?.cidade}}</p>
-                                        <br>
-                                        <p>Detalhes do rastreamento de seu pedido:</p>
-                                        <p>Código de rastreamento: {{pedido.rastreamento?.rastreamento}}</p>
-                                        <p>Link para rastreamento: {{pedido.rastreamento?.url}}</p>
-                                        <p>Nota Fiscal: {{pedido.rastreamento?.nota_fiscal}}</p>
-                                        <p>Série NFE: {{pedido.rastreamento?.serie_nfe}}</p>
+                                <tr>
+                                    <td style="padding: 0 20px 20px 20px;">
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá <strong style="color: #0e167a;">{{ pedido.usuario.primeiro_nome }}</strong>,</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Seu pedido <strong style="color: #0e167a;">{{ pedido.pedido_id }}</strong> através da nossa loja em {{ pedido.data }} : {{ pedido.hora }}, foi enviado!</p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 20px 0;">Enviamos seu pedido para o endereço: <strong style="color: #0e167a;">{{pedido.frete.endereco.logradouro}}, {{pedido.frete.endereco.cidade}}</strong></p>
+                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 12px 0; font-weight: 600;">Detalhes do rastreamento de seu pedido:</p>
+                                        <table style="width: 100%; margin-bottom: 20px;">
+                                            <tbody>
+                                                {{ if pedido.rastreamento.rastreamento }}
+                                                <tr>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;"><strong style="color: #0e167a;">Código de rastreamento:</strong></td>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.rastreamento.rastreamento}}</td>
+                                                </tr>
+                                                {{ end }}
+                                                {{ if pedido.rastreamento.url }}
+                                                <tr>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;"><strong style="color: #0e167a;">Link para rastreamento:</strong></td>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;"><a href="{{pedido.rastreamento.url}}" target="_blank" style="color: #0e167a; text-decoration: none; font-weight: 500;">Rastrear pedido</a></td>
+                                                </tr>
+                                                {{ end }}
+                                                {{ if pedido.rastreamento.nota_fiscal }}
+                                                <tr>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;"><strong style="color: #0e167a;">Nota Fiscal:</strong></td>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.rastreamento.nota_fiscal}}</td>
+                                                </tr>
+                                                {{ end }}
+                                                {{ if pedido.rastreamento.serie_nfe }}
+                                                <tr>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;"><strong style="color: #0e167a;">Série NFE:</strong></td>
+                                                    <td style="padding: 4px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.rastreamento.serie_nfe}}</td>
+                                                </tr>
+                                                {{ end }}
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="padding: 8px;">
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="padding: 0 30px;">
                             <tbody>
                                 <tr>
-                                    <td colspan="4">
-                                        <h1 style="font-size: 24px; line-height: 100%;">Resumo do pedido</h1>
+                                    <td style="padding: 0 20px 20px 20px;">
+                                        <h2 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 24px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Resumo do pedido</h2>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding: 0 20px;">
                                         <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:100%;">
                                             <tbody>
-                                                {{ for product in pedido?.produtos }}
+                                                {{ for product in pedido.produtos }}
                                                 {{ product_mail product: product }}
                                                 {{ end }}
                                             </tbody>

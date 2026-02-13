@@ -1,30 +1,45 @@
 {{ ##
     Description: Renders a brands carousel from a list of brands
     Params:
-      - brands: list of banners
+      - brands: list of brands
+      - title: optional title text to show on top
     Usage:
-      brands_carousel brands: brands
+      brands_carousel brands: data.brands.nodes title: "Marcas em Destaque"
 ## }}
 {{~ if brands ~}}
-  <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center bg-mainBg">
-    <div class="flex flex-col items-start w-full lg:max-w-[1330px] px-2 relative">
-      <h2 class="w-full text-xl lg:text-3xl carousel-title">
-        <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
-        <span>{{ "Marcas" | lang }}</span>
-      </h2>
-      <div class="swiffy-slider slider-nav-dark slider-nav-visible slider-nav-autoplay slider-nav-autopause slider-indicators-round 
-      slider-indicators-dark slider-indicators-highlight slider-indicators-sm slider-item-show4 slider-item-show2-sm" data-slider-nav-autoplay-interval="5000">
+  <div class="my-4 w-full brands-carousel-wrapper bg-mainBg">
+    <div class="flex justify-center w-full">
+      <div class="items-start w-full max-w-[1330px] px-2 relative">
+        {{~ if title ~}}
+        <h2 class="w-full text-xl lg:text-3xl carousel-title">
+          <img src="{{- store.urls.static_img}}simbolo.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="carousel-icon" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; height: 1.5em !important; min-height: 32px !important; max-height: 48px !important; width: auto !important; min-width: 32px !important; flex-shrink: 0 !important; vertical-align: middle !important;">
+          <span>{{ title | string.downcase | lang }}</span>
+        </h2>
+        {{~ end ~}}
+        <div class="swiffy-slider slider-nav-dark slider-nav-visible slider-nav-autoplay slider-nav-autopause slider-indicators-round 
+        slider-indicators-dark slider-indicators-highlight slider-indicators-sm slider-item-show5 slider-item-show2-sm brands-carousel" data-slider-nav-autoplay-interval="5000">
           <div class="slider-container">
             {{~ for brand in brands ~}}
-              <div class="flex justify-center items-center"><img src="{{brand.full_url_logo}}" alt="{{brand.name}}" width="240px" height="135px" class="m-10 w-60" loading="lazy"/></div>
+              <div class="brand-item flex justify-center items-center">
+                {{~ if brand.alias ~}}
+                  <a href="/{{ brand.alias }}" class="brand-item-link" title="Ver produtos da marca {{ brand.name }}">
+                    <img src="{{brand.full_url_logo}}" alt="{{brand.name}}" class="brand-logo" loading="lazy"/>
+                  </a>
+                {{~ else ~}}
+                  <img src="{{brand.full_url_logo}}" alt="{{brand.name}}" class="brand-logo" loading="lazy"/>
+                {{~ end ~}}
+              </div>
             {{~ end ~}}
           </div>
+          {{~ if brands.size > 5 ~}}
           <button type="button" class="slider-nav" aria-label="Anterior">
-              <i class="fas fa-chevron-left"></i>
-            </button>
+            <i class="fas fa-chevron-left"></i>
+          </button>
           <button type="button" class="slider-nav slider-nav-next" aria-label="Próximo">
-              <i class="fas fa-chevron-right"></i>
-            </button>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          {{~ end ~}}
+        </div>
       </div>
     </div>
   </div>

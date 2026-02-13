@@ -15,7 +15,7 @@
     {{ head title: formatted_search_title store: store }}
     {{ data_layer_config }}
     {{ search_structured_data search: data.search base_url: store.urls.base current_url: store.urls.current }}
-        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price", "filter_sidebar"]}}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price", "filter_sidebar", "mobile_bottom_menu"]}}
     {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -48,18 +48,18 @@
         </div>
     </div>
     <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center">
-            <div class="flex relative w-full lg:max-w-[1330px] py-2 md:px-2 lg:p-0 lg:items-start">
+            <div class="flex relative w-full lg:max-w-[1330px] py-2 px-2 lg:p-0 lg:items-start">
                 <div id="category-filters" class="hidden absolute lg:sticky top-10 left-0 shadow-2xl lg:shadow-none z-10 bg-mainBg lg:flex lg:flex-shrink-0 lg:mr-2 lg:border-r p-4 lg:p-2 ease-in-out duration-500 opacity-0 lg:opacity-100 w-64">
                     {{ filter aggregations: data.search.aggregations }}
                 </div>
                 <div class="flex flex-col w-full lg:flex-1">
-                    <div class="px-2 flex flex-col lg:flex-row justify-between items-start w-full mb-10">
+                    <div class="px-2 flex flex-col lg:flex-row justify-between items-start w-full mb-6">
                         {{~ breadcrumb breadcrumbs: data.search.breadcrumbs ~}}
-                        <div class="flex justify-between lg:justify-start items-center gap-4 w-full lg:w-auto">
-                            <div class="flex justify-start items-center lg:hidden w-full uppercase font-medium" onclick="openFilter()">
-                                <img src="{{- store.urls.static_img}}icons/filter.svg?theme={{store.theme}}&v={{store.last_modified}}" class="w-4 h-4 mr-1" alt="Show mobile filters">
-                                Mostrar filtros
-                            </div>
+                        <div class="mobile-controls-container mt-4 lg:mt-0">
+                            <button type="button" class="filter-toggle-btn lg:hidden" onclick="openFilter()">
+                                <img src="{{- store.urls.static_img}}icons/filter.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="Filtros">
+                                Filtros
+                            </button>
                             {{ products_per_page }}
                             {{ sort page_type: "search" }}
                         </div>
@@ -75,6 +75,7 @@
                 </div>
             </div>    
         </div>
+        {{ mobile_bottom_menu }}
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
         {{ footer is_preview: is_preview store: store }}
         {{ data_layer_search_view products: products.items }}
@@ -83,7 +84,7 @@
         {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
         {{ wake_scripts scripts: ["wake_utils"] }}
         {{ asset type: "js" paths: ["checkout_pages"]}}
-        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager", "sort", "search", "filter", "pagination", "products_per_page"] options: "async"}}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager", "sort", "search", "filter", "pagination", "products_per_page", "mobile_bottom_menu", "stamp_badge_toggle"] options: "async"}}
         {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
         {{ page_scripts position: "BODY_END" scripts: common.scripts }}
 </body>

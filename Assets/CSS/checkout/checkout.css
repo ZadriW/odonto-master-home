@@ -101,9 +101,35 @@
 @media (min-width: 1024px) {
   .page-checkout .wake-cart-wrapper {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
     align-items: flex-start;
     gap: 2.25rem;
+  }
+  
+  /* Aumentar largura do container de produtos no desktop */
+  .page-checkout .wake-cart-wrapper-product-snippet {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Aumentar largura da tabela de produtos no desktop */
+  .page-checkout .wake-cart-product-list-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: auto !important;
+  }
+  
+  /* Aumentar padding das células da tabela para mais espaço */
+  .page-checkout .wake-cart-product-list-table th {
+    padding: 1.25rem 1.5rem !important;
+  }
+  
+  .page-checkout .wake-cart-product-list-table td {
+    padding: 1.25rem 1.5rem !important;
+  }
+  
+  .page-checkout .wake-cart-product-list-tbody-row td.details {
+    padding: 1.5rem 1.5rem !important;
   }
 }
 
@@ -259,9 +285,7 @@
 
 /* Informações adicionais do produto */
 .page-checkout .wake-cart-product-list-tbody-row td.details .prod-text {
-  font-size: 0.875rem;
-  color: #6b7280;
-  line-height: 1.4;
+  display: none !important;
 }
 
 /* Preço do produto com destaque */
@@ -292,7 +316,7 @@
   }
 
   .page-checkout .wake-cart-product-list-tbody-row td.details .prod-text {
-    font-size: 0.85rem;
+    display: none !important;
   }
 }
 
@@ -325,46 +349,50 @@
   .page-checkout .wake-cart-product-list-tbody-row td.details {
     flex-direction: row;
     align-items: flex-start;
-    gap: 0.85rem;
+    gap: 0.75rem;
     padding: 0.875rem 0.5rem !important;
   }
 
-  /* Imagem do produto otimizada para mobile */
+  /* Imagem do produto otimizada para mobile - reduzida para dar mais espaço ao nome */
   .page-checkout .wake-cart-product-list-tbody-row td.details .prod-img {
-    width: 68px !important;
-    height: 68px !important;
-    min-width: 68px !important;
-    min-height: 68px !important;
-    max-width: 68px !important;
-    max-height: 68px !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
     border-radius: 12px;
     box-shadow: 0 2px 8px -3px rgba(14, 22, 122, 0.1);
+    flex-shrink: 0 !important;
   }
 
   .page-checkout .wake-cart-product-list-tbody-row td.details .prod-img img {
     padding: 5px;
   }
 
-  /* Wrapper de informações otimizado */
+  /* Wrapper de informações otimizado - ocupar mais espaço */
   .page-checkout .wake-cart-product-list-tbody-row td.details .wrapper {
-    flex: 1;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
     margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .page-checkout .wake-cart-product-list-tbody-row td.details .prod-name {
-    max-width: none;
+    max-width: 100% !important;
+    width: 100% !important;
     font-size: 0.875rem !important;
-    line-height: 1.2;
+    line-height: 1.3 !important;
     margin-bottom: 0.125rem;
+    flex: 1 1 auto !important;
   }
   
   .page-checkout .wake-cart-product-list-tbody-row td.details .prod-text {
-    font-size: 0.75rem !important;
-    line-height: 1.2;
-    margin-top: 0 !important;
+    display: none !important;
   }
   
   /* ===== CONTADOR DE QUANTIDADE - ESTILO MINI-CART (MOBILE) ===== */
@@ -492,8 +520,11 @@
   }
   
   .page-checkout .wake-cart-product-list-tbody-row td.total .price #text {
-    font-size: 0.7rem !important; /* Mesma diagramação de price-de */
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
     white-space: nowrap !important;
+    display: inline-block !important;
   }
   
   /* Botão remove dentro do td.total - posicionado no final com flex-end */
@@ -656,8 +687,11 @@
   }
   
   .page-checkout .wake-cart-product-list-tbody-row td.total .price #text {
-    font-size: 0.7rem !important; /* Mesma diagramação de price-de */
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
     white-space: nowrap !important;
+    display: inline-block !important;
   }
 }
 
@@ -683,8 +717,11 @@
   }
   
   .page-checkout .wake-cart-product-list-tbody-row td.total .price #text {
-    font-size: 0.7rem !important; /* Mesma diagramação de price-de */
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
     white-space: nowrap !important;
+    display: inline-block !important;
   }
 }
   
@@ -746,13 +783,53 @@
 }
 
 .page-checkout .wake-cart-product-list-tbody-row td.details .prod-text {
-  color: #4b5563;
-  font-size: 0.85rem;
+  display: none !important;
 }
 
 .page-checkout .wake-cart-product-list-tbody-row td.total .price {
   font-weight: 700;
   color: #0e167a;
+}
+
+/* Formatação definitiva do preço #text como "R$ XXX,XX" */
+.page-checkout .wake-cart-product-list-tbody-row td.total .price #text,
+.page-checkout .wake-cart-product-list-tbody-row td.price #text,
+.page-checkout .wake-cart-product-list-tbody-row .price #text {
+  font-weight: 700 !important;
+  color: #0e167a !important;
+  font-size: 1rem !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Garantir formato "R$ XXX,XX" em todos os breakpoints */
+@media (min-width: 1024px) {
+  .page-checkout .wake-cart-product-list-tbody-row td.total .price #text {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .page-checkout .wake-cart-product-list-tbody-row td.total .price #text {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-checkout .wake-cart-product-list-tbody-row td.total .price #text {
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #0e167a !important;
+    white-space: nowrap !important;
+  }
 }
 
 .page-checkout .wake-cart-subtotal,
@@ -2475,438 +2552,4 @@
   }
 }
 
-/* Ocultar opções de parcelamento no checkout */
-.page-checkout .wake-payment-data-options {
-  display: none !important;
-}
 
-/* ========================================================================
-   SHIPPING QUOTE GROUPS - Multi-CD Shipping Selection
-   ======================================================================== */
-
-/* Container principal */
-.shipping-quote-groups-container {
-  background: var(--checkout-surface);
-  border-radius: var(--checkout-radius);
-  box-shadow: var(--checkout-shadow);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Título da seção */
-.shipping-quote-groups-title {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #0e167a;
-  margin: 0 0 1.5rem 0;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--checkout-border);
-}
-
-.shipping-quote-groups-icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-/* Cada grupo de CD */
-.shipping-quote-group {
-  background: #f8f9fc;
-  border: 1px solid var(--checkout-border);
-  border-radius: 16px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.shipping-quote-group:last-child {
-  margin-bottom: 0;
-}
-
-.shipping-quote-group:hover {
-  border-color: rgba(14, 22, 122, 0.2);
-  box-shadow: 0 4px 16px rgba(14, 22, 122, 0.08);
-}
-
-/* Header do grupo (info do CD) */
-.shipping-quote-group-header {
-  margin-bottom: 1rem;
-}
-
-.shipping-quote-group-cd-info {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.shipping-quote-group-cd-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #0e167a 0%, #1a2cb0 100%);
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-
-.shipping-quote-group-cd-icon svg {
-  width: 20px;
-  height: 20px;
-  color: #fff;
-}
-
-.shipping-quote-group-cd-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.shipping-quote-group-cd-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.shipping-quote-group-seller-name {
-  font-size: 0.813rem;
-  color: #6b7280;
-}
-
-/* Opções de frete (dropdown) */
-.shipping-quote-group-options {
-  margin-top: 1rem;
-}
-
-.shipping-quote-group-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #4b5563;
-  margin-bottom: 0.5rem;
-}
-
-.shipping-quote-group-select {
-  width: 100%;
-  padding: 0.875rem 2.5rem 0.875rem 1rem;
-  font-size: 0.938rem;
-  font-family: inherit;
-  color: #1f2937;
-  background-color: #fff;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.75rem center;
-  background-repeat: no-repeat;
-  background-size: 1.25rem;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.shipping-quote-group-select:hover {
-  border-color: #0e167a;
-}
-
-.shipping-quote-group-select:focus {
-  outline: none;
-  border-color: #0e167a;
-  box-shadow: 0 0 0 3px rgba(14, 22, 122, 0.15);
-}
-
-.shipping-quote-group-select option {
-  padding: 0.5rem;
-}
-
-/* Detalhes do frete selecionado */
-.shipping-quote-group-selected-details {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba(14, 22, 122, 0.05) 0%, rgba(26, 44, 176, 0.08) 100%);
-  border-radius: 10px;
-  border-left: 3px solid #0e167a;
-}
-
-.shipping-quote-selected-info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.5rem;
-}
-
-.shipping-quote-selected-name {
-  font-weight: 600;
-  color: #0e167a;
-}
-
-.shipping-quote-selected-value {
-  font-weight: 700;
-  color: #059669;
-}
-
-.shipping-quote-selected-deadline {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-/* Sem opções disponíveis */
-.shipping-quote-group-no-options {
-  padding: 1rem;
-  background: #fef2f2;
-  border-radius: 10px;
-  color: #dc2626;
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-/* Resumo total do frete */
-.shipping-quote-groups-summary {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--checkout-border);
-}
-
-.shipping-quote-groups-summary-header {
-  margin-bottom: 1rem;
-}
-
-.shipping-quote-groups-summary-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1f2937;
-}
-
-.shipping-quote-groups-summary-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.shipping-quote-summary-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  background: #f3f4f6;
-  border-radius: 8px;
-}
-
-.shipping-quote-summary-item-name {
-  font-size: 0.875rem;
-  color: #4b5563;
-}
-
-.shipping-quote-summary-item-value {
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.shipping-quote-groups-summary-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: linear-gradient(135deg, #0e167a 0%, #1a2cb0 100%);
-  border-radius: 12px;
-  color: #fff;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.shipping-quote-groups-total-value {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-/* Botão de confirmar */
-.shipping-quote-groups-confirm-btn {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  color: #fff;
-  background: linear-gradient(135deg, #0e167a 0%, #1a2cb0 100%);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.shipping-quote-groups-confirm-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #0b1260 0%, #162299 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(14, 22, 122, 0.3);
-}
-
-.shipping-quote-groups-confirm-btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.shipping-quote-groups-confirm-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: #9ca3af;
-}
-
-/* Estado de loading */
-.shipping-quote-groups-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  gap: 1rem;
-  color: #6b7280;
-}
-
-.shipping-quote-groups-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #0e167a;
-  border-radius: 50%;
-  animation: shipping-spinner 0.8s linear infinite;
-}
-
-.shipping-quote-groups-spinner-small {
-  width: 18px;
-  height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: shipping-spinner 0.8s linear infinite;
-}
-
-@keyframes shipping-spinner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Estado de erro */
-.shipping-quote-groups-error,
-.shipping-quote-groups-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  gap: 1rem;
-  text-align: center;
-  color: #6b7280;
-}
-
-.shipping-quote-groups-error svg,
-.shipping-quote-groups-empty svg {
-  width: 48px;
-  height: 48px;
-  color: #f59e0b;
-}
-
-.shipping-quote-groups-retry-btn {
-  padding: 0.625rem 1.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0e167a;
-  background: rgba(14, 22, 122, 0.08);
-  border: 1px solid rgba(14, 22, 122, 0.2);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.shipping-quote-groups-retry-btn:hover {
-  background: rgba(14, 22, 122, 0.15);
-  border-color: #0e167a;
-}
-
-/* Mensagem de erro inline */
-.shipping-quote-groups-error-message {
-  padding: 0.75rem 1rem;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  color: #dc2626;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
-  display: none;
-}
-
-/* Mensagem de sucesso inline */
-.shipping-quote-groups-success-message {
-  padding: 0.75rem 1rem;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  border-radius: 8px;
-  color: #059669;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  display: none;
-}
-
-/* Responsividade */
-@media (max-width: 640px) {
-  .shipping-quote-groups-container {
-    padding: 1rem;
-    border-radius: 16px;
-  }
-
-  .shipping-quote-groups-title {
-    font-size: 1.1rem;
-  }
-
-  .shipping-quote-group {
-    padding: 1rem;
-    border-radius: 12px;
-  }
-
-  .shipping-quote-group-cd-icon {
-    width: 36px;
-    height: 36px;
-  }
-
-  .shipping-quote-group-cd-icon svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .shipping-quote-group-cd-name {
-    font-size: 0.938rem;
-  }
-
-  .shipping-quote-group-select {
-    padding: 0.75rem 2.25rem 0.75rem 0.875rem;
-    font-size: 0.875rem;
-    border-radius: 10px;
-  }
-
-  .shipping-quote-selected-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  .shipping-quote-groups-summary-total {
-    flex-direction: column;
-    gap: 0.25rem;
-    text-align: center;
-  }
-
-  .shipping-quote-groups-confirm-btn {
-    padding: 0.875rem 1rem;
-    font-size: 0.938rem;
-  }
-}

@@ -1,3 +1,9 @@
 {{~ if brand?.logo_url ~}}
-    <img src="{{ brand.full_url_logo }}" alt="{{ brand.name }}" width="80px" height="40px" class="product-brand-logo">
+    {{~ if brand.alias ~}}
+        <a href="/{{ brand.alias }}" class="product-brand-link" title="Ver produtos da marca {{ brand.name }}">
+            <img src="{{ brand.full_url_logo }}" alt="{{ brand.name }}" width="80px" height="40px" class="product-brand-logo">
+        </a>
+    {{~ else ~}}
+        <img src="{{ brand.full_url_logo }}" alt="{{ brand.name }}" width="80px" height="40px" class="product-brand-logo">
+    {{~ end ~}}
 {{~ end ~}}

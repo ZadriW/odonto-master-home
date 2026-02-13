@@ -15,11 +15,9 @@
     <button add-to-cart-button type="button" 
         class="product-button" 
         value="{{ btn_value }}" {{ if disabled }} disabled {{ end }} onclick="{{ add_to_cart_click }}">
-        Comprar
+        
+        <i class="fas fa-shopping-cart product-button-icon"></i>
+        <span class="product-button-text">Adicionar ao carrinho</span>
     </button>
-    <button buy-button type="button" 
-        class="product-button" 
-        value="{{ btn_value }}" {{ if disabled }} disabled {{ end }} onclick="{{ buy_click }}" style="display: none;">
-        Comprar
-    </button>
+
 </div>

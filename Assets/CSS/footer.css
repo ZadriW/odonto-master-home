@@ -29,10 +29,10 @@
     font-size: 18px;
     font-weight: 600;
     position: relative;
-    text-align: center;
+    text-align: left;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.5rem;
 }
 
@@ -75,7 +75,7 @@
 
 .footer-column__list li {
     margin-bottom: 10px;
-    text-align: center;
+    text-align: left;
     color: #e0e4f0;
     transition: transform 0.2s ease;
 }
@@ -98,8 +98,8 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
+    left: 0;
+    transform: scaleX(0);
     width: 0;
     height: 2px;
     background: #ffc107;
@@ -112,7 +112,7 @@
 }
 
 .footer-link:hover::after {
-    transform: translateX(-50%) scaleX(1);
+    transform: scaleX(1);
     width: 60%;
 }
 
@@ -157,17 +157,16 @@
     flex-wrap: wrap;
 }
 
-.payment-methods i {
-    font-size: 24px;
-    color: #e0e4f0;
+.payment-methods .payment-icon {
+    width: 48px;
+    height: 32px;
     transition: all 0.3s ease;
     padding: 8px;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.05);
 }
 
-.payment-methods i:hover {
-    color: #ffc107;
+.payment-methods .payment-icon:hover {
     background: rgba(255, 193, 7, 0.15);
     transform: translateY(-2px) scale(1.1);
 }
@@ -281,7 +280,7 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0.5rem;
     }
     
@@ -322,6 +321,7 @@
     
     .footer-column__list li {
         margin-bottom: 12px;
+        text-align: left;
         transition: transform 0.2s ease;
     }
     
@@ -342,8 +342,8 @@
         content: '';
         position: absolute;
         bottom: 0;
-        left: 50%;
-        transform: translateX(-50%) scaleX(0);
+        left: 0;
+        transform: scaleX(0);
         width: 0;
         height: 2px;
         background: #ffc107;
@@ -356,7 +356,7 @@
     }
     
     .footer-link:hover::after {
-        transform: translateX(-50%) scaleX(1);
+        transform: scaleX(1);
         width: 60%;
     }
     
@@ -417,17 +417,16 @@
         flex-wrap: wrap;
     }
     
-    .payment-methods i {
-        font-size: 22px;
-        color: #e0e4f0;
+    .payment-methods .payment-icon {
+        width: 44px;
+        height: 29px;
         transition: all 0.3s ease;
         padding: 8px;
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.05);
     }
     
-    .payment-methods i:hover {
-        color: #ffc107;
+    .payment-methods .payment-icon:hover {
         background: rgba(255, 193, 7, 0.15);
         transform: translateY(-2px) scale(1.1);
     }
@@ -508,7 +507,7 @@
         margin-bottom: 16px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0.5rem;
     }
     
@@ -555,8 +554,9 @@
         font-size: 14px;
     }
     
-    .payment-methods i {
-        font-size: 20px;
+    .payment-methods .payment-icon {
+        width: 40px;
+        height: 27px;
     }
     
     .social-media a {
@@ -567,5 +567,123 @@
     
     .copyright p {
         font-size: 11px;
+    }
+}
+
+/* ===== BOTÃO FLUTUANTE DO WHATSAPP ===== */
+a.whatsapp-float-button,
+.whatsapp-float-button,
+a[class*="whatsapp-float-button"] {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+    background-color: #25D366 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4) !important;
+    z-index: 9990 !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    font-size: 32px !important;
+    animation: pulse-whatsapp 2s infinite !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+a.whatsapp-float-button:hover,
+.whatsapp-float-button:hover,
+a[class*="whatsapp-float-button"]:hover {
+    background-color: #20BA5A !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6) !important;
+}
+
+a.whatsapp-float-button:active,
+.whatsapp-float-button:active,
+a[class*="whatsapp-float-button"]:active {
+    transform: scale(0.95) !important;
+}
+
+a.whatsapp-float-button i,
+.whatsapp-float-button i,
+a[class*="whatsapp-float-button"] i {
+    color: #ffffff !important;
+    font-size: 32px !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Animação de pulso para chamar atenção */
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    50% {
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    a.whatsapp-float-button,
+    .whatsapp-float-button,
+    a[class*="whatsapp-float-button"] {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        min-height: 56px !important;
+        max-width: 56px !important;
+        max-height: 56px !important;
+        bottom: 80px !important; /* Acima do menu inferior mobile */
+        right: 16px !important;
+        font-size: 28px !important;
+    }
+    
+    a.whatsapp-float-button i,
+    .whatsapp-float-button i,
+    a[class*="whatsapp-float-button"] i {
+        font-size: 28px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    a.whatsapp-float-button,
+    .whatsapp-float-button,
+    a[class*="whatsapp-float-button"] {
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        max-width: 52px !important;
+        max-height: 52px !important;
+        bottom: 75px !important; /* Acima do menu inferior mobile */
+        right: 14px !important;
+        font-size: 26px !important;
+    }
+    
+    a.whatsapp-float-button i,
+    .whatsapp-float-button i,
+    a[class*="whatsapp-float-button"] i {
+        font-size: 26px !important;
     }
 }

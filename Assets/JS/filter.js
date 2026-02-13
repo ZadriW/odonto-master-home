@@ -125,20 +125,56 @@ function applyPriceFilterUrl(filter) {
 }
 
 function openFilter() {
-    if (!document.getElementById('category-filters')?.classList.contains('open')) {
-        document.getElementById('category-filters')?.classList.remove('hidden')
+    const filterElement = document.getElementById('category-filters');
+    if (!filterElement?.classList.contains('open')) {
+        filterElement?.classList.remove('hidden');
         setTimeout(() => {
-            document.getElementById('category-filters')?.classList.remove('opacity-0')
-            document.getElementById('category-filters')?.classList.add('opacity-100')
-            document.getElementById('category-filters')?.classList.add('open')
-        }, 100)
+            filterElement?.classList.remove('opacity-0');
+            filterElement?.classList.add('opacity-100');
+            filterElement?.classList.add('open');
+            // Prevenir scroll do body quando filtro estiver aberto
+            document.body.style.overflow = 'hidden';
+        }, 100);
     } else {
-        document.getElementById('category-filters')?.classList.add('opacity-0')
-        document.getElementById('category-filters')?.classList.remove('opacity-100')
-        document.getElementById('category-filters')?.classList.remove('open')
-        setTimeout(() => { document.getElementById('category-filters')?.classList.add('hidden') }, 1000)
+        closeFilter();
     }
 }
+
+function closeFilter() {
+    const filterElement = document.getElementById('category-filters');
+    if (filterElement?.classList.contains('open')) {
+        filterElement?.classList.add('opacity-0');
+        filterElement?.classList.remove('opacity-100');
+        filterElement?.classList.remove('open');
+        // Restaurar scroll do body
+        document.body.style.overflow = '';
+        setTimeout(() => { 
+            filterElement?.classList.add('hidden');
+        }, 300);
+    }
+}
+
+// Fechar filtro ao clicar no overlay de fundo (mobile)
+document.addEventListener('DOMContentLoaded', function() {
+    const filterElement = document.getElementById('category-filters');
+    if (filterElement) {
+        // Fechar ao clicar no overlay (background escuro)
+        filterElement.addEventListener('click', function(e) {
+            // Se clicou no próprio elemento (background) e não no conteúdo filho
+            if (e.target === filterElement) {
+                closeFilter();
+            }
+        });
+        
+        // Prevenir fechamento ao clicar dentro do conteúdo
+        const filterContent = filterElement.querySelector('*');
+        if (filterContent) {
+            filterContent.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    }
+});
 
 function refreshMin(elem, inputValue = null) {
     const range = getPriceRange();

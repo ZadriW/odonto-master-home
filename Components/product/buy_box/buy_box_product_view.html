@@ -34,8 +34,14 @@
                     {{~ end ~}}
                 </span>
             </h1>
-            {{~ if product.alias ~}}
-                <a href="/{{ product.alias }}" class="product-view-more-link">Ver Mais</a>
+            {{~ 
+                product_alias = product.alias
+                if !product_alias && product.attribute_selections?.selected_variant?.alias
+                    product_alias = product.attribute_selections.selected_variant.alias
+                end
+                if product_alias
+            ~}}
+                <a href="/{{ product_alias }}" class="product-view-more-link">Ver Mais</a>
             {{~ end ~}}
             {{~ if product.informations ~}}
                 <div class="product-spot-info-modal">
@@ -44,9 +50,6 @@
             {{~ end ~}}
         </div>
         {{~
-            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
-            promotionsPagProduto = promotionsTypes | group.get "Página produto"
-            stamps promotions: promotionsPagProduto
             installment_plans = product.prices.installment_plans 
         ~}}
         <div class="flex">
@@ -66,6 +69,11 @@
                 ~}}
             </div>
         </div>
+        {{~
+            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
+            promotionsPagProduto = promotionsTypes | group.get "Página produto"
+            stamps promotions: promotionsPagProduto
+        ~}}
         <div>
             {{ buy_box_product_attribute product: product }}
             {{~ if product.customizations ~}}

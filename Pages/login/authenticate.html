@@ -21,7 +21,6 @@
   <div class="wake-autenticate-wrapper">
     <div>
       {{ wake_login_authenticate }}
-      {{ wake_login_social }}
       <div class="register">
         <h3>Cadastrar</h3>
         <span class="text-md">Não tem conta ainda? Faça seu cadastro</span>
@@ -37,6 +36,7 @@
   {{ sdk_client }}
   {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
   {{ wake_scripts scripts: ["wake_utils", "wake_login"] }}
+  {{ asset type: "js" paths: ["login_redirect"] }}
   {{ page_scripts position: "BODY_END" scripts: common.scripts }}
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
-    {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme"]}}
+    {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme", "mobile_bottom_menu"]}}
     {{ wake_recaptcha_script }}
     {{ head title: "Confirmação de Pedido" store: store }}
     {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
@@ -98,7 +98,7 @@
                             <li><b class="mr-1">Comprado por:</b> {{data.customer?.customer_name ? data.customer.customer_name : ''}}</li>
                             {{ if first_payment?.name }} <li><b class="mr-1">Forma de pagamento:</b> {{first_payment?.name}}</li> {{ end }}
                         </ul>
-                        <span class="wake-confirmation-order-details-note">Você pode acompanhar o status do seu pedido em <br><a href="/account" class="wake-confirmation-order-details-note-link">Minha Conta > Meus pedidos</a></span>
+                        <span class="wake-confirmation-order-details-note">Você pode acompanhar o status do seu pedido em <br><a href="/account" class="wake-confirmation-order-details-note-link"> Minha Conta > Meus pedidos</a></span>
 
                         {{ wake_copy_payment_link_button }}
                             
@@ -200,12 +200,14 @@
         </div>
     {{~ end ~}}
     {{ wake_payment_change_scripts }}
+    {{ mobile_bottom_menu }}
     {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
     {{ sdk_client }}
     {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
     {{ data_layer_confirmation_view checkout: data.checkout }}
     {{ wake_scripts scripts: ["wake_utils", "wake_checkout"] }}
     {{ asset type: "js" paths: ["checkout_user_login", "event_manager"] options: "async" }}
+    {{ asset type: "js" paths: ["mobile_bottom_menu"] options: "async"}}
     {{ wake_checkout_confirmation_scripts checkout_id: data.checkout.checkout_id order: first_order }}
     {{ page_scripts position: "BODY_END" scripts: common.scripts }}
   </body>

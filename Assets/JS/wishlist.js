@@ -1,5 +1,153 @@
-window.addEventListener("userChecked", wishlistLoad, false);
+/**
+ * ============================================================================
+ * SISTEMA DE WISHLIST (LISTA DE DESEJOS)
+ * ============================================================================
+ * 
+ * Este sistema gerencia a lista de desejos dos usuários de forma robusta,
+ * garantindo que os ícones de wishlist nos cards de produtos sejam mantidos
+ * sincronizados com o estado real da wishlist do usuário.
+ * 
+ * FUNCIONALIDADES PRINCIPAIS:
+ * ---------------------------
+ * 1. Carregamento automático da wishlist ao fazer login
+ * 2. Atualização visual de todos os ícones na página
+ * 3. Sincronização em tempo real ao adicionar/remover produtos
+ * 4. Detecção automática de produtos adicionados dinamicamente (paginação, carrosséis)
+ * 5. Diferenciação por usuário usando customerAccessToken
+ * 
+ * FLUXO DE FUNCIONAMENTO:
+ * -----------------------
+ * 1. Usuário faz login → evento "userChecked" é disparado
+ * 2. initializeWishlist() é chamado automaticamente
+ * 3. Sistema busca produtos da wishlist via GraphQL
+ * 4. Todos os ícones na página são atualizados (vermelho se na wishlist)
+ * 5. MutationObserver monitora novos produtos adicionados ao DOM
+ * 6. Ao adicionar/remover produto, todas as instâncias são atualizadas
+ * 
+ * ESTILOS VISUAIS:
+ * ----------------
+ * - Produto NA wishlist: fill-red-300 stroke-red-700 (vermelho)
+ * - Produto FORA da wishlist: fill-none stroke-black (preto)
+ * 
+ * INTEGRAÇÃO COM OUTROS SISTEMAS:
+ * --------------------------------
+ * Para sistemas que carregam produtos dinamicamente (ex: paginação),
+ * dispare um dos seguintes eventos após carregar os produtos:
+ * 
+ *   window.dispatchEvent(new CustomEvent("productsLoaded"));
+ *   window.dispatchEvent(new CustomEvent("pageContentUpdated"));
+ * 
+ * Ou chame manualmente: refreshWishlistIcons()
+ * 
+ * PERSISTÊNCIA POR USUÁRIO:
+ * -------------------------
+ * O sistema usa pageUser.customerAccessToken para identificar o usuário.
+ * Cada usuário tem sua própria wishlist independente no servidor.
+ * Ao trocar de usuário (logout/login), a wishlist é recarregada automaticamente.
+ * 
+ * ============================================================================
+ */
+
+window.addEventListener("userChecked", initializeWishlist, false);
+
+// Evento customizado para atualizar ícones quando produtos são carregados dinamicamente
+window.addEventListener("productsLoaded", handleProductsLoaded, false);
+window.addEventListener("pageContentUpdated", handleProductsLoaded, false);
+
 let productsInWishlist = [];
+let wishlistInitialized = false;
+
+// Observer para detectar novos produtos adicionados dinamicamente à página
+let wishlistObserver = null;
+
+/**
+ * Handler for custom events that indicate new products were loaded
+ * @param {CustomEvent} event - The custom event
+ */
+async function handleProductsLoaded(event) {
+    if (wishlistInitialized && pageUser?.customerAccessToken) {
+        console.log('Produtos carregados dinamicamente - atualizando ícones de wishlist');
+        setTimeout(() => {
+            updateAllWishlistIcons();
+        }, 200);
+    }
+}
+
+/**
+ * Initializes MutationObserver to watch for dynamically added products
+ * Updates wishlist icons when new product cards are added to the DOM
+ */
+function initializeWishlistObserver() {
+    // Se já existe um observer, desconecta
+    if (wishlistObserver) {
+        wishlistObserver.disconnect();
+    }
+    
+    // Configuração do observer
+    const config = {
+        childList: true,
+        subtree: true
+    };
+    
+    // Callback quando mutações são detectadas
+    const callback = function(mutationsList) {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Verifica se algum nó adicionado contém botões de wishlist
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const wishlistButtons = node.querySelectorAll 
+                            ? node.querySelectorAll('[class*="wishlist-button-"]')
+                            : [];
+                        
+                        if (wishlistButtons.length > 0 || node.classList?.contains('product-card')) {
+                            // Aguarda um pouco para garantir que o DOM está estável
+                            setTimeout(() => {
+                                updateAllWishlistIcons();
+                            }, 100);
+                        }
+                    }
+                });
+            }
+        }
+    };
+    
+    // Cria o observer
+    wishlistObserver = new MutationObserver(callback);
+    
+    // Observa mudanças no body
+    wishlistObserver.observe(document.body, config);
+    
+    console.log('Wishlist Observer inicializado - detectará produtos adicionados dinamicamente');
+}
+
+/**
+ * Initializes wishlist system after user check
+ * Updates product icons and loads wishlist page if needed
+ */
+async function initializeWishlist() {
+    await wishlistLoad();
+    await updateProductsInWishlist();
+    await updateAllWishlistIcons();
+    
+    // Inicializa observer para detectar produtos adicionados dinamicamente
+    initializeWishlistObserver();
+    
+    wishlistInitialized = true;
+    console.log('Sistema de wishlist inicializado completamente');
+}
+
+/**
+ * Re-initializes wishlist icons (useful after page navigation or content updates)
+ * Can be called manually when needed
+ */
+async function refreshWishlistIcons() {
+    if (pageUser?.customerAccessToken) {
+        await updateProductsInWishlist();
+        await updateAllWishlistIcons();
+        console.log('Ícones de wishlist atualizados manualmente');
+    }
+}
 
 /**
  * Wishlist load function.
@@ -32,32 +180,19 @@ async function wishlistLoad(){
             };
     
             const response = await client.snippet.render("wishlist_snippet.html", "SnippetQueries/wishlist.graphql", variables);
-            
-            // Verifica se a resposta é válida
-            let content;
-            if (response && typeof response === 'string' && response.trim() !== '') {
-                content = response;
-            } else if (response && typeof response === 'object' && response.error) {
-                console.error('Erro na wishlist:', response.error);
-                content = "<h3>Não foi possível buscar a lista de desejos.</h3>";
-            } else {
-                content = response || "<h3>Não foi possível buscar a lista de desejos.</h3>";
-            }
+            const content = response ? response : "<h3>Não foi possível buscar a lista de desejos.</h3>";
             
             setInnerHtml(content, wishlistBodyDiv);
 
         }
     } catch(error) {
-        console.error('Erro ao carregar wishlist:', error);
-        const wishlistBodyDiv = document.getElementById("wishlist-body");
-        if (wishlistBodyDiv) {
-            setInnerHtml("<h3>Não foi possível buscar a lista de desejos.</h3>", wishlistBodyDiv);
-        }
+        console.log(error);
     }
 }
 
 /**
  * Gets the IDs of products added in the user's wishlist
+ * Fetches from API and updates local array
  */
 async function updateProductsInWishlist() {
     // Garante que pageUser está definido
@@ -85,10 +220,84 @@ async function updateProductsInWishlist() {
             
             let ids = result ? result.map(a => a.productId) : [];
             productsInWishlist.splice(0, productsInWishlist.length, ...ids);
+            
+            console.log(`Wishlist carregada para usuário: ${ids.length} produtos`);
+            return ids;
         } catch(error) {
             console.warn('Erro ao atualizar wishlist:', error);
+            return [];
         }
     }
+    return [];
+}
+
+/**
+ * Updates all wishlist icons on the page based on productsInWishlist array
+ * Marks products that are in the wishlist with red styling
+ */
+async function updateAllWishlistIcons() {
+    if (!pageUser?.customerAccessToken) {
+        console.log('Usuário não autenticado - ícones não serão atualizados');
+        return;
+    }
+
+    // Busca todos os botões de wishlist na página
+    const allWishlistButtons = document.querySelectorAll('[class*="wishlist-button-"]');
+    
+    console.log(`Atualizando ${allWishlistButtons.length} botões de wishlist na página`);
+    
+    allWishlistButtons.forEach(button => {
+        // Extrai o product_id do nome da classe
+        const classList = Array.from(button.classList);
+        const wishlistClass = classList.find(cls => cls.startsWith('wishlist-button-'));
+        
+        if (wishlistClass) {
+            const productId = Number(wishlistClass.replace('wishlist-button-', ''));
+            const icon = document.getElementById(`wishlist-icon-${productId}`);
+            
+            if (icon) {
+                const isInWishlist = productsInWishlist.includes(productId);
+                
+                if (isInWishlist) {
+                    // Produto está na wishlist - marca como favorito
+                    icon.classList.add('fill-red-300', 'stroke-red-700');
+                    button.setAttribute('onclick', `wishlistRemoveClick(this, ${productId})`);
+                } else {
+                    // Produto não está na wishlist - remove marcação
+                    icon.classList.remove('fill-red-300', 'stroke-red-700');
+                    button.setAttribute('onclick', `wishlistAddClick(this, ${productId})`);
+                }
+            }
+        }
+    });
+    
+    console.log(`Ícones atualizados. Produtos na wishlist: ${productsInWishlist.length}`);
+}
+
+/**
+ * Updates a specific product's wishlist icon across all instances on the page
+ * @param {number} productId - The product ID to update
+ * @param {boolean} isInWishlist - Whether the product is in the wishlist
+ */
+function updateProductWishlistIcon(productId, isInWishlist) {
+    const productIdStr = String(productId);
+    const icons = document.querySelectorAll(`.wishlist-icon-${productIdStr}`);
+    const buttons = document.querySelectorAll(`.wishlist-button-${productIdStr}`);
+    
+    icons.forEach(icon => {
+        if (isInWishlist) {
+            icon.classList.add('fill-red-300', 'stroke-red-700');
+        } else {
+            icon.classList.remove('fill-red-300', 'stroke-red-700');
+        }
+    });
+    
+    buttons.forEach(button => {
+        const clickHandler = isInWishlist 
+            ? `wishlistRemoveClick(this, ${productIdStr})`
+            : `wishlistAddClick(this, ${productIdStr})`;
+        button.setAttribute('onclick', clickHandler);
+    });
 }
 
 
@@ -98,22 +307,27 @@ async function updateProductsInWishlist() {
  * @param {string} productId - Product ID to add to wishlist.
  */
 async function wishlistAddClick(button, productId) {
-    const element = document.getElementById(`wishlist-icon-${productId}`);
     const success = await addOrRemoveWishlist(productId, true);
 
-    if (element && success) {
-        element.classList.add("fill-red-300");
-        element.classList.add("stroke-red-700");
-        button.setAttribute("onclick", `wishlistRemoveClick(this, ${productId})`);
-    }
-    
-    window.dispatchEvent(new CustomEvent("productAddedToWishlist", {
-        detail: { 
-            products : [{
-                productId: Number(productId)
-            }]
+    if (success) {
+        // Adiciona à lista local
+        const numericProductId = Number(productId);
+        if (!productsInWishlist.includes(numericProductId)) {
+            productsInWishlist.push(numericProductId);
         }
-    }));
+        
+        // Atualiza todos os ícones deste produto na página
+        updateProductWishlistIcon(numericProductId, true);
+        
+        // Dispara evento customizado
+        window.dispatchEvent(new CustomEvent("productAddedToWishlist", {
+            detail: { 
+                products : [{
+                    productId: numericProductId
+                }]
+            }
+        }));
+    }
 }
 
 /**
@@ -122,22 +336,31 @@ async function wishlistAddClick(button, productId) {
  * @param {string} productId - Product ID to remove from wishlist.
  */
 async function wishlistRemoveClick(button, productId) {
-    const element = document.getElementById(`wishlist-icon-${productId}`);
     const success = await addOrRemoveWishlist(productId, false);
     
-    if (element && success) {
-        element.classList.remove("fill-red-300");
-        element.classList.remove("stroke-red-700");
-        button.setAttribute("onclick", `wishlistAddClick(this, ${productId})`);
-    }
-    
-    window.dispatchEvent(new CustomEvent("productRemovedFromWishlist", {
-        detail: { 
-            products : [{
-                productId: Number(productId)
-            }]
+    if (success) {
+        // Remove da lista local
+        const numericProductId = Number(productId);
+        productsInWishlist = productsInWishlist.filter(id => id !== numericProductId);
+        
+        // Atualiza todos os ícones deste produto na página
+        updateProductWishlistIcon(numericProductId, false);
+        
+        // Se estiver na página de wishlist, recarrega
+        const wishlistBodyDiv = document.getElementById("wishlist-body");
+        if (wishlistBodyDiv) {
+            await wishlistLoad();
         }
-    }));
+        
+        // Dispara evento customizado
+        window.dispatchEvent(new CustomEvent("productRemovedFromWishlist", {
+            detail: { 
+                products : [{
+                    productId: numericProductId
+                }]
+            }
+        }));
+    }
 }
 
 /**
@@ -191,30 +414,6 @@ async function addOrRemoveWishlist(productId, add) {
                 }
                 else{
                     await client.wishlist.remove(input);
-                    // Remove da lista local
-                    productsInWishlist = productsInWishlist.filter(id => id !== Number(productId));
-                    // Atualiza visualmente removendo as classes
-                    const productIdStr = String(productId);
-                    let productElements = document.querySelectorAll(`.wishlist-icon-${productIdStr}`);
-                    let buttonElements = document.querySelectorAll(`.wishlist-button-${productIdStr}`);
-                    
-                    // Remove classes de favorito
-                    productElements.forEach(function(element) {
-                        element.classList.remove("fill-red-300");
-                        element.classList.remove("stroke-red-700");
-                    });
-                    
-                    // Atualiza onclick dos botões
-                    buttonElements.forEach(function(button) {
-                        button.setAttribute('onclick', `wishlistAddClick(this, ${productIdStr})`);
-                    });
-                    
-                    // Se estiver na página de wishlist, recarrega
-                    const wishlistBodyDiv = document.getElementById("wishlist-body");
-                    if (wishlistBodyDiv) {
-                        await wishlistLoad();
-                    }
-                    
                     showOverlay('Produto removido!', 'Produto removido da sua lista de desejos');
                     return true;
                 }

@@ -16,7 +16,7 @@
         {{~ sort_options = settings.sort.hotsite.options ~}}
     {{~ end ~}}
     <select name="sort_options" id="sort_options" onChange="sortResult(this.value);" class="">
-        <option value="" selected disabled hidden>{{ "Selecione" | lang }}</option>
+        <option value="" selected disabled hidden>{{ "Relevância" | lang }}</option>
         {{~ for option in sort_options ~}}
             <option value="{{option.setting.key}}:{{option.setting.direction}}">{{option.name}}</option>
         {{~ end ~}}
