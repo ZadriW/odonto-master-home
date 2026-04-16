@@ -21,7 +21,7 @@
             </button>
         </div>
 
-        <ul class="flex flex-col lg:flex-row relative lg:w-full lg:justify-start lg:items-center lg:gap-0"> 
+        <ul class="navbar-main-menu-list">
             {{~ if top_level ~}}
                 {{~ top_level = top_level | array.sort "order" ~}}
                 {{~ for top_menu in top_level ~}}

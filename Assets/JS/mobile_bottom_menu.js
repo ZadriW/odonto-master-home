@@ -188,7 +188,7 @@ function initMobileBottomMenu() {
     
     // Atualizar badge do carrinho (apenas se não for checkout)
     if (!document.body.classList.contains('page-checkout')) {
-    updateMobileCartQtyLabel();
+        updateMobileCartQtyLabel();
     }
     
     // Atualizar link de conta
@@ -196,16 +196,16 @@ function initMobileBottomMenu() {
     
     // Observar mudanças no carrinho (apenas se não for checkout)
     if (!document.body.classList.contains('page-checkout')) {
-    const cartQtyLabel = document.getElementById("cart-qty-label");
-    if (cartQtyLabel) {
-        const observer = new MutationObserver(function() {
-            updateMobileCartQtyLabel();
-        });
-        observer.observe(cartQtyLabel, {
-            childList: true,
-            characterData: true,
-            subtree: true
-        });
+        const cartQtyLabel = document.getElementById("cart-qty-label");
+        if (cartQtyLabel) {
+            const observer = new MutationObserver(function() {
+                updateMobileCartQtyLabel();
+            });
+            observer.observe(cartQtyLabel, {
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
         }
     }
     
@@ -260,7 +260,7 @@ window.addEventListener('resize', function() {
 window.addEventListener('load', function() {
     setTimeout(function() {
         if (!document.body.classList.contains('page-checkout')) {
-        updateMobileCartQtyLabel();
+            updateMobileCartQtyLabel();
         }
         toggleMobileMenu();
         // Ajustar novamente para checkout

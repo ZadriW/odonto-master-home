@@ -1,0 +1,36 @@
+/* LEIA-ME */
+
+/* login.css >> Definições das páginas de LOGIN do novo Checkout */
+/* minhaconta.css >> Definições das páginas de MINHA CONTA do novo Checkout */
+/* checkout.css >> Definições das páginas de CARRINHO, FECHAMENTO E CONFIRMAÇÃO do novo Checkout */
+/* geral.css >> Definições de Cabeçalho e Rodapé */
+
+/* adicione/edite este arquivo para sobrescrever as definições padrão da loja */
+
+.fbits-btn-recompra{
+    display: block !important;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-bottom: 0;
+    border-radius: 5px;
+    float: right;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 2em;
+    color: #fff;
+    border-color: #1d70ba;
+}
+
+#btnRecompra{
+    background-image: linear-gradient(to bottom, #3fb6f0, #2ea6e5, #1d95da, #0c85ce, #0175c2);
+}
+
+div.row.col-xs-5.col-md-5.text-center.fbits-btn-recompra{
+    display: block !important;
+
+}
+
+.div.row.col-xs-5.col-md-5.text-center.fbits-btn-recompra{
+    display: block !important;
+}

@@ -1,79 +1,166 @@
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="{{ configuracao?.nome_ecommerce ?? 'Odonto Master' }}" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
-                        <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
                             <tbody>
                                 <tr align="center">
-                                    <td style="padding-bottom: 30px;">
-                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Salvamos seu carrinho!</h1>
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" fill="#ffffff"/>
+                                        </svg>
                                     </td>
                                 </tr>
                                 <tr align="center">
-                                    <td style="padding: 0 20px 30px 20px;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 24px 0;">Olá <strong style="color: #0e167a;">{{carrinho.usuario.nome}}</strong>, Temos uma oferta especial para você!</p>
-                                        <a href="{{configuracao.url_carrinho}}/{{carrinho.carrinho_id}}" style="display: inline-block; border-radius: 8px; border: none; background: #0e167a; text-transform: uppercase; font-size: 14px; font-weight: 600; color: #ffffff; padding: 14px 32px; text-decoration: none; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">VER CARRINHO</a>
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">Salvamos seu carrinho!</h1>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Olá, <strong style="color: #ffffff;">{{ carrinho?.usuario?.nome }}</strong>! Você deixou alguns itens no seu carrinho. Complete sua compra agora e aproveite!</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;padding: 0 30px 30px 30px;">
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <h2 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 24px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Seu carrinho!</h2>
-                                    </td>
-                                </tr>
+                        <!-- END HERO -->
 
-                                {{ for produto in carrinho.produto }}
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== SEÇÃO: PRODUTOS DO CARRINHO ===== -->
                                 <tr>
-                                    <td style="padding-bottom: 20px; border-bottom: 1px solid #e5e7eb;">
-                                        <table style="width: 100%;">
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding: 0 15px 0 20px; vertical-align: top;">
-                                                        <a target="_blank" href="{{produto.url_produto ?? '#'}}"><img class="adapt-img" src="{{produto.url_imagem}}" alt="{{produto.nome}}" style="display: block; width: 110px; height: auto; border-radius: 8px; border: 1px solid #e5e7eb;"></a>
-                                                    </td>
-                                                    <td style="vertical-align: top; width: 100%;">
-                                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.4; color: #0e167a; font-weight: 600; margin: 0 0 8px 0;"><strong>{{produto.nome}}</strong></p>
-                                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.4; color: #6c757d; margin: 0 0 4px 0; text-decoration: line-through;">{{produto.preco_de}}</p>
-                                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 18px; line-height: 1.4; color: #0e167a; font-weight: 700; margin: 0 0 8px 0;"><strong>{{produto.preco_por}}</strong></p>
-                                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.4; color: #6c757d; margin: 0;">Quantidade: 1</p>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Seu Carrinho</p>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </td>
                                 </tr>
-                                {{ end }}
-
                                 <tr>
-                                    <td style="padding-top: 20px;">
-                                        <table style="width: 100%;border-top:2px solid #0e167a;padding: 20px 0;">
+                                    <td style="padding: 12px 20px 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                             <tbody>
-                                                <tr align="right">
-                                                    <td style="padding: 0 20px 0 0;">
-                                                        <h3 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 20px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Total:&nbsp;<strong style="color: #0e167a;">{{carrinho.valor_total}}</strong></h3>
+                                                {{ for produto in carrinho?.produto }}
+                                                <tr>
+                                                    <td style="padding: 0 0 16px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-radius: 4px;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding: 12px;">
+                                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="width: 100px; padding-right: 12px;" valign="top">
+                                                                                        <img src="{{ produto?.url_imagem }}" alt="{{ produto?.nome }}" style="display: block; width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #e0e4f0;" />
+                                                                                    </td>
+                                                                                    <td valign="top">
+                                                                                        <p style="margin: 0 0 6px; font-weight: 700; color: #1a1a2e; font-size: 15px;">{{ produto?.nome }}</p>
+                                                                                        <table border="0" cellpadding="0" cellspacing="0" style="margin-top: 8px;">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    {{ if produto?.preco_de }}
+                                                                                                    <td style="padding-right: 8px;">
+                                                                                                        <p style="margin: 0; font-size: 13px; color: #999999; text-decoration: line-through;">R$ {{ produto?.preco_de }}</p>
+                                                                                                    </td>
+                                                                                                    {{ end }}
+                                                                                                    <td>
+                                                                                                        <p style="margin: 0; font-size: 16px; color: #0e167a; font-weight: 700;">R$ {{ produto?.preco_por }}</p>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </td>
                                                 </tr>
+                                                {{ end }}
                                             </tbody>
                                         </table>
                                     </td>
                                 </tr>
+
+                                <!-- ===== SEÇÃO: RESUMO DO CARRINHO ===== -->
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2" style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Resumo do Carrinho</p>
+                                                    </td>
+                                                </tr>
+
+                                                {{ if carrinho?.valor_desconto }}
+                                                <tr>
+                                                    <td align="left" style="padding: 8px 0 0; font-size: 14px; color: #16a34a;">Desconto:</td>
+                                                    <td align="right" style="padding: 8px 0 0; font-size: 14px; color: #16a34a; font-weight: 600;">- R$ {{ carrinho?.valor_desconto }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                <!-- LINHA DIVISÓRIA -->
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 10px; border-top: 1px solid #e0e4f0;"></td>
+                                                </tr>
+
+                                                <!-- TOTAL DESTACADO -->
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 6px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #0e167a; border-radius: 6px;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="left" style="padding: 14px 18px; font-size: 15px; color: #c4cdee; font-weight: 600;">Total</td>
+                                                                    <td align="right" style="padding: 14px 18px; font-size: 22px; color: #ffffff; font-weight: 700; white-space: nowrap;">R$ {{ carrinho?.valor_total }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== CTA: VER CARRINHO ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 28px 20px 32px;">
+                                        <a href="{{ configuracao?.url_carrinho }}/{{ carrinho?.carrinho_id }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Ver Carrinho</a>
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
-                        <!-- END MAIN -->
+                        <!-- END MAIN CONTENT -->
 
                         <!-- FOOTER -->
                         {{footer_mail}}

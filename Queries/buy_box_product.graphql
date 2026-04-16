@@ -175,6 +175,7 @@ fragment SingleProductData on SingleProduct {
     }
     selectedVariant{
       id
+      sku
       alias
       available
       images {

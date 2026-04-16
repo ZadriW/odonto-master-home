@@ -73,27 +73,7 @@ query ProductPage($productId: Long!, $selections: [AttributeFilterInput], $partn
       url
     }
     prices {
-      listPrice
-      price
-      discountPercentage
-      installmentPlans{
-          displayName
-          name
-          installments{
-            discount
-            fees
-            number
-            value
-          }
-      }
-      bestInstallment {
-        name
-        displayName
-        discount
-        fees
-        number
-        value
-      }
+      ...ProductPagePricesCore
     }
     promotions{
       content
@@ -109,6 +89,31 @@ query ProductPage($productId: Long!, $selections: [AttributeFilterInput], $partn
       value
     }
     addToCartFromSpot
+  }
+}
+
+# Preço à vista, parcelamento e bestInstallment (melhor opção / menor parcela conforme API Wake)
+fragment ProductPagePricesCore on Prices {
+  listPrice
+  price
+  discountPercentage
+  installmentPlans {
+    displayName
+    name
+    installments {
+      discount
+      fees
+      number
+      value
+    }
+  }
+  bestInstallment {
+    name
+    displayName
+    discount
+    fees
+    number
+    value
   }
 }
 
@@ -140,6 +145,7 @@ fragment SingleProductData on SingleProduct {
     }
     selectedVariant{
       id
+      sku
       alias
       available
       images {
@@ -147,28 +153,8 @@ fragment SingleProductData on SingleProduct {
         url
       }
       prices {
-        listPrice
-        price
-        discountPercentage
-        installmentPlans{
-            displayName
-            name
-            installments{
-              discount
-              fees
-              number
-              value
-            }
-        }
-        bestInstallment {
-          name
-          displayName
-          discount
-          fees
-          number
-          value
-        }
-        wholesalePrices{
+        ...ProductPagePricesCore
+        wholesalePrices {
           price
           quantity
         }
@@ -203,28 +189,8 @@ fragment SingleProductData on SingleProduct {
     print
   }
   prices {
-    listPrice
-    price
-    discountPercentage
-    installmentPlans{
-        displayName
-        name
-        installments{
-          discount
-          fees
-          number
-          value
-        }
-    }
-    bestInstallment {
-      name
-      displayName
-      discount
-      fees
-      number
-      value
-    }
-    wholesalePrices{
+    ...ProductPagePricesCore
+    wholesalePrices {
       price
       quantity
     }

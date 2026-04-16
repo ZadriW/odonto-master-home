@@ -182,6 +182,7 @@
 #logged-user > div.flex-col.lg\:absolute ul li {
     width: 100% !important;
     display: flex !important;
+    align-items: stretch !important; /* Permite que o dropdown-option ocupe toda a altura */
 }
 
 /* ===== DROPDOWN ===== */
@@ -199,6 +200,7 @@
     position: relative !important;
     border-left: 3px solid transparent !important;
     width: 100% !important;
+    height: 100% !important; /* Ocupa 100% da altura do container li */
     box-sizing: border-box !important;
 }
 
@@ -209,6 +211,7 @@
     padding-left: 1.5rem !important;
     font-weight: 600 !important;
     width: 100% !important;
+    height: 100% !important; /* Ocupa 100% da altura do container li no hover */
 }
 
 #logged-user .dropdown-option:active {

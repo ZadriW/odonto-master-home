@@ -1,5 +1,5 @@
 {{ ##
-    Description: Renders the buy together single product view
+        Description: Renders the buy together single product view using product-card visual
     Params:
         - product: buy list single product data
     Usage:
@@ -9,12 +9,14 @@
     product_id = product.product_id
     product_available = false
     product_variant_id = ""
-    product_stock = 0 
+    product_stock = 0
+    product_prices = product.prices
 ~}}
 {{~ if product.attribute_selections.selected_variant ~}}
     {{~ product_variant_id = product.attribute_selections.selected_variant.product_variant_id ~}}
     {{~ product_available = product.attribute_selections.selected_variant.available ~}}
     {{~ product_stock = product.attribute_selections.selected_variant.stock ~}}
+    {{~ product_prices = product.attribute_selections.selected_variant.prices ~}}
 {{~ else if product.attribute_selections.selections.size == 0 ~}}
     {{~ product_variant_id = product.product_variant_id ~}}
     {{~ product_available = product.available ~}}
@@ -23,37 +25,69 @@
     {{~ product_variant_id = product.product_variant_id ~}}
 {{~ end ~}}
 
-<div class="flex flex-col justify-start sm:min-h-[350px] p-2 shadow-2xl/30">
-    <div class="flex w-40 lg:w-60 border p-1 mb-2">
+<div class="product-card bt-product-card">
+    <div class="product-card__image">
         {{ spot_image product: product }}
     </div>
-    <strong>{{ product.product_name }}</strong>
-    {{~ attribute_selections = product.attribute_selections ~}}
-    {{~ if attribute_selections.can_be_matrix ~}}
-        {{~ on_change = "buyTogetherQuantityOnChange(this);" ~}}        
-        {{ product_matrix_attribute attribute_selections: attribute_selections on_change: on_change is_secondary_product: true }}
-    {{~ else ~}}
-        <input product-available type="hidden" name="product-available-{{ product_id }}" value="{{ product_available }}">
-        <div attribute-selections>
-            {{
-                grouped_attribute_selections = attribute_selections.selections | group.by @(do; ret $0.display_type;end)
-                combo_attr = grouped_attribute_selections | group.get "Combo"
-                div_attr = grouped_attribute_selections | group.get "DIV"
-                div_img_attr = grouped_attribute_selections | group.get "DIV com foto do produto variante"
-                div_color_attr = grouped_attribute_selections | group.get "DIV com cor"
-                product_combo_attribute attribute_selections: combo_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
-                product_div_attribute attribute_selections: div_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
-                product_div_with_image_attribute attribute_selections: div_img_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
-                product_div_with_color_attribute attribute_selections: div_color_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
-            }}
-        </div>
-        <div class="col-3">
-            <p>Quantidade</p>
-            <input type="number" class="form-control" product-variant-id="{{ product_variant_id }}"
-                name="selected-quantity" value="1" min="1" max="{{ product_stock }}" onchange="buyTogetherQuantityOnChange(this)" aria-label="Quantidade">
-        </div>
-    {{~ end ~}}
-    {{~ if product.customizations ~}}
-        <div class="max-w-sm">{{~ product_customizations customizations: product.customizations ~}}</div>
-    {{~ end ~}}
+
+    <div class="product-card__content">
+        <a href="/{{product.alias}}" class="product-title-link" target="_blank" onclick="event.stopPropagation();">
+            <h3 class="product-title">{{ product.product_name }}</h3>
+        </a>
+
+        {{~ attribute_selections = product.attribute_selections ~}}
+        {{~ if attribute_selections.can_be_matrix ~}}
+            {{~ on_change = "buyTogetherQuantityOnChange(this);" ~}}
+            {{ product_matrix_attribute attribute_selections: attribute_selections on_change: on_change is_secondary_product: true }}
+        {{~ else ~}}
+            <input product-available type="hidden" name="product-available-{{ product_id }}" value="{{ product_available }}">
+            <div attribute-selections>
+                {{
+                    grouped_attribute_selections = attribute_selections.selections | group.by @(do; ret $0.display_type;end)
+                    combo_attr = grouped_attribute_selections | group.get "Combo"
+                    div_attr = grouped_attribute_selections | group.get "DIV"
+                    div_img_attr = grouped_attribute_selections | group.get "DIV com foto do produto variante"
+                    div_color_attr = grouped_attribute_selections | group.get "DIV com cor"
+                    product_combo_attribute attribute_selections: combo_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
+                    product_div_attribute attribute_selections: div_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
+                    product_div_with_image_attribute attribute_selections: div_img_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
+                    product_div_with_color_attribute attribute_selections: div_color_attr product_id: product_id on_click: "buyTogetherSelectAttribute" is_secondary_product: true
+                }}
+            </div>
+            <input type="number" class="bt-qty-input-hidden" product-variant-id="{{ product_variant_id }}"
+                name="selected-quantity" value="1" min="1" max="{{ product_stock }}"
+                onchange="buyTogetherQuantityOnChange(this)" aria-label="Quantidade">
+        {{~ end ~}}
+
+        {{~ if product.customizations ~}}
+            <div class="max-w-sm">{{~ product_customizations customizations: product.customizations ~}}</div>
+        {{~ end ~}}
+
+    </div>
+    <div class="bt-card-bottom">
+        {{~ if product_prices && product_prices.price ~}}
+            {{~ bt_vitrine_pix = product_prices.price | math.times 0.95 ~}}
+            <div class="product-pricing" data-vitrine-discount-rate="0.05" data-price-catalog="{{ product_prices.price }}" data-price-pix-display="{{ bt_vitrine_pix }}">
+                <div class="product-price-main-row flex flex-wrap items-baseline gap-x-2 gap-y-0">
+                    <p class="text-2xl font-bold mb-0" style="color: #0e167a;">
+                        <b>{{ bt_vitrine_pix | math.format "c" "pt-BR" }}</b>
+                    </p>
+                    <span class="product-price-extra-discount-badge" title="Desconto promocional de 5% no Pix ou boleto sobre o preço de tabela">-5%</span>
+                    <span class="product-price-pix-note"> no Pix ou boleto</span>
+                </div>
+            </div>
+        {{~ end ~}}
+
+        {{~ if product_available ~}}
+            <div class="product-actions-wrapper bt-card-actions">
+                <a href="/{{product.alias}}" class="product-button product-button-variant" target="_blank" onclick="event.stopPropagation();">
+                    Ver produto
+                </a>
+            </div>
+        {{~ else ~}}
+            {{~ if product_variant_id != null ~}}
+                {{ product_back_in_stock product_variant_id: product_variant_id message: "Produto esgotado" }}
+            {{~ end ~}}
+        {{~ end ~}}
+    </div>
 </div>

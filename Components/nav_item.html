@@ -16,9 +16,9 @@
         link = link | string.prepend "/" 
     end
     menuNameLower = current_menu.name | string.downcase
-    isEstudante = menuNameLower == "estudante" || menuNameLower == "estudantes" || (link && (link | string.contains "/estudantes" || link | string.contains "estudantes"))
+    isOdontoverse = menuNameLower == "odontoverse" || (link && (link | string.contains "/odontoverse" || link | string.contains "odontoverse"))
 ~}}
-{{~ if children.size == 0 && !is_submenu && !isEstudante ~}}
+{{~ if children.size == 0 && !is_submenu && !isOdontoverse ~}}
     <li class="hover:bg-secondary-900 hover:text-white border-b lg:border-none">
         <a href="{{link ? link : '#'}}">{{-current_menu.name-}}</a>
     </li>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             {{~ end ~}}
-            {{~ if children.size > 0 || isEstudante ~}}
+            {{~ if children.size > 0 || isOdontoverse ~}}
             <div id="drop-nav-menu-{{ current_menu.menu_id }}" class="absolute top-0 lg:top-7 left-0 transition lg:group-hover:translate-y-5
             translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible
             duration-500 ease-in-out lg:z-50 w-full lg:w-[1200px] h-screen lg:h-auto bg-mainBg lg:bg-secondary-900 sm:max-lg:hidden
@@ -83,7 +83,7 @@
                             {{ nav_item menus: menus current_menu: child is_submenu: true }}
                         {{~ end ~}}
                     {{~ end ~}}
-                    {{~ else if isEstudante ~}}
+                    {{~ else if isOdontoverse ~}}
                     <li class="flex flex-wrap lg:hidden px-4 py-2 justify-between items-center w-full border-b bg-secondary-200 md:text-base lg:text-sm" 
                     {{- "onclick='hideSubMenu(" + current_menu.menu_id + ")'" -}}>
                         <span>Voltar</span>

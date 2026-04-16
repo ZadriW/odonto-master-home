@@ -152,10 +152,62 @@ function getSpotQuantity(productVariantId) {
 }
 
 /**
+ * Valida o input de quantidade do spot durante a digitação (input).
+ * Permite campo em branco para o usuário apagar e digitar (ex.: "2"); só limita se o número exceder max.
+ * @param {HTMLInputElement} inputEl - O input de quantidade
+ */
+function syncSpotQuantityInputOnInput(inputEl) {
+    if (!inputEl || !inputEl.id || inputEl.id.indexOf('spot-quantity-') !== 0) return;
+    const raw = inputEl.value.trim();
+    if (raw === '') return;
+    const max = parseInt(inputEl.getAttribute('max')) || 999;
+    const value = parseInt(inputEl.value, 10);
+    if (!isNaN(value) && value > max) inputEl.value = max;
+}
+
+/**
+ * Valida e corrige o valor ao sair do campo (change/blur): vazio ou inválido vira min, valor > max vira max.
+ * @param {HTMLInputElement} inputEl - O input de quantidade
+ */
+function syncSpotQuantityInputOnChange(inputEl) {
+    if (!inputEl || !inputEl.id || inputEl.id.indexOf('spot-quantity-') !== 0) return;
+    const min = parseInt(inputEl.getAttribute('min')) || 1;
+    const max = parseInt(inputEl.getAttribute('max')) || 999;
+    let value = parseInt(inputEl.value, 10);
+    if (isNaN(value) || value < min) value = min;
+    if (value > max) value = max;
+    inputEl.value = value;
+}
+
+/** Listeners para permitir digitar a quantidade nos inputs de spot */
+function initSpotQuantityInputListeners() {
+    document.addEventListener('input', function(e) {
+        if (e.target && e.target.id && e.target.id.indexOf('spot-quantity-') === 0) {
+            syncSpotQuantityInputOnInput(e.target);
+        }
+    });
+    document.addEventListener('change', function(e) {
+        if (e.target && e.target.id && e.target.id.indexOf('spot-quantity-') === 0) {
+            syncSpotQuantityInputOnChange(e.target);
+        }
+    });
+}
+
+initSpotQuantityInputListeners();
+
+/**
  * The add to cart button's click event
  * @param {object[]} productVariantId - The product variant id
  */
 async function spotAddToCartButtonClick(productVariantId){
+    const clickedButton = document.activeElement;
+    if (typeof shouldBlockRestrictedSaleForContext === 'function' && await shouldBlockRestrictedSaleForContext(clickedButton)) {
+        if (typeof showRestrictedSaleWarningModal === 'function') {
+            showRestrictedSaleWarningModal();
+        }
+        return;
+    }
+
     if (!productVariantId){
         showOverlay('Não foi possível adicionar o produto ao carrinho', 'Produto inválido', true);
         return;

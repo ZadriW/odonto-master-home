@@ -6,6 +6,12 @@
         product_view product: product
 ## }}
 {{~ selected_variant = product.attribute_selections?.selected_variant ~}}
+{{~
+  display_sku = product.sku
+  if selected_variant && selected_variant.sku
+    display_sku = selected_variant.sku
+  end
+~}}
 <div id="add-cart-alert"></div>
 <div class="flex flex-col relative sm:flex-row w-full">
     <div class="flex mr-5 lg:min-w-[40%]">
@@ -27,17 +33,23 @@
     <div class="flex flex-col md:min-w-[55%]">
         <div class="mb-4">
             <h1 class="text-2xl font-bold leading-tight product-name">
-                {{ product.product_name }}
+                <span class="product-name-heading-text">
+                    <span class="product-name-title-only">{{ product.product_name }}</span><span class="product-illustrative-info-icon" role="button" tabindex="0" aria-expanded="false" aria-label="Informação sobre a imagem do produto">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span class="product-illustrative-tooltip" role="tooltip">*Imagem meramente ilustrativa. As cores podem variar de acordo com o seu monitor.</span>
+                    </span>
+                </span>
                 <span class="product-brand-wrapper">
                     {{~ if product.product_brand ~}}
                         {{~ product_brand brand: product.product_brand ~}}
                     {{~ end ~}}
                 </span>
             </h1>
-            {{~ if product.sku ~}}
-                <div class="product-sku text-sm text-gray-600 mt-1 mb-2">
-                    <span class="font-semibold">SKU:</span> {{ product.sku }}
+            {{~ if display_sku ~}}
+                <div class="product-sku text-sm text-gray-600 mt-1 mb-2" data-product-sku="{{ display_sku }}">
+                    <span class="font-semibold">SKU:</span> <span class="product-sku-value">{{ display_sku }}</span>
                 </div>
+                <input type="hidden" id="product-sku" name="product-sku" value="{{ display_sku }}">
             {{~ end ~}}
             {{~ 
                 product_alias = product.alias
@@ -62,6 +74,9 @@
         ~}}
         <div id="product-free-shipping-badge" class="product-badge product-badge--free-shipping" style="display: none;">
             <i class="fa-regular fa-truck-fast"></i> <b>Frete grátis</b> em compras a partir de R$399,90 *. <span class="free-shipping-info-icon"><i class="fa-solid fa-circle-info"></i><span class="free-shipping-tooltip">*Exceto luvas, gessos, alginatos e líquidos</span></span>
+        </div>
+        <div id="product-restricted-sale-badge" class="product-badge product-badge--restricted-sale" style="display: none;">
+            <i class="fa-solid fa-triangle-exclamation"></i> Atenção! Produto com venda restrita a profissionais e pessoas jurídicas habilitadas.
         </div>
         <div class="flex">
             {{~ discount_percentage = 0 ~}}

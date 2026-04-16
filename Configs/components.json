@@ -530,6 +530,11 @@
         "availableInAllPages": true
     },
     {
+        "name": "back_to_top_button",
+        "path": "back_to_top_button.html",
+        "availableInAllPages": true
+    },
+    {
         "name": "filter",
         "path": "filter.html",
         "params": [

@@ -1,39 +1,130 @@
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
-                        <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
                             <tbody>
                                 <tr align="center">
-                                    <td style="padding-bottom: 30px;">
-                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Avise-me quando disponível</h1>
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M224 0c-17.7 0-32 14.3-32 32l0 3.2C119 50 64 114.6 64 192l0 21.7c0 48.1-16.4 94.8-46.4 132.4L7.8 358.3C2.7 364.6 0 372.4 0 380.5 0 400.1 15.9 416 35.5 416l376.9 0c19.6 0 35.5-15.9 35.5-35.5 0-8.1-2.7-15.9-7.8-22.2l-9.8-12.2C400.4 308.5 384 261.8 384 213.7l0-21.7c0-77.4-55-142-128-156.8l0-3.2c0-17.7-14.3-32-32-32zM162 464c7.1 27.6 32.2 48 62 48s54.9-20.4 62-48l-124 0z" fill="#ffffff"/>
+                                        </svg>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá <strong style="color: #0e167a;">{{usuario.nome}}</strong>,</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Você se cadastrou para ser avisado quando o produto <strong style="color: #0e167a;">{{produto.nome}}</strong> estiver disponível novamente.</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0;">Assim que o produto voltar ao estoque, enviaremos um email para notificá-lo.</p>
+                                <tr align="center">
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">{{ titulo }}</h1>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Ol&#225;, <strong style="color: #ffffff;">{{ usuario?.primeiro_nome }}</strong>! O produto que voc&#234; pediu para ser avisado est&#225; dispon&#237;vel na <strong style="color: #ffffff;">{{ configuracao?.nome_ecommerce }}</strong>.</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- END MAIN -->
+                        <!-- END HERO -->
+
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== SEÇÃO: PRODUTO DISPONÍVEL ===== -->
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Produto dispon&#237;vel</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 20px 20px;">
+                                        <p style="margin: 0 0 14px; color: #4a4a6a; font-size: 15px; line-height: 160%;">Voc&#234; se cadastrou para ser avisado quando <strong style="color: #0e167a;">{{ produto?.nome }}</strong> estivesse dispon&#237;vel. Agora &#233; a hora de garantir o seu!</p>
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 16px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="width: 100px; padding-right: 16px; vertical-align: top;">
+                                                                        <a href="{{ produto?.url }}" target="_blank" style="text-decoration: none;">
+                                                                            <img src="{{ produto?.imagem }}" alt="{{ produto?.nome }}" width="100" height="100" style="display: block; max-width: 100px; height: auto; border-radius: 6px; border: 1px solid #dde3f5;" />
+                                                                        </a>
+                                                                    </td>
+                                                                    <td style="vertical-align: top;">
+                                                                        <p style="margin: 0 0 6px; font-size: 15px; font-weight: 700; color: #0e167a; line-height: 140%;">{{ produto?.nome }}</p>
+                                                                        {{ if produto?.precos?.preco_de }}
+                                                                        <p style="margin: 0 0 4px; color: #6b6b8a; font-size: 13px; text-decoration: line-through;">{{ produto?.precos?.preco_de }}</p>
+                                                                        {{ end }}
+                                                                        {{ if produto?.precos?.preco_por }}
+                                                                        <p style="margin: 0 0 6px; font-size: 16px; font-weight: 700; color: #0e167a;">{{ produto?.precos?.preco_por }}</p>
+                                                                        {{ end }}
+                                                                        {{ if produto?.parcelamento?.parcela }}
+                                                                        <p style="margin: 0; color: #4a4a6a; font-size: 13px; line-height: 150%;">{{ produto?.parcelamento?.parcela }}</p>
+                                                                        {{ end }}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== CTA: VER PRODUTO ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 8px 20px 12px;">
+                                        <a href="{{ produto?.url }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Ver produto</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 0 20px 8px;">
+                                        <p style="margin: 0; color: #6b6b8a; font-size: 13px; line-height: 150%;">Ou <a href="{{ configuracao?.url_ecommerce }}" target="_blank" style="color: #0e167a; text-decoration: underline;">continuar comprando</a> na loja.</p>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== MENSAGEM FINAL ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 20px 20px 24px;">
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 13px; line-height: 150%;">Obrigado por escolher o <strong>{{ configuracao?.nome_ecommerce }}</strong>!</p>
+                                        <p style="margin: 4px 0 0; color: #4a4a6a; font-size: 13px; line-height: 150%;"><strong>Equipe {{ configuracao?.nome_ecommerce }}</strong></p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- END MAIN CONTENT -->
 
                         <!-- FOOTER -->
                         {{footer_mail}}
                         <!-- END FOOTER -->
+
                     </div>
                 </td>
             </tr>

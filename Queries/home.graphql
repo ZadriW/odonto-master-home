@@ -28,17 +28,17 @@ query Home($partnerAccessToken: String){
     }
   }
   
-  carrossel1: hotsite(url: "orthometric", partnerAccessToken: $partnerAccessToken) {
+  carrossel1: hotsite(url: "liquida-orthometric", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
   }
-  carrossel2: hotsite(url: "veraofgm", partnerAccessToken: $partnerAccessToken) {
+  carrossel2: hotsite(url: "o-melhor-do-phs", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
   }
-  carrossel3: hotsite(url: "ofertasquentes", partnerAccessToken: $partnerAccessToken) {
+  carrossel3: hotsite(url: "osmelhoresprecosemdentsplyenamaster", partnerAccessToken: $partnerAccessToken) {
     products {
       ...productsCon
   	}
@@ -53,13 +53,15 @@ query Home($partnerAccessToken: String){
       ...productsCon
   	}
   }
-  brands(first: 22) {
+  brands(first: 22, brandInput: {groupIds: [20], groupNames: ["Carrossel", "Marcas Storefront"]}) {
     ...brands
   }
 }
 
 fragment brands on BrandsConnection {
   nodes {
+    id
+    brandId
     active
     urlLogo
     alias

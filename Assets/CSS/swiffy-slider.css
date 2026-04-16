@@ -399,10 +399,6 @@
   opacity: 0.6;
 }
 
-.slider-indicators-dark.slider-indicators>*,
-.slider-indicators-dark .slider-indicators>* {
-  filter: invert(1);
-}
 
 .slider-item-snapstart {
   --swiffy-slider-snap-align: start;

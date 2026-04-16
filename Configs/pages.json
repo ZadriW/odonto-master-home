@@ -15,6 +15,156 @@
                 "query": "home.graphql"
             },
             {
+                "urlMatch": "odontoverse",
+                "path": "odontoverse.html",
+                "query": "odontoverse.graphql"
+            },
+            {
+                "urlMatch": "dentistica-e-estetica",
+                "path": "dentistica.html",
+                "query": "dentistica.graphql"
+            },
+            {
+                "urlMatch": "cirurgia-e-periodontia",
+                "path": "cirurgia_e_periodontia.html",
+                "query": "cirurgia_e_periodontia.graphql"
+            },
+            {
+                "urlMatch": "acabamentoepolimento",
+                "path": "acabamento.html",
+                "query": "acabamento.graphql"
+            },
+            {
+                "urlMatch": "protese-laboratorial",
+                "path": "protese_laboratorial.html",
+                "query": "protese_laboratorial.graphql"
+            },
+            {
+                "urlMatch": "adesivo",
+                "path": "adesivo.html",
+                "query": "adesivo.graphql"
+            },
+            {
+                "urlMatch": "kitacademicos",
+                "path": "kitacademicos.html",
+                "query": "kitacademicos.graphql"
+            },
+            {
+                "urlMatch": "luvas",
+                "path": "luvas.html",
+                "query": "luvas.graphql"
+            },
+            {
+                "urlMatch": "pontasdiamantadas",
+                "path": "pontasdiamantadas.html",
+                "query": "pontasdiamantadas.graphql"
+            },
+            {
+                "urlMatch": "ponta-diamantada-e-brocas",
+                "path": "ponta_diamantada_e_brocas.html",
+                "query": "ponta_diamantada_e_brocas.graphql"
+            },
+            {
+                "urlMatch": "moldagem",
+                "path": "moldagem.html",
+                "query": "moldagem.graphql"
+            },
+            {
+                "urlMatch": "instrumentais",
+                "path": "instrumentais.html",
+                "query": "instrumentais.graphql"
+            },
+            {
+                "urlMatch": "profilaxia",
+                "path": "profilaxia.html",
+                "query": "profilaxia.graphql"
+            },
+            {
+                "urlMatch": "biosseguranca",
+                "path": "biosseguranca.html",
+                "query": "biosseguranca.graphql"
+            },
+            {
+                "urlMatch": "anestesicos",
+                "path": "anestesicos.html",
+                "query": "anestesicos.graphql"
+            },
+            {
+                "urlMatch": "anestesicos-e-agulhas",
+                "path": "anestesicos_e_agulhas.html",
+                "query": "anestesicos_e_agulhas.graphql"
+            },
+            {
+                "urlMatch": "brocascirurgicas",
+                "path": "brocascirurgicas.html",
+                "query": "brocascirurgicas.graphql"
+            },
+            {
+                "urlMatch": "arcos",
+                "path": "arcos.html",
+                "query": "arcos.graphql"
+            },
+            {
+                "urlMatch": "elasticos",
+                "path": "elasticos.html",
+                "query": "elasticos.graphql"
+            },
+            {
+                "urlMatch": "resinas",
+                "path": "resinas.html",
+                "query": "resinas.graphql"
+            },
+            {
+                "urlMatch": "resinaseadesivos",
+                "path": "resinaseadesivos.html",
+                "query": "resinaseadesivos.graphql"
+            },
+            {
+                "urlMatch": "endodontia",
+                "path": "endodontia.html",
+                "query": "endodontia.graphql"
+            },
+            {
+                "urlMatch": "limasendodonticas",
+                "path": "limasendodonticas.html",
+                "query": "limasendodonticas.graphql"
+            },
+            {
+                "urlMatch": "cimentoendodontico",
+                "path": "cimentoendodontico.html",
+                "query": "cimentoendodontico.graphql"
+            },
+            {
+                "urlMatch": "cimentoresinoso",
+                "path": "cimento_resinoso.html",
+                "query": "cimento_resinoso.graphql"
+            },
+            {
+                "urlMatch": "descartaveis",
+                "path": "descartaveis.html",
+                "query": "descartaveis.graphql"
+            },
+            {
+                "urlMatch": "clareadores",
+                "path": "clareadores.html",
+                "query": "clareadores.graphql"
+            },
+            {
+                "urlMatch": "ortodontia",
+                "path": "ortodontia.html",
+                "query": "ortodontia.graphql"
+            },
+            {
+                "urlMatch": "braquetes",
+                "path": "braquetes.html",
+                "query": "braquetes.graphql"
+            },
+            {
+                "urlMatch": "protese",
+                "path": "protese.html",
+                "query": "protese.graphql"
+            },
+            {
                 "urlMatch": "listadedesejos",
                 "path": "custom/wishlist.html"
             },
@@ -226,3 +376,4 @@
         ]
     }
 ]
+    

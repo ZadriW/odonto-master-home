@@ -27,13 +27,23 @@
     <div class="flex flex-col md:min-w-[55%]">
         <div class="mb-4">
             <h1 class="text-2xl mb-0 product-name">
-                {{ product.product_name }}
+                <span class="product-name-heading-text">
+                    <span class="product-name-title-only">{{ product.product_name }}</span><span class="product-illustrative-info-icon" role="button" tabindex="0" aria-expanded="false" aria-label="Informação sobre a imagem do produto">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span class="product-illustrative-tooltip" role="tooltip">*Imagem meramente ilustrativa. As cores podem variar de acordo com o seu monitor.</span>
+                    </span>
+                </span>
                 <span class="product-brand-wrapper">
                     {{~ if product.product_brand ~}}
                         {{~ product_brand brand: product.product_brand ~}}
                     {{~ end ~}}
                 </span>
             </h1>
+            {{~
+                promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
+                promotionsPagProduto = promotionsTypes | group.get "Página produto"
+                stamps promotions: promotionsPagProduto
+            ~}}
             {{~ 
                 product_alias = product.alias
                 if !product_alias && product.attribute_selections?.selected_variant?.alias
@@ -69,11 +79,6 @@
                 ~}}
             </div>
         </div>
-        {{~
-            promotionsTypes = product.promotions | group.by @(do; ret $0.disclosure_type;end)
-            promotionsPagProduto = promotionsTypes | group.get "Página produto"
-            stamps promotions: promotionsPagProduto
-        ~}}
         <div>
             {{ buy_box_product_attribute product: product }}
             {{~ if product.customizations ~}}

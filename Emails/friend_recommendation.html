@@ -1,61 +1,143 @@
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
-                        <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
                             <tbody>
                                 <tr align="center">
-                                    <td style="padding-bottom: 30px;">
-                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Indicação de amigo!</h1>
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M285.7 304c98.5 0 178.3 79.8 178.3 178.3 0 16.4-13.3 29.7-29.7 29.7L77.7 512C61.3 512 48 498.7 48 482.3 48 383.8 127.8 304 226.3 304l59.4 0zM528 80c13.3 0 24 10.7 24 24l0 48 48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0 0 48c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-48-48 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0 0-48c0-13.3 10.7-24 24-24zM256 248a120 120 0 1 1 0-240 120 120 0 1 1 0 240z" fill="#ffffff"/>
+                                        </svg>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá, <strong style="color: #0e167a;">{{indicacao.indicado.nome}}</strong>!</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 24px 0;">Seu amigo <strong style="color: #0e167a;">{{indicacao.indicador.nome}}</strong> indicou um produto para você!</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="padding: 0 30px;">
-                            <tbody>
-                                <tr>
-                                    <td style="padding-bottom: 20px;">
-                                        <h2 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 24px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Produto indicado</h2>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        {{ product_mail product: produto }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="padding: 30px 30px 40px 30px;">
-                            <tbody>
                                 <tr align="center">
-                                    <td>
-                                        <a href="{{produto.adicionarcarrinho}}" style="display: inline-block; border-radius: 8px; border: none; background: #0e167a; text-transform: uppercase; font-size: 14px; font-weight: 600; color: #ffffff; padding: 14px 32px; text-decoration: none; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">COMPRAR PRODUTO</a>
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">Indicação de amigo</h1>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Olá, <strong style="color: #ffffff;">{{ indicacao?.indicado?.nome }}</strong>! Seu amigo <strong style="color: #ffffff;">{{ indicacao?.indicador?.nome }}</strong> indicou um produto para você na <strong style="color: #ffffff;">{{ configuracao?.nome_ecommerce }}</strong>.</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- END MAIN -->
+                        <!-- END HERO -->
+
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== MENSAGEM PERSONALIZADA (se houver) ===== -->
+                                {{ if indicacao?.mensagem }}
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 14px 16px;">
+                                                        <p style="margin: 0 0 4px; font-size: 12px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.6px;">Mensagem de {{ indicacao?.indicador?.nome }}</p>
+                                                        <p style="margin: 0; color: #4a4a6a; font-size: 15px; line-height: 160%;">{{ indicacao?.mensagem }}</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr><td style="height: 16px;"></td></tr>
+                                {{ end }}
+
+                                <!-- ===== SEÇÃO: PRODUTO INDICADO ===== -->
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Produto indicado</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 20px 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 16px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="width: 90px; padding-right: 16px; vertical-align: top;">
+                                                                        <img src="{{ produto?.imagem }}" alt="{{ produto?.nome }}" width="90" height="90" style="display: block; max-width: 90px; height: auto; border-radius: 6px; border: 1px solid #dde3f5;" />
+                                                                    </td>
+                                                                    <td style="vertical-align: top;">
+                                                                        <p style="margin: 0 0 6px; font-size: 15px; font-weight: 700; color: #0e167a; line-height: 140%;">{{ produto?.nome }}</p>
+                                                                        {{ if produto?.atributos }}<p style="margin: 0 0 4px; color: #4a4a6a; font-size: 13px; line-height: 150%;">{{ produto?.atributos }}</p>{{ end }}
+                                                                        {{ if produto?.embalagens }}<p style="margin: 0 0 4px; color: #4a4a6a; font-size: 13px; line-height: 150%;">{{ produto?.embalagens }}</p>{{ end }}
+                                                                        {{ if produto?.personalizacoes }}<p style="margin: 0 0 4px; color: #4a4a6a; font-size: 13px; line-height: 150%;">{{ produto?.personalizacoes }}</p>{{ end }}
+                                                                        {{ if produto?.primeiro_prazo }}<p style="margin: 0 0 4px; color: #6b6b8a; font-size: 12px; line-height: 150%;">{{ produto?.primeiro_prazo }}</p>{{ end }}
+                                                                        {{ if produto?.segundo_prazo }}<p style="margin: 0 0 4px; color: #6b6b8a; font-size: 12px; line-height: 150%;">{{ produto?.segundo_prazo }}</p>{{ end }}
+                                                                        <p style="margin: 8px 0 0; font-size: 14px; line-height: 150%;"><strong style="color: #0e167a;">Qtd:</strong> {{ produto?.quantidade }} &nbsp;|&nbsp; <strong style="color: #0e167a;">Preço:</strong> R$ {{ produto?.preco_unitario }}</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== CTA: COMPRAR PRODUTO ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 8px 20px 12px;">
+                                        <a href="{{ produto?.adicionarcarrinho }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Comprar produto</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 0 20px 8px;">
+                                        <p style="margin: 0; color: #6b6b8a; font-size: 13px; line-height: 150%;">Ou <a href="{{ produto?.url }}" target="_blank" style="color: #0e167a; text-decoration: underline;">ver na loja</a></p>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== MENSAGEM FINAL ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 20px 20px 24px;">
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 13px; line-height: 150%;">Obrigado por fazer parte da <strong>{{ configuracao?.nome_ecommerce }}</strong>!</p>
+                                        <p style="margin: 4px 0 0; color: #4a4a6a; font-size: 13px; line-height: 150%;"><strong>Equipe {{ configuracao?.nome_ecommerce }}</strong></p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- END MAIN CONTENT -->
 
                         <!-- FOOTER -->
                         {{footer_mail}}
                         <!-- END FOOTER -->
+
                     </div>
                 </td>
             </tr>

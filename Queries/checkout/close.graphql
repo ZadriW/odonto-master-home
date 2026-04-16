@@ -23,6 +23,24 @@ query Close($checkoutId: String!, $customerAccessToken: String!, $hasCustomerAcc
                 startTime
             }
         }
+        selectedShippingGroups {
+            distributionCenter {
+                id
+                sellerName
+                name
+            }
+            products {
+                productVariantId
+            }
+            selectedShipping {
+                shippingQuoteId
+                name
+                type
+                value
+                deadline
+                deadlineInHours
+            }
+        }
         selectedAddress{
             cep
             state

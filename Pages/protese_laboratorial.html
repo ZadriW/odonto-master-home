@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
+        {{~ page_title = "Prótese Laboratorial" ~}}
+        {{~ if data.hotsite && data.hotsite.name ~}}
+            {{~ page_title = data.hotsite.name ~}}
+        {{~ end ~}}
+        {{~ if data.hotsite && data.hotsite.breadcrumbs ~}}
+            {{~ for breadcrumb in data.hotsite.breadcrumbs ~}}
+                {{~ if breadcrumb && breadcrumb.text ~}}
+                    {{~ page_title = breadcrumb.text ~}}
+                {{~ end ~}}
+            {{~ end ~}}
+        {{~ end ~}}
+        {{~ formatted_title = page_title | string.append " | Dental Odonto Master" ~}}
+        {{ head title: formatted_title store: store }}
+        {{ data_layer_config }}
+        {{ hotsite_structured_data hotsite: data.hotsite base_url: store.urls.base current_url: store.urls.current }}
+        {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price", "filter_sidebar", "mobile_bottom_menu"]}}
+        {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
+        {{ meta_tags seo: data.hotsite.seo }}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body class="bg-mainBg page-protese-laboratorial">
+        {{ page_scripts position: "BODY_START" scripts: common.scripts }}
+        <header class="shadow-xl lg:shadow-none bg-mainBg">
+            {{ header }}
+            {{ navbar store: store menu_groups: common.menu_groups position: "Lateral Esquerda" }}
+        </header>
+        <div id="add-cart-alert"></div>
+        {{ side_cart }}
+        {{ wake_overlay }}
+
+        <!-- Banner estático Centro (desktop) -->
+        <div class="hidden w-full lg:flex lg:flex-row lg:justify-center protese-laboratorial-banner-centro-wrapper">
+            <div class="w-full lg:max-w-[1330px] px-2 lg:px-0 lg:mt-4">
+                {{ banner_static id: "protese_laboratorial_banners_centro" banners: data.hotsite.banners position: "Centro" }}
+            </div>
+        </div>
+
+        <!-- Banner estático Mobile Centro -->
+        <div class="flex flex-col w-full lg:flex-row lg:justify-center protese-laboratorial-banner-mobile-centro-wrapper">
+            <div class="w-full lg:max-w-[1330px] px-2 lg:px-0 lg:mt-4 block lg:hidden">
+                {{ banner_static id: "protese_laboratorial_banners_centro_mobile" banners: data.hotsite.banners position: "Mobile Centro" }}
+            </div>
+        </div>
+
+        <!-- Carrossel: Mais vendidos (hotsite auxiliar na query GraphQL) -->
+        <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center">
+            <div class="flex flex-col items-start w-full lg:max-w-[1330px] px-2 gap-6">
+                {{~ if data.protese_laboratorial1 && data.protese_laboratorial1.products && data.protese_laboratorial1.products.nodes ~}}
+                    {{ spot_carousel products: data.protese_laboratorial1.products.nodes class:"carrossel-protese-laboratorial1" title:"Mais Vendidos" }}
+                {{~ end ~}}
+            </div>
+        </div>
+
+        <div class="flex flex-col my-4 w-full lg:flex-row lg:justify-center">
+            <div class="flex flex-col items-center w-full lg:max-w-[1330px] relative">
+                {{content position: "Rodapé" contents: data.hotsite.contents}}
+            </div>
+        </div>
+
+        {{ wake_modal }}
+        {{ mobile_bottom_menu }}
+        {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
+        {{ footer is_preview: is_preview store: store }}
+        {{~
+            product_lists = []
+            if data.protese_laboratorial1 && data.protese_laboratorial1.products && data.protese_laboratorial1.products.nodes
+                product_lists = product_lists | array.add data.protese_laboratorial1.products.nodes
+            end
+        ~}}
+        {{ data_layer_hotsite_view product_lists: product_lists }}
+        {{ sdk_client }}
+        {{ search_record_data search_data: data.hotsite current_page: current_page }}
+        {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
+        {{ wake_scripts scripts: ["wake_utils"] }}
+        {{ asset type: "js" paths: ["checkout_pages"]}}
+        {{ asset type: "js" paths: ["header", "navbar", "product", "cart_from_spot", "mini_cart", "user_login", "newsletter", "wishlist", "shipping_quotes", "event_manager", "sort", "search", "filter", "pagination", "products_per_page", "mobile_bottom_menu", "page_custom_content", "stamp_badge_toggle"] options: "async"}}
+        {{ asset type: "js" paths: ["swiffy-slider"] options: "defer"}}
+        {{ page_scripts position: "BODY_END" scripts: common.scripts }}
+    </body>
+</html>

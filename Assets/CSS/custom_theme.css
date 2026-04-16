@@ -1408,7 +1408,9 @@ button[onclick*="returnInput"]:hover {
 .carrossel1.carousel-with-side-banner,
 div.carrossel1.carousel-with-side-banner,
 .carrossel2.carousel-with-side-banner,
-div.carrossel2.carousel-with-side-banner {
+div.carrossel2.carousel-with-side-banner,
+.carrossele2.carousel-with-side-banner,
+div.carrossele2.carousel-with-side-banner {
   overflow: visible !important;
 }
 
@@ -1439,8 +1441,8 @@ div.carrossel2.carousel-with-side-banner {
 }
 
 .carousel-with-side-banner .swiffy-slider .side-banner-img {
-  width: 100%;
-  height: 100%;
+  width: 245px;
+  height: 480px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -1457,7 +1459,9 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .swiffy-slider.slider-item-show3,
   div.carrossel1.carousel-with-side-banner .swiffy-slider.slider-item-show3,
   .carrossel2.carousel-with-side-banner .swiffy-slider.slider-item-show3,
-  div.carrossel2.carousel-with-side-banner .swiffy-slider.slider-item-show3 {
+  div.carrossel2.carousel-with-side-banner .swiffy-slider.slider-item-show3,
+  .carrossele2.carousel-with-side-banner .swiffy-slider.slider-item-show3,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider.slider-item-show3 {
     --swiffy-slider-item-count: 3 !important;
     --swiffy-slider-item-gap: 12px !important;
   }
@@ -1467,7 +1471,9 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .swiffy-slider,
   div.carrossel1.carousel-with-side-banner .swiffy-slider,
   .carrossel2.carousel-with-side-banner .swiffy-slider,
-  div.carrossel2.carousel-with-side-banner .swiffy-slider {
+  div.carrossel2.carousel-with-side-banner .swiffy-slider,
+  .carrossele2.carousel-with-side-banner .swiffy-slider,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider {
     width: 100% !important;
     max-width: 100% !important;
     padding: 1rem 70px 2rem 70px !important; /* padding-top: 1rem, padding-bottom: 2rem, igual aos outros carrosséis */
@@ -1485,28 +1491,33 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
   div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
-  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider .slider-container {
     margin-left: 257px !important; /* 245px banner + 12px gap */
   }
   
   /* Slider-nav posicionados no canto inferior direito, lado a lado */
   .carousel-with-side-banner .swiffy-slider .slider-nav,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-nav {
     top: auto !important;
     transform: none !important;
   }
   
   .carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next) {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next) {
     right: 140px !important;
     left: auto !important;
   }
   
   .carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next {
     right: 80px !important;
     left: auto !important;
   }
@@ -1516,7 +1527,9 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
   div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
-  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider .slider-container {
     display: grid !important;
     grid-auto-flow: column !important;
     grid-auto-columns: calc((100% - 24px) / 3) !important; /* 3 produtos com 2 gaps de 12px */
@@ -1537,7 +1550,9 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
   div.carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
-  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+  div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
     display: none !important;
     height: 0 !important;
     width: 0 !important;
@@ -1563,7 +1578,13 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel2.carousel-with-side-banner .product-card,
   div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
   div.carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
-  div.carrossel2.carousel-with-side-banner .product-card {
+  div.carrossel2.carousel-with-side-banner .product-card,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossele2.carousel-with-side-banner .product-card,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  div.carrossele2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  div.carrossele2.carousel-with-side-banner .product-card {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
@@ -1580,7 +1601,8 @@ div.carrossel2.carousel-with-side-banner {
 @media (max-width: 1024px) and (min-width: 769px) {
   .carousel-with-side-banner .swiffy-slider,
   .carrossel1.carousel-with-side-banner .swiffy-slider,
-  .carrossel2.carousel-with-side-banner .swiffy-slider {
+  .carrossel2.carousel-with-side-banner .swiffy-slider,
+  .carrossele2.carousel-with-side-banner .swiffy-slider {
     padding: 1rem 55px 2rem 55px !important; /* padding-top: 1rem, padding-bottom: 2rem, igual aos outros carrosséis */
     overflow: visible !important;
     position: relative !important;
@@ -1593,7 +1615,8 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-container,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container {
     margin-left: 257px !important; /* 245px banner + 12px gap */
     overflow-x: auto !important; /* Permitir scroll para autoplay funcionar */
     overflow-y: visible !important;
@@ -1604,7 +1627,8 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
     display: none !important;
   }
   
@@ -1615,21 +1639,24 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-nav,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-nav {
     top: auto !important;
     transform: none !important;
   }
   
   .carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next) {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next),
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-nav:not(.slider-nav-next) {
     right: 160px !important;
     left: auto !important;
   }
   
   .carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-nav.slider-nav-next {
     right: 100px !important;
     left: auto !important;
   }
@@ -1645,7 +1672,8 @@ div.carrossel2.carousel-with-side-banner {
   /* Fazer o carrossel com banner lateral funcionar EXATAMENTE como os outros carrosséis no mobile */
   .carousel-with-side-banner .swiffy-slider,
   .carrossel1.carousel-with-side-banner .swiffy-slider,
-  .carrossel2.carousel-with-side-banner .swiffy-slider {
+  .carrossel2.carousel-with-side-banner .swiffy-slider,
+  .carrossele2.carousel-with-side-banner .swiffy-slider {
     --swiffy-slider-item-count: 2 !important;
     --swiffy-slider-item-gap: 0.5rem !important;
     padding: 0.5rem 0 1rem 0 !important;
@@ -1658,7 +1686,8 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-container,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container {
     margin-left: 0 !important; /* Remover margin-left no mobile */
     display: grid !important;
     grid-auto-flow: column !important;
@@ -1682,7 +1711,8 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
     display: none !important;
   }
   
@@ -1693,7 +1723,10 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .product-card,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
-  .carrossel2.carousel-with-side-banner .product-card {
+  .carrossel2.carousel-with-side-banner .product-card,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossele2.carousel-with-side-banner .product-card {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
@@ -1712,7 +1745,8 @@ div.carrossel2.carousel-with-side-banner {
 @media (max-width: 480px) {
   .carousel-with-side-banner .swiffy-slider,
   .carrossel1.carousel-with-side-banner .swiffy-slider,
-  .carrossel2.carousel-with-side-banner .swiffy-slider {
+  .carrossel2.carousel-with-side-banner .swiffy-slider,
+  .carrossele2.carousel-with-side-banner .swiffy-slider {
     overflow: hidden !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -1720,7 +1754,8 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-container,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container {
     display: grid !important;
     grid-auto-flow: column !important;
     grid-auto-columns: calc((100% - 0.375rem) / 2) !important;
@@ -1743,7 +1778,8 @@ div.carrossel2.carousel-with-side-banner {
   
   .carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
   .carrossel1.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
+  .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container::-webkit-scrollbar {
     display: none !important;
   }
   
@@ -1754,13 +1790,16 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner .product-card,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container > *,
   .carrossel2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
-  .carrossel2.carousel-with-side-banner .product-card {
+  .carrossel2.carousel-with-side-banner .product-card,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container > *,
+  .carrossele2.carousel-with-side-banner .swiffy-slider .slider-container .product-card,
+  .carrossele2.carousel-with-side-banner .product-card {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
-    height: 400px !important;
-    min-height: 400px !important;
-    max-height: 400px !important;
+    height: 450px !important;
+    min-height: 450px !important;
+    max-height: 450px !important;
     margin: 0 !important;
     flex: 0 0 calc((100% - 0.375rem) / 2) !important;
     scroll-snap-align: start !important;
@@ -1820,13 +1859,12 @@ div.carrossel2.carousel-with-side-banner {
   padding: 0 !important;
 }
 
-/* Estilo dos indicadores */
 .banners-carousel-wrapper .slider-indicators > * {
   width: 0.5rem !important;
   height: 0.5rem !important;
   border-radius: 50% !important;
-  background-color: #0e167a !important;
-  opacity: 0.6 !important;
+  background-color: #8b9ad4 !important;
+  opacity: 0.9 !important;
   border: none !important;
   padding: 0 !important;
   margin: 0 0.25rem !important;
@@ -1835,9 +1873,12 @@ div.carrossel2.carousel-with-side-banner {
 }
 
 .banners-carousel-wrapper .slider-indicators > *.active {
-  background-color: #ffc107 !important;
+  width: 1.25rem !important;
+  height: 0.5rem !important;
+  border-radius: 9999px !important;
+  background-color: #0e167a !important;
   opacity: 1 !important;
-  transform: scale(1.2) !important;
+  transform: none !important;
 }
 
 .banners-carousel-wrapper .slider-indicators > *:hover {
@@ -1849,6 +1890,7 @@ div.carrossel2.carousel-with-side-banner {
 #banners_centro_desktop {
   overflow: visible !important;
   position: relative;
+  margin-bottom: 3rem;
 }
 
 #banners_centro_desktop .swiffy-slider {
@@ -1938,7 +1980,7 @@ div.carrossel2.carousel-with-side-banner {
 }
 
 #banners_centro_desktop .slider-container li img {
-  width: 100%;
+  width: auto;
   height: auto;
   object-fit: cover;
   border-radius: 12px;
@@ -1981,8 +2023,57 @@ div.carrossel2.carousel-with-side-banner {
 }
 
 
+/* Banner Mobile Top: layout interno de cada slide – aplicado globalmente (mobile e desktop) */
+#banners_mobile_top .slider-container > li {
+  display: block !important;   /* bloco simples; <a> e <p> empilham verticalmente */
+  height: auto !important;     /* sobrescreve height:100% do swiffy-slider */
+  overflow: visible !important;
+  margin-left: 15px !important;
+}
+
+#banners_mobile_top .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+}
+
+#banners_mobile_top .slider-container li img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+}
+
+/* Legenda (alt text) abaixo de cada banner */
+#banners_mobile_top .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.3rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: #0e167a !important;
+  text-align: center !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
 /* Banner Mobile Top - exibir 2 banners lado a lado em mobile com swipe habilitado */
 @media (max-width: 1023px) {
+  /* Contenção para não exceder largura do site */
+  .banner-mobile-top-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
   #banners_mobile_top {
     width: 100% !important;
     max-width: 100% !important;
@@ -1994,6 +2085,7 @@ div.carrossel2.carousel-with-side-banner {
   }
   
   #banners_mobile_top .swiffy-slider {
+    width: 100% !important;
     max-width: 100% !important;
     overflow: visible !important;
     padding: 0 !important;
@@ -2004,19 +2096,21 @@ div.carrossel2.carousel-with-side-banner {
   #banners_mobile_top .slider-container {
     display: flex !important;
     flex-wrap: nowrap !important;
+    align-items: flex-start !important;
     gap: 0.5rem !important;
     max-width: 100% !important;
+    width: 100% !important;
     overflow-x: auto !important;
-    overflow-y: hidden !important;
+    overflow-y: visible !important;
     margin-top: 15px !important;
     padding: 0 !important;
-    width: 100% !important;
     scroll-snap-type: x mandatory !important;
     scroll-snap-stop: always !important;
     -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE and Edge */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
     touch-action: pan-x !important;
+    box-sizing: border-box !important;
   }
   
   /* Esconder scrollbar no WebKit */
@@ -2024,6 +2118,7 @@ div.carrossel2.carousel-with-side-banner {
     display: none !important;
   }
   
+  /* Tamanho de cada slide para 2 por vez em mobile – largura fixa para não estourar */
   #banners_mobile_top .slider-container > li {
     flex: 0 0 calc((100% - 0.5rem) / 2) !important;
     min-width: 0 !important;
@@ -2032,27 +2127,25 @@ div.carrossel2.carousel-with-side-banner {
     padding: 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
     scroll-snap-align: start !important;
     scroll-snap-stop: always !important;
     flex-shrink: 0 !important;
   }
-  
-  #banners_mobile_top .slider-container li img {
-    width: 100% !important;
+
+  /* Imagem e link limitados à largura do slide para não aumentar o banner */
+  #banners_mobile_top .slider-container li a {
+    touch-action: pan-x !important;
     max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #banners_mobile_top .slider-container li img {
+    max-width: 100% !important;
+    width: 100% !important;
     height: auto !important;
     object-fit: cover !important;
-    border-radius: 8px !important;
     display: block !important;
-  }
-  
-  #banners_mobile_top .slider-container li a {
-    width: 100% !important;
-    max-width: 100% !important;
-    display: block !important;
-    overflow: hidden !important;
-    touch-action: pan-x !important;
+    vertical-align: top !important;
   }
 }
 
@@ -2558,6 +2651,272 @@ div.carrossel2.carousel-with-side-banner {
   }
 }
 
+/* Página Odontoverse: margin-top no banner centro lower desktop */
+body.page-odontoverse #banners_centro_lower_desktop {
+  margin-top: 40px !important;
+}
+
+/* Página Odontoverse: ocultar slider-nav e slider-indicators do banner centro lower mobile (carousel); habilitar swipe como em banners_mobile_top/banners_centro_mobile */
+@media (max-width: 1023px) {
+  body.page-odontoverse #banners_centro_lower_mobile .slider-nav,
+  body.page-odontoverse #banners_centro_lower_mobile .slider-nav-next,
+  body.page-odontoverse #banners_centro_lower_mobile .slider-indicators {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Wrapper: não bloquear overflow para permitir scroll/swipe no container */
+  body.page-odontoverse .banner-centro-lower-mobile-wrapper:has(#banners_centro_lower_mobile) {
+    overflow: visible !important;
+  }
+
+  /* Mesmo setup de swipe que #banners_centro_mobile e #banners_mobile_top */
+  body.page-odontoverse #banners_centro_lower_mobile {
+    overflow: visible !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-odontoverse #banners_centro_lower_mobile .swiffy-slider {
+    overflow: visible !important;
+    touch-action: pan-x !important;
+  }
+
+  /* Sobrescrever .banners-carousel-wrapper .slider-container { overflow: hidden } e habilitar scroll horizontal (swipe) */
+  body.page-odontoverse #banners_centro_lower_mobile .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-snap-stop: always !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-odontoverse #banners_centro_lower_mobile .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-odontoverse #banners_centro_lower_mobile .slider-container > li {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-odontoverse #banners_centro_lower_mobile .slider-container li img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  body.page-odontoverse #banners_centro_lower_mobile .slider-container li a {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+    touch-action: pan-x !important;
+  }
+}
+
+/* ===== BANNERS LATERAIS ODONTOVERSE (Lateral Esquerda + Lateral Direita) ===== */
+
+/* Desktop: lado a lado – carrossel direita (70%) maior que banner estático esquerda (30%) */
+@media (min-width: 1024px) {
+  body.page-odontoverse .banners-laterais-odontoverse-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  body.page-odontoverse .banners-lateral-esquerda-odontoverse {
+    flex: 0 0 30% !important;
+    max-width: 30% !important;
+  }
+
+  body.page-odontoverse .banners-lateral-direita-odontoverse {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+  }
+
+  /* Banner estático esquerdo: preenche toda a altura do flex row */
+  body.page-odontoverse .banners-lateral-esquerda-odontoverse #banners_lateral_esquerda_odontoverse {
+    height: 100% !important;
+    margin: 0 !important;
+  }
+
+  body.page-odontoverse .banners-lateral-esquerda-odontoverse #banners_lateral_esquerda_odontoverse a {
+    display: block !important;
+    height: 100% !important;
+  }
+
+  body.page-odontoverse .banners-lateral-esquerda-odontoverse #banners_lateral_esquerda_odontoverse img {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    border-radius: 12px !important;
+  }
+
+  /* Carrossel direito: container ocupa toda a largura disponível */
+  body.page-odontoverse .banners-lateral-direita-odontoverse .banners-carousel-wrapper {
+    width: 100% !important;
+  }
+
+  body.page-odontoverse .banners-lateral-direita-odontoverse .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Carrossel direito: um banner por vez, em largura cheia */
+  body.page-odontoverse #banners_lateral_direita_odontoverse .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    overflow-x: hidden !important;
+    scroll-snap-type: x mandatory !important;
+  }
+
+  body.page-odontoverse #banners_lateral_direita_odontoverse .slider-container > li {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: start !important;
+  }
+
+  body.page-odontoverse .banners-lateral-direita-odontoverse .slider-container li img {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 12px !important;
+  }
+
+  body.page-odontoverse .banners-lateral-direita-odontoverse .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+  }
+}
+
+/* Mobile: banners laterais desktop ocultos via CSS; mobile wrapper controlado por lg:hidden no HTML */
+@media (max-width: 1023px) {
+  body.page-odontoverse .banners-laterais-odontoverse-wrapper {
+    display: none !important;
+  }
+}
+
+/* Mobile: banners laterais mobile – empilhados verticalmente, largura total */
+@media (max-width: 1023px) {
+  body.page-odontoverse .banners-laterais-odontoverse-mobile-wrapper {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-odontoverse .banners-lateral-mobile-rodape,
+  body.page-odontoverse .banners-lateral-mobile-rodape2 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.page-odontoverse .banners-lateral-mobile-rodape2 {
+    overflow: visible !important;
+  }
+
+  /* Banner estático Mobile Rodape: imagem ocupa a largura total */
+  body.page-odontoverse .banners-lateral-mobile-rodape #banners_lateral_mobile_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.page-odontoverse .banners-lateral-mobile-rodape #banners_lateral_mobile_rodape img {
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 12px !important;
+  }
+
+  /* Carrossel Rodape mobile: imagens preenchem a largura */
+  body.page-odontoverse .banners-lateral-mobile-rodape2 .banners-carousel-wrapper,
+  body.page-odontoverse .banners-lateral-mobile-rodape2 .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Evitar que os slider-indicators sejam cortados: padding no swiffy e margem nos indicadores */
+  body.page-odontoverse #banners_lateral_mobile_rodape2 .swiffy-slider {
+    overflow: visible !important;
+  }
+
+  body.page-odontoverse #banners_lateral_mobile_rodape2 .slider-indicators {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  /* Carrossel Rodape mobile: um banner por vez em largura cheia + swipe por scroll horizontal */
+  body.page-odontoverse #banners_lateral_mobile_rodape2 .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    scrollbar-width: none !important;
+  }
+
+  /* Ocultar barra de rolagem visual no WebKit, mantendo o swipe */
+  body.page-odontoverse #banners_lateral_mobile_rodape2 .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-odontoverse #banners_lateral_mobile_rodape2 .slider-container > li {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: start !important;
+  }
+
+  body.page-odontoverse .banners-lateral-mobile-rodape2 .slider-container li img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 12px !important;
+  }
+
+  body.page-odontoverse .banners-lateral-mobile-rodape2 .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Anular a regra global de @480px que expande .banner-static-wrapper com margem negativa */
+  body.page-odontoverse #banners_lateral_mobile_rodape.banner-static-wrapper {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Mobile - oculta versão desktop */
 @media (max-width: 1023px) {
   #banners_centro_lower_desktop,
@@ -2761,7 +3120,7 @@ div.carrossel2.carousel-with-side-banner {
 }
 
 .banner-static-wrapper img {
-  width: 100%;
+  width: auto;
   height: auto;
   display: block;
   object-fit: cover;
@@ -2796,10 +3155,8 @@ div.carrossel2.carousel-with-side-banner {
   
   /* Banner central mobile ocupar largura total */
   #banner_centro_mobile,
-  .banner-static-wrapper {
-    margin: 0 -0.5rem !important;
+  .banner-static-wrapper {  
     width: calc(100% + 1rem) !important;
-    max-width: none !important;
   }
   
   /* Garantir que banners_centro_lower_mobile mantenha largura reduzida (sobrescreve regra acima) */
@@ -3083,6 +3440,12 @@ div.carrossel2.carousel-with-side-banner {
     height: 0.4rem !important;
   }
   
+  .banners-carousel-wrapper .slider-indicators > *.active {
+    width: 1rem !important;
+    height: 0.4rem !important;
+    border-radius: 9999px !important;
+  }
+  
   /* Carrosséis de produtos - ocupar largura total */
   .carrossel1,
   .carrossel2,
@@ -3099,7 +3462,9 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel1.carousel-with-side-banner,
   div.carrossel1.carousel-with-side-banner,
   .carrossel2.carousel-with-side-banner,
-  div.carrossel2.carousel-with-side-banner {
+  div.carrossel2.carousel-with-side-banner,
+  .carrossele2.carousel-with-side-banner,
+  div.carrossele2.carousel-with-side-banner {
     margin-bottom: 0.5rem !important; /* Reduzido de 1rem (my-4) para 0.5rem */
   }
 }
@@ -3240,22 +3605,23 @@ div.carrossel2.carousel-with-side-banner {
 
 /* ===== TÍTULOS DOS CARROSSÉIS MOBILE ===== */
 @media (max-width: 768px) {
-  /* Container pai - alinhar à esquerda no mobile */
-  .my-4.w-full > .flex.justify-center,
-  .my-4.w-full[class*="carrossel"] > .flex.justify-center {
-    justify-content: flex-start !important;
-  }
-  
   .my-4.w-full > .flex.justify-center > .items-start,
   .my-4.w-full[class*="carrossel"] > .flex.justify-center > .items-start {
     align-items: flex-start !important;
   }
-  
-  /* Container do header - coluna no mobile para link ficar abaixo */
-  .carousel-header-container {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.5rem !important;
+
+  /* Centralizar banner-static-wrapper (mobile) de carrossel2 e carrossele2 da mesma forma */
+  .carrossel2.carousel-with-side-banner .carousel-header-container > div.block.lg\:hidden.w-full,
+  .carrossele2.carousel-with-side-banner .carousel-header-container > div.block.lg\:hidden.w-full {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .carrossel2.carousel-with-side-banner .carousel-header-container .banner-static-wrapper.w-full,
+  .carrossele2.carousel-with-side-banner .carousel-header-container .banner-static-wrapper.w-full {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   
   .carousel-title,
@@ -3275,31 +3641,10 @@ div.carrossel2.carousel-with-side-banner {
   .brands-carousel-wrapper .carousel-title {
     color: #0e167a !important;
     font-weight: 700 !important;
-    text-align: left !important; /* alinhado à esquerda */
-    text-transform: capitalize !important; /* primeira letra de cada palavra em maiúsculo */
+    text-transform: capitalize !important;
     margin-bottom: 0 !important;
-    padding-left: 0 !important; /* Remover padding para alinhar com outros elementos (banner, carrossel) */
-    padding-right: 0.5rem !important;
     position: relative !important;
-    font-size: 17px !important; 
     line-height: 1.3 !important;
-    justify-content: flex-start !important; /* alinhar conteúdo flex à esquerda */
-    align-self: flex-start !important;
-    width: 100% !important; /* Ocupar toda a largura no mobile */
-    max-width: 100% !important;
-    flex: 1 1 auto !important;
-    white-space: normal !important; /* Permitir quebra de linha para não cortar */
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-  
-  /* Garantir que o título dentro do container não seja cortado */
-  .carousel-header-container .carousel-title {
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
   }
   
   /* Ocultar carousel-view-more dentro do header-container no mobile (foi movido para abaixo do slider) */
@@ -3338,29 +3683,9 @@ div.carrossel2.carousel-with-side-banner {
 }
 
 @media (max-width: 480px) {
-  /* Container pai - alinhar à esquerda no mobile pequeno */
-  .my-4.w-full > .flex.justify-center,
-  .my-4.w-full[class*="carrossel"] > .flex.justify-center {
-    justify-content: flex-start !important;
-  }
-  
-  .my-4.w-full > .flex.justify-center > .items-start,
-  .my-4.w-full[class*="carrossel"] > .flex.justify-center > .items-start {
-    align-items: flex-start !important;
-  }
-  
-  /* Container do header - coluna no mobile pequeno também */
-  .carousel-header-container {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.5rem !important;
-  }
-  
   .carousel-title,
   h2.carousel-title,
   h2[class*="carousel-title"],
-  h2[class*="w-full"][class*="text-xl"][class*="carousel-title"],
-  h2[class*="w-full"][class*="text-3xl"][class*="carousel-title"],
   .carrossel1 h2,
   .carrossel2 h2,
   .carrossel3 h2,
@@ -3368,945 +3693,16 @@ div.carrossel2.carousel-with-side-banner {
   .carrossel5 h2,
   .recommendations h2,
   .brands-carousel-wrapper h2.carousel-title,
-  .brands-carousel-wrapper .carousel-title,
-  .brands-carousel-wrapper h2[class*="w-full"][class*="text-xl"][class*="carousel-title"] {
-    color: #0e167a !important;
-    font-weight: 700 !important;
-    text-align: left !important; /* alinhado à esquerda */
-    text-transform: capitalize !important; /* primeira letra de cada palavra em maiúsculo */
-    margin-bottom: 0 !important;
-    padding-bottom: 0.25rem !important; /* reduzido para aproximar o título do carrossel */
-    padding-left: 0 !important; /* Remover padding para alinhar com outros elementos (banner, carrossel) */
-    padding-right: 0.5rem !important;
-    position: relative !important;
-    font-size: 17px !important;
-    line-height: 1.3 !important;
-    justify-content: flex-start !important; /* alinhar conteúdo flex à esquerda */
-    align-self: flex-start !important;
-    width: 100% !important; /* Ocupar toda a largura no mobile pequeno */
-    max-width: 100% !important;
-    flex: 1 1 auto !important;
-    white-space: normal !important; /* Permitir quebra de linha para não cortar */
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
+  .brands-carousel-wrapper .carousel-title {
+    padding-bottom: 0.25rem !important;
   }
-  
-  /* Garantir que o título dentro do container não seja cortado */
-  .carousel-header-container .carousel-title {
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-  }
-  
-  /* Ocultar carousel-view-more dentro do header-container no mobile pequeno (foi movido para abaixo do slider) */
-  .carousel-header-container .carousel-view-more {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-  }
-  
-  /* Mostrar carousel-view-more abaixo do slider-container no mobile pequeno */
-  .carousel-view-more-mobile {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-  }
-  
+
   .carousel-view-more-link {
     font-size: 0.7rem !important;
   }
-  
+
   .carousel-view-more-link i {
     font-size: 0.6rem !important;
-  }
-  
-  /* Removido ::after do carousel-title - agora está no container do carrossel */
-}
-
-/* ===== CARROSSÉIS - AJUSTES MOBILE ===== */
-@media (max-width: 768px) {
-  /* Container do slider ocupa toda a largura */
-  .carrossel1 .swiffy-slider,
-  .carrossel2 .swiffy-slider,
-  .carrossel3 .swiffy-slider,
-  .carrossel4 .swiffy-slider,
-  .carrossel5 .swiffy-slider,
-  .recommendations .swiffy-slider {
-    padding: 0.5rem 0 1rem 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  /* Wrappers dos carrosséis - esconder overflow */
-  .carrossel1,
-  .carrossel2,
-  .carrossel3,
-  .carrossel4,
-  .carrossel5,
-  .recommendations {
-    width: 100% !important;
-    overflow: hidden !important;
-    position: relative !important;
-  }
-  
-  /* Swiffy slider wrapper - esconder overflow */
-  .carrossel1 .swiffy-slider,
-  .carrossel2 .swiffy-slider,
-  .carrossel3 .swiffy-slider,
-  .carrossel4 .swiffy-slider,
-  .carrossel5 .swiffy-slider,
-  .recommendations .swiffy-slider {
-    overflow: hidden !important;
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  /* Slider container com scroll horizontal suave - mostrar apenas 2 cards */
-  .carrossel1 .swiffy-slider .slider-container,
-  .carrossel2 .swiffy-slider .slider-container,
-  .carrossel3 .swiffy-slider .slider-container,
-  .carrossel4 .swiffy-slider .slider-container,
-  .carrossel5 .swiffy-slider .slider-container,
-  .recommendations .swiffy-slider .slider-container {
-    grid-auto-columns: calc((100% - 0.5rem) / 2) !important;
-    grid-gap: 0.5rem !important;
-    padding: 0 !important;
-    scroll-padding: 0 !important;
-    justify-content: flex-start !important;
-    scroll-snap-type: x mandatory !important;
-    scroll-snap-stop: always !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE and Edge */
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  .carrossel1 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel2 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel3 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel4 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel5 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .recommendations .swiffy-slider .slider-container::-webkit-scrollbar {
-    display: none !important; /* Chrome, Safari, Opera */
-  }
-  
-  /* Cards de produtos mobile - 2 POR LINHA */
-  .carrossel1 .product-card,
-  .carrossel2 .product-card,
-  .carrossel3 .product-card,
-  .carrossel4 .product-card,
-  .carrossel5 .product-card,
-  .recommendations .product-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    height: 430px !important;
-    min-height: 430px !important;
-    max-height: 430px !important;
-    margin: 0 !important;
-    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
-    scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
-  }
-  
-}
-
-@media (max-width: 480px) {
-  .carrossel1 .swiffy-slider,
-  .carrossel2 .swiffy-slider,
-  .carrossel3 .swiffy-slider,
-  .carrossel4 .swiffy-slider,
-  .carrossel5 .swiffy-slider,
-  .recommendations .swiffy-slider {
-    overflow: hidden !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  .carrossel1 .swiffy-slider .slider-container,
-  .carrossel2 .swiffy-slider .slider-container,
-  .carrossel3 .swiffy-slider .slider-container,
-  .carrossel4 .swiffy-slider .slider-container,
-  .carrossel5 .swiffy-slider .slider-container,
-  .recommendations .swiffy-slider .slider-container {
-    grid-auto-columns: calc((100% - 0.375rem) / 2) !important;
-    grid-gap: 0.375rem !important;
-    padding: 0 !important;
-    scroll-padding: 0 !important;
-    scroll-snap-type: x mandatory !important;
-    scroll-snap-stop: always !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE and Edge */
-    width: 100% !important;
-    max-width: 100% !important;
-    /* Não aplicar overscroll-behavior no mobile - permite navegação normal */
-  }
-  
-  .carrossel1 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel2 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel3 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel4 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .carrossel5 .swiffy-slider .slider-container::-webkit-scrollbar,
-  .recommendations .swiffy-slider .slider-container::-webkit-scrollbar {
-    display: none !important; /* Chrome, Safari, Opera */
-  }
-  
-  /* Cards de produtos mobile 480px - 2 POR LINHA */
-  .carrossel1 .product-card,
-  .carrossel2 .product-card,
-  .carrossel3 .product-card,
-  .carrossel4 .product-card,
-  .carrossel5 .product-card,
-  .recommendations .product-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    height: 400px !important;
-    min-height: 400px !important;
-    max-height: 400px !important;
-    margin: 0 !important;
-    flex: 0 0 calc((100% - 0.375rem) / 2) !important;
-    scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
-  }
-}
-
-/* ===== CARDS DE PRODUTOS MOBILE - TAMANHO FIXO ===== */
-@media (max-width: 768px) {
-  .product-card {
-    height: 430px !important;
-    min-height: 430px !important;
-    max-height: 430px !important;
-    width: 167px !important;
-    min-width: 167px !important;
-    max-width: 167px !important;
-    border-radius: 10px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
-    transition: none !important;
-  }
-  
-  .product-card:hover {
-    transform: none !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    border-color: #e5e7eb !important;
-  }
-  
-  /* Imagem com altura fixa */
-  .product-card__image,
-  .product-card .product-card__image,
-  .carrossel1 .product-card__image,
-  .carrossel2 .product-card__image,
-  .carrossel3 .product-card__image,
-  .carrossel4 .product-card__image,
-  .carrossel5 .product-card__image,
-  .recommendations .product-card__image {
-    height: 220px !important; /* Aumentado de 200px para 220px */
-    min-height: 220px !important;
-    max-height: 220px !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* Container interno da imagem - sobrescreve h-full do Tailwind */
-  .product-card__image [spot-container],
-  .product-card__image .flex.justify-center.w-full.h-full.group,
-  .product-card__image .h-full {
-    height: 100% !important;
-    min-height: 100% !important;
-    max-height: 100% !important;
-  }
-  
-  /* Garantir que as imagens dentro respeitem a altura */
-  .product-card__image img {
-    height: 100% !important;
-    max-height: 100% !important;
-  }
-  
-  .product-card__content {
-    padding: 6px !important;
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
-    gap: 2px !important;
-  }
-  
-  .product-title,
-  .product-title-link .product-title,
-  .product-card__content .product-title,
-  .product-card__content .product-title-link .product-title {
-    font-size: 15px !important; /* Aumentado de 14px para 15px */
-    line-height: 1.3 !important;
-    height: 36px !important;
-    min-height: 36px !important;
-    max-height: 36px !important;
-    margin-bottom: 2px !important;
-    overflow: hidden !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* Garantir que o link não interfira na altura */
-  .product-title-link {
-    display: block !important;
-    height: auto !important;
-    min-height: 36px !important;
-    max-height: 36px !important;
-    overflow: hidden !important;
-  }
-  
-  /* Ajuste para text-gray-900 font-semibold - uniformizar cards */
-  .product-card .text-gray-900.font-semibold,
-  .product-card .font-semibold.text-gray-900,
-  .product-card b.text-gray-900,
-  .product-card b.font-semibold {
-    font-size: 8px !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* ===== PRODUCT SPOT INFO - POSICIONAR MAIS PARA BAIXO NO MOBILE ===== */
-  .product-spot-info,
-  .product-card .product-spot-info {
-    margin: 0 !important;
-    margin-top: 7px !important;
-    padding: 4px !important;
-  }
-  
-  .product-spot-info-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-  }
-  
-  .product-spot-info-content p {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-  }
-  
-  .product-description {
-    font-size: 8px !important;
-    line-height: 1.4 !important;
-    height: 20px !important;
-    min-height: 20px !important;
-    max-height: 20px !important;
-    margin-bottom: 2px !important;
-    overflow: hidden !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    flex-shrink: 0 !important;
-  }
-  
-  .product-pricing {
-    margin-bottom: 4px !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
-    flex-shrink: 0 !important;
-    overflow: hidden !important;
-  }
-  
-  .product-price--current {
-    font-size: 13px !important;
-  }
-  
-  .product-price--old {
-    font-size: 8px !important;
-    margin-left: 3px !important;
-  }
-  
-  .product-price--discount {
-    font-size: 7px !important;
-    margin-left: 3px !important;
-  }
-  
-  /* ===== AJUSTE DE FONTES DOS PREÇOS (text-base e text-2xl) ===== */
-  .product-card .text-base.text-gray-500,
-  .product-card p.text-base.text-gray-500,
-  .product-card [class*="text-base"][class*="text-gray-500"] {
-    font-size: 11px !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.125rem !important;
-  }
-  
-  .product-card .text-2xl.font-bold,
-  .product-card p.text-2xl.font-bold,
-  .product-card [class*="text-2xl"][class*="font-bold"],
-  .product-card .product-price-with-discount .text-2xl.font-bold,
-  .product-card .product-price-with-discount p.text-2xl.font-bold,
-  .product-card .product-price-with-discount [class*="text-2xl"][class*="font-bold"] {
-    font-size: 21px !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES (768px) ===== */
-  .product-card__content .text-xl.mb-2,
-  .product-card__content div.text-xl[class*="mb-2"],
-  .product-card__content [class*="text-xl"][class*="mb-2"],
-  .product-card .product-price-with-discount .text-xl.mb-2,
-  .product-card .product-price-with-discount div.text-xl[class*="mb-2"],
-  .product-card .product-price-with-discount [class*="text-xl"][class*="mb-2"] {
-    font-size: 1.125rem !important; /* 18px - aumentado de 1rem (16px) */
-    margin-top: 8px !important; /* Margin-top fixo */
-    margin-bottom: 12px !important; /* Aumentado para ficar mais acima do product-actions-wrapper */
-    order: 999 !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* ===== REDUZIR ESPAÇO ENTRE PREÇO E PARCELAMENTO ===== */
-  .product-card .text-xl.mb-2,
-  .product-card div.text-xl[class*="mb-2"],
-  .product-card [class*="text-xl"][class*="mb-2"] {
-    margin-bottom: 0.125rem !important;
-  }
-  
-  .product-card .mt-2,
-  .product-card div.mt-2,
-  .product-card [class*="mt-2"] {
-    margin-top: 0 !important;
-  }
-  
-  /* Ajuste do texto de parcelamento */
-  .product-card .text-sm.text-gray-600,
-  .product-card p.text-sm.text-gray-600,
-  .product-card [class*="text-sm"][class*="text-gray-600"] {
-    font-size: 7px !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* Botões - visual consistente com desktop */
-  .product-button {
-    width: 100% !important;
-    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
-    color: #fff !important;
-    border: none !important;
-    padding: 7px 6px !important;
-    border-radius: 20px !important;
-    font-weight: 600 !important;
-    font-size: 9px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2px !important;
-    box-shadow: 0 3px 10px rgba(14, 22, 122, 0.3) !important;
-    transition: all 0.3s ease !important;
-    margin-top: auto !important;
-    flex-shrink: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  /* Ocultar texto e mostrar ícone no mobile */
-  .product-button .product-button-text,
-  .product-card .product-button .product-button-text,
-  .product-list-item .product-button .product-button-text {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
-  .product-button .product-button-icon,
-  .product-card .product-button .product-button-icon,
-  .product-list-item .product-button .product-button-icon {
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 14px !important;
-    line-height: 1 !important;
-    width: auto !important;
-    height: auto !important;
-  }
-  
-  .product-button:hover {
-    background: linear-gradient(135deg, #1a2cb0, #2538d4) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 14px rgba(14, 22, 122, 0.4) !important;
-  }
-  
-  /* Remover animação added no mobile */
-  .product-button.added {
-    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
-    transform: translateY(0) !important;
-    box-shadow: 0 3px 10px rgba(14, 22, 122, 0.3) !important;
-    animation: none !important;
-  }
-  
-  .product-button-buy {
-    width: 100% !important;
-    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
-    color: #fff !important;
-    border: none !important;
-    padding: 7px 6px !important;
-    border-radius: 6px !important;
-    font-weight: 600 !important;
-    font-size: 9px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2px !important;
-    margin-top: 4px !important;
-    box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3) !important;
-    transition: all 0.3s ease !important;
-    flex-shrink: 0 !important;
-  }
-  
-  .product-button-buy:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 14px rgba(59, 130, 246, 0.4) !important;
-  }
-  
-  .product-button-variant {
-    border-radius: 20px !important;
-    font-size: 10px !important;
-    margin-top: 0 !important;
-    margin-bottom: 4px !important;
-  }
-  
-  .product-actions-wrapper {
-    margin-bottom: 4px !important;
-  }
-  
-  .product-card .product-card-unavailable-button-mobile,
-  .product-list-item .product-card-unavailable-button-mobile,
-  .product-card-unavailable-button-mobile {
-    width: 100% !important;
-    height: 36px !important;
-    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
-    color: #fff !important;
-    border: none !important;
-    padding: 7px 6px !important;
-    border-radius: 20px !important;
-    font-weight: 600 !important;
-    font-size: 10px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2px !important;
-    box-shadow: 0 3px 10px rgba(14, 22, 122, 0.3) !important;
-    transition: all 0.3s ease !important;
-    cursor: pointer !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  .product-card .product-card-unavailable-button-mobile:hover,
-  .product-list-item .product-card-unavailable-button-mobile:hover,
-  .product-card-unavailable-button-mobile:hover {
-    background: linear-gradient(135deg, #1a2cb0, #2538d4) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 14px rgba(14, 22, 122, 0.4) !important;
-  }
-  
-  .product-card .product-card-unavailable-button-mobile:active,
-  .product-list-item .product-card-unavailable-button-mobile:active,
-  .product-card-unavailable-button-mobile:active {
-    transform: translateY(0) !important;
-  }
-  
-  /* Badges - visual consistente com desktop */
-  .product-badge {
-    top: 6px !important;
-    right: 6px !important;
-    padding: 4px 8px !important;
-    font-size: 9px !important;
-    max-width: 55px !important;
-    border-radius: 14px !important;
-    font-weight: 700 !important;
-  }
-  
-  .product-badge--discount {
-    background: #ffc107 !important;
-    color: #0e167a !important;
-    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4) !important;
-  }
-  
-  .product-badge--promotion {
-    background: #f3f4f6 !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .1) !important;
-    color: #0e167a !important
-  }
-  
-  .product-badge--promotion:not(:first-child) {
-    top: 40px !important;
-  }
-  
-  .product-badge--new {
-    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
-    box-shadow: 0 3px 10px rgba(59, 130, 246, 0.4) !important;
-  }
-  
-  .product-badge--sale {
-    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
-    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  /* CARDS - TAMANHO FIXO PARA TELAS MENORES (150px x 380px - aumentado de 340px) */
-  .product-card {
-    height: 400px !important;
-    min-height: 400px !important;
-    max-height: 400px !important;
-    width: 150px !important;
-    min-width: 150px !important;
-    max-width: 150px !important;
-    border-radius: 8px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
-    transition: none !important;
-  }
-  
-  .product-card:hover {
-    transform: none !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    border-color: #e5e7eb !important;
-  }
-  
-  .product-card__image,
-  .product-card .product-card__image,
-  .carrossel1 .product-card__image,
-  .carrossel2 .product-card__image,
-  .carrossel3 .product-card__image,
-  .carrossel4 .product-card__image,
-  .carrossel5 .product-card__image,
-  .recommendations .product-card__image {
-    height: 170px !important; /* Aumentado de 140px para 170px */
-    min-height: 170px !important;
-    max-height: 170px !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* Container interno da imagem - sobrescreve h-full do Tailwind */
-  .product-card__image [spot-container],
-  .product-card__image .flex.justify-center.w-full.h-full.group,
-  .product-card__image .h-full {
-    height: 100% !important;
-    min-height: 100% !important;
-    max-height: 100% !important;
-  }
-  
-  /* Garantir que as imagens dentro respeitem a altura */
-  .product-card__image img {
-    height: 100% !important;
-    max-height: 100% !important;
-  }
-  
-  .product-card__content {
-    padding: 5px !important;
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
-    gap: 2px !important;
-  }
-  
-  .product-title,
-  .product-title-link .product-title,
-  .product-card__content .product-title,
-  .product-card__content .product-title-link .product-title {
-    font-size: 14px !important; /* Aumentado de 13px para 14px */
-    height: 34px !important;
-    min-height: 34px !important;
-    max-height: 34px !important;
-    line-height: 1.3 !important;
-    margin-bottom: 2px !important;
-    overflow: hidden !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* Garantir que o link não interfira na altura */
-  .product-title-link {
-    display: block !important;
-    height: auto !important;
-    min-height: 34px !important;
-    max-height: 34px !important;
-    overflow: hidden !important;
-  }
-  
-  /* Ajuste para text-gray-900 font-semibold */
-  .product-card .text-gray-900.font-semibold,
-  .product-card .font-semibold.text-gray-900,
-  .product-card b.text-gray-900,
-  .product-card b.font-semibold {
-    font-size: 7px !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* ===== PRODUCT SPOT INFO - POSICIONAR MAIS PARA BAIXO NO MOBILE ===== */
-  .product-spot-info,
-  .product-card .product-spot-info {
-    margin: 0 !important;
-    margin-top: 7px !important;
-    padding: 4px !important;
-  }
-  
-  .product-spot-info-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-  }
-  
-  .product-spot-info-content p {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-  }
-  
-  .product-description {
-    font-size: 7px !important;
-    height: 18px !important;
-    min-height: 18px !important;
-    max-height: 18px !important;
-    margin-bottom: 2px !important;
-    overflow: hidden !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    flex-shrink: 0 !important;
-  }
-  
-  .product-pricing {
-    margin-bottom: 3px !important;
-    height: 34px !important;
-    min-height: 34px !important;
-    max-height: 34px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
-    flex-shrink: 0 !important;
-    overflow: hidden !important;
-  }
-  
-  .product-price--current {
-    font-size: 11px !important;
-  }
-  
-  .product-price--old {
-    font-size: 7px !important;
-  }
-  
-  .product-price--discount {
-    font-size: 6px !important;
-  }
-  
-  /* ===== AJUSTE DE FONTES DOS PREÇOS (text-base e text-2xl) - 480px ===== */
-  .product-card .text-base.text-gray-500,
-  .product-card p.text-base.text-gray-500,
-  .product-card [class*="text-base"][class*="text-gray-500"] {
-    font-size: 10px !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.125rem !important;
-  }
-  
-  .product-card .text-2xl.font-bold,
-  .product-card p.text-2xl.font-bold,
-  .product-card [class*="text-2xl"][class*="font-bold"],
-  .product-card .product-price-with-discount .text-2xl.font-bold,
-  .product-card .product-price-with-discount p.text-2xl.font-bold,
-  .product-card .product-price-with-discount [class*="text-2xl"][class*="font-bold"] {
-    font-size: 19px !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES (480px) ===== */
-  .product-card__content .text-xl.mb-2,
-  .product-card__content div.text-xl[class*="mb-2"],
-  .product-card__content [class*="text-xl"][class*="mb-2"],
-  .product-card .product-price-with-discount .text-xl.mb-2,
-  .product-card .product-price-with-discount div.text-xl[class*="mb-2"],
-  .product-card .product-price-with-discount [class*="text-xl"][class*="mb-2"] {
-    font-size: 1rem !important; /* 16px - aumentado de 0.875rem (14px) */
-    margin-top: 6px !important; /* Margin-top fixo */
-    margin-bottom: 10px !important; /* Aumentado para ficar mais acima do product-actions-wrapper */
-    order: 999 !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* ===== REDUZIR ESPAÇO ENTRE PREÇO E PARCELAMENTO (480px) ===== */
-  .product-card .text-xl.mb-2,
-  .product-card div.text-xl[class*="mb-2"],
-  .product-card [class*="text-xl"][class*="mb-2"] {
-    margin-bottom: 0.125rem !important;
-  }
-  
-  .product-card .mt-2,
-  .product-card div.mt-2,
-  .product-card [class*="mt-2"] {
-    margin-top: 0 !important;
-  }
-  
-  /* Ajuste do texto de parcelamento - 480px */
-  .product-card .text-sm.text-gray-600,
-  .product-card p.text-sm.text-gray-600,
-  .product-card [class*="text-sm"][class*="text-gray-600"] {
-    font-size: 6px !important;
-    line-height: 1.2 !important;
-  }
-  
-  .product-button {
-    padding: 6px 5px !important;
-    font-size: 8px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.25) !important;
-    margin-top: auto !important;
-    flex-shrink: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  /* Ocultar texto e mostrar ícone no mobile 480px */
-  .product-button .product-button-text,
-  .product-card .product-button .product-button-text,
-  .product-list-item .product-button .product-button-text {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
-  .product-button .product-button-icon,
-  .product-card .product-button .product-button-icon,
-  .product-list-item .product-button .product-button-icon {
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 12px !important;
-    line-height: 1 !important;
-    width: auto !important;
-    height: auto !important;
-  }
-  
-  .product-button-buy {
-    padding: 6px 5px !important;
-    font-size: 8px !important;
-    border-radius: 6px !important;
-    margin-top: 3px !important;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25) !important;
-    flex-shrink: 0 !important;
-  }
-  
-  .product-button-variant {
-    border-radius: 20px !important;
-    font-size: 9px !important;
-    margin-top: 0 !important;
-    margin-bottom: 4px !important;
-  }
-  
-  .product-actions-wrapper {
-    margin-bottom: 4px !important;
-  }
-  
-  /* Remover animação added no mobile 480px */
-  .product-button.added {
-    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
-    transform: translateY(0) !important;
-    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.25) !important;
-    animation: none !important;
-  }
-  
-  .product-card .product-card-unavailable-button-mobile,
-  .product-list-item .product-card-unavailable-button-mobile,
-  .product-card-unavailable-button-mobile {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 36px !important;
-    background: linear-gradient(135deg, #0e167a, #1a2cb0) !important;
-    color: #fff !important;
-    border: none !important;
-    padding: 6px 5px !important;
-    border-radius: 20px !important;
-    font-weight: 600 !important;
-    font-size: 9px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2px !important;
-    box-shadow: 0 2px 8px rgba(14, 22, 122, 0.25) !important;
-    transition: all 0.3s ease !important;
-    cursor: pointer !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  .product-card .product-card-unavailable-button-mobile:hover,
-  .product-list-item .product-card-unavailable-button-mobile:hover,
-  .product-card-unavailable-button-mobile:hover {
-    background: linear-gradient(135deg, #1a2cb0, #2538d4) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 14px rgba(14, 22, 122, 0.4) !important;
-  }
-  
-  .product-card .product-card-unavailable-button-mobile:active,
-  .product-list-item .product-card-unavailable-button-mobile:active,
-  .product-card-unavailable-button-mobile:active {
-    transform: translateY(0) !important;
-  }
-  
-  /* Badges menores */
-  .product-badge {
-    top: 5px !important;
-    right: 5px !important;
-    padding: 3px 6px !important;
-    font-size: 8px !important;
-    max-width: 50px !important;
-    border-radius: 12px !important;
-  }
-  
-  .product-badge--promotion:not(:first-child) {
-    top: 28px !important;
   }
 }
 
@@ -5418,5 +4814,2588 @@ a[class*="whatsapp-float-button"] i {
   .whatsapp-float-button i,
   a[class*="whatsapp-float-button"] i {
     font-size: 26px !important;
+  }
+}
+
+/* ===== BOTÃO FLUTUANTE VOLTAR AO TOPO ===== */
+button.back-to-top-float-button,
+.back-to-top-float-button,
+button[class*="back-to-top-float-button"] {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  background-color: #0e167a !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(14, 22, 122, 0.4) !important;
+  z-index: 9985 !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  font-size: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+button.back-to-top-float-button:hover,
+.back-to-top-float-button:hover,
+button[class*="back-to-top-float-button"]:hover {
+  background-color: #0b1159 !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(14, 22, 122, 0.6) !important;
+}
+
+button.back-to-top-float-button:active,
+.back-to-top-float-button:active,
+button[class*="back-to-top-float-button"]:active {
+  transform: scale(0.95) !important;
+}
+
+button.back-to-top-float-button i,
+.back-to-top-float-button i,
+button[class*="back-to-top-float-button"] i {
+  color: #ffffff !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  button.back-to-top-float-button,
+  .back-to-top-float-button,
+  button[class*="back-to-top-float-button"] {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+    bottom: 80px !important;
+    left: 16px !important;
+    font-size: 26px !important;
+  }
+  button.back-to-top-float-button i,
+  .back-to-top-float-button i,
+  button[class*="back-to-top-float-button"] i {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  button.back-to-top-float-button,
+  .back-to-top-float-button,
+  button[class*="back-to-top-float-button"] {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    max-width: 52px !important;
+    max-height: 52px !important;
+    bottom: 75px !important;
+    left: 14px !important;
+    font-size: 24px !important;
+  }
+  button.back-to-top-float-button i,
+  .back-to-top-float-button i,
+  button[class*="back-to-top-float-button"] i {
+    font-size: 24px !important;
+  }
+}
+
+/* ===== HOTSITE DENTÍSTICA E ESTÉTICA ===== */
+
+body.page-dentistica #dentistica_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE RESINAS ===== */
+
+body.page-resinas #resinas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE PRÓTESE ===== */
+
+body.page-protese #protese_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE CIRURGIA E PERIODONTIA ===== */
+
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE DESCARTÁVEIS ===== */
+
+body.page-descartaveis #descartaveis_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE ACABAMENTO E POLIMENTO ===== */
+
+body.page-acabamento #acabamento_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE ANESTÉSICOS ===== */
+
+body.page-anestesicos #anestesicos_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE ANESTÉSICOS E AGULHAS ===== */
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE BROCAS CIRÚRGICAS ===== */
+
+body.page-brocascirurgicas #brocascirurgicas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE LUVAS ===== */
+
+body.page-luvas #luvas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE PONTAS DIAMANTADAS ===== */
+
+body.page-pontasdiamantadas #pontasdiamantadas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE PONTA DIAMANTADA E BROCAS ===== */
+
+body.page-pontadiamantadaebrocas #pontadiamantadaebrocas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE ADESIVO ===== */
+
+body.page-adesivo #adesivo_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE KIT ACADÊMICO ===== */
+
+body.page-kitacademicos #kitacademicos_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE ARCOS ===== */
+
+body.page-arcos #arcos_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE CIMENTO ENDODÔNTICO ===== */
+
+body.page-cimentoendodontico #cimentoendodontico_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE ELÁSTICOS ===== */
+
+body.page-elasticos #elasticos_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE RESINAS E ADESIVOS ===== */
+
+body.page-resinaseadesivos #resinaseadesivos_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE CIMENTO RESINOSO ===== */
+
+body.page-cimento-resinoso #cimento_resinoso_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ===== HOTSITE CLAREADORES ===== */
+body.page-clareadores #clareadores_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Carrossel Rodapé Clareadores: largura reduzida e centralizado */
+@media (min-width: 1024px) {
+  body.page-clareadores #clareadores_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-clareadores #clareadores_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-clareadores #clareadores_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-clareadores #clareadores_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-clareadores #clareadores_banners_rodape .slider-container li img,
+body.page-clareadores #clareadores_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-clareadores #clareadores_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-clareadores #clareadores_banners_rodape .slider-nav,
+body.page-clareadores #clareadores_banners_rodape .slider-nav-next,
+body.page-clareadores #clareadores_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Mobile Clareadores: carrossel rodapé 2x2 com scroll horizontal */
+@media (max-width: 1023px) {
+  body.page-clareadores .clareadores-banner-rodape-wrapper #clareadores_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-clareadores .clareadores-banner-rodape-wrapper #clareadores_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-clareadores #clareadores_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-clareadores #clareadores_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-clareadores #clareadores_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-clareadores #clareadores_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-clareadores #clareadores_banners_rodape .slider-container li img,
+  body.page-clareadores #clareadores_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-clareadores #clareadores_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE ORTODONTIA ===== */
+body.page-ortodontia #ortodontia_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 1024px) {
+  body.page-ortodontia #ortodontia_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-ortodontia #ortodontia_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-ortodontia #ortodontia_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-ortodontia #ortodontia_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-ortodontia #ortodontia_banners_rodape .slider-container li img,
+body.page-ortodontia #ortodontia_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-ortodontia #ortodontia_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-ortodontia #ortodontia_banners_rodape .slider-nav,
+body.page-ortodontia #ortodontia_banners_rodape .slider-nav-next,
+body.page-ortodontia #ortodontia_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-ortodontia .ortodontia-banner-rodape-wrapper #ortodontia_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-ortodontia .ortodontia-banner-rodape-wrapper #ortodontia_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container li img,
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-ortodontia #ortodontia_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE ENDODONTIA ===== */
+body.page-endodontia #endodontia_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 1024px) {
+  body.page-endodontia #endodontia_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-endodontia #endodontia_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-endodontia #endodontia_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-endodontia #endodontia_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-endodontia #endodontia_banners_rodape .slider-container li img,
+body.page-endodontia #endodontia_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-endodontia #endodontia_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-endodontia #endodontia_banners_rodape .slider-nav,
+body.page-endodontia #endodontia_banners_rodape .slider-nav-next,
+body.page-endodontia #endodontia_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-endodontia .endodontia-banner-rodape-wrapper #endodontia_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-endodontia .endodontia-banner-rodape-wrapper #endodontia_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-endodontia #endodontia_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-endodontia #endodontia_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-endodontia #endodontia_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-endodontia #endodontia_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-endodontia #endodontia_banners_rodape .slider-container li img,
+  body.page-endodontia #endodontia_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-endodontia #endodontia_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE LIMAS ENDODÔNTICAS ===== */
+body.page-limasendodonticas #limasendodonticas_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 1024px) {
+  body.page-limasendodonticas #limasendodonticas_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li img,
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-nav,
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-nav-next,
+body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-limasendodonticas .limasendodonticas-banner-rodape-wrapper #limasendodonticas_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-limasendodonticas .limasendodonticas-banner-rodape-wrapper #limasendodonticas_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li img,
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-limasendodonticas #limasendodonticas_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE BRÁQUETES ===== */
+body.page-braquetes #braquetes_banners_centro.banner-static-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 1330px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 1024px) {
+  body.page-braquetes #braquetes_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-braquetes #braquetes_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-braquetes #braquetes_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-braquetes #braquetes_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-braquetes #braquetes_banners_rodape .slider-container li img,
+body.page-braquetes #braquetes_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-braquetes #braquetes_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-braquetes #braquetes_banners_rodape .slider-nav,
+body.page-braquetes #braquetes_banners_rodape .slider-nav-next,
+body.page-braquetes #braquetes_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-braquetes .braquetes-banner-rodape-wrapper #braquetes_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-braquetes .braquetes-banner-rodape-wrapper #braquetes_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-braquetes #braquetes_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-braquetes #braquetes_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-braquetes #braquetes_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-braquetes #braquetes_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-braquetes #braquetes_banners_rodape .slider-container li img,
+  body.page-braquetes #braquetes_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-braquetes #braquetes_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* Carrossel Rodapé: largura reduzida e centralizado */
+@media (min-width: 1024px) {
+  body.page-dentistica #dentistica_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+/* Carrossel Rodapé: espaçamento entre os slides */
+body.page-dentistica #dentistica_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+/* Layout do item: forçar empilhamento vertical (banner em cima, caption abaixo) */
+body.page-dentistica #dentistica_banners_rodape .slider-container > li {
+  display: block !important;         /* bloco simples: conteúdo empilha verticalmente */
+  height: auto !important;           /* remove height: 100% do swiffy */
+  overflow: visible !important;
+}
+
+body.page-dentistica #dentistica_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-dentistica #dentistica_banners_rodape .slider-container li img,
+body.page-dentistica #dentistica_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Legenda (caption) abaixo de cada banner Rodapé em Dentística */
+body.page-dentistica #dentistica_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+/* Carrossel Rodapé: ocultar navegações e indicadores */
+body.page-dentistica #dentistica_banners_rodape .slider-nav,
+body.page-dentistica #dentistica_banners_rodape .slider-nav-next,
+body.page-dentistica #dentistica_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ===== VERSÃO MOBILE – DENTÍSTICA: carrossel 2x2 com scroll horizontal,
+   replicando o comportamento visual de #banners_mobile_top na página Odontoverse ===== */
+@media (max-width: 1023px) {
+  /* Wrapper do carrossel de Rodapé em Dentística – ocupar 100% e permitir swipe */
+  body.page-dentistica .dentistica-banner-rodape-wrapper #dentistica_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-dentistica .dentistica-banner-rodape-wrapper #dentistica_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  /* Container com flex row, sem quebra, com rolagem horizontal */
+  body.page-dentistica #dentistica_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Esconder scrollbar no WebKit */
+  body.page-dentistica #dentistica_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Cada slide: 2 por vez em mobile, com empilhamento vertical de imagem + caption */
+  body.page-dentistica #dentistica_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-dentistica #dentistica_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-dentistica #dentistica_banners_rodape .slider-container li img,
+  body.page-dentistica #dentistica_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  /* Caption em mobile: mesmo estilo já definido, apenas garantimos que ocupe toda a largura */
+  body.page-dentistica #dentistica_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE RESINAS – CARROSSEL RODAPÉ ===== */
+
+/* Carrossel Rodapé: largura reduzida e centralizado */
+@media (min-width: 1024px) {
+  body.page-resinas #resinas_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-resinas #resinas_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-resinas #resinas_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-resinas #resinas_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-resinas #resinas_banners_rodape .slider-container li img,
+body.page-resinas #resinas_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-resinas #resinas_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-resinas #resinas_banners_rodape .slider-nav,
+body.page-resinas #resinas_banners_rodape .slider-nav-next,
+body.page-resinas #resinas_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-resinas .resinas-banner-rodape-wrapper #resinas_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-resinas .resinas-banner-rodape-wrapper #resinas_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-resinas #resinas_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-resinas #resinas_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-resinas #resinas_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-resinas #resinas_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-resinas #resinas_banners_rodape .slider-container li img,
+  body.page-resinas #resinas_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-resinas #resinas_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE PRÓTESE – CARROSSEL RODAPÉ ===== */
+
+/* Carrossel Rodapé: largura reduzida e centralizado */
+@media (min-width: 1024px) {
+  body.page-protese #protese_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+/* Carrossel Rodapé: espaçamento entre os slides */
+body.page-protese #protese_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+/* Layout do item: forçar empilhamento vertical (banner em cima, caption abaixo) */
+body.page-protese #protese_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-protese #protese_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-protese #protese_banners_rodape .slider-container li img,
+body.page-protese #protese_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Legenda (caption) abaixo de cada banner Rodapé em Prótese */
+body.page-protese #protese_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+/* Carrossel Rodapé: ocultar navegações e indicadores */
+body.page-protese #protese_banners_rodape .slider-nav,
+body.page-protese #protese_banners_rodape .slider-nav-next,
+body.page-protese #protese_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ===== VERSÃO MOBILE – PRÓTESE: carrossel 2x2 com scroll horizontal ===== */
+@media (max-width: 1023px) {
+  body.page-protese .protese-banner-rodape-wrapper #protese_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-protese .protese-banner-rodape-wrapper #protese_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-protese #protese_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-protese #protese_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-protese #protese_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-protese #protese_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-protese #protese_banners_rodape .slider-container li img,
+  body.page-protese #protese_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-protese #protese_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE CIRURGIA E PERIODONTIA – CARROSSEL RODAPÉ ===== */
+
+/* Carrossel Rodapé: largura reduzida e centralizado */
+@media (min-width: 1024px) {
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+/* Carrossel Rodapé: espaçamento entre os slides */
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+/* Layout do item: forçar empilhamento vertical (banner em cima, caption abaixo) */
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li img,
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Legenda (caption) abaixo de cada banner Rodapé em Cirurgia e Periodontia */
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+/* Carrossel Rodapé: ocultar navegações e indicadores */
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-nav,
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-nav-next,
+body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ===== VERSÃO MOBILE – CIRURGIA E PERIODONTIA: carrossel 2x2 com scroll horizontal ===== */
+@media (max-width: 1023px) {
+  body.page-cirurgia-e-periodontia .cirurgiaeperiodontia-banner-rodape-wrapper #cirurgiaeperiodontia_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-cirurgia-e-periodontia .cirurgiaeperiodontia-banner-rodape-wrapper #cirurgiaeperiodontia_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li img,
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-cirurgia-e-periodontia #cirurgiaeperiodontia_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE ANESTÉSICOS – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-anestesicos #anestesicos_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-anestesicos #anestesicos_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-anestesicos #anestesicos_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-anestesicos #anestesicos_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-anestesicos #anestesicos_banners_rodape .slider-container li img,
+body.page-anestesicos #anestesicos_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-anestesicos #anestesicos_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-anestesicos #anestesicos_banners_rodape .slider-nav,
+body.page-anestesicos #anestesicos_banners_rodape .slider-nav-next,
+body.page-anestesicos #anestesicos_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-anestesicos .anestesicos-banner-rodape-wrapper #anestesicos_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-anestesicos .anestesicos-banner-rodape-wrapper #anestesicos_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container li img,
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-anestesicos #anestesicos_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE ANESTÉSICOS E AGULHAS – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li img,
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-nav,
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-nav-next,
+body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-anestesicoseagulhas .anestesicoseagulhas-banner-rodape-wrapper #anestesicoseagulhas_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-anestesicoseagulhas .anestesicoseagulhas-banner-rodape-wrapper #anestesicoseagulhas_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li img,
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-anestesicoseagulhas #anestesicoseagulhas_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE DESCARTÁVEIS – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-descartaveis #descartaveis_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-descartaveis #descartaveis_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-descartaveis #descartaveis_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-descartaveis #descartaveis_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-descartaveis #descartaveis_banners_rodape .slider-container li img,
+body.page-descartaveis #descartaveis_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-descartaveis #descartaveis_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-descartaveis #descartaveis_banners_rodape .slider-nav,
+body.page-descartaveis #descartaveis_banners_rodape .slider-nav-next,
+body.page-descartaveis #descartaveis_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-descartaveis .descartaveis-banner-rodape-wrapper #descartaveis_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-descartaveis .descartaveis-banner-rodape-wrapper #descartaveis_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container li img,
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-descartaveis #descartaveis_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE MOLDAGEM – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-moldagem #moldagem_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-moldagem #moldagem_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-moldagem #moldagem_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-moldagem #moldagem_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-moldagem #moldagem_banners_rodape .slider-container li img,
+body.page-moldagem #moldagem_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-moldagem #moldagem_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-moldagem #moldagem_banners_rodape .slider-nav,
+body.page-moldagem #moldagem_banners_rodape .slider-nav-next,
+body.page-moldagem #moldagem_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-moldagem .moldagem-banner-rodape-wrapper #moldagem_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-moldagem .moldagem-banner-rodape-wrapper #moldagem_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-moldagem #moldagem_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-moldagem #moldagem_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-moldagem #moldagem_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-moldagem #moldagem_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-moldagem #moldagem_banners_rodape .slider-container li img,
+  body.page-moldagem #moldagem_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-moldagem #moldagem_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE INSTRUMENTAIS – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-instrumentais #instrumentais_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-instrumentais #instrumentais_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-instrumentais #instrumentais_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-instrumentais #instrumentais_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-instrumentais #instrumentais_banners_rodape .slider-container li img,
+body.page-instrumentais #instrumentais_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-instrumentais #instrumentais_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-instrumentais #instrumentais_banners_rodape .slider-nav,
+body.page-instrumentais #instrumentais_banners_rodape .slider-nav-next,
+body.page-instrumentais #instrumentais_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-instrumentais .instrumentais-banner-rodape-wrapper #instrumentais_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-instrumentais .instrumentais-banner-rodape-wrapper #instrumentais_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container li img,
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-instrumentais #instrumentais_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE PROFILAXIA – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-profilaxia #profilaxia_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-profilaxia #profilaxia_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-profilaxia #profilaxia_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-profilaxia #profilaxia_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-profilaxia #profilaxia_banners_rodape .slider-container li img,
+body.page-profilaxia #profilaxia_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-profilaxia #profilaxia_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-profilaxia #profilaxia_banners_rodape .slider-nav,
+body.page-profilaxia #profilaxia_banners_rodape .slider-nav-next,
+body.page-profilaxia #profilaxia_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-profilaxia .profilaxia-banner-rodape-wrapper #profilaxia_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-profilaxia .profilaxia-banner-rodape-wrapper #profilaxia_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container li img,
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-profilaxia #profilaxia_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
+  }
+}
+
+/* ===== HOTSITE BIOSSEGURANÇA – CARROSSEL RODAPÉ ===== */
+
+@media (min-width: 1024px) {
+  body.page-biosseguranca #biosseguranca_banners_rodape.banners-carousel-wrapper {
+    max-width: 70% !important;
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 15px !important;
+  }
+}
+
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-container {
+  gap: 64px !important;
+}
+
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-container > li {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li img,
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li picture img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li .banner-carousel-caption {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  padding: 0 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #0e167a !important;
+  text-align: center !important;
+}
+
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-nav,
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-nav-next,
+body.page-biosseguranca #biosseguranca_banners_rodape .slider-indicators {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  body.page-biosseguranca .biosseguranca-banner-rodape-wrapper #biosseguranca_banners_rodape {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-biosseguranca .biosseguranca-banner-rodape-wrapper #biosseguranca_banners_rodape .swiffy-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    touch-action: pan-x !important;
+  }
+
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    touch-action: pan-x !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container > li {
+    flex: 0 0 calc((100% - 0.5rem) / 2) !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 0.5rem) / 2) !important;
+    width: calc((100% - 0.5rem) / 2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+  }
+
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li img,
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li picture img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    vertical-align: top !important;
+  }
+
+  body.page-biosseguranca #biosseguranca_banners_rodape .slider-container li .banner-carousel-caption {
+    width: 100% !important;
   }
 }

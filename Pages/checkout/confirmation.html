@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
     {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme", "mobile_bottom_menu"]}}
+    {{ asset type: "js" paths: ["checkout_back"] }}
     {{ wake_recaptcha_script }}
-    {{ head title: "Confirmação de Pedido" store: store }}
+    {{ head title: "Confirmação de Pedido | Dental Odonto Master" store: store }}
     {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
     {{ data_layer_config }}
 </head>
@@ -15,7 +16,13 @@
 <body class="bg-mainBg page-checkout" style="--checkout-logo: url('{{- store.urls.static_img}}logo_site.svg?theme={{store.theme}}&v={{store.last_modified}}');">
     {{ page_scripts position: "BODY_START" scripts: common.scripts }}
     {{ wake_checkout_header }}
-    {{ checkout_stepper current_step: "confirmation" }}
+    <div class="checkout-back-stepper-row">
+      <button type="button" class="checkout-back-button" aria-label="Voltar" onclick="checkoutNavigateBack()">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span class="checkout-back-button-label">Voltar</span>
+      </button>
+      {{ checkout_stepper current_step: "confirmation" }}
+    </div>
     {{ wake_overlay }}    
     {{~ first_order = data.checkout.orders | array.first ~}}
     {{~ if first_order ~}}

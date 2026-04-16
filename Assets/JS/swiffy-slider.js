@@ -46,6 +46,22 @@ const swiffyslider = function() {
               const threshold = sliderElement.getAttribute("data-slider-nav-animation-threshold") ? sliderElement.getAttribute("data-slider-nav-animation-threshold") : 0.3;
               this.setVisibleSlides(sliderElement, threshold);
           }
+          
+          // Prevenir scroll da roda do mouse nos carrosséis de produtos
+          const container = sliderElement.querySelector(".slider-container");
+          if (container) {
+              // Verificar se é um carrossel de produtos (carrossel1-5 ou recommendations)
+              const isProductCarousel = sliderElement.closest('.carrossel1, .carrossel2, .carrossel3, .carrossel4, .carrossel5, .recommendations');
+              if (isProductCarousel) {
+                  container.addEventListener('wheel', (e) => {
+                      // Prevenir scroll horizontal da roda do mouse
+                      // Permitir apenas scroll vertical (para a página) ou touch/swipe
+                      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                          e.preventDefault();
+                      }
+                  }, { passive: false });
+              }
+          }
       },
 
       setVisibleSlides(sliderElement, threshold = 0.3) {

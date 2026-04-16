@@ -1,5 +1,17 @@
 /* ===== NAVBAR - Azul Principal ===== */
 
+/* Lista principal do menu (equiv. ao antigo Tailwind: flex flex-col relative; em lg o layout
+   em fileira/centralização vem de .navbar-main ul @media (min-width: 1024px) com !important). */
+.navbar-main-menu-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navbar-main {
   background: #0e167a !important;
   border-bottom: none !important; /* Remove a borda azul inferior */
@@ -178,19 +190,19 @@
     margin-right: 0.25rem !important;
   }
   
-  /* Oculta itens após "Mais Ofertas" (href: /ofertas) na navbar, exceto "Estudante" */
-  .navbar-main ul li.group:has(a[href="/ofertas"]) ~ li.group:not(:has(a[href*="/estudantes"])):not(:has(a[href*="estudantes"])),
-  .navbar-main ul li.group:has(a[href*="/ofertas"]) ~ li.group:not(:has(a[href*="/estudantes"])):not(:has(a[href*="estudantes"])),
-  .navbar-main ul li:has(a[href="/ofertas"]) ~ li:not(:has(a[href*="/estudantes"])):not(:has(a[href*="estudantes"])),
-  .navbar-main ul li:has(a[href*="/ofertas"]) ~ li:not(:has(a[href*="/estudantes"])):not(:has(a[href*="estudantes"])) {
+  /* Oculta itens após "Mais Ofertas" (href: /ofertas) na navbar, exceto "Odontoverse" */
+  .navbar-main ul li.group:has(a[href="/ofertas"]) ~ li.group:not(:has(a[href*="/odontoverse"])):not(:has(a[href*="odontoverse"])),
+  .navbar-main ul li.group:has(a[href*="/ofertas"]) ~ li.group:not(:has(a[href*="/odontoverse"])):not(:has(a[href*="odontoverse"])),
+  .navbar-main ul li:has(a[href="/ofertas"]) ~ li:not(:has(a[href*="/odontoverse"])):not(:has(a[href*="odontoverse"])),
+  .navbar-main ul li:has(a[href*="/ofertas"]) ~ li:not(:has(a[href*="/odontoverse"])):not(:has(a[href*="odontoverse"])) {
     display: none !important;
   }
   
-  /* Garante que "Estudante" seja sempre exibido */
-  .navbar-main ul li.group:has(a[href*="/estudantes"]),
-  .navbar-main ul li.group:has(a[href*="estudantes"]),
-  .navbar-main ul li:has(a[href*="/estudantes"]),
-  .navbar-main ul li:has(a[href*="estudantes"]) {
+  /* Garante que "Odontoverse" seja sempre exibido */
+  .navbar-main ul li.group:has(a[href*="/odontoverse"]),
+  .navbar-main ul li.group:has(a[href*="odontoverse"]),
+  .navbar-main ul li:has(a[href*="/odontoverse"]),
+  .navbar-main ul li:has(a[href*="odontoverse"]) {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -219,18 +231,6 @@
   }
 }
 
-/* Estilo padrão para Academicos - Cor #00A8E8 e border-radius 20px */
-.navbar-main ul > li:not(.group):has(a[href*="odontoverse_"]),
-.navbar-main ul > li:not(.group):has(a[href*="Odontoverse_"]) {
-  background-color: #00A8E8 !important;
-  border-radius: 20px !important;
-}
-
-.navbar-main ul > li:not(.group):has(a[href*="odontoverse_"]) a,
-.navbar-main ul > li:not(.group):has(a[href*="Odontoverse_"]) a {
-  color: #ffffff !important; /* Texto branco por padrão */
-}
-
 /* Hover para itens sem dropdown */
 .navbar-main ul > li:not(.group):hover {
   background-color: #1e2db8 !important;
@@ -238,17 +238,6 @@
   transition: all 0.3s ease;
 }
 
-  /* Hover do Academicos - apenas elevação e cor do texto #ffc107 */
-  .navbar-main ul > li:not(.group):has(a[href*="odontoverse_"]):hover,
-  .navbar-main ul > li:not(.group):has(a[href*="Odontoverse_"]):hover {
-    background-color: #00A8E8 !important; /* Mantém a cor de fundo */
-    border-radius: 20px !important; /* Mantém o border-radius */
-  }
-
-  .navbar-main ul > li:not(.group):has(a[href*="odontoverse_"]):hover a,
-  .navbar-main ul > li:not(.group):has(a[href*="Odontoverse_"]):hover a {
-    color: #ffc107 !important; /* Amarelo no hover - mesmo que outras categorias */
-  }
 
 
 /* ===== ITENS COM DROPDOWN (.nav-dropdown-item) ===== */
@@ -269,9 +258,9 @@
   border-radius: 20px !important;
 }
 
-/* Hover para links de dropdown - apenas desktop (exceto Estudante) */
+/* Hover para links de dropdown - apenas desktop (exceto Odontoverse) */
 @media (min-width: 1024px) {
-  .navbar-main ul > li.group:not(:has(> div > div.nav-dropdown-item > a[href*="/estudantes"])):not(:has(> div > div.nav-dropdown-item > a[href*="estudantes"])):hover .nav-dropdown-item a {
+  .navbar-main ul > li.group:not(:has(> div > div.nav-dropdown-item > a[href*="/odontoverse"])):not(:has(> div > div.nav-dropdown-item > a[href*="odontoverse"])):hover .nav-dropdown-item a {
     color: #ffc107 !important;
   }
 }
@@ -295,28 +284,28 @@
   }
 }
 
-/* Estilo padrão para Estudante com dropdown - cor azul #00A8E8 */
+/* Estilo padrão para Odontoverse com dropdown - cor azul #00A8E8 */
 @media (min-width: 1024px) {
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/estudantes"]) .nav-dropdown-item,
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="estudantes"]) .nav-dropdown-item {
-    background-color: #00A8E8 !important;
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/odontoverse"]) .nav-dropdown-item,
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="odontoverse"]) .nav-dropdown-item {
+    background-color: #0000FF !important;
     border-radius: 20px !important;
   }
   
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/estudantes"]) .nav-dropdown-item a,
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="estudantes"]) .nav-dropdown-item a {
-    color: #ffffff !important; /* Texto branco por padrão */
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/odontoverse"]) .nav-dropdown-item a,
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="odontoverse"]) .nav-dropdown-item a {
+    color: #ffffff !important;
   }
   
-  /* Hover do Estudante - manter azul e alterar cor do texto para amarelo */
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/estudantes"]):hover .nav-dropdown-item,
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="estudantes"]):hover .nav-dropdown-item {
-    background-color: #00A8E8 !important; /* Manter azul no hover */
+  /* Hover do Odontoverse - manter azul e alterar cor do texto para amarelo */
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/odontoverse"]):hover .nav-dropdown-item,
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="odontoverse"]):hover .nav-dropdown-item {
+    background-color: #0000FF !important;
   }
   
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/estudantes"]):hover .nav-dropdown-item a,
-  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="estudantes"]):hover .nav-dropdown-item a {
-    color: #ffc107 !important; /* Amarelo no hover */
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="/odontoverse"]):hover .nav-dropdown-item a,
+  .navbar-main ul > li.group:has(> div > div.nav-dropdown-item > a[href*="odontoverse"]):hover .nav-dropdown-item a {
+    color: #ffc107 !important;
   }
 }
 
@@ -593,7 +582,7 @@ div[id^="drop-nav-menu-"] {
   max-height: 1000px !important;
   opacity: 1 !important;
   overflow: visible !important;
-  padding: 0.5px 0 !important;
+  padding: 0.5px !important;
 }
 
 .categories-dropdown-category-active + .categories-dropdown-subcategories {
@@ -605,7 +594,7 @@ div[id^="drop-nav-menu-"] {
   max-height: 1000px !important;
   opacity: 1 !important;
   overflow: visible !important;
-  padding: 0.5px 0 !important;
+  padding: 0.5rem 0 !important;
 }
 
 .categories-dropdown-subitem {
@@ -1044,6 +1033,7 @@ div[id^="drop-nav-menu-"] {
   /* Lista de menu - EXIBIÇÃO VERTICAL no mobile */
   #navbar.navbar-main ul,
   nav#navbar.navbar-main ul {
+    display: flex !important;
     width: 100% !important;
     max-width: 100% !important;
     flex-direction: column !important; /* Vertical - uma categoria abaixo da outra */

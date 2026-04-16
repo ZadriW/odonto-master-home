@@ -1893,6 +1893,7 @@
   .wake-switch-mui .wake-switch-label {
     @apply ml-5 text-sm font-medium uppercase;
   }
+
   /* Hover effects */
   .wake-switch-mui .label:hover .wake-switch {
     @apply bg-gray-400;

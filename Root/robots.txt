@@ -1,3 +1,13 @@
+# Bloqueia todos os outros rastreadores
 User-agent: *
 Disallow: /
-Disallow: /sitemap.xml
+
+# Permite que o Googlebot rastreie todo o site (incluindo páginas de produto)
+User-agent: Googlebot
+Allow: /
+
+# Permite que o Googlebot-Image rastreie todo o site
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://odontomaster.com.br/sitemap.xml

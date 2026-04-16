@@ -1,14 +1,11 @@
 {{##
-    Description: Renders a modal with all the installment options
+    Description: Formas de pagamento na PDP — link "Ver todas" abre overlay com parcelas em colunas.
     Params:
-        - installments: product installment plans (available on Admin).
-            If needed, the config option payment_groups.display on settings.json
-            can be used to define which plans to display on modal.
-            (e.g., display: ["Boleto Yapay", "Cartão Sem Desconto", "Pix"])
+        - installments: product installment plans
     Usage:
         product_installments installments: product.prices.installment_plans
 ##}}
-{{~ #Function used to filter the installment plans available if any display option is set on settings.json
+{{~
     func select_display(plans)
         contains = false
         if settings.payment_groups.display && (settings.payment_groups.display | array.contains plans.display_name)
@@ -23,34 +20,60 @@
     end
 ~}}
 
-<div class="flex flex-col items-start w-full border-t border-b py-5 my-6">
-    <h2 class="mb-4 text-lg font-semibold text-gray-900">Formas de pagamento</h2>
-    <div class="flex justify-start items-start gap-2 flex-wrap">
-        {{~ for plan in installment_plans ~}}
-            <button class="flex items-center justify-center border rounded-md py-2 px-4 transition-all duration-200 bg-white hover:bg-gray-50 hover:border-primary-500 hover:shadow-md" value="{{plan.display_name}}" onclick="showInstallments(this)">
-                {{if plan.display_name == 'Boleto'}}
-                    <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/a001af4e-b81c-4e2f-a1a1-e6ee19638dd2.png" alt="boleto" class="w-6 h-6 mr-1">
-                {{else if plan.display_name == 'Pix' || plan.display_name == 'PIX'}}
-                    <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/94f26f55-f921-4084-8973-843047e9f56c.png" alt="pix" class="w-6 h-6 mr-1">
-                {{else}}
-                    <img src="{{- store.urls.static_img}}icons/credit-card.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="credit-card" class="w-6 h-6 mr-1">
-                {{end}}
-                    {{plan.display_name}}
-            </button>
-        {{~ end ~}}
-    </div>
-    {{~ for plan in installment_plans ~}}
-        <div id="installments-tab" class="hidden mt-3" value="{{plan.display_name}}">
-            <div class="bg-gray-50 rounded-lg p-3">
-                <table class="w-full">
-                    {{~ for installment in plan.installments~}}
-                    <tr class="border-b border-gray-200 last:border-b-0">
-                        <td class="py-2 px-2 text-sm text-gray-600">{{installment.number}}x de {{installment.value | math.format "c" "pt-BR"}} {{if installment.fees}}com juros{{else}}sem juros{{end}}</td>
-                        <td class="py-2 px-2 text-sm font-semibold text-primary-600 text-right">{{installment.number | math.times installment.value | math.format "c" "pt-BR"}}</td>
-                    </tr>
-                    {{~ end ~}}
-                </table>
+{{~ if installment_plans && installment_plans.size > 0 ~}}
+<div class="product-payment-methods-section flex flex-col items-start w-full py-5 my-6">
+    <h2 class="text-lg font-semibold text-gray-900 product-payment-methods-section__title">Formas de pagamento</h2>
+    <button type="button" class="product-payment-methods-trigger text-left text-primary-600 hover:text-primary-700 font-medium underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded px-0.5 -mx-0.5 mt-1">
+        Ver todas as formas de pagamento
+    </button>
+
+    <div class="product-payment-methods-overlay hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Formas de pagamento e parcelas">
+        <div class="product-payment-methods-overlay__backdrop" data-close-payment-overlay tabindex="-1"></div>
+        <div class="product-payment-methods-overlay__panel">
+            <div class="product-payment-methods-overlay__header">
+                <h3 class="product-payment-methods-overlay__title">Formas de pagamento e parcelas</h3>
+                <button type="button" class="product-payment-methods-overlay__close" data-close-payment-overlay aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="product-payment-methods-overlay__columns">
+                {{~ for plan in installment_plans ~}}
+                <div class="product-payment-methods-column">
+                    <button type="button" class="product-payment-methods-column__header" aria-expanded="false" aria-label="Mostrar ou ocultar parcelas de {{ plan.display_name }}">
+                        {{~ if plan.display_name == 'Boleto' ~}}
+                            <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/aab5a287-6b99-4c0a-ae40-944abc388189.png" alt="" class="product-payment-methods-column__icon" width="52" height="52">
+                        {{~ else if plan.display_name == 'Pix' || plan.display_name == 'PIX' ~}}
+                            <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/2b07721a-1c9f-4ad0-90af-9dcef982cd29.png" alt="" class="product-payment-methods-column__icon" width="52" height="52">
+                        {{~ else if plan.display_name == 'Cartão de Crédito' || (plan.display_name | string.downcase | string.contains 'cartão de crédito') || (plan.display_name | string.downcase | string.contains 'cartao de credito') ~}}
+                            <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/32f4ac44-02f8-4792-825c-0b30226d95f9.png" alt="" class="product-payment-methods-column__icon" width="52" height="52">
+                        {{~ else if plan.display_name == 'Pagamento com dois cartões' || (plan.display_name | string.downcase | string.contains 'dois cartões') || (plan.display_name | string.downcase | string.contains 'dois cartoes') ~}}
+                            <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/ca978557-860c-4b3d-a37e-d2312257a005.png" alt="" class="product-payment-methods-column__icon" width="52" height="52">
+                        {{~ else if plan.display_name == 'Cartão + Pix' || plan.display_name == 'cartão + pix' || (plan.display_name | string.downcase | string.contains 'cartão + pix') || (plan.display_name | string.downcase | string.contains 'cartao + pix') ~}}
+                            <img src="https://conector.ecommercegateway.com.br/Recursos/Imagens/cc3ea4cb-ec2c-4159-a043-28b5e247ff9b.png" alt="" class="product-payment-methods-column__icon" width="52" height="52">
+                        {{~ else ~}}
+                            <img src="{{- store.urls.static_img}}icons/credit-card.svg?theme={{store.theme}}&v={{store.last_modified}}" alt="" class="product-payment-methods-column__icon" width="52" height="52">
+                        {{~ end ~}}
+                        <span class="product-payment-methods-column__name">{{ plan.display_name }}</span>
+                    </button>
+                    <div class="product-payment-methods-column__body" hidden>
+                        <table class="product-payment-methods-column__table">
+                            <tbody>
+                                {{~ plan_lc = plan.display_name | string.downcase ~}}
+                                {{~ is_vitrine_discount_plan = (plan_lc | string.contains "pix") || (plan_lc | string.contains "boleto") ~}}
+                                {{~ for installment in plan.installments ~}}
+                                {{~ display_value = is_vitrine_discount_plan ? (installment.value | math.times 0.95) : installment.value ~}}
+                                <tr>
+                                    <td>{{ installment.number }}x de {{ display_value | math.format "c" "pt-BR" }} {{ if installment.fees }}com juros{{ else }}sem juros{{ end }}</td>
+                                    <td class="product-payment-methods-column__total">{{ installment.number | math.times display_value | math.format "c" "pt-BR" }}</td>
+                                </tr>
+                                {{~ end ~}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{~ end ~}}
             </div>
         </div>
-    {{~ end ~}}
+    </div>
 </div>
+{{~ end ~}}

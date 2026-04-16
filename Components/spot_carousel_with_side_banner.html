@@ -15,21 +15,29 @@
 {{~ if products && products.size > 0 ~}}
     {{ autoplay_enabled = autoplay ?? false }}
     {{~ 
-      # Mapear class para URL do hotsite
-      hotsite_url = ""
-      if class == "carrossel1"
-        hotsite_url = "/orthometric"
-      else if class == "carrossel2"
-        hotsite_url = "/ofertasquentes"
-      else if class == "carrossel3"
-        hotsite_url = "/veraofgm"
-      else if class == "carrossel4"
-        hotsite_url = "/equipamentos"
-      else if class == "carrossel5"
-        hotsite_url = "/voltaaulasmaster"
-      else
-        hotsite_url = "#"
-      end
+    # Mapear class para URL do hotsite
+    hotsite_url = ""
+    if class == "carrossel1"
+      hotsite_url = "/liquida-orthometric"
+    else if class == "carrossel2"
+      hotsite_url = "/o-melhor-do-phs"
+    else if class == "carrossel3"
+      hotsite_url = "/osmelhoresprecosemdentsplyenamaster"
+    else if class == "carrossel4"
+      hotsite_url = "/equipamentos"
+    else if class == "carrossel5"
+      hotsite_url = "/voltaaulasmaster"
+    else if class == "carrossele1"
+      hotsite_url = "/produtos-que-baixaram-de-preço"
+    else if class == "carrossele2"
+      hotsite_url = "/queridinhos-odontoverse"
+    else if class == "carrossele3"
+      hotsite_url = "/manequins-odontoverse"
+    else if class == "carrossele4"
+      hotsite_url = "/instrumentais-odontoverse"
+    else
+      hotsite_url = "#"
+    end
       
       # Filtrar banners pela posição
       if banners && banner_position

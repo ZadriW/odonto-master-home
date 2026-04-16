@@ -1,5 +1,5 @@
 {{ ##
-    Description: Renders the buy together row component, containing 2 product components and a price component
+    Description: Renders the buy together row component, containing 2 product-card components and a price/action column
     Params:
         - principal_product: the page product data
         - bt_product: the buy together product data
@@ -7,23 +7,28 @@
         buy_list_product_view principal_product: principal_product bt_product: bt_product
 ## }}
 
-<div class="flex flex-col lg:flex-row justify-evenly w-full mb-10 sm:mb-4 bg-secondary-50">
-    <div class="flex flex-col sm:flex-row flex-wrap justify-between sm:justify-evenly items-stretch relative">
-        <div product-view-div class="bg-secondary-100 w-full sm:w-auto">
+<div class="bt-row w-full flex flex-col lg:flex-row gap-4">
+    <div class="bt-products-area flex flex-col sm:flex-row gap-4 flex-1 items-stretch">
+        <div product-view-div class="bt-product-view-div">
             {{ buy_together_product_view product: principal_product }}
         </div>
-        <div class="flex flex-col justify-center items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:mx-4 my-6">
+        <div class="bt-plus-icon flex flex-col justify-center items-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:mx-4 my-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
         </div>
-        <div product-view-div class="bg-secondary-100 w-full sm:w-auto">
+        <div product-view-div class="bt-product-view-div">
             {{ buy_together_product_view product: bt_product }}
         </div>
     </div>
-    <div class="flex flex-col p-2 justify-center">
-        <div class="" id="buy-together-price-{{ bt_product.product_id }}-{{ principal_product.product_id }}"></div>
-        <div class="">
+    <div class="bt-equals-icon flex flex-col justify-center items-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
+            <path d="M32 128c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 128zm0 192c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 320z"/>
+        </svg>
+    </div>
+    <div class="bt-price-action flex flex-col justify-center gap-3 p-4">
+        <div id="buy-together-price-{{ bt_product.product_id }}-{{ principal_product.product_id }}"></div>
+        <div>
             {{ product_buy_button add_to_cart_click: "buyTogetherAddToCartClick(this)" buy_click: "buyTogetherBuyClick(this)" disabled: true}}
         </div>
     </div>

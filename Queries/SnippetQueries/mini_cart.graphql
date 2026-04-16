@@ -16,6 +16,7 @@ query Checkout($checkoutId: String!, $hasCheckout: Boolean!) {
       name
       gift
       kit
+      sku
       productAttributes{
         name
         type
@@ -48,6 +49,7 @@ query Checkout($checkoutId: String!, $hasCheckout: Boolean!) {
         name
         url
         quantity
+        sku
         productAttributes {
           name
           value

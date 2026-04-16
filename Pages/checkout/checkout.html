@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
-  {{ head title: "Resumo | Odonto Master" store: store }}
+  {{ head title: "Resumo do Pedido | Dental Odonto Master" store: store }}
   {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme", "mobile_bottom_menu"]}}
   {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
   {{ data_layer_config }}
@@ -12,7 +12,13 @@
 <body class="bg-mainBg page-checkout" style="--checkout-logo: url('{{- store.urls.static_img}}logo_site.svg?theme={{store.theme}}&v={{store.last_modified}}');">
   {{ page_scripts position: "BODY_START" scripts: common.scripts }}
   {{ wake_checkout_header }}
-  {{ checkout_stepper current_step: "cart" }}
+  <div class="checkout-back-stepper-row">
+    <a href="/" class="checkout-back-button" aria-label="Voltar">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span class="checkout-back-button-label">Voltar</span>
+    </a>
+    {{ checkout_stepper current_step: "cart" }}
+  </div>
   {{ wake_overlay }}
   <div class="wake-cart-wrapper">
     {{~ if data.checkout.products.size > 0 ~}}  

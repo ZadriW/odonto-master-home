@@ -15,6 +15,17 @@
             {{ wishlist_button product_id: product.product_id }}
         </div>
     {{~ end ~}}
+
+        {{~ if wishlist && product.product_id ~}}
+        <div class="product-wishlist-remove" onclick="event.stopPropagation();">
+            <button type="button"
+                    class="product-wishlist-remove__btn"
+                    onclick="wishlistRemoveClick(this, {{product.product_id}}); event.stopPropagation();"
+                    aria-label="Remover da lista de desejos">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
+    {{~ end ~}}
     
     {{~ if product.promotions && product.promotions.size > 0 ~}}
         {{~ for promotion in product.promotions ~}}
@@ -45,18 +56,18 @@
         
         {{~ if product.available ~}}
             {{~ if product.prices ~}}
-                {{ product_price prices: product.prices }}
+                {{ product_price prices: product.prices show_pix_catalog_reference: false }}
             {{~ end ~}}
             {{~ if product.add_to_cart_from_spot # Add product directly to cart~}}
                 {{~ spot_add_to_cart_click = "spotAddToCartButtonClick(" + product.product_variant_id + "); event.stopPropagation(); return false;" ~}}
                 <div class="product-actions-wrapper">
-                    <div class="product-quantity-wrapper">
+                    <div class="product-quantity-wrapper" onclick="event.stopPropagation();">
                         <button type="button" class="product-quantity-btn product-quantity-minus" onclick="decreaseSpotQuantity('{{product.product_variant_id}}'); event.stopPropagation(); return false;" aria-label="Diminuir quantidade">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
                             </svg>
                         </button>
-                        <input type="number" id="spot-quantity-{{product.product_variant_id}}" class="product-quantity-input" value="1" min="1" readonly aria-label="Quantidade">
+                        <input type="number" id="spot-quantity-{{product.product_variant_id}}" class="product-quantity-input" value="1" min="1" max="999" aria-label="Quantidade">
                         <button type="button" class="product-quantity-btn product-quantity-plus" onclick="increaseSpotQuantity('{{product.product_variant_id}}'); event.stopPropagation(); return false;" aria-label="Aumentar quantidade">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />

@@ -18,8 +18,13 @@
             <div class="flex mb-4 hidden group-open:flex w-full flex-col">
                 {{~ for kit_product in kit.products ~}}   
                     <li class="flex py-2">
-                        <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-secondary-200">
-                            <img src="{{ kit_product.image_url ? kit_product.image_url : noImage }}" width="80px" height="80px" class="object-cover w-full h-full">
+                        <div class="flex flex-col items-start">
+                            <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-secondary-200">
+                                <img src="{{ kit_product.image_url ? kit_product.image_url : noImage }}" width="80px" height="80px" class="object-cover w-full h-full">
+                            </div>
+                            {{~ if kit_product.sku ~}}
+                                <div class="mini-cart-sku-badge">SKU: {{ kit_product.sku }}</div>
+                            {{~ end ~}}
                         </div>                                
                         <div class="ml-4 flex flex-1 flex-col">
                             <div class="flex justify-between text-base font-medium text-secondary-900">

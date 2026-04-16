@@ -83,12 +83,9 @@
     transition: transform 0.2s ease;
 }
 
-/* Ocultar product-badge--promotion-stamp nos product-cards (só deve aparecer na página de produto) */
-.product-card .product-badge--promotion-stamp,
-.product-card .stamp-wrapper .product-badge--promotion-stamp,
-.product-card__content .product-badge--promotion-stamp,
-.product-card__content .stamp-wrapper .product-badge--promotion-stamp,
-.product-card__content .stamps .product-badge--promotion-stamp {
+/* Ocultar product-badge--promotion-stamp fora do stamp-wrapper nos product-cards */
+.product-card .product-badge--promotion-stamp:not(.stamp-wrapper *),
+.product-card__content .product-badge--promotion-stamp:not(.stamp-wrapper *) {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -98,7 +95,19 @@
     top: -9999px !important;
 }
 
-/* Desktop: hover no stamp-image mostra product-badge--promotion acima */
+/* Ocultar product-badge--promotion que estiver no product-card fora do stamp-wrapper (mantém só os badges dentro de stamp-wrapper) */
+.product-card .product-badge--promotion:not(.stamp-wrapper *),
+.product-card__content .product-badge--promotion:not(.stamp-wrapper *) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
+
+/* Desktop: cada badge posicionado em relação ao seu stamp-wrapper; hover mostra só o badge daquele wrapper */
 @media (min-width: 769px) {
     .product-card {
         position: relative;
@@ -112,20 +121,26 @@
         position: relative;
     }
 
+    .product-card__content .stamps .stamp-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
     .product-card__content .stamps .stamp-image:hover {
         transform: translateY(-2px);
     }
 
-    /* Estado inicial do badge: oculto por padrão no desktop, posicionado no mesmo lugar do stamp-image */
-    .product-card .product-badge--promotion {
+    /* Badge posicionado acima do seu próprio stamp-wrapper (um por selo) */
+    .product-card .stamp-wrapper .product-badge--promotion,
+    .product-card .stamp-wrapper .product-badge--promotion-stamp {
         position: absolute !important;
-        top: calc(220px + 16px) !important; /* Altura da imagem (220px) + padding do content (16px) = posição do stamp-image */
-        left: 50% !important; /* Centralizado horizontalmente */
+        bottom: 100% !important;
+        left: 50% !important;
         right: auto !important;
-        bottom: auto !important;
+        top: auto !important;
+        transform: translateX(-50%) translateY(-8px) scale(0.8) !important;
         opacity: 0 !important;
         visibility: hidden !important;
-        transform: translateX(-50%) translateY(0) scale(0.8) !important; /* Centralizado e começa pequeno, no mesmo nível do selo */
         transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
         pointer-events: none !important;
         z-index: 20 !important;
@@ -136,33 +151,32 @@
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         padding: 8px 12px !important;
-        border-radius: 14px !important; /* Formato retangular */
+        border-radius: 14px !important;
         font-weight: bold !important;
         font-size: 12px !important;
         line-height: 1.2 !important;
         text-align: center !important;
-        background: #f3f4f6 !important; /* Cinza claro */
-        color: #0e167a !important; /* Azul padrão do site */
+        background: #f3f4f6 !important;
+        color: #0e167a !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        display: block !important; /* Garantir que está visível quando necessário */
+        display: block !important;
     }
 
-    /* Quando hover no stamp-image, mostrar badge acima dele - "saindo" do selo */
-    .product-card:has(.product-card__content .stamps .stamp-image:hover) .product-badge--promotion,
-    .product-card:has(.product-card__content .stamps:hover) .product-badge--promotion {
+    /* Hover no stamp-wrapper: mostrar apenas o badge desse wrapper */
+    .product-card .stamp-wrapper:hover .product-badge--promotion,
+    .product-card .stamp-wrapper:hover .product-badge--promotion-stamp {
         opacity: 1 !important;
         visibility: visible !important;
-        transform: translateX(-50%) translateY(-50px) scale(1) !important; /* Centralizado e sobe 50px acima do selo, "saindo" dele */
+        transform: translateX(-50%) translateY(-8px) scale(1) !important;
         pointer-events: auto !important;
     }
 
-    /* Manter badge visível quando hover está no badge também (para manter a interação) */
-    .product-card:has(.product-card__content .stamps .stamp-image:hover) .product-badge--promotion:hover,
-    .product-card:has(.product-card__content .stamps:hover) .product-badge--promotion:hover,
-    .product-card .product-badge--promotion:hover {
+    /* Manter badge visível ao passar o cursor sobre o próprio badge */
+    .product-card .stamp-wrapper:hover .product-badge--promotion:hover,
+    .product-card .stamp-wrapper:hover .product-badge--promotion-stamp:hover {
         opacity: 1 !important;
         visibility: visible !important;
-        transform: translateX(-50%) translateY(-50px) scale(1) !important; /* Centralizado e mantém posição */
+        transform: translateX(-50%) translateY(-8px) scale(1) !important;
         pointer-events: auto !important;
     }
 }
@@ -175,7 +189,6 @@
     line-height: 1.4;
     text-decoration: none;
     transition: color 0.3s ease;
-    margin-bottom: 8px;
     min-height: 40px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -228,14 +241,57 @@
     margin-left: 8px;
 }
 
-/* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES ===== */
-.product-card__content .text-xl.mb-2,
-.product-card__content div.text-xl[class*="mb-2"],
-.product-card__content [class*="text-xl"][class*="mb-2"] {
-    margin-top: auto;
-    margin-bottom: 8px;
+/* Legenda ao lado do preço (Pix/boleto) — card um pouco menor que a PDP */
+.product-card .product-price-pix-note {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #0e167a !important;
+    line-height: 1.2 !important;
+}
+
+.product-card .product-price-extra-discount-badge {
+    font-size: 0.625rem !important;
+    padding: 0.15rem 0.35rem !important;
+}
+
+/* ===== PREÇO + PARCELAS: bloco único acima dos botões (order no wrapper, não só no .text-xl) ===== */
+.product-card__content .product-price-block {
     order: 999;
     flex-shrink: 0;
+    margin-top: auto;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product-card__content .product-price-block .text-xl.mb-2,
+.product-card__content .product-price-block div.text-xl[class*="mb-2"],
+.product-card__content .product-price-block [class*="text-xl"][class*="mb-2"] {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    order: 0 !important;
+}
+
+.product-card__content .product-price-block .product-price-installments {
+    order: 1 !important;
+    margin-bottom: 6px !important;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Cards: mesma tipografia 0.8rem + azul principal (substitui text-sm / gray do Tailwind) */
+.product-card .product-price-installments .product-price-installments__line,
+.product-card .product-price-installments .product-price-installments__strong {
+    font-size: 0.8rem !important;
+    line-height: 1.35 !important;
+    color: #0e167a !important;
+}
+
+.product-card .product-price-installments .product-price-installments__strong {
+    font-weight: 600 !important;
 }
 
 /* ===== BOTÕES DE AÇÃO ===== */
@@ -514,6 +570,46 @@
     stroke: #0e167a !important;
 }
 
+/* ===== WISHLIST REMOVE BUTTON (apenas na página de lista de desejos) ===== */
+.product-wishlist-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.product-wishlist-remove__btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 0;
+}
+
+.product-wishlist-remove__btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-wishlist-remove__btn i {
+    font-size: 20px;
+    color: #dc2626;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.product-wishlist-remove__btn:hover i {
+    color: #b91c1c;
+}
+
 /* ===== PRODUTOS SIMILARES ===== */
 .product-card .border {
     border: 1px solid #e5e7eb;
@@ -565,6 +661,38 @@
 .carrossel3,
 .carrossel4,
 .carrossel5,
+.carrossele1,
+.carrossele2,
+.carrossele3,
+.carrossele4,
+.carrossel-dentistica1,
+.carrossel-acabamento1,
+.carrossel-adesivo1,
+.carrossel-kitacademicos1,
+.carrossel-cimento1,
+.carrossel-resinas1,
+.carrossel-resinaseadesivos1,
+.carrossel-clareadores1,
+.carrossel-ortodontia1,
+.carrossel-braquetes1,
+.carrossel-endodontia1,
+.carrossel-limasendodonticas1,
+.carrossel-arcos1,
+.carrossel-elasticos1,
+.carrossel-cimentoendodontico1,
+.carrossel-protese1,
+.carrossel-cirurgiaeperiodontia1,
+.carrossel-brocascirurgicas1,
+.carrossel-anestesicos1,
+.carrossel-anestesicoseagulhas1,
+.carrossel-descartaveis1,
+.carrossel-luvas1,
+.carrossel-moldagem1,
+.carrossel-instrumentais1,
+.carrossel-pontasdiamantadas1,
+.carrossel-pontadiamantadaebrocas1,
+.carrossel-profilaxia1,
+.carrossel-biosseguranca1,
 .recommendations {
     gap: 12px !important;
     padding: 0.5rem 0 1rem 0 !important;
@@ -576,6 +704,38 @@
 .carrossel3 h2,
 .carrossel4 h2,
 .carrossel5 h2,
+.carrossele1 h2,
+.carrossele2 h2,
+.carrossele3 h2,
+.carrossele4 h2,
+.carrossel-dentistica1 h2,
+.carrossel-acabamento1 h2,
+.carrossel-adesivo1 h2,
+.carrossel-kitacademicos1 h2,
+.carrossel-cimento1 h2,
+.carrossel-resinas1 h2,
+.carrossel-resinaseadesivos1 h2,
+.carrossel-clareadores1 h2,
+.carrossel-ortodontia1 h2,
+.carrossel-braquetes1 h2,
+.carrossel-endodontia1 h2,
+.carrossel-limasendodonticas1 h2,
+.carrossel-arcos1 h2,
+.carrossel-elasticos1 h2,
+.carrossel-cimentoendodontico1 h2,
+.carrossel-protese1 h2,
+.carrossel-cirurgiaeperiodontia1 h2,
+.carrossel-brocascirurgicas1 h2,
+.carrossel-anestesicos1 h2,
+.carrossel-anestesicoseagulhas1 h2,
+.carrossel-descartaveis1 h2,
+.carrossel-luvas1 h2,
+.carrossel-moldagem1 h2,
+.carrossel-instrumentais1 h2,
+.carrossel-pontasdiamantadas1 h2,
+.carrossel-pontadiamantadaebrocas1 h2,
+.carrossel-profilaxia1 h2,
+.carrossel-biosseguranca1 h2,
 .recommendations h2 {
     margin-bottom: 1.5rem !important;
 }
@@ -586,6 +746,38 @@
 .carrossel3 .product-card,
 .carrossel4 .product-card,
 .carrossel5 .product-card,
+.carrossele1 .product-card,
+.carrossele2 .product-card,
+.carrossele3 .product-card,
+.carrossele4 .product-card,
+.carrossel-dentistica1 .product-card,
+.carrossel-acabamento1 .product-card,
+.carrossel-adesivo1 .product-card,
+.carrossel-kitacademicos1 .product-card,
+.carrossel-cimento1 .product-card,
+.carrossel-resinas1 .product-card,
+.carrossel-resinaseadesivos1 .product-card,
+.carrossel-clareadores1 .product-card,
+.carrossel-ortodontia1 .product-card,
+.carrossel-braquetes1 .product-card,
+.carrossel-endodontia1 .product-card,
+.carrossel-limasendodonticas1 .product-card,
+.carrossel-arcos1 .product-card,
+.carrossel-elasticos1 .product-card,
+.carrossel-cimentoendodontico1 .product-card,
+.carrossel-protese1 .product-card,
+.carrossel-cirurgiaeperiodontia1 .product-card,
+.carrossel-brocascirurgicas1 .product-card,
+.carrossel-anestesicos1 .product-card,
+.carrossel-anestesicoseagulhas1 .product-card,
+.carrossel-descartaveis1 .product-card,
+.carrossel-luvas1 .product-card,
+.carrossel-moldagem1 .product-card,
+.carrossel-instrumentais1 .product-card,
+.carrossel-pontasdiamantadas1 .product-card,
+.carrossel-pontadiamantadaebrocas1 .product-card,
+.carrossel-profilaxia1 .product-card,
+.carrossel-biosseguranca1 .product-card,
 .recommendations .product-card {
     margin: 0 6px;
     margin-bottom: 1rem !important;
@@ -606,6 +798,38 @@
 .carrossel3 .swiffy-slider,
 .carrossel4 .swiffy-slider,
 .carrossel5 .swiffy-slider,
+.carrossele1 .swiffy-slider,
+.carrossele2 .swiffy-slider,
+.carrossele3 .swiffy-slider,
+.carrossele4 .swiffy-slider,
+.carrossel-dentistica1 .swiffy-slider,
+.carrossel-acabamento1 .swiffy-slider,
+.carrossel-adesivo1 .swiffy-slider,
+.carrossel-kitacademicos1 .swiffy-slider,
+.carrossel-cimento1 .swiffy-slider,
+.carrossel-resinas1 .swiffy-slider,
+.carrossel-resinaseadesivos1 .swiffy-slider,
+.carrossel-clareadores1 .swiffy-slider,
+.carrossel-ortodontia1 .swiffy-slider,
+.carrossel-braquetes1 .swiffy-slider,
+.carrossel-endodontia1 .swiffy-slider,
+.carrossel-limasendodonticas1 .swiffy-slider,
+.carrossel-arcos1 .swiffy-slider,
+.carrossel-elasticos1 .swiffy-slider,
+.carrossel-cimentoendodontico1 .swiffy-slider,
+.carrossel-protese1 .swiffy-slider,
+.carrossel-cirurgiaeperiodontia1 .swiffy-slider,
+.carrossel-brocascirurgicas1 .swiffy-slider,
+.carrossel-anestesicos1 .swiffy-slider,
+.carrossel-anestesicoseagulhas1 .swiffy-slider,
+.carrossel-descartaveis1 .swiffy-slider,
+.carrossel-luvas1 .swiffy-slider,
+.carrossel-moldagem1 .swiffy-slider,
+.carrossel-instrumentais1 .swiffy-slider,
+.carrossel-pontasdiamantadas1 .swiffy-slider,
+.carrossel-pontadiamantadaebrocas1 .swiffy-slider,
+.carrossel-profilaxia1 .swiffy-slider,
+.carrossel-biosseguranca1 .swiffy-slider,
 .recommendations .swiffy-slider {
     padding: 1rem 0 2rem 0 !important;
 }
@@ -622,6 +846,38 @@
 .carrossel3 .swiffy-slider .slider-container,
 .carrossel4 .swiffy-slider .slider-container,
 .carrossel5 .swiffy-slider .slider-container,
+.carrossele1 .swiffy-slider .slider-container,
+.carrossele2 .swiffy-slider .slider-container,
+.carrossele3 .swiffy-slider .slider-container,
+.carrossele4 .swiffy-slider .slider-container,
+.carrossel-dentistica1 .swiffy-slider .slider-container,
+.carrossel-acabamento1 .swiffy-slider .slider-container,
+.carrossel-adesivo1 .swiffy-slider .slider-container,
+.carrossel-kitacademicos1 .swiffy-slider .slider-container,
+.carrossel-cimento1 .swiffy-slider .slider-container,
+.carrossel-resinas1 .swiffy-slider .slider-container,
+.carrossel-resinaseadesivos1 .swiffy-slider .slider-container,
+.carrossel-clareadores1 .swiffy-slider .slider-container,
+.carrossel-ortodontia1 .swiffy-slider .slider-container,
+.carrossel-braquetes1 .swiffy-slider .slider-container,
+.carrossel-endodontia1 .swiffy-slider .slider-container,
+.carrossel-limasendodonticas1 .swiffy-slider .slider-container,
+.carrossel-arcos1 .swiffy-slider .slider-container,
+.carrossel-elasticos1 .swiffy-slider .slider-container,
+.carrossel-cimentoendodontico1 .swiffy-slider .slider-container,
+.carrossel-protese1 .swiffy-slider .slider-container,
+.carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container,
+.carrossel-brocascirurgicas1 .swiffy-slider .slider-container,
+.carrossel-anestesicos1 .swiffy-slider .slider-container,
+.carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container,
+.carrossel-descartaveis1 .swiffy-slider .slider-container,
+.carrossel-luvas1 .swiffy-slider .slider-container,
+.carrossel-moldagem1 .swiffy-slider .slider-container,
+.carrossel-instrumentais1 .swiffy-slider .slider-container,
+.carrossel-pontasdiamantadas1 .swiffy-slider .slider-container,
+.carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container,
+.carrossel-profilaxia1 .swiffy-slider .slider-container,
+.carrossel-biosseguranca1 .swiffy-slider .slider-container,
 .recommendations .swiffy-slider .slider-container {
     grid-auto-columns: 245px !important; /* Largura fixa para 4 cards */
     grid-gap: 1rem !important;
@@ -818,59 +1074,6 @@ h2[class*="text-3xl"][class*="carousel-title"],
         margin-top: 0.25rem !important;
     }
 }
-
-/* Mobile pequeno - alinhamento com padding do swiffy-slider */
-@media (max-width: 480px) {
-    /* Container pai - alinhar à esquerda no mobile pequeno */
-    .my-4.w-full > .flex.justify-center,
-    .my-4.w-full[class*="carrossel"] > .flex.justify-center {
-        justify-content: flex-start !important;
-    }
-    
-    /* Container do header - coluna no mobile pequeno também */
-    .carousel-header-container {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 0.5rem !important;
-        flex-wrap: nowrap !important;
-    }
-    
-    .carousel-title,
-    h2.carousel-title,
-    h2.text-xl.carousel-title,
-    h2.text-3xl.carousel-title,
-    h2[class*="text-xl"][class*="carousel-title"],
-    h2[class*="text-3xl"][class*="carousel-title"] {
-        padding-left: 0.5rem !important; /* padding mínimo à esquerda */
-        padding-right: 0.5rem !important;
-        text-align: left !important;
-        justify-content: flex-start !important;
-        align-self: flex-start !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        white-space: normal !important;
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-    }
-    
-    /* Garantir que o título dentro do container não seja cortado */
-    .carousel-header-container .carousel-title {
-        width: 100% !important;
-        max-width: 100% !important;
-        white-space: normal !important;
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-    }
-    
-    /* Link abaixo do título no mobile pequeno */
-    .carousel-header-container .carousel-view-more {
-        width: 100% !important;
-        flex: 0 0 auto !important;
-        margin-top: 0.25rem !important;
-    }
-}
-
-/* Removido ::after do carousel-title - agora está no container do carrossel */
 
 /* ===== LISTAS DE PRODUTOS (HOTSITE, SEARCH, WISHLIST) ===== */
 .product-list-container {
@@ -1374,17 +1577,15 @@ h2[class*="text-3xl"][class*="carousel-title"],
     margin: 8px 0;
     padding: 8px;
     border-radius: 6px;
-    cursor: pointer;
 }
 
 .product-spot-info-content {
-    cursor: pointer;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
 }
 
-.product-spot-info-content p {
+.product-spot-info-text {
     font-size: 11px;
     color: #4b5563;
     line-height: 1.4;
@@ -1397,9 +1598,20 @@ h2[class*="text-3xl"][class*="carousel-title"],
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+.product-spot-info-text p {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    cursor: pointer;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 /* ===== RESPONSIVIDADE ===== */
@@ -1427,6 +1639,10 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .product-card,
     .carrossel4 .product-card,
     .carrossel5 .product-card,
+    .carrossele1 .product-card,
+    .carrossele2 .product-card,
+    .carrossele3 .product-card,
+    .carrossele4 .product-card,
     .recommendations .product-card {
         width: 245px !important;
         max-width: 245px !important;
@@ -1438,6 +1654,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider,
     .carrossel4 .swiffy-slider,
     .carrossel5 .swiffy-slider,
+    .carrossele1 .swiffy-slider,
+    .carrossele2 .swiffy-slider,
+    .carrossele3 .swiffy-slider,
+    .carrossele4 .swiffy-slider,
+    .carrossel-dentistica1 .swiffy-slider,
+    .carrossel-acabamento1 .swiffy-slider,
+    .carrossel-adesivo1 .swiffy-slider,
+    .carrossel-kitacademicos1 .swiffy-slider,
+    .carrossel-cimento1 .swiffy-slider,
+    .carrossel-resinas1 .swiffy-slider,
+    .carrossel-resinaseadesivos1 .swiffy-slider,
+    .carrossel-clareadores1 .swiffy-slider,
+    .carrossel-ortodontia1 .swiffy-slider,
+    .carrossel-braquetes1 .swiffy-slider,
+    .carrossel-endodontia1 .swiffy-slider,
+    .carrossel-limasendodonticas1 .swiffy-slider,
+    .carrossel-arcos1 .swiffy-slider,
+    .carrossel-elasticos1 .swiffy-slider,
+    .carrossel-cimentoendodontico1 .swiffy-slider,
+    .carrossel-protese1 .swiffy-slider,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider,
+    .carrossel-brocascirurgicas1 .swiffy-slider,
+    .carrossel-anestesicos1 .swiffy-slider,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider,
+    .carrossel-descartaveis1 .swiffy-slider,
+    .carrossel-luvas1 .swiffy-slider,
+    .carrossel-moldagem1 .swiffy-slider,
+    .carrossel-instrumentais1 .swiffy-slider,
+    .carrossel-pontasdiamantadas1 .swiffy-slider,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider,
+    .carrossel-profilaxia1 .swiffy-slider,
+    .carrossel-biosseguranca1 .swiffy-slider,
     .recommendations .swiffy-slider {
         width: min(100%, calc((245px * 4) + (0.5rem * 3) + 2rem));
         margin: 0 auto;
@@ -1446,7 +1694,39 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel2 .swiffy-slider .slider-container > *,
     .carrossel3 .swiffy-slider .slider-container > *,
     .carrossel4 .swiffy-slider .slider-container > *,
-    .carrossel5 .swiffy-slider .slider-container > * {
+    .carrossel5 .swiffy-slider .slider-container > *,
+    .carrossele1 .swiffy-slider .slider-container > *,
+    .carrossele2 .swiffy-slider .slider-container > *,
+    .carrossele3 .swiffy-slider .slider-container > *,
+    .carrossele4 .swiffy-slider .slider-container > *,
+    .carrossel-dentistica1 .swiffy-slider .slider-container > *,
+    .carrossel-acabamento1 .swiffy-slider .slider-container > *,
+    .carrossel-adesivo1 .swiffy-slider .slider-container > *,
+    .carrossel-kitacademicos1 .swiffy-slider .slider-container > *,
+    .carrossel-cimento1 .swiffy-slider .slider-container > *,
+    .carrossel-resinas1 .swiffy-slider .slider-container > *,
+    .carrossel-resinaseadesivos1 .swiffy-slider .slider-container > *,
+    .carrossel-clareadores1 .swiffy-slider .slider-container > *,
+    .carrossel-ortodontia1 .swiffy-slider .slider-container > *,
+    .carrossel-braquetes1 .swiffy-slider .slider-container > *,
+    .carrossel-endodontia1 .swiffy-slider .slider-container > *,
+    .carrossel-limasendodonticas1 .swiffy-slider .slider-container > *,
+    .carrossel-arcos1 .swiffy-slider .slider-container > *,
+    .carrossel-elasticos1 .swiffy-slider .slider-container > *,
+    .carrossel-cimentoendodontico1 .swiffy-slider .slider-container > *,
+    .carrossel-protese1 .swiffy-slider .slider-container > *,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container > *,
+    .carrossel-brocascirurgicas1 .swiffy-slider .slider-container > *,
+    .carrossel-anestesicos1 .swiffy-slider .slider-container > *,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container > *,
+    .carrossel-descartaveis1 .swiffy-slider .slider-container > *,
+    .carrossel-luvas1 .swiffy-slider .slider-container > *,
+    .carrossel-moldagem1 .swiffy-slider .slider-container > *,
+    .carrossel-instrumentais1 .swiffy-slider .slider-container > *,
+    .carrossel-pontasdiamantadas1 .swiffy-slider .slider-container > *,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container > *,
+    .carrossel-profilaxia1 .swiffy-slider .slider-container > *,
+    .carrossel-biosseguranca1 .swiffy-slider .slider-container > * {
         width: 245px !important;
         max-width: 245px !important;
         min-width: 245px !important;
@@ -1510,6 +1790,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .product-card__image,
     .carrossel4 .product-card__image,
     .carrossel5 .product-card__image,
+    .carrossele1 .product-card__image,
+    .carrossele2 .product-card__image,
+    .carrossele3 .product-card__image,
+    .carrossele4 .product-card__image,
+    .carrossel-dentistica1 .product-card__image,
+    .carrossel-acabamento1 .product-card__image,
+    .carrossel-adesivo1 .product-card__image,
+    .carrossel-kitacademicos1 .product-card__image,
+    .carrossel-cimento1 .product-card__image,
+    .carrossel-resinas1 .product-card__image,
+    .carrossel-resinaseadesivos1 .product-card__image,
+    .carrossel-clareadores1 .product-card__image,
+    .carrossel-ortodontia1 .product-card__image,
+    .carrossel-braquetes1 .product-card__image,
+    .carrossel-endodontia1 .product-card__image,
+    .carrossel-limasendodonticas1 .product-card__image,
+    .carrossel-arcos1 .product-card__image,
+    .carrossel-elasticos1 .product-card__image,
+    .carrossel-cimentoendodontico1 .product-card__image,
+    .carrossel-protese1 .product-card__image,
+    .carrossel-cirurgiaeperiodontia1 .product-card__image,
+    .carrossel-brocascirurgicas1 .product-card__image,
+    .carrossel-anestesicos1 .product-card__image,
+    .carrossel-anestesicoseagulhas1 .product-card__image,
+    .carrossel-descartaveis1 .product-card__image,
+    .carrossel-luvas1 .product-card__image,
+    .carrossel-moldagem1 .product-card__image,
+    .carrossel-instrumentais1 .product-card__image,
+    .carrossel-pontasdiamantadas1 .product-card__image,
+    .carrossel-pontadiamantadaebrocas1 .product-card__image,
+    .carrossel-profilaxia1 .product-card__image,
+    .carrossel-biosseguranca1 .product-card__image,
     .recommendations .product-card__image {
         height: 220px !important; /* Aumentado de 200px para 220px */
         min-height: 220px !important;
@@ -1593,7 +1905,8 @@ h2[class*="text-3xl"][class*="carousel-title"],
         overflow: hidden !important;
     }
     
-    .product-spot-info-content p {
+    .product-spot-info-text,
+    .product-spot-info-text p {
         width: 100% !important;
         max-width: 100% !important;
         overflow: hidden !important;
@@ -1665,18 +1978,26 @@ h2[class*="text-3xl"][class*="carousel-title"],
         line-height: 1.2 !important;
     }
     
-    /* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES (768px) ===== */
-    .product-card__content .text-xl.mb-2,
-    .product-card__content div.text-xl[class*="mb-2"],
-    .product-card__content [class*="text-xl"][class*="mb-2"],
-    .product-card .product-price-with-discount .text-xl.mb-2,
-    .product-card .product-price-with-discount div.text-xl[class*="mb-2"],
-    .product-card .product-price-with-discount [class*="text-xl"][class*="mb-2"] {
-        font-size: 1.125rem !important; /* 18px - aumentado de 1rem (16px) */
-        margin-top: 8px !important; /* Margin-top fixo */
-        margin-bottom: 12px !important; /* Aumentado para ficar mais acima do product-actions-wrapper */
+    /* ===== PREÇO + PARCELAS ACIMA DO WRAPPER DE AÇÕES (768px) ===== */
+    .product-card__content .product-price-block {
         order: 999 !important;
         flex-shrink: 0 !important;
+        margin-top: auto !important;
+        margin-bottom: 12px !important;
+    }
+
+    .product-card__content .product-price-block .text-xl.mb-2,
+    .product-card__content .product-price-block div.text-xl[class*="mb-2"],
+    .product-card__content .product-price-block [class*="text-xl"][class*="mb-2"] {
+        font-size: 1.125rem !important; /* 18px */
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+        order: 0 !important;
+    }
+
+    .product-card__content .product-price-block .product-price-installments {
+        order: 1 !important;
     }
     
     .product-card .mt-2,
@@ -1685,12 +2006,15 @@ h2[class*="text-3xl"][class*="carousel-title"],
         margin-top: 0 !important; /* Removido margin-top */
     }
     
-    /* Ajuste do texto de parcelamento */
-    .product-card .text-sm.text-gray-600,
-    .product-card p.text-sm.text-gray-600,
-    .product-card [class*="text-sm"][class*="text-gray-600"] {
-        font-size: 7px !important;
-        line-height: 1.2 !important;
+    /* Parcelamento no card: linha 0.8rem; negrito 0.7rem no mobile (mesma especificidade da regra base) */
+    .product-card .product-price-installments .product-price-installments__line {
+        font-size: 0.8rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .product-card .product-price-installments .product-price-installments__strong {
+        font-size: 0.7rem !important;
+        line-height: 1.35 !important;
     }
     
     /* ===== WRAPPER DE AÇÕES ===== */
@@ -1931,6 +2255,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3,
     .carrossel4,
     .carrossel5,
+    .carrossele1,
+    .carrossele2,
+    .carrossele3,
+    .carrossele4,
+    .carrossel-dentistica1,
+    .carrossel-acabamento1,
+    .carrossel-adesivo1,
+    .carrossel-kitacademicos1,
+    .carrossel-cimento1,
+    .carrossel-resinas1,
+    .carrossel-resinaseadesivos1,
+    .carrossel-clareadores1,
+    .carrossel-ortodontia1,
+    .carrossel-braquetes1,
+    .carrossel-endodontia1,
+    .carrossel-limasendodonticas1,
+    .carrossel-arcos1,
+    .carrossel-elasticos1,
+    .carrossel-cimentoendodontico1,
+    .carrossel-protese1,
+    .carrossel-cirurgiaeperiodontia1,
+    .carrossel-brocascirurgicas1,
+    .carrossel-anestesicos1,
+    .carrossel-anestesicoseagulhas1,
+    .carrossel-descartaveis1,
+    .carrossel-luvas1,
+    .carrossel-moldagem1,
+    .carrossel-instrumentais1,
+    .carrossel-pontasdiamantadas1,
+    .carrossel-pontadiamantadaebrocas1,
+    .carrossel-profilaxia1,
+    .carrossel-biosseguranca1,
     .recommendations {
         width: 100% !important;
         overflow: hidden !important;
@@ -1942,6 +2298,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider,
     .carrossel4 .swiffy-slider,
     .carrossel5 .swiffy-slider,
+    .carrossele1 .swiffy-slider,
+    .carrossele2 .swiffy-slider,
+    .carrossele3 .swiffy-slider,
+    .carrossele4 .swiffy-slider,
+    .carrossel-dentistica1 .swiffy-slider,
+    .carrossel-acabamento1 .swiffy-slider,
+    .carrossel-adesivo1 .swiffy-slider,
+    .carrossel-kitacademicos1 .swiffy-slider,
+    .carrossel-cimento1 .swiffy-slider,
+    .carrossel-resinas1 .swiffy-slider,
+    .carrossel-resinaseadesivos1 .swiffy-slider,
+    .carrossel-clareadores1 .swiffy-slider,
+    .carrossel-ortodontia1 .swiffy-slider,
+    .carrossel-braquetes1 .swiffy-slider,
+    .carrossel-endodontia1 .swiffy-slider,
+    .carrossel-limasendodonticas1 .swiffy-slider,
+    .carrossel-arcos1 .swiffy-slider,
+    .carrossel-elasticos1 .swiffy-slider,
+    .carrossel-cimentoendodontico1 .swiffy-slider,
+    .carrossel-protese1 .swiffy-slider,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider,
+    .carrossel-brocascirurgicas1 .swiffy-slider,
+    .carrossel-anestesicos1 .swiffy-slider,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider,
+    .carrossel-descartaveis1 .swiffy-slider,
+    .carrossel-luvas1 .swiffy-slider,
+    .carrossel-moldagem1 .swiffy-slider,
+    .carrossel-instrumentais1 .swiffy-slider,
+    .carrossel-pontasdiamantadas1 .swiffy-slider,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider,
+    .carrossel-profilaxia1 .swiffy-slider,
+    .carrossel-biosseguranca1 .swiffy-slider,
     .recommendations .swiffy-slider {
         --swiffy-slider-item-count: 2 !important;
         --swiffy-slider-item-gap: 0.5rem !important;
@@ -1963,6 +2351,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider .slider-container,
     .carrossel4 .swiffy-slider .slider-container,
     .carrossel5 .swiffy-slider .slider-container,
+    .carrossele1 .swiffy-slider .slider-container,
+    .carrossele2 .swiffy-slider .slider-container,
+    .carrossele3 .swiffy-slider .slider-container,
+    .carrossele4 .swiffy-slider .slider-container,
+    .carrossel-dentistica1 .swiffy-slider .slider-container,
+    .carrossel-acabamento1 .swiffy-slider .slider-container,
+    .carrossel-adesivo1 .swiffy-slider .slider-container,
+    .carrossel-kitacademicos1 .swiffy-slider .slider-container,
+    .carrossel-cimento1 .swiffy-slider .slider-container,
+    .carrossel-resinas1 .swiffy-slider .slider-container,
+    .carrossel-resinaseadesivos1 .swiffy-slider .slider-container,
+    .carrossel-clareadores1 .swiffy-slider .slider-container,
+    .carrossel-ortodontia1 .swiffy-slider .slider-container,
+    .carrossel-braquetes1 .swiffy-slider .slider-container,
+    .carrossel-endodontia1 .swiffy-slider .slider-container,
+    .carrossel-limasendodonticas1 .swiffy-slider .slider-container,
+    .carrossel-arcos1 .swiffy-slider .slider-container,
+    .carrossel-elasticos1 .swiffy-slider .slider-container,
+    .carrossel-cimentoendodontico1 .swiffy-slider .slider-container,
+    .carrossel-protese1 .swiffy-slider .slider-container,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container,
+    .carrossel-brocascirurgicas1 .swiffy-slider .slider-container,
+    .carrossel-anestesicos1 .swiffy-slider .slider-container,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container,
+    .carrossel-descartaveis1 .swiffy-slider .slider-container,
+    .carrossel-luvas1 .swiffy-slider .slider-container,
+    .carrossel-moldagem1 .swiffy-slider .slider-container,
+    .carrossel-instrumentais1 .swiffy-slider .slider-container,
+    .carrossel-pontasdiamantadas1 .swiffy-slider .slider-container,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container,
+    .carrossel-profilaxia1 .swiffy-slider .slider-container,
+    .carrossel-biosseguranca1 .swiffy-slider .slider-container,
     .recommendations .swiffy-slider .slider-container {
         display: grid !important;
         grid-auto-flow: column !important;
@@ -2029,6 +2449,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider .slider-container::-webkit-scrollbar,
     .carrossel4 .swiffy-slider .slider-container::-webkit-scrollbar,
     .carrossel5 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele2 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele3 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele4 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-dentistica1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-acabamento1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-adesivo1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-kitacademicos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-cimento1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-resinas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-resinaseadesivos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-clareadores1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-ortodontia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-braquetes1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-endodontia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-limasendodonticas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-arcos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-elasticos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-cimentoendodontico1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-protese1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-brocascirurgicas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-anestesicos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-descartaveis1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-luvas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-moldagem1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-instrumentais1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-pontasdiamantadas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-profilaxia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-biosseguranca1 .swiffy-slider .slider-container::-webkit-scrollbar,
     .recommendations .swiffy-slider .slider-container::-webkit-scrollbar {
         display: none !important; /* Chrome, Safari, Opera */
     }
@@ -2040,13 +2492,45 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .product-card,
     .carrossel4 .product-card,
     .carrossel5 .product-card,
+    .carrossele1 .product-card,
+    .carrossele2 .product-card,
+    .carrossele3 .product-card,
+    .carrossele4 .product-card,
+    .carrossel-dentistica1 .product-card,
+    .carrossel-acabamento1 .product-card,
+    .carrossel-adesivo1 .product-card,
+    .carrossel-kitacademicos1 .product-card,
+    .carrossel-cimento1 .product-card,
+    .carrossel-resinas1 .product-card,
+    .carrossel-resinaseadesivos1 .product-card,
+    .carrossel-clareadores1 .product-card,
+    .carrossel-ortodontia1 .product-card,
+    .carrossel-braquetes1 .product-card,
+    .carrossel-endodontia1 .product-card,
+    .carrossel-limasendodonticas1 .product-card,
+    .carrossel-arcos1 .product-card,
+    .carrossel-elasticos1 .product-card,
+    .carrossel-cimentoendodontico1 .product-card,
+    .carrossel-protese1 .product-card,
+    .carrossel-cirurgiaeperiodontia1 .product-card,
+    .carrossel-brocascirurgicas1 .product-card,
+    .carrossel-anestesicos1 .product-card,
+    .carrossel-anestesicoseagulhas1 .product-card,
+    .carrossel-descartaveis1 .product-card,
+    .carrossel-luvas1 .product-card,
+    .carrossel-moldagem1 .product-card,
+    .carrossel-instrumentais1 .product-card,
+    .carrossel-pontasdiamantadas1 .product-card,
+    .carrossel-pontadiamantadaebrocas1 .product-card,
+    .carrossel-profilaxia1 .product-card,
+    .carrossel-biosseguranca1 .product-card,
     .recommendations .product-card {
         width: 100% !important;
         min-width: 0 !important;
         max-width: 100% !important;
-        height: 430px !important;
-        min-height: 430px !important;
-        max-height: 430px !important;
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
         margin: 0 !important;
         flex: 0 0 calc((100% - 0.5rem) / 2) !important;
         scroll-snap-align: start !important;
@@ -2073,9 +2557,9 @@ h2[class*="text-3xl"][class*="carousel-title"],
         max-width: 100% !important;
         flex: 1 1 100% !important;
         box-sizing: border-box !important;
-        height: 430px !important;
-        min-height: 430px !important;
-        max-height: 430px !important;
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
         margin: 0 !important;
         scroll-snap-align: start !important;
         scroll-snap-stop: always !important;
@@ -2085,9 +2569,9 @@ h2[class*="text-3xl"][class*="carousel-title"],
 @media (max-width: 480px) {
     /* ===== CARDS - TAMANHO FIXO PARA TELAS MENORES (150px x 400px - aumentado de 380px) ===== */
     .product-card {
-        height: 400px !important;
-        min-height: 400px !important;
-        max-height: 400px !important;
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
         width: 150px !important;
         min-width: 150px !important;
         max-width: 150px !important;
@@ -2112,6 +2596,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .product-card__image,
     .carrossel4 .product-card__image,
     .carrossel5 .product-card__image,
+    .carrossele1 .product-card__image,
+    .carrossele2 .product-card__image,
+    .carrossele3 .product-card__image,
+    .carrossele4 .product-card__image,
+    .carrossel-dentistica1 .product-card__image,
+    .carrossel-acabamento1 .product-card__image,
+    .carrossel-adesivo1 .product-card__image,
+    .carrossel-kitacademicos1 .product-card__image,
+    .carrossel-cimento1 .product-card__image,
+    .carrossel-resinas1 .product-card__image,
+    .carrossel-resinaseadesivos1 .product-card__image,
+    .carrossel-clareadores1 .product-card__image,
+    .carrossel-ortodontia1 .product-card__image,
+    .carrossel-braquetes1 .product-card__image,
+    .carrossel-endodontia1 .product-card__image,
+    .carrossel-limasendodonticas1 .product-card__image,
+    .carrossel-arcos1 .product-card__image,
+    .carrossel-elasticos1 .product-card__image,
+    .carrossel-cimentoendodontico1 .product-card__image,
+    .carrossel-protese1 .product-card__image,
+    .carrossel-cirurgiaeperiodontia1 .product-card__image,
+    .carrossel-brocascirurgicas1 .product-card__image,
+    .carrossel-anestesicos1 .product-card__image,
+    .carrossel-anestesicoseagulhas1 .product-card__image,
+    .carrossel-descartaveis1 .product-card__image,
+    .carrossel-luvas1 .product-card__image,
+    .carrossel-moldagem1 .product-card__image,
+    .carrossel-instrumentais1 .product-card__image,
+    .carrossel-pontasdiamantadas1 .product-card__image,
+    .carrossel-pontadiamantadaebrocas1 .product-card__image,
+    .carrossel-profilaxia1 .product-card__image,
+    .carrossel-biosseguranca1 .product-card__image,
     .recommendations .product-card__image {
         height: 170px !important; /* Aumentado de 150px para 170px */
         min-height: 170px !important;
@@ -2181,7 +2697,7 @@ h2[class*="text-3xl"][class*="carousel-title"],
         line-height: 1.2 !important;
     }
     
-    /* ===== MOBILE: CLIQUE NO stamp-image MOSTRA product-badge--promotion ===== */
+        /* ===== MOBILE: CLIQUE NO stamp-image MOSTRA product-badge--promotion DO MESMO wrapper ===== */
     .product-card {
         position: relative;
     }
@@ -2194,16 +2710,22 @@ h2[class*="text-3xl"][class*="carousel-title"],
         position: relative;
     }
 
-    /* Estado inicial do badge no mobile: oculto */
-    .product-card .product-badge--promotion {
+    .product-card__content .stamps .stamp-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Badge posicionado acima do seu próprio stamp-wrapper (um por selo) */
+    .product-card .stamp-wrapper .product-badge--promotion,
+    .product-card .stamp-wrapper .product-badge--promotion-stamp {
         position: absolute !important;
-        top: calc(185px) !important; /* Altura da imagem (220px) + padding do content (6px no mobile) */
+        bottom: 100% !important;
         left: 50% !important;
         right: auto !important;
-        bottom: auto !important;
+        top: auto !important;
+        transform: translateX(-50%) translateY(-6px) scale(0.8) !important;
         opacity: 0 !important;
         visibility: hidden !important;
-        transform: translateX(-50%) translateY(0) scale(0.8) !important;
         transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
         pointer-events: none !important;
         z-index: 20 !important;
@@ -2225,11 +2747,12 @@ h2[class*="text-3xl"][class*="carousel-title"],
         display: block !important;
     }
 
-    /* Classe ativa quando stamp-image é clicado - mostrar badge */
-    .product-card.stamp-badge-active .product-badge--promotion {
+    /* Classe ativa no wrapper cujo stamp foi clicado: mostrar só esse badge */
+    .product-card .stamp-wrapper.stamp-wrapper-active .product-badge--promotion,
+    .product-card .stamp-wrapper.stamp-wrapper-active .product-badge--promotion-stamp {
         opacity: 1 !important;
         visibility: visible !important;
-        transform: translateX(-50%) translateY(-45px) scale(1) !important;
+        transform: translateX(-50%) translateY(-6px) scale(1) !important;
         pointer-events: auto !important;
     }
     
@@ -2247,7 +2770,8 @@ h2[class*="text-3xl"][class*="carousel-title"],
         overflow: hidden !important;
     }
     
-    .product-spot-info-content p {
+    .product-spot-info-text,
+    .product-spot-info-text p {
         width: 100% !important;
         max-width: 100% !important;
         overflow: hidden !important;
@@ -2302,7 +2826,7 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .product-card .text-base.text-gray-500,
     .product-card p.text-base.text-gray-500,
     .product-card [class*="text-base"][class*="text-gray-500"] {
-        font-size: 10px !important;
+        font-size: 12px !important;
         line-height: 1.2 !important;
         margin-bottom: 0.125rem !important;
     }
@@ -2313,29 +2837,31 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .product-card .product-price-with-discount .text-2xl.font-bold,
     .product-card .product-price-with-discount p.text-2xl.font-bold,
     .product-card .product-price-with-discount [class*="text-2xl"][class*="font-bold"] {
-        font-size: 16px !important;
+        font-size: 18px !important;
         line-height: 1.2 !important;
     }
     
-    /* ===== POSICIONAMENTO FIXO DO PREÇO ACIMA DO WRAPPER DE AÇÕES (480px) ===== */
-    .product-card__content .text-xl.mb-2,
-    .product-card__content div.text-xl[class*="mb-2"],
-    .product-card__content [class*="text-xl"][class*="mb-2"],
-    .product-card .product-price-with-discount .text-xl.mb-2,
-    .product-card .product-price-with-discount div.text-xl[class*="mb-2"],
-    .product-card .product-price-with-discount [class*="text-xl"][class*="mb-2"] {
-        font-size: 1rem !important; /* 16px - aumentado de 0.875rem (14px) */
-        margin-top: 6px !important; /* Margin-top fixo */
-        margin-bottom: 10px !important; /* Aumentado para ficar mais acima do product-actions-wrapper */
+    /* ===== PREÇO + PARCELAS ACIMA DO WRAPPER DE AÇÕES (480px) ===== */
+    .product-card__content .product-price-block {
         order: 999 !important;
         flex-shrink: 0 !important;
+        margin-top: auto !important;
+        margin-bottom: 10px !important;
     }
-    
-    /* ===== REDUZIR ESPAÇO ENTRE PREÇO E PARCELAMENTO (480px) ===== */
-    .product-card .text-xl.mb-2,
-    .product-card div.text-xl[class*="mb-2"],
-    .product-card [class*="text-xl"][class*="mb-2"] {
-        margin-bottom: 0.125rem !important;
+
+    .product-card__content .product-price-block .text-xl.mb-2,
+    .product-card__content .product-price-block div.text-xl[class*="mb-2"],
+    .product-card__content .product-price-block [class*="text-xl"][class*="mb-2"] {
+        font-size: 1rem !important; /* 16px */
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+        order: 0 !important;
+    }
+
+    .product-card__content .product-price-block .product-price-installments {
+        order: 1 !important;
+        margin-top: 4px !important;
     }
     
     .product-card .mt-2,
@@ -2344,12 +2870,15 @@ h2[class*="text-3xl"][class*="carousel-title"],
         margin-top: 0 !important;
     }
     
-    /* Ajuste do texto de parcelamento - 480px */
-    .product-card .text-sm.text-gray-600,
-    .product-card p.text-sm.text-gray-600,
-    .product-card [class*="text-sm"][class*="text-gray-600"] {
-        font-size: 6px !important;
-        line-height: 1.2 !important;
+    /* Parcelamento no card — 480px */
+    .product-card .product-price-installments .product-price-installments__line {
+        font-size: 0.8rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .product-card .product-price-installments .product-price-installments__strong {
+        font-size: 0.7rem !important;
+        line-height: 1.35 !important;
     }
     
     /* ===== WRAPPER DE AÇÕES (480px) ===== */
@@ -2463,7 +2992,7 @@ h2[class*="text-3xl"][class*="carousel-title"],
         top: 5px !important;
         right: 5px !important;
         padding: 3px 6px !important;
-        font-size: 8px !important;
+        font-size: 10px !important;
         max-width: 50px !important;
         border-radius: 12px !important;
     }
@@ -2500,6 +3029,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider,
     .carrossel4 .swiffy-slider,
     .carrossel5 .swiffy-slider,
+    .carrossele1 .swiffy-slider,
+    .carrossele2 .swiffy-slider,
+    .carrossele3 .swiffy-slider,
+    .carrossele4 .swiffy-slider,
+    .carrossel-dentistica1 .swiffy-slider,
+    .carrossel-acabamento1 .swiffy-slider,
+    .carrossel-adesivo1 .swiffy-slider,
+    .carrossel-kitacademicos1 .swiffy-slider,
+    .carrossel-cimento1 .swiffy-slider,
+    .carrossel-resinas1 .swiffy-slider,
+    .carrossel-resinaseadesivos1 .swiffy-slider,
+    .carrossel-clareadores1 .swiffy-slider,
+    .carrossel-ortodontia1 .swiffy-slider,
+    .carrossel-braquetes1 .swiffy-slider,
+    .carrossel-endodontia1 .swiffy-slider,
+    .carrossel-limasendodonticas1 .swiffy-slider,
+    .carrossel-arcos1 .swiffy-slider,
+    .carrossel-elasticos1 .swiffy-slider,
+    .carrossel-cimentoendodontico1 .swiffy-slider,
+    .carrossel-protese1 .swiffy-slider,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider,
+    .carrossel-brocascirurgicas1 .swiffy-slider,
+    .carrossel-anestesicos1 .swiffy-slider,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider,
+    .carrossel-descartaveis1 .swiffy-slider,
+    .carrossel-luvas1 .swiffy-slider,
+    .carrossel-moldagem1 .swiffy-slider,
+    .carrossel-instrumentais1 .swiffy-slider,
+    .carrossel-pontasdiamantadas1 .swiffy-slider,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider,
+    .carrossel-profilaxia1 .swiffy-slider,
+    .carrossel-biosseguranca1 .swiffy-slider,
     .recommendations .swiffy-slider {
         overflow: hidden !important;
         width: 100% !important;
@@ -2511,6 +3072,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider .slider-container,
     .carrossel4 .swiffy-slider .slider-container,
     .carrossel5 .swiffy-slider .slider-container,
+    .carrossele1 .swiffy-slider .slider-container,
+    .carrossele2 .swiffy-slider .slider-container,
+    .carrossele3 .swiffy-slider .slider-container,
+    .carrossele4 .swiffy-slider .slider-container,
+    .carrossel-dentistica1 .swiffy-slider .slider-container,
+    .carrossel-acabamento1 .swiffy-slider .slider-container,
+    .carrossel-adesivo1 .swiffy-slider .slider-container,
+    .carrossel-kitacademicos1 .swiffy-slider .slider-container,
+    .carrossel-cimento1 .swiffy-slider .slider-container,
+    .carrossel-resinas1 .swiffy-slider .slider-container,
+    .carrossel-resinaseadesivos1 .swiffy-slider .slider-container,
+    .carrossel-clareadores1 .swiffy-slider .slider-container,
+    .carrossel-ortodontia1 .swiffy-slider .slider-container,
+    .carrossel-braquetes1 .swiffy-slider .slider-container,
+    .carrossel-endodontia1 .swiffy-slider .slider-container,
+    .carrossel-limasendodonticas1 .swiffy-slider .slider-container,
+    .carrossel-arcos1 .swiffy-slider .slider-container,
+    .carrossel-elasticos1 .swiffy-slider .slider-container,
+    .carrossel-cimentoendodontico1 .swiffy-slider .slider-container,
+    .carrossel-protese1 .swiffy-slider .slider-container,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container,
+    .carrossel-brocascirurgicas1 .swiffy-slider .slider-container,
+    .carrossel-anestesicos1 .swiffy-slider .slider-container,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container,
+    .carrossel-descartaveis1 .swiffy-slider .slider-container,
+    .carrossel-luvas1 .swiffy-slider .slider-container,
+    .carrossel-moldagem1 .swiffy-slider .slider-container,
+    .carrossel-instrumentais1 .swiffy-slider .slider-container,
+    .carrossel-pontasdiamantadas1 .swiffy-slider .slider-container,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container,
+    .carrossel-profilaxia1 .swiffy-slider .slider-container,
+    .carrossel-biosseguranca1 .swiffy-slider .slider-container,
     .recommendations .swiffy-slider .slider-container {
         display: grid !important;
         grid-auto-flow: column !important;
@@ -2577,6 +3170,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider .slider-container::-webkit-scrollbar,
     .carrossel4 .swiffy-slider .slider-container::-webkit-scrollbar,
     .carrossel5 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele2 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele3 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossele4 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-dentistica1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-acabamento1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-adesivo1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-kitacademicos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-cimento1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-resinas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-resinaseadesivos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-clareadores1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-ortodontia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-braquetes1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-endodontia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-limasendodonticas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-arcos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-elasticos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-cimentoendodontico1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-protese1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-brocascirurgicas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-anestesicos1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-descartaveis1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-luvas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-moldagem1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-instrumentais1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-pontasdiamantadas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-profilaxia1 .swiffy-slider .slider-container::-webkit-scrollbar,
+    .carrossel-biosseguranca1 .swiffy-slider .slider-container::-webkit-scrollbar,
     .recommendations .swiffy-slider .slider-container::-webkit-scrollbar {
         display: none !important; /* Chrome, Safari, Opera */
     }
@@ -2587,13 +3212,45 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .product-card,
     .carrossel4 .product-card,
     .carrossel5 .product-card,
+    .carrossele1 .product-card,
+    .carrossele2 .product-card,
+    .carrossele3 .product-card,
+    .carrossele4 .product-card,
+    .carrossel-dentistica1 .product-card,
+    .carrossel-acabamento1 .product-card,
+    .carrossel-adesivo1 .product-card,
+    .carrossel-kitacademicos1 .product-card,
+    .carrossel-cimento1 .product-card,
+    .carrossel-resinas1 .product-card,
+    .carrossel-resinaseadesivos1 .product-card,
+    .carrossel-clareadores1 .product-card,
+    .carrossel-ortodontia1 .product-card,
+    .carrossel-braquetes1 .product-card,
+    .carrossel-endodontia1 .product-card,
+    .carrossel-limasendodonticas1 .product-card,
+    .carrossel-arcos1 .product-card,
+    .carrossel-elasticos1 .product-card,
+    .carrossel-cimentoendodontico1 .product-card,
+    .carrossel-protese1 .product-card,
+    .carrossel-cirurgiaeperiodontia1 .product-card,
+    .carrossel-brocascirurgicas1 .product-card,
+    .carrossel-anestesicos1 .product-card,
+    .carrossel-anestesicoseagulhas1 .product-card,
+    .carrossel-descartaveis1 .product-card,
+    .carrossel-luvas1 .product-card,
+    .carrossel-moldagem1 .product-card,
+    .carrossel-instrumentais1 .product-card,
+    .carrossel-pontasdiamantadas1 .product-card,
+    .carrossel-pontadiamantadaebrocas1 .product-card,
+    .carrossel-profilaxia1 .product-card,
+    .carrossel-biosseguranca1 .product-card,
     .recommendations .product-card {
         width: 100% !important;
         min-width: 0 !important;
         max-width: 100% !important;
-        height: 400px !important;
-        min-height: 400px !important;
-        max-height: 400px !important;
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
         margin: 0 !important;
         flex: 0 0 calc((100% - 0.375rem) / 2) !important;
         scroll-snap-align: start !important;
@@ -2620,9 +3277,9 @@ h2[class*="text-3xl"][class*="carousel-title"],
         max-width: 100% !important;
         flex: 1 1 100% !important;
         box-sizing: border-box !important;
-        height: 400px !important;
-        min-height: 400px !important;
-        max-height: 400px !important;
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
         margin: 0 !important;
         scroll-snap-align: start !important;
         scroll-snap-stop: always !important;
@@ -2634,6 +3291,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider,
     .carrossel4 .swiffy-slider,
     .carrossel5 .swiffy-slider,
+    .carrossele1 .swiffy-slider,
+    .carrossele2 .swiffy-slider,
+    .carrossele3 .swiffy-slider,
+    .carrossele4 .swiffy-slider,
+    .carrossel-dentistica1 .swiffy-slider,
+    .carrossel-acabamento1 .swiffy-slider,
+    .carrossel-adesivo1 .swiffy-slider,
+    .carrossel-kitacademicos1 .swiffy-slider,
+    .carrossel-cimento1 .swiffy-slider,
+    .carrossel-resinas1 .swiffy-slider,
+    .carrossel-resinaseadesivos1 .swiffy-slider,
+    .carrossel-clareadores1 .swiffy-slider,
+    .carrossel-ortodontia1 .swiffy-slider,
+    .carrossel-braquetes1 .swiffy-slider,
+    .carrossel-endodontia1 .swiffy-slider,
+    .carrossel-limasendodonticas1 .swiffy-slider,
+    .carrossel-arcos1 .swiffy-slider,
+    .carrossel-elasticos1 .swiffy-slider,
+    .carrossel-cimentoendodontico1 .swiffy-slider,
+    .carrossel-protese1 .swiffy-slider,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider,
+    .carrossel-brocascirurgicas1 .swiffy-slider,
+    .carrossel-anestesicos1 .swiffy-slider,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider,
+    .carrossel-descartaveis1 .swiffy-slider,
+    .carrossel-luvas1 .swiffy-slider,
+    .carrossel-moldagem1 .swiffy-slider,
+    .carrossel-instrumentais1 .swiffy-slider,
+    .carrossel-pontasdiamantadas1 .swiffy-slider,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider,
+    .carrossel-profilaxia1 .swiffy-slider,
+    .carrossel-biosseguranca1 .swiffy-slider,
     .recommendations .swiffy-slider {
         min-height: 360px !important;
         padding: 0.5rem 0 1.25rem 0 !important;
@@ -2644,6 +3333,38 @@ h2[class*="text-3xl"][class*="carousel-title"],
     .carrossel3 .swiffy-slider .slider-container,
     .carrossel4 .swiffy-slider .slider-container,
     .carrossel5 .swiffy-slider .slider-container,
+    .carrossele1 .swiffy-slider .slider-container,
+    .carrossele2 .swiffy-slider .slider-container,
+    .carrossele3 .swiffy-slider .slider-container,
+    .carrossele4 .swiffy-slider .slider-container,
+    .carrossel-dentistica1 .swiffy-slider .slider-container,
+    .carrossel-acabamento1 .swiffy-slider .slider-container,
+    .carrossel-adesivo1 .swiffy-slider .slider-container,
+    .carrossel-kitacademicos1 .swiffy-slider .slider-container,
+    .carrossel-cimento1 .swiffy-slider .slider-container,
+    .carrossel-resinas1 .swiffy-slider .slider-container,
+    .carrossel-resinaseadesivos1 .swiffy-slider .slider-container,
+    .carrossel-clareadores1 .swiffy-slider .slider-container,
+    .carrossel-ortodontia1 .swiffy-slider .slider-container,
+    .carrossel-braquetes1 .swiffy-slider .slider-container,
+    .carrossel-endodontia1 .swiffy-slider .slider-container,
+    .carrossel-limasendodonticas1 .swiffy-slider .slider-container,
+    .carrossel-arcos1 .swiffy-slider .slider-container,
+    .carrossel-elasticos1 .swiffy-slider .slider-container,
+    .carrossel-cimentoendodontico1 .swiffy-slider .slider-container,
+    .carrossel-protese1 .swiffy-slider .slider-container,
+    .carrossel-cirurgiaeperiodontia1 .swiffy-slider .slider-container,
+    .carrossel-brocascirurgicas1 .swiffy-slider .slider-container,
+    .carrossel-anestesicos1 .swiffy-slider .slider-container,
+    .carrossel-anestesicoseagulhas1 .swiffy-slider .slider-container,
+    .carrossel-descartaveis1 .swiffy-slider .slider-container,
+    .carrossel-luvas1 .swiffy-slider .slider-container,
+    .carrossel-moldagem1 .swiffy-slider .slider-container,
+    .carrossel-instrumentais1 .swiffy-slider .slider-container,
+    .carrossel-pontasdiamantadas1 .swiffy-slider .slider-container,
+    .carrossel-pontadiamantadaebrocas1 .swiffy-slider .slider-container,
+    .carrossel-profilaxia1 .swiffy-slider .slider-container,
+    .carrossel-biosseguranca1 .swiffy-slider .slider-container,
     .recommendations .swiffy-slider .slider-container {
         grid-auto-columns: calc((100% - 0.375rem) / 2) !important;
         grid-gap: 0.375rem !important;
@@ -3225,3 +3946,4 @@ h2[class*="text-3xl"][class*="carousel-title"],
         box-sizing: border-box !important;
     }
 }
+

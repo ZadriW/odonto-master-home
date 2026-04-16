@@ -5,24 +5,54 @@
         - displayed_installment: [optional] filter installment options to display from the specified plan.  
                                  Check the display name of the installment plans on Admin. (e.g., "Boleto Yapay")
                                  If not set, the best installment among the available options will be displayed instead
+        - show_pix_catalog_reference: [optional] default true (PDP). Em product-card, passe false para omitir o preço de tabela riscado (.product-price-table-reference).
     Usage:
         product_price prices: product.prices displayed_installment: "Boleto Yapay"
+        product_price prices: product.prices show_pix_catalog_reference: false
+    Notes:
+        - Desconto vitrine 5%: valor exibido (Pix/boleto) = prices.price * 0,95 (referência riscada = preço API).
+        - O checkout continua usando o preço retornado pela Wake (prices.price).
 ## }}
-<div class="text-xl mb-2">
-    {{ if prices.list_price }}
-        {{~ if prices.discount_percentage > 0 ~}}
-            <div class="flex items-center gap-2 mb-1 product-price-with-discount">
-                <p class="text-base text-gray-500 mb-0"><s>{{ prices.list_price | math.format "c" "pt-BR" }}</s></p>
-                <div class="product-badge product-badge--discount product-discount-page">
-                    - {{ prices.discount_percentage | math.format "p0" "pt-BR" }}
+{{~
+    vitrine_pix_price = prices.price | math.times 0.95
+    show_pix_table_reference = true
+    if show_pix_catalog_reference == false
+        show_pix_table_reference = false
+    end
+~}}
+<div class="product-price-block" data-vitrine-discount-rate="0.05" data-price-catalog="{{ prices.price }}" data-price-pix-display="{{ vitrine_pix_price }}">
+    <div class="text-xl mb-2">
+        {{ if prices.list_price }}
+            {{~ if prices.discount_percentage > 0 ~}}
+                <div class="flex items-center gap-2 mb-1 product-price-with-discount">
+                    <p class="text-base text-gray-500 mb-0"><s>{{ prices.list_price | math.format "c" "pt-BR" }}</s></p>
+                    <div class="product-badge product-badge--discount product-discount-page">
+                        - {{ prices.discount_percentage | math.format "p0" "pt-BR" }}
+                    </div>
                 </div>
+            {{~ end ~}}
+            <div class="product-price-main-row flex flex-wrap items-baseline gap-x-2 gap-y-0">
+                {{~ if show_pix_table_reference ~}}
+                <s class="product-price-table-reference mb-0">{{ prices.price | math.format "c" "pt-BR" }}</s>
+                {{~ end ~}}
+                <p class="text-2xl font-bold mb-0" style="color: #0e167a;"><b>{{ vitrine_pix_price | math.format "c" "pt-BR" }}</b></p>
+                <span class="product-price-extra-discount-badge" title="Desconto promocional de 5% no Pix ou boleto sobre o preço de tabela">-5%</span>
+                <span class="product-price-pix-note"> no Pix</span>
             </div>
-        {{~ end ~}}
-        <p class="text-2xl font-bold" style="color: #0e167a;"><b>{{ prices.price | math.format "c" "pt-BR" }}</b></p>
-    {{ else }}
-    <p class="text-2xl font-bold" style="color: #0e167a;">{{ prices.price | math.format "c" "pt-BR" }}</p>
-    {{ end }}
+        {{ else }}
+            <div class="product-price-main-row flex flex-wrap items-baseline gap-x-2 gap-y-0">
+                {{~ if show_pix_table_reference ~}}
+                <s class="product-price-table-reference mb-0">{{ prices.price | math.format "c" "pt-BR" }}</s>
+                {{~ end ~}}
+                <p class="text-2xl font-bold mb-0" style="color: #0e167a;"><b>{{ vitrine_pix_price | math.format "c" "pt-BR" }}</b></p>
+                <span class="product-price-extra-discount-badge" title="Desconto promocional de 5% no Pix ou boleto sobre o preço de tabela">-5%</span>
+                <span class="product-price-pix-note"> no Pix</span>
+            </div>
+        {{ end }}
+    </div>
+    {{~ if displayed_installment ~}}
+        {{ product_filtered_installment installment_plans: prices.installment_plans displayed_installment: displayed_installment }}
+    {{~ else if prices.best_installment ~}}
+        {{ product_best_installment best_installment: prices.best_installment }}
+    {{~ end ~}}
 </div>
-{{~ if displayed_installment ~}}
-    {{ product_filtered_installment installment_plans: prices.installment_plans displayed_installment: displayed_installment }}
-{{~ end ~}}

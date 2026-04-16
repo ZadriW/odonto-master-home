@@ -3,7 +3,7 @@
     <head>
         {{ data_layer_config }}
         {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
-        {{ head title: "Home" store: store }}
+        {{ head title: "Odonto Master | Produtos Odontológicos" store: store }}
         {{ asset type: "css" paths: ["output_base", "swiffy-slider", "custom_theme", "header", "navbar", "footer", "mini_cart", "user_login", "spot", "product", "product_cards", "glider", "slider_price", "mobile_bottom_menu"]}}  
         {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
         {{ meta_tags seo: data.hotsite.seo }}
@@ -36,16 +36,16 @@
                 </div>
                 
                  {{~ if data.carrossel1 && data.carrossel1.products && data.carrossel1.products.nodes ~}}
-                     {{ spot_carousel_with_side_banner products: data.carrossel1.products.nodes banners: data.hotsite.banners banner_position: "Lateral Direita" class:"carrossel1" title:"Os melhores preços em Orthometric!" autoplay: true }}
+                     {{ spot_carousel_with_side_banner products: data.carrossel1.products.nodes banners: data.hotsite.banners banner_position: "Lateral Direita" class:"carrossel1" title:"Liquida Orthometric | Os melhores preços em Ortodontia!" autoplay: true }}
                 {{~ end ~}}
 
                 {{~ if data.carrossel2 && data.carrossel2.products && data.carrossel2.products.nodes ~}}
-                    {{ spot_carousel_with_side_banner products: data.carrossel2.products.nodes banners: data.hotsite.banners banner_position: "Filtros Topo" mobile_banner_position: "Filtros Bottom" class:"carrossel2" title:"Preços de Congresso sem sair de casa" autoplay: true }}
+                    {{ spot_carousel_with_side_banner products: data.carrossel2.products.nodes banners: data.hotsite.banners banner_position: "Filtros Topo" mobile_banner_position: "Filtros Bottom" class:"carrossel2" title:"O Melhor do PHS!" autoplay: true }}
                 {{~ end ~}}
                 
                 
                 {{~ if data.carrossel3 && data.carrossel3.products && data.carrossel3.products.nodes ~}}
-                    {{ spot_carousel products: data.carrossel3.products.nodes class:"carrossel3" title:"Os melhores preços em FGM é na master!" }}   
+                    {{ spot_carousel products: data.carrossel3.products.nodes class:"carrossel3" title:"Os melhores preços em Dentsply é na master!" }}   
                 {{~ end ~}}
 
                 {{~ if data.carrossel4 && data.carrossel4.products && data.carrossel4.products.nodes ~}}

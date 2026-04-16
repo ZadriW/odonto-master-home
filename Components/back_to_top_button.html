@@ -1,0 +1,14 @@
+{{ ##
+    Description: Botão flutuante "Voltar ao topo" no canto inferior esquerdo
+    Usage:
+        back_to_top_button
+## }}
+<button type="button" id="back-to-top-float-btn" class="back-to-top-float-button" aria-label="Voltar ao topo da página">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top-float-btn');
+    if (btn) btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>

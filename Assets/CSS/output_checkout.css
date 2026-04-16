@@ -4554,6 +4554,23 @@
   text-transform: uppercase;
 }
 
+/* Toggle de multipagamento: substituir texto por "Cartão + Pix" (dois seletores para cobrir estruturas de DOM diferentes) */
+.wake-multipayment-selector .wake-switch-mui .wake-switch-label,
+.wake-switch-mui .multipayment-toggle-label .wake-switch-label {
+  font-size: 0 !important;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.wake-multipayment-selector .wake-switch-mui .wake-switch-label::after,
+.wake-switch-mui .multipayment-toggle-label .wake-switch-label::after {
+  content: "Cartão + Pix" !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
 /* Hover effects */
 
 .wake-switch-mui .label:hover .wake-switch {

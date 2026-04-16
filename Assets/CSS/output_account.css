@@ -380,12 +380,6 @@
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-@media (min-width: 768px) {
-  .wake-account form select {
-    width: 33.333333%;
-  }
-}
-
 .wake-account form .disabled {
   cursor: not-allowed;
   --tw-bg-opacity: 1;
@@ -1161,7 +1155,7 @@
     overflow: hidden !important;
     flex-wrap: wrap !important;
     gap: 0.75rem !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     margin-left: 0 !important;
     padding: 0 1rem !important;
   }
@@ -2209,6 +2203,7 @@
   display: inline-flex !important;
   flex: 0 1 auto !important;
   align-items: center !important;
+  text-align: center !important;
   gap: 0.5rem !important;
   padding: 0 !important;
   background: transparent !important;
@@ -3240,7 +3235,6 @@
   min-width: 40px !important;
   min-height: 40px !important;
   border-radius: 50% !important;
-  background: rgba(14, 22, 122, 0.08) !important;
   transition: all 0.3s ease !important;
   flex-shrink: 0 !important;
   padding: 0 !important;
@@ -3257,10 +3251,6 @@
 .wake-account-sidebar-summary:hover .arrow {
   background: rgba(14, 22, 122, 0.12) !important;
   transform: scale(1.1) !important;
-}
-
-.group[open] .wake-account-sidebar-summary .arrow {
-  background: rgba(14, 22, 122, 0.15) !important;
 }
 
 .group[open] .wake-account-sidebar-summary .arrow > img {
@@ -4455,13 +4445,16 @@
 
 .wake-account-product div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .wake-account-product div {
-    flex-direction: row;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+
   }
 }
 

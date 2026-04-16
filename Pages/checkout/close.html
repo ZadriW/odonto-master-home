@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ page_scripts position: "HEADER_START" scripts: common.scripts }}
     {{ head title: "Fechamento | Odonto Master" store: store }}
-    {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme", "mobile_bottom_menu"]}}
+    {{ asset type: "css" paths: ["output_base", "output_checkout", "checkout/checkout", "custom_theme"]}}
     {{ page_scripts position: "HEADER_END" scripts: common.scripts }}
     {{ wake_recaptcha_script }}
     {{ data_layer_config }}
@@ -18,6 +18,15 @@
     {{ checkout_stepper current_step: "payment" }}
     {{ wake_overlay }}
     <div class="wake-checkout-wrapper">
+        {{~ has_multi_frete_selected = false ~}}
+        {{~ if data.checkout != null && data.checkout.selected_shipping_groups != null && data.checkout.selected_shipping_groups.size > 0 ~}}
+            {{~ has_multi_frete_selected = true ~}}
+            {{~ for group in data.checkout.selected_shipping_groups ~}}
+                {{~ if group.selected_shipping == null ~}}
+                    {{~ has_multi_frete_selected = false ~}}
+                {{~ end ~}}
+            {{~ end ~}}
+        {{~ end ~}}
         <div class="wake-checkout-column">
             <div class="wake-checkout-detail wake-checkout-data-address" id="data_address">
                 <h2 class="wake-checkout-title">Endereço</h2>
@@ -73,7 +82,7 @@
                         </div>
                     </summary>
                     <div class="wake-checkout-checking-account-container">
-                {{~ if data.checkout != null &&  data.checkout.selected_shipping != null && data.checkout.selected_address != null -}}
+                {{~ if data.checkout != null && (data.checkout.selected_shipping != null || has_multi_frete_selected) && data.checkout.selected_address != null -}}
                     {{ wake_checkout_checking_account_choice_close checking_account: data }}
                 {{~ else -}}
                     <span class="wake-checkout-finish-step-text">Finalize o passo anterior para prosseguir</span>
@@ -99,16 +108,60 @@
         </div>
         <div class="wake-checkout-column">
             <div class="wake-checkout-section" id="data_shipping">
-                {{~ if data.checkout != null && data.checkout.selected_shipping != null -}}
+                {{~ if has_multi_frete_selected -}}
+                    <div class="shipping-quote-groups-selected-container">
+                        <h2 class="wake-checkout-title">Entrega</h2>
+                        {{~ for group in data.checkout.selected_shipping_groups ~}}
+                            <div class="shipping-group-selected-item">
+                                <div class="shipping-group-selected-header">
+                                    <span class="shipping-group-cd-name">
+                                        {{~ if group.distribution_center.name ~}}
+                                            {{ group.distribution_center.name }}
+                                        {{~ else ~}}
+                                            Centro de Distribuição
+                                        {{~ end ~}}
+                                    </span>
+                                    {{~ if group.distribution_center.seller_name ~}}
+                                        <span class="shipping-group-seller-name">Vendido por: {{ group.distribution_center.seller_name }}</span>
+                                    {{~ end ~}}
+                                </div>
+                                <div class="shipping-group-selected-details">
+                                    <span class="shipping-group-method-name">{{ group.selected_shipping.name }}</span>
+                                    <span class="shipping-group-method-value">{{ group.selected_shipping.value | math.format "c" "pt-BR" }}</span>
+                                    {{~ if group.selected_shipping.deadline && group.selected_shipping.deadline > 0 ~}}
+                                        <span class="shipping-group-method-deadline">{{ group.selected_shipping.deadline }} {{~ if group.selected_shipping.deadline == 1 ~}}dia útil{{~ else ~}}dias úteis{{~ end ~}}</span>
+                                    {{~ end ~}}
+                                </div>
+                            </div>
+                        {{~ end ~}}
+                        <div class="shipping-quote-groups-selected-total">
+                            <span>Total do Frete:</span>
+                            <span>{{ data.checkout.shipping_fee | math.format "c" "pt-BR" }}</span>
+                        </div>
+                        <button type="button" class="shipping-quote-groups-change-btn" onclick="renderOptionsShipping()">Alterar entrega</button>
+                    </div>
+                {{~ else if data.checkout != null && data.checkout.selected_shipping != null -}}
                     {{ wake_checkout_shipping_selected_close shipping: data.checkout.selected_shipping }}
-                {{~ else if data.checkout != null && data.checkout.selected_address != null && data.checkout.selected_shipping == null -}}
-                    <div data-render-shipping></div>
+                {{~ else if data.checkout != null && data.checkout.selected_address != null -}}
+                    <div id="shipping-quote-groups-container" 
+                         data-shipping-groups-container="true" 
+                         data-checkout-id="{{ data.checkout.checkout_id }}"
+                         data-selected-cep="{{ data.checkout.selected_address.cep }}">
+                        <div class="shipping-quote-groups-loading">
+                            <div class="shipping-quote-groups-spinner"></div>
+                            <span>Carregando opções de entrega...</span>
+                        </div>
+                    </div>
+                    <script>
+                        window.checkoutIdForShipping = "{{ data.checkout.checkout_id }}";
+                        window.selectedCepForShipping = "{{ data.checkout.selected_address.cep }}";
+                    </script>
                 {{~ else -}}
                     <span class="wake-checkout-finish-step-text">Finalize o passo anterior para prosseguir</span>
                 {{~ end ~}}
             </div>
             <div id="data_payment" class="wake-checkout-section wake-checkout-data-payment">
-                {{~ if data.checkout != null && data.checkout.selected_shipping != null -}}
+                {{~ if data.checkout != null && (data.checkout.selected_shipping != null || has_multi_frete_selected) -}}
                     <div data-render-payment></div>
                 {{~ else -}}
                     <h2 class="wake-checkout-title wake-checkout-payment-title">Pagamento</h2>
@@ -167,15 +220,15 @@
     {{ wake_checkout_payment_rejected_modal }}
     
     {{ wake_confirmation_modal }}
-    {{ mobile_bottom_menu }}
     {{ wake_checkout_scripts }}
     {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
     {{ sdk_client }}
     {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
     {{ data_layer_checkout_complete_view checkout: data.checkout }}
-    {{ wake_scripts scripts: ["wake_utils", "wake_checkout_close"] }}
+    {{ wake_scripts scripts: ["wake_utils"] }}
+    {{ asset type: "js" paths: ["multifrete_checkout_close"] }}
     {{ asset type: "js" paths: ["checkout_user_login", "event_manager"] options: "async"}}
-    {{ asset type: "js" paths: ["mobile_bottom_menu"] options: "async"}}
+    {{ asset type: "js" paths: ["shipping_quote_groups"] }}
     {{ page_scripts position: "BODY_END" scripts: common.scripts }}
   </body>
 

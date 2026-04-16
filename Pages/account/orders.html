@@ -16,6 +16,15 @@
   <div class="wake-account-wrapper">
     {{ wake_account_sidebar customer: data.customer }}
     {{~ if data.customer.order ~}}
+      <script>
+        window.__ACCOUNT_ORDER__ = {{ data.customer.order | map.to_json }};
+        window.store = window.store || {};
+        window.store.urls = window.store.urls || {};
+        window.store.urls.checkout_pages = window.store.urls.checkout_pages || {};
+        window.store.urls.checkout_pages.checkout = window.store.urls.checkout_pages.checkout || {};
+        window.store.urls.checkout_pages.checkout.home = window.store.urls.checkout_pages.checkout.home || "{{ store.urls.checkout_pages.checkout.home }}";
+        window.store.urls.static_img = window.store.urls.static_img || "{{ store.urls.static_img }}";
+      </script>
       {{ wake_account_order_details order: data.customer.order }}
     {{~ else ~}}
       {{ wake_account_orders orders: data.customer.orders }}
@@ -28,7 +37,7 @@
   {{ sdk_client }}
   {{ page_scripts position: "FOOTER_END" scripts: common.scripts }}
   {{ wake_scripts scripts: ["wake_utils", "wake_account"] }}
-  {{ asset type: "js" paths: ["mobile_bottom_menu"] options: "async"}}
+  {{ asset type: "js" paths: ["mobile_bottom_menu", "account_refill_cart"]}}
   {{ page_scripts position: "BODY_END" scripts: common.scripts }}
 </body>
 </html>

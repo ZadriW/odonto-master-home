@@ -13,13 +13,15 @@
         
         <div class="flex justify-between items-center w-full">
             <div class="flex flex-col w-full">
+                {{~ offer_vitrine_pix = offer.prices.price | math.times 0.95 ~}}
                 <div class="line-through text-base text-secondary-500">De {{ offer.prices.list_price | math.format "c" "pt-BR" }}</div>
-                <div class="text-lg">por {{ offer.prices.price | math.format "c" "pt-BR" }}</div>
+                <div class="text-lg"><s class="product-price-table-reference">{{ offer.prices.price | math.format "c" "pt-BR" }}</s> <strong>{{ offer_vitrine_pix | math.format "c" "pt-BR" }}</strong> no Pix ou boleto <span class="product-price-extra-discount-badge" title="Desconto de 5% no Pix ou boleto">-5%</span></div>
                 {{ installment_plans = offer.prices.installment_plans | group.by @(do; ret $0.display_name;end) }}
                 {{ boleto = installment_plans | group.get "Boleto"}}
                 {{ if boleto && boleto.size > 0}}
+                    {{~ boleto_vitrine = boleto[0].installments[0].value | math.times 0.95 ~}}
                     <div class="text-lg">
-                        {{ boleto[0].installments[0].value | math.format "c" "pt-BR" }} no Boleto.
+                        {{ boleto_vitrine | math.format "c" "pt-BR" }} no Boleto.
                     </div>
                     <br>
                 {{ end }}

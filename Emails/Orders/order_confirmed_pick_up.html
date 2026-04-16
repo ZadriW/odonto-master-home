@@ -1,112 +1,385 @@
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
-                        <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
                             <tbody>
                                 <tr align="center">
-                                    <td style="padding-bottom: 30px;">
-                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Pedido Confirmado</h1>
-                                        <h3 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 20px; line-height: 1.2; color: #6c757d; font-weight: 500; margin: 8px 0 0 0;">Retirada em loja</h3>
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M434.8 70.1c14.3 10.4 17.5 30.4 7.1 44.7l-256 352c-5.5 7.6-14 12.3-23.4 13.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l101.5 101.5 234-321.7c10.4-14.3 30.4-17.5 44.7-7.1z" fill="#ffffff"/>
+                                        </svg>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá <strong style="color: #0e167a;">{{ pedido.usuario.primeiro_nome }}</strong>,</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0;">Confirmamos o recebimento do seu pedido <strong style="color: #0e167a;">{{ pedido.pedido_id }}</strong> através da nossa loja em {{ pedido.data }} : {{ pedido.hora }}.</p>
+                                <tr align="center">
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">Pedido Confirmado!</h1>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 24px 4px;">
+                                        <p style="color: #ffffff; font-size: 18px; margin: 0; line-height: 150%; font-weight: 600;">Retirada em Loja</p>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Olá, <strong style="color: #ffffff;">{{ pedido?.usuario?.primeiro_nome }}</strong>! Recebemos seu pedido e ele está sendo processado com sucesso.</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="padding: 0 30px;">
+                        <!-- END HERO -->
+
+                        <!-- ORDER INFO BAR -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#eef0fb;border-top: 3px solid #0e167a;">
                             <tbody>
                                 <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <h2 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 24px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Resumo do pedido</h2>
+                                    <td align="center" style="padding: 16px 20px;">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0 20px; border-right: 1px solid #c0c8e8;">
+                                                        <p style="margin: 0 0 2px; font-size: 11px; color: #6b7aad; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Pedido</p>
+                                                        <p style="margin: 0; font-size: 17px; font-weight: 700; color: #0e167a;">#{{ pedido?.pedido_id }}</p>
+                                                    </td>
+                                                    <td align="center" style="padding: 0 20px; border-right: 1px solid #c0c8e8;">
+                                                        <p style="margin: 0 0 2px; font-size: 11px; color: #6b7aad; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Data</p>
+                                                        <p style="margin: 0; font-size: 15px; font-weight: 600; color: #333333;">{{ pedido?.data }}</p>
+                                                    </td>
+                                                    <td align="center" style="padding: 0 20px;">
+                                                        <p style="margin: 0 0 2px; font-size: 11px; color: #6b7aad; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Horário</p>
+                                                        <p style="margin: 0; font-size: 15px; font-weight: 600; color: #333333;">{{ pedido?.hora }}</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- END ORDER INFO BAR -->
+
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== SEÇÃO: ITENS DO PEDIDO ===== -->
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Itens do Pedido</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 0 20px;">
-                                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:100%;">
+                                    <td style="padding: 8px 20px 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                             <tbody>
-                                                {{ for product in pedido.produtos }}
+                                                {{ for product in pedido?.produtos }}
                                                 {{ product_mail product: product }}
                                                 {{ end }}
                                             </tbody>
                                         </table>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="padding: 0 30px 30px 30px;">
-                            <tbody>
+
+                                <!-- ===== SEÇÃO: INFORMAÇÕES DA LOJA ===== -->
+                                {{ if loja?.nome }}
                                 <tr>
                                     <td style="padding: 0 20px;">
-                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="width:100%;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                             <tbody>
-                                                {{ if pedido.aliquota.texto_aliquotas}}
                                                 <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">{{pedido.aliquota.texto_aliquotas}}:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.aliquota.valor_aliquotas}}</td>
-                                                </tr>
-                                                {{ end }}
-
-                                                {{ if pedido.embalagem.valor_embalagens}}
-                                                <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">Embalagens:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.embalagem.valor_embalagens}}</td>
-                                                </tr>
-                                                {{ end }}
-
-                                                {{ if pedido.personalizacao.valor_personalizacoes}}
-                                                <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">Personalizações:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.personalizacao.valor_personalizacoes}}</td>
-                                                </tr>
-                                                {{ end }}
-
-                                                <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">Frete:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{ pedido.frete.valor_frete}}</td>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Loja de Retirada</p>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">Entrega estimada:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.frete.entrega_estimativa_data}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">Desconto:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #ffc107; font-weight: 600;">{{pedido.valor_desconto}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="right" style="width: 80%; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #6c757d;">Subtotal:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; color: #374151; font-weight: 500;">{{pedido.valor_sub_total}}</td>
-                                                </tr>
-                                                <tr style="border-top: 2px solid #0e167a;">
-                                                    <td align="right" style="width: 80%; padding: 16px 0 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 18px; color: #0e167a; font-weight: 700;">Total:</td>
-                                                    <td style="width: 20%;padding-left: 8px; padding: 16px 0 8px 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 18px; color: #0e167a; font-weight: 700;">{{pedido.valor_total}}</td>
+                                                    <td style="padding-top: 12px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding: 14px 16px;">
+                                                                        <p style="margin: 0 0 8px; font-weight: 700; color: #1a1a2e; font-size: 16px;">{{ loja?.nome }}</p>
+                                                                        
+                                                                        {{ if loja?.endereco }}
+                                                                        <p style="margin: 0 0 3px; color: #4a4a6a; font-size: 14px;">{{ loja?.endereco }}{{ if loja?.numero }}, {{ loja?.numero }}{{ end }}{{ if loja?.complemento }} &mdash; {{ loja?.complemento }}{{ end }}</p>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.bairro }}
+                                                                        <p style="margin: 0 0 3px; color: #4a4a6a; font-size: 14px;">{{ loja?.bairro }}{{ if loja?.cidade }} &mdash; {{ loja?.cidade }}/{{ loja?.estado }}{{ end }}</p>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.cep }}
+                                                                        <p style="margin: 0 0 10px; color: #4a4a6a; font-size: 14px;">CEP: {{ loja?.cep }}</p>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.telefone }}
+                                                                        <p style="margin: 0 0 10px; color: #4a4a6a; font-size: 14px;">Telefone: <strong style="color: #0e167a;">{{ loja?.telefone }}</strong></p>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.codigo_retirada }}
+                                                                        <table border="0" cellpadding="0" cellspacing="0" style="background-color: #0e167a; border-radius: 4px; margin-bottom: 10px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="padding: 8px 12px;">
+                                                                                        <p style="margin: 0; font-size: 13px; color: #ffffff; font-weight: 600;">C&#243;digo de Retirada: <strong style="font-size: 15px;">{{ loja?.codigo_retirada }}</strong></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.texto_retirada }}
+                                                                        <p style="margin: 0 0 8px; color: #4a4a6a; font-size: 13px; line-height: 150%;">{{ loja?.texto_retirada }}</p>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.texto_complementar }}
+                                                                        <p style="margin: 0 0 8px; color: #4a4a6a; font-size: 13px; line-height: 150%; font-style: italic;">{{ loja?.texto_complementar }}</p>
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.retirada?.nome }}
+                                                                        <p style="margin: 0 0 3px; color: #4a4a6a; font-size: 13px;"><strong>Retirar em nome de:</strong> {{ loja?.retirada?.nome }}</p>
+                                                                        {{ if loja?.retirada?.documento }}
+                                                                        <p style="margin: 0 0 8px; color: #4a4a6a; font-size: 13px;"><strong>Documento:</strong> {{ loja?.retirada?.documento }}</p>
+                                                                        {{ end }}
+                                                                        {{ end }}
+                                                                        
+                                                                        {{ if loja?.link_como_chegar }}
+                                                                        <table border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <a href="{{ loja?.link_como_chegar }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 13px; font-weight: 600; padding: 10px 20px; border-radius: 5px; text-decoration: none; letter-spacing: 0.3px;">Como Chegar</a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        {{ end }}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </td>
                                 </tr>
+                                <!-- SPACER -->
+                                <tr><td style="height: 20px;"></td></tr>
+                                {{ end }}
+
+                                <!-- ===== SEÇÃO: FORMA DE PAGAMENTO ===== -->
+                                {{ if pedido?.formapagamento }}
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Forma de Pagamento</p>
+                                                    </td>
+                                                </tr>
+                                                {{ for forma in pedido?.formapagamento }}
+                                                <tr>
+                                                    <td style="padding-top: 12px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding: 14px 16px;">
+                                                                        <p style="margin: 0 0 4px; font-weight: 700; color: #1a1a2e; font-size: 15px;">{{ forma?.nome }}</p>
+                                                                        {{ if forma?.parcelamento_formatado }}
+                                                                        <p style="margin: 0 0 4px; color: #4a4a6a; font-size: 14px;">{{ forma?.parcelamento_formatado }}</p>
+                                                                        {{ end }}
+                                                                        {{ if forma?.valor_parcelas }}
+                                                                        <p style="margin: 0; font-size: 14px; color: #0e167a; font-weight: 600;">{{ forma?.numero_parcelas }}x de {{ forma?.valor_parcelas }}</p>
+                                                                        {{ end }}
+
+                                                                        <!-- PIX -->
+                                                                        {{ if forma?.pix?.qrcode_imagem_url }}
+                                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 14px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center">
+                                                                                        <p style="margin: 0 0 10px; font-size: 13px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.5px;">Pague com PIX</p>
+                                                                                        <img src="{{ forma?.pix?.qrcode_imagem_url }}" alt="QR Code PIX" width="150" style="display: block; margin: 0 auto; border: 1px solid #dde3f5; padding: 8px; background-color: #ffffff;">
+                                                                                        <p style="font-size: 13px; color: #4a4a6a; margin: 10px 0 6px;">Ou copie o c&#243;digo PIX:</p>
+                                                                                        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 420px; margin: 0 auto;">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="background-color: #eef0fb; padding: 10px 12px; border: 1px dashed #0e167a; border-radius: 4px; font-size: 12px; color: #1a1a2e; word-break: break-all; font-family: monospace;">{{ forma?.pix?.codigo_qrcode }}</td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                        {{ if forma?.pix?.dt_expiracao_qr_code }}
+                                                                                        <p style="font-size: 12px; color: #c0392b; margin: 8px 0 0; font-weight: 600;">&#9888; V&#225;lido at&#233;: {{ forma?.pix?.dt_expiracao_qr_code }}</p>
+                                                                                        {{ end }}
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        {{ end }}
+
+                                                                        <!-- BOLETO -->
+                                                                        {{ if forma?.boleto?.url }}
+                                                                        <table border="0" cellpadding="0" cellspacing="0" style="margin-top: 12px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <a href="{{ forma?.boleto?.url }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 14px; font-weight: 700; padding: 11px 22px; border-radius: 5px; text-decoration: none; letter-spacing: 0.3px;">Ver Boleto</a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        {{ end }}
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                {{ end }}
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- SPACER -->
+                                <tr><td style="height: 20px;"></td></tr>
+                                {{ end }}
+
+                                <!-- ===== SEÇÃO: RESUMO DO PEDIDO ===== -->
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2" style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Resumo do Pedido</p>
+                                                    </td>
+                                                </tr>
+
+                                                {{ if pedido?.aliquota?.texto_aliquotas }}
+                                                <tr>
+                                                    <td align="left" style="padding: 8px 0 0; font-size: 14px; color: #4a4a6a;">{{ pedido?.aliquota?.texto_aliquotas }}:</td>
+                                                    <td align="right" style="padding: 8px 0 0; font-size: 14px; color: #333333; font-weight: 500;">{{ pedido?.aliquota?.valor_aliquotas }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                {{ if pedido?.embalagem?.valor_embalagens }}
+                                                <tr>
+                                                    <td align="left" style="padding: 6px 0 0; font-size: 14px; color: #4a4a6a;">Embalagens:</td>
+                                                    <td align="right" style="padding: 6px 0 0; font-size: 14px; color: #333333; font-weight: 500;">{{ pedido?.embalagem?.valor_embalagens }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                {{ if pedido?.personalizacao?.valor_personalizacoes }}
+                                                <tr>
+                                                    <td align="left" style="padding: 6px 0 0; font-size: 14px; color: #4a4a6a;">Personaliza&#231;&#245;es:</td>
+                                                    <td align="right" style="padding: 6px 0 0; font-size: 14px; color: #333333; font-weight: 500;">{{ pedido?.personalizacao?.valor_personalizacoes }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                {{ if pedido?.valor_servico }}
+                                                <tr>
+                                                    <td align="left" style="padding: 6px 0 0; font-size: 14px; color: #4a4a6a;">Servi&#231;os:</td>
+                                                    <td align="right" style="padding: 6px 0 0; font-size: 14px; color: #333333; font-weight: 500;">{{ pedido?.valor_servico }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                {{ if pedido?.promocao }}
+                                                {{ for promo in pedido?.promocao }}
+                                                {{ if promo?.valor }}
+                                                <tr>
+                                                    <td align="left" style="padding: 6px 0 0; font-size: 14px; color: #16a34a;">{{ promo?.observacao }}:</td>
+                                                    <td align="right" style="padding: 6px 0 0; font-size: 14px; color: #16a34a; font-weight: 600;">- {{ promo?.valor }}</td>
+                                                </tr>
+                                                {{ end }}
+                                                {{ end }}
+                                                {{ end }}
+
+                                                {{ if pedido?.frete?.valor_frete }}
+                                                <tr>
+                                                    <td align="left" style="padding: 6px 0 0; font-size: 14px; color: #4a4a6a;">Frete:</td>
+                                                    <td align="right" style="padding: 6px 0 0; font-size: 14px; color: #333333; font-weight: 500;">{{ pedido?.frete?.valor_frete }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                {{ if pedido?.valor_desconto }}
+                                                <tr>
+                                                    <td align="left" style="padding: 6px 0 0; font-size: 14px; color: #16a34a;">Desconto:</td>
+                                                    <td align="right" style="padding: 6px 0 0; font-size: 14px; color: #16a34a; font-weight: 600;">{{ pedido?.valor_desconto }}</td>
+                                                </tr>
+                                                {{ end }}
+
+                                                <tr>
+                                                    <td align="left" style="padding: 8px 0 0; font-size: 14px; color: #4a4a6a;">Subtotal:</td>
+                                                    <td align="right" style="padding: 8px 0 0; font-size: 14px; color: #333333; font-weight: 600;">{{ pedido?.valor_sub_total }}</td>
+                                                </tr>
+
+                                                <!-- LINHA DIVISÓRIA -->
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 10px; border-top: 1px solid #e0e4f0;"></td>
+                                                </tr>
+
+                                                <!-- TOTAL DESTACADO -->
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 6px;">
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #0e167a; border-radius: 6px;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="left" style="padding: 14px 18px; font-size: 15px; color: #c4cdee; font-weight: 600;">Total do Pedido</td>
+                                                                    <td align="right" style="padding: 14px 18px; font-size: 22px; color: #ffffff; font-weight: 700; white-space: nowrap;">{{ pedido?.valor_total }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== CTA: CONTINUAR COMPRANDO ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 28px 20px 32px;">
+                                        <a href="{{ configuracao?.url_ecommerce }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Continuar Comprando</a>
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
-                        <!-- END MAIN -->
+                        <!-- END MAIN CONTENT -->
 
                         <!-- FOOTER -->
                         {{footer_mail}}
                         <!-- END FOOTER -->
+
                     </div>
                 </td>
             </tr>

@@ -4,6 +4,10 @@ window.addEventListener("load", function() {
     initCarouselWithSideBannerLoop();
 }, false);
 let alertDiv = "";
+let restrictedSaleCustomerValidationCache = null;
+const RESTRICTED_SALE_WORDS = ['clareador', 'anestesico', 'anestésico'];
+const RESTRICTED_SALE_FIELD_ALIASES = ['cro', 'CRO'];
+const RESTRICTED_SALE_WARNING_TEXT = 'ATENÇÃO! Produto de venda restrita a cirurgiões-dentistas e pessoas jurídicas que prestem serviços odontológicos, com inscrição ativa em conselho profissional, de acordo com a RDC 923/2024 da ANVISA. Vá para a seção "Minha Conta" e autentique-se registrando seu número de CRO em nosso formulário.';
 
 /**
  * Page load function.
@@ -15,6 +19,8 @@ async function productLoad(){
     initProductInformationCascade();
     // Inicializa loop dos carrosséis com banner lateral
     initCarouselWithSideBannerLoop();
+    initProductIllustrativeImageTooltip();
+    initProductPaymentMethodsOverlay();
 }
 
 /**
@@ -369,6 +375,15 @@ async function renderAttributes(attributeList, productId){
     const elementId = `product-view-div-${productId}`;
     const response = await client.snippet.render("product_view_snippet.html", "product.graphql", variables);
     setInnerHtmlById(response, elementId);
+
+    const productViewEl = document.getElementById(elementId);
+    if (productViewEl) {
+        const variantDataLayerInput = productViewEl.querySelector('input[id^="product-variant-data-layer"]');
+        const topLevelVariantInput = document.getElementById('product-variant-id');
+        if (variantDataLayerInput && topLevelVariantInput && variantDataLayerInput.value) {
+            topLevelVariantInput.value = variantDataLayerInput.value;
+        }
+    }
     
     // Garantir que a âncora "Ver Mais" seja sempre exibida no modal após atualização
     const ensureViewMoreLinkVisible = () => {
@@ -403,6 +418,7 @@ async function renderAttributes(attributeList, productId){
             if (zoomContainer) {
                 initProductImageZoom(zoomContainer);
             }
+            initProductIllustrativeImageTooltip(productViewDiv);
         }
     }, 200);
     
@@ -438,6 +454,11 @@ function hideAlert(){
  * @param {string} productVariantId - Product variant ID.
  */
 async function addToCartClick(productVariantId){
+    if (await shouldBlockRestrictedSaleForContext()) {
+        showRestrictedSaleWarningModal();
+        return;
+    }
+
     if (!productVariantId){
         showOverlay('Não foi possível adicionar o produto ao carrinho', 'Selecione a variação', true)
         return;
@@ -597,6 +618,48 @@ function decreaseProductQuantity() {
 }
 
 /**
+ * Valida o input de quantidade na página de produto durante a digitação (input).
+ * Permite campo em branco para o usuário apagar e digitar (ex.: "2"); só limita se o número exceder max.
+ */
+function syncProductQuantityInputOnInput() {
+    const quantityInput = document.getElementById('selected-quantity');
+    if (!quantityInput) return;
+    const raw = quantityInput.value.trim();
+    if (raw === '') return; /* deixa em branco para o usuário digitar */
+    const max = parseInt(quantityInput.getAttribute('max')) || 999;
+    const value = parseInt(quantityInput.value, 10);
+    if (!isNaN(value) && value > max) quantityInput.value = max;
+}
+
+/**
+ * Valida e corrige o valor ao sair do campo (change/blur): vazio ou inválido vira min, valor > max vira max.
+ */
+function syncProductQuantityInputOnChange() {
+    const quantityInput = document.getElementById('selected-quantity');
+    if (!quantityInput) return;
+    const min = parseInt(quantityInput.getAttribute('min')) || 1;
+    const max = parseInt(quantityInput.getAttribute('max')) || 999;
+    let value = parseInt(quantityInput.value, 10);
+    if (isNaN(value) || value < min) value = min;
+    if (value > max) value = max;
+    quantityInput.value = value;
+}
+
+/** Listener para permitir digitar a quantidade no input da página de produto */
+function initProductQuantityInputListeners() {
+    document.addEventListener('input', function(e) {
+        if (e.target && e.target.id === 'selected-quantity') {
+            syncProductQuantityInputOnInput();
+        }
+    });
+    document.addEventListener('change', function(e) {
+        if (e.target && e.target.id === 'selected-quantity') {
+            syncProductQuantityInputOnChange();
+        }
+    });
+}
+
+/**
  * Validates if need to create a checkout and add products.
  * @param {object[]} input - Product and quantities input to add to checkout.
  */
@@ -637,6 +700,11 @@ async function addOrCreateCheckout(input){
  * Matrix add to cart button click.
  */
 async function addToCartMatrixClick(element){
+    if (await shouldBlockRestrictedSaleForContext(element)) {
+        showRestrictedSaleWarningModal();
+        return;
+    }
+
     const success = await checkoutOperations(element, 'product-view-div');
     if (success){
         showOverlay('Produto(s) Adicionado(s)!', 'Produto(s) adicionado(s) ao carrinho!')
@@ -1044,26 +1112,89 @@ const changeFirstImage = (imgUrl) => {
 
 
 /**
- * Expand product installments
+ * Overlay "Ver todas as formas de pagamento" (product_installments.html).
+ * Delegação: suporta várias seções na página sem IDs duplicados.
  */
-const showInstallments = (e) => {
-    let value = e.value;
-    let element = document.querySelector("#installments-tab[value='"+value+"']");
-    let others = document.querySelectorAll("#installments-tab:not([value='"+value+"'])");
-    if(element.classList.contains('hidden')){
-        others.forEach(e => e.classList.add('hidden'));        
-        element.classList.remove('hidden');
-        element.classList.add('ease-out');
-        element.classList.add('opacity-100');
-        element.classList.remove('opacity-0');
-        
-    } else {
-        element.classList.add('hidden');
-        element.classList.remove('ease-out');
-        element.classList.add('ease-in');
-        element.classList.remove('opacity-100');
-        element.classList.add('opacity-0');
+function productPaymentResetPaymentColumns(overlay) {
+    if (!overlay) return;
+    overlay.querySelectorAll('.product-payment-methods-column__body').forEach(function (body) {
+        body.setAttribute('hidden', '');
+    });
+    overlay.querySelectorAll('.product-payment-methods-column__header').forEach(function (header) {
+        header.setAttribute('aria-expanded', 'false');
+    });
+    overlay.querySelectorAll('.product-payment-methods-column').forEach(function (col) {
+        col.classList.remove('product-payment-methods-column--expanded');
+    });
+}
+
+function productPaymentOverlayOpen(overlay) {
+    if (!overlay) return;
+    productPaymentResetPaymentColumns(overlay);
+    overlay.classList.remove('hidden');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('product-payment-overlay-open');
+}
+
+function productPaymentOverlayClose(overlay) {
+    if (!overlay) return;
+    overlay.classList.add('hidden');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (!document.querySelector('.product-payment-methods-overlay:not(.hidden)')) {
+        document.body.classList.remove('product-payment-overlay-open');
     }
+}
+
+function initProductPaymentMethodsOverlay() {
+    if (document.body.dataset.productPaymentOverlayBound === 'true') return;
+    document.body.dataset.productPaymentOverlayBound = 'true';
+
+    document.addEventListener('click', function (e) {
+        var openBtn = e.target.closest('.product-payment-methods-trigger');
+        if (openBtn) {
+            e.preventDefault();
+            var section = openBtn.closest('.product-payment-methods-section');
+            if (!section) return;
+            var overlay = section.querySelector('.product-payment-methods-overlay');
+            if (!overlay) return;
+            productPaymentOverlayOpen(overlay);
+            return;
+        }
+
+        var columnHeader = e.target.closest('.product-payment-methods-column__header');
+        if (columnHeader && columnHeader.closest('.product-payment-methods-overlay')) {
+            var column = columnHeader.closest('.product-payment-methods-column');
+            var body = column && column.querySelector('.product-payment-methods-column__body');
+            if (body) {
+                var willExpand = body.hasAttribute('hidden');
+                if (willExpand) {
+                    body.removeAttribute('hidden');
+                    columnHeader.setAttribute('aria-expanded', 'true');
+                    if (column) column.classList.add('product-payment-methods-column--expanded');
+                } else {
+                    body.setAttribute('hidden', '');
+                    columnHeader.setAttribute('aria-expanded', 'false');
+                    if (column) column.classList.remove('product-payment-methods-column--expanded');
+                }
+            }
+            return;
+        }
+
+        var closeEl = e.target.closest('[data-close-payment-overlay]');
+        if (closeEl) {
+            var overlayToClose = closeEl.closest('.product-payment-methods-overlay');
+            if (overlayToClose) {
+                productPaymentOverlayClose(overlayToClose);
+            }
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('.product-payment-methods-overlay:not(.hidden)').forEach(function (ov) {
+            productPaymentOverlayClose(ov);
+        });
+    });
 }
 
 /**
@@ -1118,6 +1249,11 @@ async function parallelOptionsBuyClick(){
  * Click of the add to cart parallel options button
  */
 async function parallelOptionsAddToCartClick(){
+    if (await shouldBlockRestrictedSaleForContext()) {
+        showRestrictedSaleWarningModal();
+        return;
+    }
+
     const input = parallelOptionsGetCheckoutInput();
 
     if (input.length == 0){
@@ -1431,6 +1567,11 @@ function closeProductImageZoom() {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' || e.keyCode === 27) {
         closeProductImageZoom();
+        document.querySelectorAll('.product-illustrative-info-icon.is-open').forEach(function(el) {
+            el.classList.remove('is-open');
+            el.setAttribute('aria-expanded', 'false');
+            clearIllustrativeTooltipMobileVars(el);
+        });
     }
 });
 
@@ -1725,6 +1866,416 @@ function initializeZoomForContainer(zoomContainer, productImage = null) {
 }
 
 /**
+ * Avalia cada instância do badge de venda restrita no DOM (página e modais).
+ * Para cada badge, busca o nome do produto no [product-view-div] pai mais próximo
+ * e exibe o badge apenas se o nome contiver "clareador" ou "anestésico".
+ */
+function checkRestrictedSaleBadge() {
+    const badges = document.querySelectorAll('.product-badge--restricted-sale');
+    if (!badges.length) return;
+
+    const restrictedWords = ['clareador', 'anestésico', 'anestesico'];
+
+    badges.forEach(function(badge) {
+        /* Sobe até o [product-view-div] mais próximo para ler o nome do produto */
+        const viewDiv = badge.closest('[product-view-div]');
+        if (!viewDiv) return;
+
+        const nameEl = viewDiv.querySelector('.product-name, h1.product-name');
+        const productName = getProductDisplayNameFromTitleEl(nameEl);
+        const nameLower = productName.toLowerCase().trim();
+
+        const isRestricted = restrictedWords.some(function(word) {
+            return nameLower.includes(word);
+        });
+
+        if (isRestricted) {
+            badge.style.display = 'inline-block';
+        } else {
+            badge.style.display = 'none';
+        }
+    });
+}
+
+function normalizeRestrictedSaleText(value) {
+    return (value || '')
+        .toString()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function getRestrictedProductNameFromContext(contextElement = null) {
+    if (contextElement) {
+        const card = contextElement.closest('.product-card');
+        if (card) {
+            const cardTitle = card.querySelector('.product-title');
+            if (cardTitle?.textContent) {
+                return cardTitle.textContent;
+            }
+        }
+
+        const productView = contextElement.closest('[product-view-div]');
+        if (productView) {
+            const viewTitle = productView.querySelector('.product-name, h1.product-name');
+            if (viewTitle) {
+                return getProductDisplayNameFromTitleEl(viewTitle);
+            }
+        }
+    }
+
+    const productNameElement = document.querySelector('[product-view-div] .product-name, [product-view-div] h1.product-name, .product-name');
+    return getProductDisplayNameFromTitleEl(productNameElement);
+}
+
+function isRestrictedProductByName(productName) {
+    const normalizedName = normalizeRestrictedSaleText(productName);
+    if (!normalizedName) return false;
+    return RESTRICTED_SALE_WORDS.some(word => normalizedName.includes(normalizeRestrictedSaleText(word)));
+}
+
+function getRestrictedFieldValueFromCustomer(customerData) {
+    const informationGroups = customerData?.informationGroups;
+    if (!Array.isArray(informationGroups)) return '';
+
+    const aliases = RESTRICTED_SALE_FIELD_ALIASES.map(alias => normalizeRestrictedSaleText(alias));
+    for (const group of informationGroups) {
+        if (!group?.fields || !Array.isArray(group.fields)) continue;
+        for (const field of group.fields) {
+            const fieldName = normalizeRestrictedSaleText(field?.name);
+            if (!fieldName) continue;
+            const isAliasMatch = aliases.some(alias => fieldName === alias || fieldName.includes(alias));
+            if (isAliasMatch) {
+                return (field?.value || '').toString().trim();
+            }
+        }
+    }
+
+    return '';
+}
+
+async function getRestrictedSaleCustomerValidation() {
+    // Mantém cache apenas quando a validação foi positiva para evitar falso bloqueio persistente.
+    if (restrictedSaleCustomerValidationCache?.hasRequiredField) {
+        return restrictedSaleCustomerValidationCache;
+    }
+
+    const customerAccessToken = client?.cookie?.get('sf_customer_access_token');
+    if (!customerAccessToken) {
+        restrictedSaleCustomerValidationCache = { isLoggedIn: false, hasRequiredField: false };
+        return restrictedSaleCustomerValidationCache;
+    }
+
+    try {
+        const result = await client.query(
+            `query RestrictedSaleCustomerField($customerAccessToken: String!) {
+                customer(customerAccessToken: $customerAccessToken) {
+                    informationGroups {
+                        fields {
+                            name
+                            value
+                        }
+                    }
+                }
+            }`,
+            { customerAccessToken }
+        );
+
+        // No SDK do storefront, client.query geralmente retorna o payload direto (response.customer).
+        const customerData = result?.customer ?? result?.data?.customer;
+        const fieldValue = getRestrictedFieldValueFromCustomer(customerData);
+        restrictedSaleCustomerValidationCache = {
+            isLoggedIn: true,
+            hasRequiredField: fieldValue.length > 0
+        };
+        return restrictedSaleCustomerValidationCache;
+    } catch (error) {
+        restrictedSaleCustomerValidationCache = null;
+        return { isLoggedIn: true, hasRequiredField: false };
+    }
+}
+
+async function shouldBlockRestrictedSaleForContext(contextElement = null) {
+    const productName = getRestrictedProductNameFromContext(contextElement);
+    if (!isRestrictedProductByName(productName)) {
+        return false;
+    }
+
+    const validation = await getRestrictedSaleCustomerValidation();
+    return !validation.hasRequiredField;
+}
+
+function getOrCreateRestrictedSaleWarningModal() {
+    let modal = document.getElementById('restricted-sale-warning-modal');
+    if (modal) return modal;
+
+    modal = document.createElement('div');
+    modal.id = 'restricted-sale-warning-modal';
+    modal.className = 'restricted-sale-warning-modal hidden';
+    modal.innerHTML = `
+        <div class="restricted-sale-warning-modal__backdrop" onclick="closeRestrictedSaleWarningModal()"></div>
+        <div class="restricted-sale-warning-modal__content" role="dialog" aria-modal="true" aria-labelledby="restricted-sale-warning-title">
+            <button type="button" class="restricted-sale-warning-modal__close" aria-label="Fechar" onclick="closeRestrictedSaleWarningModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 id="restricted-sale-warning-title" class="restricted-sale-warning-modal__title">Aviso de venda restrita</h3>
+            <p class="restricted-sale-warning-modal__text">${RESTRICTED_SALE_WARNING_TEXT}</p>
+            <a href="/account/my-data" class="restricted-sale-warning-modal__cta">Ir para Minha Conta</a>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function showRestrictedSaleWarningModal() {
+    const modal = getOrCreateRestrictedSaleWarningModal();
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeRestrictedSaleWarningModal() {
+    const modal = document.getElementById('restricted-sale-warning-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+function getProductDisplayNameFromTitleEl(nameEl) {
+    if (!nameEl) return '';
+    const titleOnly = nameEl.querySelector('.product-name-title-only');
+    if (titleOnly) return (titleOnly.textContent || '').trim();
+    const heading = nameEl.querySelector('.product-name-heading-text');
+    if (heading) {
+        const inner = heading.querySelector('.product-name-title-only');
+        if (inner) return (inner.textContent || '').trim();
+        return (heading.textContent || '').trim();
+    }
+    return (nameEl.innerText || nameEl.textContent || '').trim();
+}
+
+var ILLUSTRATIVE_TIP_VIEW_PAD = 10;
+var ILLUSTRATIVE_TIP_ICON_GAP = 10;
+
+function clearIllustrativeTooltipMobileVars(icon) {
+    if (!icon) return;
+    icon.style.removeProperty('--illustrative-tip-left');
+    icon.style.removeProperty('--illustrative-tip-top');
+}
+
+/**
+ * Mede largura/altura reais do texto da tooltip (clone off-screen, estilos compatíveis com mobile).
+ */
+function measureIllustrativeTooltipSize(tooltip) {
+    if (!tooltip) return { w: 220, h: 56 };
+    var clone = tooltip.cloneNode(true);
+    var cs = window.getComputedStyle(tooltip);
+    clone.style.cssText =
+        'position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;' +
+        'max-width:' + cs.maxWidth + ';width:max-content;min-width:0;box-sizing:border-box;' +
+        'font-size:' + cs.fontSize + ';font-weight:' + cs.fontWeight + ';line-height:' + cs.lineHeight + ';' +
+        'padding:' + cs.padding + ';white-space:normal;display:block;';
+    document.body.appendChild(clone);
+    var w = clone.offsetWidth;
+    var h = clone.offsetHeight;
+    document.body.removeChild(clone);
+    return { w: Math.ceil(w) || 200, h: Math.ceil(h) || 48 };
+}
+
+/**
+ * Mobile: posição fixed na viewport — escolhe entre direita, esquerda, abaixo e acima do ícone
+ * pela maior área visível e menor necessidade de “clamp”.
+ */
+function applyIllustrativeTooltipPositionMobile(icon) {
+    if (!icon || !icon.classList.contains('is-open')) {
+        clearIllustrativeTooltipMobileVars(icon);
+        return;
+    }
+    var tooltip = icon.querySelector('.product-illustrative-tooltip');
+    if (!tooltip) return;
+
+    icon.classList.remove('product-illustrative-info-icon--tooltip-left', 'product-illustrative-info-icon--tooltip-below');
+
+    var twTh = measureIllustrativeTooltipSize(tooltip);
+    var tw = Math.min(twTh.w, window.innerWidth - 2 * ILLUSTRATIVE_TIP_VIEW_PAD);
+    var th = twTh.h;
+    var pad = ILLUSTRATIVE_TIP_VIEW_PAD;
+    var gap = ILLUSTRATIVE_TIP_ICON_GAP;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var ir = icon.getBoundingClientRect();
+
+    var candidates = [
+        { left: ir.right + gap, top: ir.top + ir.height / 2 - th / 2 },
+        { left: ir.left - gap - tw, top: ir.top + ir.height / 2 - th / 2 },
+        { left: ir.left + ir.width / 2 - tw / 2, top: ir.bottom + gap },
+        { left: ir.left + ir.width / 2 - tw / 2, top: ir.top - gap - th }
+    ];
+
+    function scorePosition(left, top) {
+        var innerLeft = Math.max(pad, Math.min(left, vw - pad - tw));
+        var innerTop = Math.max(pad, Math.min(top, vh - pad - th));
+        var moved = Math.abs(innerLeft - left) + Math.abs(innerTop - top);
+        var x1 = Math.max(pad, left);
+        var x2 = Math.min(vw - pad, left + tw);
+        var y1 = Math.max(pad, top);
+        var y2 = Math.min(vh - pad, top + th);
+        var visible = Math.max(0, x2 - x1) * Math.max(0, y2 - y1);
+        var total = tw * th;
+        return { l: innerLeft, t: innerTop, visible: visible, moved: moved, total: total };
+    }
+
+    var best = null;
+    var bestCombined = -Infinity;
+    for (var i = 0; i < candidates.length; i++) {
+        var s = scorePosition(candidates[i].left, candidates[i].top);
+        var ratio = s.total > 0 ? s.visible / s.total : 0;
+        var combined = ratio * 10000 - s.moved;
+        if (combined > bestCombined) {
+            bestCombined = combined;
+            best = s;
+        }
+    }
+
+    if (best) {
+        icon.style.setProperty('--illustrative-tip-left', best.l + 'px');
+        icon.style.setProperty('--illustrative-tip-top', best.t + 'px');
+    }
+}
+
+/**
+ * Desktop: classes left/below relativas ao ícone. Mobile aberto: fixed + CSS vars.
+ */
+function updateProductIllustrativeTooltipPlacement(icon) {
+    if (!icon || !icon.classList.contains('product-illustrative-info-icon')) return;
+
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    if (isMobile) {
+        if (icon.classList.contains('is-open')) {
+            applyIllustrativeTooltipPositionMobile(icon);
+        } else {
+            clearIllustrativeTooltipMobileVars(icon);
+        }
+        return;
+    }
+
+    clearIllustrativeTooltipMobileVars(icon);
+
+    var tooltipWidthEst = Math.min(280, window.innerWidth - 24);
+    var pad = 12;
+    var minComfort = 72;
+    var rect = icon.getBoundingClientRect();
+    icon.classList.remove('product-illustrative-info-icon--tooltip-left', 'product-illustrative-info-icon--tooltip-below');
+    var spaceRight = window.innerWidth - rect.right - pad;
+    var spaceLeft = rect.left - pad;
+    if (spaceRight >= tooltipWidthEst) {
+        return;
+    }
+    if (spaceLeft >= tooltipWidthEst) {
+        icon.classList.add('product-illustrative-info-icon--tooltip-left');
+        return;
+    }
+    if (spaceRight >= spaceLeft && spaceRight >= minComfort) {
+        return;
+    }
+    if (spaceLeft >= minComfort) {
+        icon.classList.add('product-illustrative-info-icon--tooltip-left');
+        return;
+    }
+    icon.classList.add('product-illustrative-info-icon--tooltip-below');
+}
+
+/**
+ * Tooltip do aviso de imagem ilustrativa: no mobile abre/fecha ao toque; desktop usa CSS :hover.
+ */
+function initProductIllustrativeImageTooltip(scope) {
+    const root = scope || document;
+    const icons = root.querySelectorAll('.product-illustrative-info-icon:not([data-illustrative-tooltip-bound])');
+    icons.forEach(function(icon) {
+        if (icon.closest('.wake-modal, .modal')) {
+            icon.dataset.illustrativeTooltipBound = 'true';
+            return;
+        }
+        icon.dataset.illustrativeTooltipBound = 'true';
+        icon.addEventListener('mouseenter', function() {
+            if (window.matchMedia('(min-width: 769px)').matches) {
+                updateProductIllustrativeTooltipPlacement(icon);
+            }
+        });
+        icon.addEventListener('focusin', function() {
+            if (window.matchMedia('(min-width: 769px)').matches) {
+                updateProductIllustrativeTooltipPlacement(icon);
+            }
+        });
+        icon.addEventListener('click', function(e) {
+            if (!window.matchMedia('(max-width: 768px)').matches) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const opening = !icon.classList.contains('is-open');
+            document.querySelectorAll('.product-illustrative-info-icon.is-open').forEach(function(el) {
+                if (el !== icon) {
+                    el.classList.remove('is-open');
+                    el.setAttribute('aria-expanded', 'false');
+                }
+            });
+            icon.classList.toggle('is-open', opening);
+            icon.setAttribute('aria-expanded', opening ? 'true' : 'false');
+            if (opening) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        updateProductIllustrativeTooltipPlacement(icon);
+                    });
+                });
+            } else {
+                clearIllustrativeTooltipMobileVars(icon);
+            }
+        });
+        icon.addEventListener('keydown', function(e) {
+            if (!window.matchMedia('(max-width: 768px)').matches) return;
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                icon.click();
+            }
+        });
+    });
+}
+
+(function setupProductIllustrativeTooltipOutsideClose() {
+    if (window.__illustrativeTooltipDocBound) return;
+    window.__illustrativeTooltipDocBound = true;
+    document.addEventListener('click', function(e) {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+        if (e.target.closest('.product-illustrative-info-icon')) return;
+        document.querySelectorAll('.product-illustrative-info-icon.is-open').forEach(function(el) {
+            el.classList.remove('is-open');
+            el.setAttribute('aria-expanded', 'false');
+            clearIllustrativeTooltipMobileVars(el);
+        });
+    });
+    var illustrativeResizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(illustrativeResizeTimer);
+        illustrativeResizeTimer = setTimeout(function() {
+            document.querySelectorAll('.product-illustrative-info-icon.is-open').forEach(updateProductIllustrativeTooltipPlacement);
+        }, 150);
+    });
+    var illustrativeScrollTimer;
+    window.addEventListener(
+        'scroll',
+        function() {
+            if (!window.matchMedia('(max-width: 768px)').matches) return;
+            clearTimeout(illustrativeScrollTimer);
+            illustrativeScrollTimer = setTimeout(function() {
+                document.querySelectorAll('.product-illustrative-info-icon.is-open').forEach(applyIllustrativeTooltipPositionMobile);
+            }, 32);
+        },
+        true
+    );
+})();
+
+/**
  * Verifica o nome do produto e oculta o badge de frete grátis se contiver palavras proibidas
  */
 function checkFreeShippingBadge() {
@@ -1735,7 +2286,7 @@ function checkFreeShippingBadge() {
     const productNameElement = document.querySelector('[product-view-div] .product-name, [product-view-div] h1.product-name, .product-name');
     if (!productNameElement) return;
     
-    const productName = productNameElement.textContent || productNameElement.innerText || '';
+    const productName = getProductDisplayNameFromTitleEl(productNameElement);
     const productNameLower = productName.toLowerCase().trim();
     
     // Lista de palavras proibidas
@@ -1757,23 +2308,30 @@ function checkFreeShippingBadge() {
     }
 }
 
+// Inicializa listeners para digitar quantidade no input da página de produto
+initProductQuantityInputListeners();
+
 // Executa a verificação quando a página carregar
 window.addEventListener('load', function() {
     checkFreeShippingBadge();
-    
-    // Observa mudanças no DOM caso o nome do produto seja carregado dinamicamente
-    const observer = new MutationObserver(function(mutations) {
-        checkFreeShippingBadge();
+    checkRestrictedSaleBadge();
+
+    /* Observa o body inteiro para capturar abertura de modais e carregamento dinâmico */
+    var badgeCheckTimer = null;
+    var bodyObserver = new MutationObserver(function() {
+        /* Debounce: evita múltiplas execuções seguidas durante inserções de DOM */
+        clearTimeout(badgeCheckTimer);
+        badgeCheckTimer = setTimeout(function() {
+            checkFreeShippingBadge();
+            checkRestrictedSaleBadge();
+            initProductIllustrativeImageTooltip();
+        }, 80);
     });
-    
-    const productViewDiv = document.querySelector('[product-view-div]');
-    if (productViewDiv) {
-        observer.observe(productViewDiv, {
-            childList: true,
-            subtree: true,
-            characterData: true
-        });
-    }
+
+    bodyObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 });
 
 // Também executa após o productLoad
@@ -1781,6 +2339,29 @@ if (typeof productLoad === 'function') {
     const originalProductLoad = productLoad;
     productLoad = async function() {
         await originalProductLoad();
-        setTimeout(checkFreeShippingBadge, 100);
+        setTimeout(function() {
+            checkFreeShippingBadge();
+            checkRestrictedSaleBadge();
+        }, 100);
     };
 }
+
+/**
+ * Desconto vitrine 5% (exibição Pix/boleto): mesma regra dos templates (prices.price * 0,95).
+ * Valores em data-price-catalog / data-price-pix-display vêm do servidor; use isto só para cálculos client-side se precisar.
+ */
+window.productVitrinePricing = {
+    DISCOUNT_RATE: 0.05,
+    FACTOR: 0.95,
+    /** Preço de vitrine com 5% (Pix, boleto e colunas equivalentes no overlay). @param {number} catalogPrice preço catálogo (API) */
+    pixDisplayFromCatalog: function (catalogPrice) {
+        var n = Number(catalogPrice);
+        if (!isFinite(n)) return NaN;
+        return n * this.FACTOR;
+    },
+    formatPtBRL: function (value) {
+        var n = Number(value);
+        if (!isFinite(n)) return '';
+        return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+};

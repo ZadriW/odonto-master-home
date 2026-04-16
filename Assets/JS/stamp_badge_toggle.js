@@ -23,21 +23,25 @@
             newStampImage.addEventListener('click', function(e) {
                 e.stopPropagation(); // Prevenir que o clique no card seja acionado
                 
-                // Encontrar o product-card pai
-                const productCard = this.closest('.product-card');
+                const stampWrapper = this.closest('.stamp-wrapper');
+                if (!stampWrapper) return;
+                
+                const productCard = stampWrapper.closest('.product-card');
                 if (!productCard) return;
                 
-                // Verificar se o card tem product-badge--promotion
-                const badge = productCard.querySelector('.product-badge--promotion');
+                const badge = stampWrapper.querySelector('.product-badge--promotion, .product-badge--promotion-stamp');
                 if (!badge) return;
                 
-                // Toggle da classe stamp-badge-active
-                if (productCard.classList.contains('stamp-badge-active')) {
-                    // Segundo clique: ocultar badge
-                    productCard.classList.remove('stamp-badge-active');
+                // Remover ativo dos outros wrappers do mesmo card (mostrar um badge por vez)
+                productCard.querySelectorAll('.stamp-wrapper.stamp-wrapper-active').forEach(function(w) {
+                    if (w !== stampWrapper) w.classList.remove('stamp-wrapper-active');
+                });
+                
+                // Toggle no wrapper clicado: segundo clique oculta, primeiro mostra
+                if (stampWrapper.classList.contains('stamp-wrapper-active')) {
+                    stampWrapper.classList.remove('stamp-wrapper-active');
                 } else {
-                    // Primeiro clique: mostrar badge
-                    productCard.classList.add('stamp-badge-active');
+                    stampWrapper.classList.add('stamp-wrapper-active');
                 }
             });
         });
@@ -88,6 +92,4 @@
         }, 250);
     });
 })();
-
-
 

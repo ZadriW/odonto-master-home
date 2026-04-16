@@ -24,9 +24,6 @@
         {{~ product = data.product ~}}
         <input type="hidden" id="product-id" name="product-id" value="{{ data.product.product_id }}">
         <input type="hidden" id="product-variant-id" name="product-variant-id" value="{{ data.product.product_variant_id }}">
-        {{~ if data.product.sku ~}}
-        <input type="hidden" id="product-sku" name="product-sku" value="{{ data.product.sku }}">
-        {{~ end ~}}
         <div class="flex flex-col w-full lg:flex-row lg:justify-center">
             <div class="flex flex-col w-full lg:w-[1200px] lg:max-w-[1200px] lg:min-w-[1200px] relative p-2 lg:p-0">
                 <div class="my-4">{{~ breadcrumb breadcrumbs: product.breadcrumbs ~}}</div>
@@ -47,6 +44,14 @@
             </div>
         </div>
         {{ mobile_bottom_menu }}
+        
+        <!-- Overlay de zoom da imagem do produto -->
+        <div id="product-image-zoom-overlay" class="product-image-zoom-overlay" onclick="closeProductImageZoom()">
+            <button type="button" class="product-image-zoom-close" onclick="event.stopPropagation(); closeProductImageZoom();" aria-label="Fechar zoom">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="product-image-zoom-img" class="product-image-zoom-img" src="" alt="Imagem ampliada do produto" onclick="event.stopPropagation();">
+        </div>
         
         {{ page_scripts position: "FOOTER_START" scripts: common.scripts }}
         {{ footer is_preview: is_preview store: store }}

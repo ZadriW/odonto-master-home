@@ -1,45 +1,146 @@
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
-                        <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
                             <tbody>
                                 <tr align="center">
-                                    <td style="padding-bottom: 30px;">
-                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Confirmação de Alerta de Valor</h1>
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M434.8 70.1c14.3 10.4 17.5 30.4 7.1 44.7l-256 352c-5.5 7.6-14 12.3-23.4 13.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l101.5 101.5 234-321.7c10.4-14.3 30.4-17.5 44.7-7.1z" fill="#ffffff"/>
+                                        </svg>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá!</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Recebemos sua solicitação para receber um alerta de valor do produto <strong style="color: #0e167a;">{{produto.nome}}</strong> quando o preço baixar para <strong style="color: #0e167a;">R$ {{produto.valordesejado}}</strong>.</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Assim que o preço do produto atingir o valor desejado, enviaremos um email para notificá-lo.</p>
+                                <tr align="center">
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">Alerta Confirmado!</h1>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 20px 20px 0 20px; border-top: 1px solid #e5e7eb;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.6; color: #6c757d; margin: 0;">Obrigado por utilizar nosso serviço de alerta de valor!</p>
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 14px; line-height: 1.6; color: #0e167a; font-weight: 600; margin: 8px 0 0 0;">Equipe {{configuracao.nome_ecommerce}}</p>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Olá! Recebemos sua solicitação. Você será notificado quando o produto atingir o valor desejado.</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- END MAIN -->
+                        <!-- END HERO -->
+
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== SEÇÃO: INFORMAÇÕES DO ALERTA ===== -->
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Detalhes do Alerta</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 20px 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 16px;">
+                                                        {{ if produto?.imagem }}
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="center" style="padding-bottom: 16px;">
+                                                                        <img src="{{ produto?.imagem }}" alt="{{ produto?.nome }}" style="display: block; max-width: 200px; height: auto; border-radius: 4px; border: 1px solid #e0e4f0;" />
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        {{ end }}
+                                                        <p style="margin: 0 0 12px; font-weight: 700; color: #1a1a2e; font-size: 16px; line-height: 130%;">{{ produto?.nome }}</p>
+                                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 12px;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding: 8px 0;">
+                                                                        <p style="margin: 0; font-size: 13px; color: #6b7aad; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Valor Atual</p>
+                                                                        <p style="margin: 4px 0 0; font-size: 18px; color: #4a4a6a; font-weight: 600;">R$ {{ produto?.valoratual }}</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding: 8px 0; border-top: 1px solid #e0e4f0;">
+                                                                        <p style="margin: 0; font-size: 13px; color: #6b7aad; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Valor Desejado</p>
+                                                                        <p style="margin: 4px 0 0; font-size: 20px; color: #0e167a; font-weight: 700;">R$ {{ produto?.valordesejado }}</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== MENSAGEM INFORMATIVA ===== -->
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f0f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 14px 16px;">
+                                                        <p style="margin: 0; color: #4a4a6a; font-size: 14px; line-height: 150%;">Assim que o preço do produto atingir o valor desejado de <strong style="color: #0e167a;">R$ {{ produto?.valordesejado }}</strong>, enviaremos um email para notificá-lo.</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- SPACER -->
+                                <tr><td style="height: 20px;"></td></tr>
+
+                                <!-- ===== CTA: VER PRODUTO ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 20px 20px 28px;">
+                                        <a href="{{ configuracao?.url_ecommerce }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Ver Produto</a>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== MENSAGEM FINAL ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 0 20px 24px;">
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 13px; line-height: 150%;">Obrigado por utilizar nosso serviço de alerta de valor!</p>
+                                        <p style="margin: 4px 0 0; color: #4a4a6a; font-size: 13px; line-height: 150%;"><strong>Equipe {{ configuracao?.nome_ecommerce }}</strong></p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- END MAIN CONTENT -->
 
                         <!-- FOOTER -->
                         {{footer_mail}}
                         <!-- END FOOTER -->
+
                     </div>
                 </td>
             </tr>

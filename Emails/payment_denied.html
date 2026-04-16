@@ -1,6 +1,140 @@
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    PagamentoNegado
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
+        <tbody>
+            <tr>
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
+                        <!-- HEADER -->
+                        {{header_mail}}
+                        <!-- END HEADER -->
+
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
+                            <tbody>
+                                <tr align="center">
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM0 224l0 192c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224H0zm64 96h64c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16z" fill="#ffffff"/>
+                                        </svg>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">Pagamento não aprovado</h1>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Olá, <strong style="color: #ffffff;">{{ pedido?.usuario?.primeiro_nome }}</strong>! O pagamento do pedido <strong style="color: #ffffff;">#{{ pedido?.pedido_id }}</strong> não foi aprovado. Você pode tentar outra forma de pagamento.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- END HERO -->
+
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== SEÇÃO: INFORMAÇÃO IMPORTANTE ===== -->
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Informação importante</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 20px 20px;">
+                                        <p style="margin: 0 0 14px; color: #4a4a6a; font-size: 15px; line-height: 160%;">Identificamos que o pagamento referente ao seu pedido <strong style="color: #0e167a;">#{{ pedido?.pedido_id }}</strong> não foi aprovado.</p>
+                                        <p style="margin: 0 0 14px; color: #4a4a6a; font-size: 15px; line-height: 160%;">Você pode finalizar a compra utilizando outras formas de pagamento disponíveis em nossa loja, como boleto, PIX ou cartão de crédito.</p>
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 15px; line-height: 160%;">Se acredita que houve algum equívoco ou precisar de suporte, entre em contato conosco. Estamos à disposição para ajudar.</p>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== CARD: SEU PEDIDO ===== -->
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 16px;">
+                                                        <p style="margin: 0 0 8px; font-size: 12px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.6px;">Seu pedido</p>
+                                                        <p style="margin: 0 0 6px; color: #4a4a6a; font-size: 14px; line-height: 150%;"><strong>Pedido:</strong> #{{ pedido?.pedido_id }}</p>
+                                                        <p style="margin: 0; color: #4a4a6a; font-size: 14px; line-height: 150%;"><strong>Total:</strong> R$ {{ pedido?.valor_total }}</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- SPACER -->
+                                <tr><td style="height: 20px;"></td></tr>
+
+                                <!-- ===== CTA: ESCOLHER OUTRA FORMA DE PAGAMENTO ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 8px 20px 12px;">
+                                        <a href="{{ configuracao?.url_ecommerce }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Escolher outra forma de pagamento</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 0 20px 8px;">
+                                        <p style="margin: 0; color: #6b6b8a; font-size: 13px; line-height: 150%;">Acesse <a href="{{ configuracao?.url_ecommerce }}" target="_blank" style="color: #0e167a; text-decoration: underline;">{{ configuracao?.url_ecommerce }}</a> para concluir sua compra.</p>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== MENSAGEM INFORMATIVA ===== -->
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f0f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 14px 16px;">
+                                                        <p style="margin: 0; color: #4a4a6a; font-size: 14px; line-height: 150%;">Em caso de dúvidas ou necessidade de suporte, nossa equipe está à disposição para garantir uma excelente experiência de compra.</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- SPACER -->
+                                <tr><td style="height: 16px;"></td></tr>
+
+                                <!-- ===== MENSAGEM FINAL ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 0 20px 24px;">
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 13px; line-height: 150%;">Obrigado por escolher o <strong>{{ configuracao?.nome_ecommerce }}</strong>!</p>
+                                        <p style="margin: 4px 0 0; color: #4a4a6a; font-size: 13px; line-height: 150%;"><strong>Equipe {{ configuracao?.nome_ecommerce }}</strong></p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- END MAIN CONTENT -->
+
+                        <!-- FOOTER -->
+                        {{footer_mail}}
+                        <!-- END FOOTER -->
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>

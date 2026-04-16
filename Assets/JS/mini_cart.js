@@ -156,6 +156,132 @@ async function miniCartSubtractQuantity(productVariantId, customizationId){
     await loadMiniCart();
 }
 
+/**
+ * Remove todos os produtos do carrinho de uma vez.
+ * Itera sobre cada produto/kit e chama remove/removeKit individualmente.
+ */
+async function clearMiniCart() {
+    try {
+        const btn = document.querySelector('.checkout-clear-cart-btn');
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Limpando...';
+        }
+
+        const checkoutId = client.cookie.get('carrinho-id');
+        if (!checkoutId) return;
+
+        /* Busca o estado atual do checkout para obter todos os itens */
+        const response = await client.checkout.get();
+        if (!response?.data) return;
+
+        const products = response.data.products || [];
+        const kits     = response.data.kits     || [];
+
+        /* Remove produtos comuns */
+        for (const product of products) {
+            if (product.kit) continue;
+            const input = getMiniCartAddOrSubtractInput(
+                product.productVariantId,
+                product.quantity,
+                product.customization?.id || ''
+            );
+            await client.checkout.remove(input, checkoutId);
+        }
+
+        /* Remove kits usando o mesmo helper das demais funções de kit */
+        for (const kit of kits) {
+            const input = await miniCartGetKitInput(kit.kitId, kit.kitGroupId, kit.quantity);
+            await client.checkout.removeKit(input);
+        }
+
+        await loadMiniCart();
+    } catch (error) {
+        console.log(error);
+        showOverlay('Ocorreu um erro!', 'Erro ao limpar o carrinho.', true);
+        await loadMiniCart();
+    }
+}
+
+/**
+ * Define uma quantidade absoluta para um produto no mini-cart a partir do input digitado.
+ * Calcula a diferença em relação à quantidade anterior e usa add/remove da SDK.
+ * @param {HTMLInputElement} inputEl - O input de quantidade
+ */
+async function miniCartSetQuantity(inputEl) {
+    if (!inputEl) return;
+
+    const productVariantId = inputEl.getAttribute('data-variant-id');
+    const customizationId  = inputEl.getAttribute('data-customization-id') || '';
+    if (!productVariantId) return;
+
+    const min      = parseInt(inputEl.getAttribute('min')) || 1;
+    const prevValue = parseInt(inputEl.dataset.prevValue, 10) || min;
+    let   newValue  = parseInt(inputEl.value, 10);
+
+    /* Se vazio ou inválido, restaura o valor anterior e sai sem chamar a API */
+    if (isNaN(newValue) || newValue < min) {
+        inputEl.value = prevValue;
+        return;
+    }
+
+    /* Sem mudança: não precisa chamar a API */
+    if (newValue === prevValue) return;
+
+    inputEl.value = newValue;
+    inputEl.dataset.prevValue = newValue;
+
+    try {
+        const diff = Math.abs(newValue - prevValue);
+        const payload = [{ productVariantId: Number(productVariantId), quantity: diff }];
+        if (customizationId) payload[0].customizationId = customizationId;
+
+        if (newValue > prevValue) {
+            await client.checkout.add(payload);
+        } else {
+            await client.checkout.remove(payload);
+        }
+
+        await loadMiniCart();
+    } catch (error) {
+        console.log(error);
+        inputEl.value = prevValue; /* reverte o input em caso de erro */
+        showOverlay('Ocorreu um erro!', 'Erro ao atualizar a quantidade.', true);
+    }
+}
+
+/** Inicializa listeners delegados para os inputs do mini-cart (funciona após re-render) */
+(function initMiniCartQtyInputListeners() {
+    /* Salva valor anterior quando o usuário entra no campo (para restaurar se cancelar) */
+    document.addEventListener('focus', function(e) {
+        if (e.target && e.target.classList.contains('mini-cart-qty-input')) {
+            e.target.dataset.prevValue = e.target.value;
+        }
+    }, true);
+
+    /* Durante a digitação: permite campo em branco; só limita se exceder max */
+    document.addEventListener('input', function(e) {
+        if (!e.target || !e.target.classList.contains('mini-cart-qty-input')) return;
+        const raw = e.target.value.trim();
+        if (raw === '') return;
+        const value = parseInt(raw, 10);
+        if (!isNaN(value) && value < 1) e.target.value = 1;
+    });
+
+    /* Ao sair do campo: valida e envia */
+    document.addEventListener('change', function(e) {
+        if (!e.target || !e.target.classList.contains('mini-cart-qty-input')) return;
+        miniCartSetQuantity(e.target);
+    });
+
+    /* Confirmar com Enter */
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter') return;
+        if (!e.target || !e.target.classList.contains('mini-cart-qty-input')) return;
+        e.target.blur(); /* dispara o change */
+    });
+}());
+
 async function addUtmMetadata(checkout) {
     const utmSource = "utm_source";
     const utmMedium = "utm_medium";

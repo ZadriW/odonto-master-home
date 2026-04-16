@@ -1,0 +1,138 @@
+{{ ##
+    Description: Renders the shipping quote groups with dropdown selection per distribution center.
+                 Used for multi-freight operations where different CDs handle different products.
+    Params:
+        - Uses shipping_quote_groups.graphql
+    Usage:
+        await client.snippet.render("shipping_quote_groups_snippet.html", 
+            "SnippetQueries/shipping_quote_groups.graphql", variables);
+## }}
+
+{{~ groups = data.shipping_quote_groups ~}}
+
+{{~ if groups && groups.size > 0 ~}}
+    <div class="shipping-quote-groups-container">
+        <h2 class="shipping-quote-groups-title">
+            <svg class="shipping-quote-groups-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+            </svg>
+            Opções de Entrega
+        </h2>
+        
+        {{~ for group in groups ~}}
+            <div class="shipping-quote-group" data-cd-id="{{ group.distribution_center.id }}">
+                <div class="shipping-quote-group-header">
+                    <div class="shipping-quote-group-cd-info">
+                        <span class="shipping-quote-group-cd-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </span>
+                        <div class="shipping-quote-group-cd-details">
+                            <span class="shipping-quote-group-cd-name">
+                                {{~ if group.distribution_center.name ~}}
+                                    {{ group.distribution_center.name }}
+                                {{~ else ~}}
+                                    Centro de Distribuição
+                                {{~ end ~}}
+                            </span>
+                            {{~ if group.distribution_center.seller_name ~}}
+                                <span class="shipping-quote-group-seller-name">
+                                    Vendido por: {{ group.distribution_center.seller_name }}
+                                </span>
+                            {{~ end ~}}
+                        </div>
+                    </div>
+                </div>
+                
+                {{~ if group.shipping_quotes && group.shipping_quotes.size > 0 ~}}
+                    <div class="shipping-quote-group-options">
+                        <label class="shipping-quote-group-label">Selecione o frete:</label>
+                        <select class="shipping-quote-group-select" 
+                                data-cd-id="{{ group.distribution_center.id }}"
+                                data-distribution-center-id="{{ group.distribution_center.id }}"
+                                onchange="onShippingQuoteGroupSelect(this)">
+                            <option value="" disabled selected>Escolha uma opção de entrega</option>
+                            {{~ for quote in group.shipping_quotes ~}}
+                                <option value="{{ quote.shipping_quote_id }}" 
+                                        data-value="{{ quote.value }}"
+                                        data-deadline="{{~ if quote.deadline ~}}{{ quote.deadline }}{{~ else ~}}0{{~ end ~}}"
+                                        data-type="{{~ if quote.type ~}}{{ quote.type }}{{~ else ~}}{{~ end ~}}"
+                                        data-name="{{ quote.name }}"
+                                        data-shipping-quote-id="{{ quote.shipping_quote_id }}">
+                                    {{ quote.name }} 
+                                    - {{ quote.value | math.format "c" "pt-BR" }}
+                                    {{~ if quote.deadline && quote.deadline > 0 ~}}
+                                        ({{ quote.deadline }} {{~ if quote.deadline == 1 ~}} dia útil{{~ else ~}} dias úteis{{~ end ~}})
+                                    {{~ end ~}}
+                                    {{~ if quote.type == "Retirada" ~}}
+                                        - Retirada
+                                    {{~ end ~}}
+                                </option>
+                            {{~ end ~}}
+                        </select>
+                    </div>
+                    
+                    <!-- Detalhes do frete selecionado -->
+                    <div class="shipping-quote-group-selected-details" style="display: none;">
+                        <div class="shipping-quote-selected-info">
+                            <span class="shipping-quote-selected-name"></span>
+                            <span class="shipping-quote-selected-value"></span>
+                            <span class="shipping-quote-selected-deadline"></span>
+                        </div>
+                    </div>
+                {{~ else ~}}
+                    <div class="shipping-quote-group-no-options">
+                        <span>Nenhuma opção de entrega disponível para este centro de distribuição.</span>
+                    </div>
+                {{~ end ~}}
+            </div>
+        {{~ end ~}}
+        
+        <!-- Resumo total do frete -->
+        <div class="shipping-quote-groups-summary" style="display: none;">
+            <div class="shipping-quote-groups-summary-header">
+                <span class="shipping-quote-groups-summary-title">Resumo do Frete</span>
+            </div>
+            <div class="shipping-quote-groups-summary-list"></div>
+            <div class="shipping-quote-groups-summary-total">
+                <span>Total do Frete:</span>
+                <span class="shipping-quote-groups-total-value">R$ 0,00</span>
+            </div>
+            {{ ##
+                Retirada na loja: nome e documento de quem retira (checkoutSelectShippingQuote.additionalInformation).
+            ## }}
+            <div id="shipping-quote-pickup-info" class="shipping-quote-pickup-info" style="display: none;" hidden>
+                <p class="shipping-quote-pickup-info-title">Dados para retirada na loja</p>
+                <p class="shipping-quote-pickup-info-hint">Preencha com o nome e documento de quem irá retirar o pedido.</p>
+                <div class="shipping-quote-pickup-info-fields">
+                    <label class="shipping-quote-pickup-label">
+                        <span>Nome completo</span>
+                        <input type="text" id="shipping_pickup_name" name="shipping_pickup_name" class="shipping-quote-pickup-input" autocomplete="name" maxlength="200" />
+                    </label>
+                    <label class="shipping-quote-pickup-label">
+                        <span>Documento (RG, CPF ou outro)</span>
+                        <input type="text" id="shipping_pickup_document" name="shipping_pickup_document" class="shipping-quote-pickup-input" autocomplete="off" maxlength="30" />
+                    </label>
+                </div>
+            </div>
+            <button type="button" class="shipping-quote-groups-confirm-btn" onclick="confirmShippingQuoteGroups()" disabled>
+                {{~ if groups.size == 1 ~}}Selecione o frete para o centro de distribuição{{~ else ~}}Selecione o frete para todos os {{ groups.size }} centros de distribuição{{~ end ~}}
+            </button>
+        </div>
+    </div>
+    <script>
+        console.log('Shipping Quote Groups: {{ groups.size }} grupos carregados');
+    </script>
+{{~ else ~}}
+    <div class="shipping-quote-groups-empty">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <span>Não há opções de frete disponíveis para este endereço.</span>
+        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">Verifique se o endereço está correto ou volte à etapa anterior para recalcular.</p>
+    </div>
+    <script>
+        console.log('Shipping Quote Groups: Nenhum grupo de frete disponível');
+    </script>
+{{~ end ~}}

@@ -1,11 +1,13 @@
-<div class="mt-2">        
+<div class="product-price-installments">        
     {{~ if best_installment.display_name | string.contains "Boleto" ~}}
-        <p class="text-sm text-gray-600">{{ best_installment.value | math.format "c" "pt-BR" }} no boleto</p>
+        {{~ vitrine_boleto_inst = best_installment.value | math.times 0.95 ~}}
+        <p class="product-price-installments__line">{{ vitrine_boleto_inst | math.format "c" "pt-BR" }} no boleto</p>
     {{~ else if best_installment.display_name | string.contains "Cartão" ~}}
-        <p class="text-sm text-gray-600">ou <b class="text-gray-900 font-semibold">em {{ best_installment.number }}x de {{ best_installment.value | math.format "c" "pt-BR" }} {{ if best_installment.fees }}com juros{{ else }}sem juros{{ end }} no cartão</b></p>
+        <p class="product-price-installments__line">ou <b class="product-price-installments__strong">em {{ best_installment.number }}x de {{ best_installment.value | math.format "c" "pt-BR" }} {{ if best_installment.fees }}com juros{{ else }}sem juros{{ end }} no cartão</b></p>
     {{~ else if best_installment.display_name | string.contains "Pix" ~}}
-        <p class="text-sm text-gray-600">{{ best_installment.value | math.format "c" "pt-BR" }} no PIX</p>
+        {{~ vitrine_pix_inst = best_installment.value | math.times 0.95 ~}}
+        <p class="product-price-installments__line">{{ vitrine_pix_inst | math.format "c" "pt-BR" }} no PIX</p>
     {{~ else ~}}
-        <p class="text-sm text-gray-600">ou <b class="text-gray-900 font-semibold">em {{ best_installment.number }}x de {{ best_installment.value | math.format "c" "pt-BR" }} {{ if best_installment.fees }}com juros{{ else }}sem juros{{ end }}</b></p>
+        <p class="product-price-installments__line">ou <b class="product-price-installments__strong">em {{ best_installment.number }}x de {{ best_installment.value | math.format "c" "pt-BR" }} {{ if best_installment.fees }}com juros{{ else }}sem juros{{ end }}</b></p>
     {{~ end ~}}
 </div>

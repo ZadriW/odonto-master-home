@@ -687,3 +687,104 @@ a[class*="whatsapp-float-button"] i {
         font-size: 26px !important;
     }
 }
+
+/* ===== BOTÃO FLUTUANTE VOLTAR AO TOPO ===== */
+button.back-to-top-float-button,
+.back-to-top-float-button,
+button[class*="back-to-top-float-button"] {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+    background-color: #0e167a !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(14, 22, 122, 0.4) !important;
+    z-index: 9985 !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    font-size: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+button.back-to-top-float-button:hover,
+.back-to-top-float-button:hover,
+button[class*="back-to-top-float-button"]:hover {
+    background-color: #0b1159 !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(14, 22, 122, 0.6) !important;
+}
+
+button.back-to-top-float-button:active,
+.back-to-top-float-button:active,
+button[class*="back-to-top-float-button"]:active {
+    transform: scale(0.95) !important;
+}
+
+button.back-to-top-float-button i,
+.back-to-top-float-button i,
+button[class*="back-to-top-float-button"] i {
+    color: #ffffff !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+    button.back-to-top-float-button,
+    .back-to-top-float-button,
+    button[class*="back-to-top-float-button"] {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        min-height: 56px !important;
+        max-width: 56px !important;
+        max-height: 56px !important;
+        bottom: 80px !important;
+        left: 16px !important;
+        font-size: 26px !important;
+    }
+    button.back-to-top-float-button i,
+    .back-to-top-float-button i,
+    button[class*="back-to-top-float-button"] i {
+        font-size: 26px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    button.back-to-top-float-button,
+    .back-to-top-float-button,
+    button[class*="back-to-top-float-button"] {
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        max-width: 52px !important;
+        max-height: 52px !important;
+        bottom: 75px !important;
+        left: 14px !important;
+        font-size: 24px !important;
+    }
+    button.back-to-top-float-button i,
+    .back-to-top-float-button i,
+    button[class*="back-to-top-float-button"] i {
+        font-size: 24px !important;
+    }
+}

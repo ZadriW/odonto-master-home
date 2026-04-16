@@ -57,27 +57,67 @@
     display: none; /* Garantir que não apareça no contexto dos cards */
   }
 
-  /* Aplicar zoom na imagem principal do produto na página do produto */
+  /* Aplicar zoom tipo lupa na imagem principal do produto na página do produto */
   .product-image-zoom {
-    transition: transform .2s ease;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
+    will-change: transform;
+    transform-origin: center center;
+    transition: none !important; /* Remover transição para movimento fluido */
+    pointer-events: none; /* Permitir que o container capture os eventos do mouse */
+    transform: scale(1) !important; /* Garantir que o transform seja aplicado */
+    overflow: visible !important; /* Permitir que o zoom seja visível */
+    border-radius: 12px !important; /* Reimplementar border-radius */
   }
 
-  /* Container zoom na página do produto - aplicar scale no hover na imagem */
-  .zoom:has(.product-image-zoom):hover {
-    transform: none; /* Não aplicar transform no container */
-  }
-
-  .zoom:has(.product-image-zoom):hover .product-image-zoom {
-    transform: scale(1.05);
-  }
-
-  /* Garantir que o container zoom ocupe todo o espaço disponível */
+  /* Container zoom na página do produto - overflow hidden para efeito lupa */
   .zoom:has(.product-image-zoom) {
     display: block;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
+    cursor: crosshair;
+    border-radius: 12px !important; /* Adicionar border-radius ao container */
+  }
+
+  /* Garantir que o container não tenha transform no hover */
+  .zoom:has(.product-image-zoom):hover {
+    transform: none;
+  }
+  
+  /* Desktop: aplicar zoom tipo lupa */
+  @media (min-width: 769px) {
+    .zoom:has(.product-image-zoom) {
+      cursor: crosshair;
+    }
+    
+    .zoom:has(.product-image-zoom) .product-image-zoom {
+      transition: none !important; /* Sem transição para movimento suave */
+      transform: scale(1) !important; /* Estado inicial */
+    }
+    
+    /* Garantir que o zoom seja aplicado no hover/mousemove */
+    .zoom:has(.product-image-zoom) .product-image-zoom[style*="transform"] {
+      transition: none !important;
+    }
+  }
+  
+  /* Mobile: manter comportamento de clique para overlay */
+  @media (max-width: 768px) {
+    .zoom:has(.product-image-zoom) {
+      cursor: pointer;
+    }
+    
+    .zoom:has(.product-image-zoom) .product-image-zoom {
+      transition: transform 0.2s ease;
+      transform-origin: center center;
+      pointer-events: auto; /* Permitir clique no mobile */
+    }
+    
+    .zoom:has(.product-image-zoom):active .product-image-zoom {
+      transform: scale(1.05);
+    }
   } 

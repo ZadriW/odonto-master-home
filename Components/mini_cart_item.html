@@ -1,6 +1,11 @@
 <li class="flex py-6">
-    <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-secondary-200">
-        <img src="{{ item.image_url ? item.image_url : noImage }}" width="80px" height="80px" class="object-cover w-full h-full">
+    <div class="flex flex-col items-start">
+        <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-secondary-200">
+            <img src="{{ item.image_url ? item.image_url : noImage }}" width="80px" height="80px" class="object-cover w-full h-full">
+        </div>
+        {{~ if item.sku ~}}
+            <div class="mini-cart-sku-badge">SKU: {{ item.sku }}</div>
+        {{~ end ~}}
     </div>                                
     <div class="ml-4 flex flex-1 flex-col">
         <div class="flex justify-between text-base font-medium text-secondary-900">
@@ -40,12 +45,24 @@
                         remove_product_from_cart = "miniCartRemoveKit('" + item.kit_id + "', '" + item.kit_group_id + "'," + item.quantity + ")"
                     end
                 ~}}
-                <div class="flex justify-between">
-                    <button onclick="{{ mini_cart_subtract_quantity }}" class="mini-cart-qty-btn flex justify-center items-center rounded-sm mr-3 border">
+                <div class="flex justify-between items-center">
+                    <button onclick="{{ mini_cart_subtract_quantity }}" class="mini-cart-qty-btn flex justify-center items-center rounded-sm border">
                         <img src="{{- store.urls.static_img}}icons/minus-small.svg?theme={{store.theme}}&v={{store.last_modified}}" class="h-5 w-5">
                     </button>
-                    {{ item.quantity }}
-                    <button onclick="{{ mini_cart_add_quantity }}" class="mini-cart-qty-btn flex justify-center items-center rounded-sm ml-3 border">
+                    {{~ if is_kit ~}}
+                        <span class="mini-cart-qty-display">{{ item.quantity }}</span>
+                    {{~ else ~}}
+                        <input
+                            type="number"
+                            class="mini-cart-qty-input"
+                            value="{{ item.quantity }}"
+                            min="1"
+                            data-variant-id="{{ item.product_variant_id }}"
+                            data-customization-id="{{ customization_id }}"
+                            aria-label="Quantidade"
+                        >
+                    {{~ end ~}}
+                    <button onclick="{{ mini_cart_add_quantity }}" class="mini-cart-qty-btn flex justify-center items-center rounded-sm border">
                         <img src="{{- store.urls.static_img}}icons/plus-small.svg?theme={{store.theme}}&v={{store.last_modified}}" class="h-5 w-5">
                     </button>
                 </div>

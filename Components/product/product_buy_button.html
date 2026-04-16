@@ -5,7 +5,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
             </svg>
         </button>
-        <input type="number" id="selected-quantity" name="selected-quantity" class="product-quantity-input" value="1" min="1" {{ if max }} max="{{ max }}" {{ end }} readonly aria-label="Quantidade">
+        <input type="number" id="selected-quantity" name="selected-quantity" class="product-quantity-input" value="1" min="1" {{ if max }} max="{{ max }}" {{ end }} aria-label="Quantidade">
         <button type="button" class="product-quantity-btn product-quantity-plus" onclick="increaseProductQuantity(); return false;" aria-label="Aumentar quantidade">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />

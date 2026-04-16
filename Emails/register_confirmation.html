@@ -1,44 +1,119 @@
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table role="Newsletter" aria-label="{{ configuracao?.nome_ecommerce ?? 'Odonto Master' }}" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
+    <table role="Newsletter" aria-label="Odonto Master" lang="pt-BR" dir="ltr" border="0" width="100%" cellpadding="0" cellspacing="0" style="font-size:medium;font-size:max(16px,1rem);font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;">
         <tbody>
             <tr>
-                <td align="center" valign="top" style="background-color: #f8f9fa; padding: 20px 0;">
-                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;border-radius: 8px;overflow: hidden;box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <td align="center" valign="top" style="background-color: #f0f2f8;">
+                    <div style="max-width:620px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;background-color: #ffffff;">
+
                         <!-- HEADER -->
                         {{header_mail}}
                         <!-- END HEADER -->
 
-                        <!-- MAIN -->
-                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;margin: 0;padding: 40px 30px;">
+                        <!-- HERO -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;background-color:#0e167a;">
                             <tbody>
                                 <tr align="center">
-                                    <td style="padding-bottom: 30px;">
-                                        <h1 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 32px; line-height: 1.2; color: #0e167a; font-weight: 700; margin: 0;">Confirmação de Cadastro!</h1>
+                                    <td style="padding: 32px 24px 12px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="64" height="64" style="display: block; margin: 0 auto;">
+                                            <path d="M285.7 304c98.5 0 178.3 79.8 178.3 178.3 0 16.4-13.3 29.7-29.7 29.7L77.7 512C61.3 512 48 498.7 48 482.3 48 383.8 127.8 304 226.3 304l59.4 0zM528 80c13.3 0 24 10.7 24 24l0 48 48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0 0 48c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-48-48 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0 0-48c0-13.3 10.7-24 24-24zM256 248a120 120 0 1 1 0-240 120 120 0 1 1 0 240z" fill="#ffffff"/>
+                                        </svg>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 0 20px 20px 20px;">
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Bem vindo, à <strong style="color: #0e167a;">{{configuracao.nome_ecommerce}}</strong>.</p>
-                                        {{ if usuario.sexo == "Masculino" }}
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Oi amigo <strong style="color: #0e167a;">{{ usuario.nome }}</strong>, bem vindo!</p>
-                                        {{ else if usuario.sexo == "Feminino" }}
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá amiga <strong style="color: #0e167a;">{{ usuario.nome }}</strong>, bem vinda!</p>
-                                        {{ else }}
-                                        <p style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; font-size: 16px; line-height: 1.6; color: #374151; margin: 0 0 16px 0;">Olá <strong style="color: #0e167a;">{{usuario.nome}}</strong></p>
-                                        {{ end }}
+                                <tr align="center">
+                                    <td style="padding: 0 24px 8px;">
+                                        <h1 style="font-size: 26px; line-height: 130%; color: #ffffff; margin: 0; font-weight: 700;">Confirma&#231;&#227;o de cadastro</h1>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td style="padding: 0 32px 32px;">
+                                        <p style="color: #c4cdee; font-size: 15px; margin: 0; line-height: 150%;">Bem-vindo(a) &#224; <strong style="color: #ffffff;">{{ configuracao?.nome_ecommerce }}</strong>! Seu cadastro foi confirmado com sucesso.</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- END MAIN -->
+                        <!-- END HERO -->
+
+                        <!-- MAIN CONTENT -->
+                        <table border="0" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:620px;">
+                            <tbody>
+
+                                <!-- ===== SEÇÃO: BOAS-VINDAS ===== -->
+                                <tr>
+                                    <td style="padding: 24px 20px 0;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-bottom: 10px; border-bottom: 2px solid #0e167a;">
+                                                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.8px;">Cadastro confirmado</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 20px 20px;">
+                                        {{ if usuario?.sexo == "Masculino" }}
+                                        <p style="margin: 0 0 14px; color: #4a4a6a; font-size: 15px; line-height: 160%;">Oi amigo <strong style="color: #0e167a;">{{ usuario?.nome }}</strong>, bem-vindo! Seu cadastro na <strong style="color: #0e167a;">{{ configuracao?.nome_ecommerce }}</strong> foi realizado com sucesso.</p>
+                                        {{ else if usuario?.sexo == "Feminino" }}
+                                        <p style="margin: 0 0 14px; color: #4a4a6a; font-size: 15px; line-height: 160%;">Ol&#225; amiga <strong style="color: #0e167a;">{{ usuario?.nome }}</strong>, bem-vinda! Seu cadastro na <strong style="color: #0e167a;">{{ configuracao?.nome_ecommerce }}</strong> foi realizado com sucesso.</p>
+                                        {{ else }}
+                                        <p style="margin: 0 0 14px; color: #4a4a6a; font-size: 15px; line-height: 160%;">Ol&#225;, <strong style="color: #0e167a;">{{ usuario?.nome }}</strong>! Seu cadastro na <strong style="color: #0e167a;">{{ configuracao?.nome_ecommerce }}</strong> foi realizado com sucesso.</p>
+                                        {{ end }}
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 15px; line-height: 160%;">A partir de agora voc&#234; pode aproveitar todos os benef&#237;cios da nossa loja. Em caso de d&#250;vidas, estamos &#224; disposi&#231;&#227;o.</p>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== CARD INFORMATIVO ===== -->
+                                <tr>
+                                    <td style="padding: 0 20px;">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9ff; border: 1px solid #dde3f5; border-left: 4px solid #0e167a; border-radius: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding: 14px 16px;">
+                                                        <p style="margin: 0 0 4px; font-size: 12px; font-weight: 700; color: #0e167a; text-transform: uppercase; letter-spacing: 0.6px;">E-mail cadastrado</p>
+                                                        <p style="margin: 0; color: #4a4a6a; font-size: 14px; line-height: 150%;">{{ usuario?.email }}</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- SPACER -->
+                                <tr><td style="height: 20px;"></td></tr>
+
+                                <!-- ===== CTA: EXPLORAR LOJA ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 8px 20px 28px;">
+                                        <a href="{{ configuracao?.url_ecommerce }}" target="_blank" style="display: inline-block; background-color: #0e167a; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 40px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;">Explorar loja</a>
+                                    </td>
+                                </tr>
+
+                                <!-- ===== MENSAGEM FINAL ===== -->
+                                <tr>
+                                    <td align="center" style="padding: 0 20px 24px;">
+                                        <p style="margin: 0; color: #4a4a6a; font-size: 13px; line-height: 150%;">Obrigado por escolher o <strong>{{ configuracao?.nome_ecommerce }}</strong>!</p>
+                                        <p style="margin: 4px 0 0; color: #4a4a6a; font-size: 13px; line-height: 150%;"><strong>Equipe {{ configuracao?.nome_ecommerce }}</strong></p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- END MAIN CONTENT -->
 
                         <!-- FOOTER -->
                         {{footer_mail}}
                         <!-- END FOOTER -->
+
                     </div>
                 </td>
             </tr>
